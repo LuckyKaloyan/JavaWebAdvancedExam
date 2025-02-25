@@ -20,22 +20,15 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String username;
-
     @Column(nullable = false)
     private String password;
-
     @Column(nullable = false, unique = true)
     private String email;
-
     private String phone;
-
     private String firstName;
-
     private String lastName;
-
     @Column(nullable = false)
     private LocalDate registrationDate;
-
     @Enumerated(EnumType.STRING)
     private UserRole role;
 

@@ -24,5 +24,4 @@ public class Like {
     @ManyToOne
     private Meal meal;
 
-
 }

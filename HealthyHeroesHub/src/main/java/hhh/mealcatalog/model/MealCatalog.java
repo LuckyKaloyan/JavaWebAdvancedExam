@@ -27,8 +27,10 @@ public class MealCatalog {
     private LocalDate addedOn;
     @Column(nullable = false)
     private LocalDate lastUpdate;
+
     @ManyToOne
     private User owner;
+
     @OneToMany(mappedBy = "mealCatalog", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Meal> meals;
 

@@ -16,8 +16,10 @@ public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     @ManyToOne
     private User concernedUser;
+
     @ManyToOne
     private User troublemaker;
 
@@ -25,7 +27,6 @@ public class Report {
     private ReportType reportType;
     @Enumerated(EnumType.STRING)
     private ReportLocation whereItHappened;
-
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
