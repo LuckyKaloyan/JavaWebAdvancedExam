@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <div class="sidebar">
+        <p>meal of the day..........</p>
+    </div>
+    <div class="main-content">
+        <div class="box">
+            <h3>My Catalogs</h3>
+            <p>My Catalog 1 <a href="#">edit/delete</a></p>
+            <p>My Catalog 2 <a href="#">edit/delete</a></p>
+            <p>My Catalog 3 <a href="#">edit/delete</a></p>
+        </div>
+        <div class="box">
+            <h3>Favourite Catalogs</h3>
+            <p>Fav. Catalog 1 <a href="#">remove</a></p>
+            <p>Fav. Catalog 2 <a href="#">remove</a></p>
+            <p>Fav. Catalog 3 <a href="#">remove</a></p>
+        </div>
+        <div class="box">
+            <h3>Public Catalogs</h3>
+            <p>Public Catalog 1 <a href="#">fav/report</a></p>
+            <p>Public Catalog 2 <a href="#">fav/report</a></p>
+            <p>Public Catalog 3 <a href="#">fav/report</a></p>
+            <p>Public Catalog 4 <a href="#">fav/report</a></p>
+        </div>
+    </div>
+    <div class="profile-section">
+        <div class="profile-picture">Profile Picture</div>
+        <p>USERNAME<br>EMAIL<br>PHONE<br>FIRSTNAME<br>LASTNAME<br>REG.DATE<br>ROLE</p>
+        <button>edit</button>
+        <a th:href="@{/logout}">LogOut</a>
+        <div class="admin-panel">ADMIN PANEL</div>
+    </div>
+</body>
+</html>

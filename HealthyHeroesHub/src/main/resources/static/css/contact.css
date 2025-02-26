@@ -1,0 +1,58 @@
+/* General body and container styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Contact card container styles */
+.contact-card {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+/* Individual card styles */
+.contact-card .card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+}
+
+.contact-card .card img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.contact-card .card h2 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.contact-card .card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.contact-card .card .email,
+.contact-card .card .phone {
+    font-size: 1.1em;
+}

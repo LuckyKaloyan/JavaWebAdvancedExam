@@ -1,66 +1,51 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
+/* styles.css */
 body {
-    text-align: center;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-}
-
-.hero {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh;
-    background: url(https://media.istockphoto.com/id/1457433817/photo/group-of-healthy-food-for-flexitarian-diet.jpg?s=612x612&w=0&k=20&c=v48RE0ZNWpMZOlSp13KdF1yFDmidorO2pZTu2Idmd3M=) center/cover;
-    color: white;
+    height: 100vh;
+    background: url('https://source.unsplash.com/1600x900/?healthy-food,cooking') no-repeat center center/cover;
+    font-family: Arial, sans-serif;
 }
 
-.hero-content {
-    background: rgba(0, 0, 0, 0.6);
+.login-container {
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.btn {
-    background-color: orange;
-    padding: 10px 20px;
-    color: white;
-    text-decoration: none;
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.contact {
-    padding: 20px;
-}
-
-footer {
-    background-color: #333;
+.login-button {
+    width: 100%;
+    background-color: green;
     color: white;
     padding: 10px;
-    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: darkgreen;
 }

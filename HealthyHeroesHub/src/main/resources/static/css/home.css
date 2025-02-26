@@ -1,0 +1,40 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+}
+.sidebar {
+    border: 2px solid black;
+    padding: 10px;
+}
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.box {
+    border: 2px solid black;
+    padding: 10px;
+}
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.admin-panel {
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
