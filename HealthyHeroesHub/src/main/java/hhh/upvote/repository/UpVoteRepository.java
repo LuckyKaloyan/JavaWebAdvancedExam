@@ -1,10 +1,10 @@
-package hhh.like.repository;
-import hhh.like.model.Like;
+package hhh.upvote.repository;
+import hhh.upvote.model.UpVote;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface LikeRepository extends JpaRepository<Like, UUID> {
+public interface UpVoteRepository extends JpaRepository<UpVote, UUID> {
 }

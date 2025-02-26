@@ -1,4 +1,4 @@
-package hhh.like.model;
+package hhh.upvote.model;
 import hhh.meal.model.Meal;
 import hhh.user.model.User;
 import jakarta.persistence.*;
@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Like {
+public class UpVote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

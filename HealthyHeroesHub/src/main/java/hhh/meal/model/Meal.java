@@ -1,6 +1,7 @@
 package hhh.meal.model;
 import hhh.comment.model.Comment;
-import hhh.like.model.Like;
+import hhh.mealcatalog.model.MealCatalog;
+import hhh.upvote.model.UpVote;
 import hhh.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,14 +36,16 @@ public class Meal {
     @Column(nullable = false)
     private LocalDate addedOn;
     @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Like> likes;
+    private List<UpVote> upVotes;
 
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
+
+    @ManyToOne
+    private MealCatalog mealCatalog;
 
 
 }
