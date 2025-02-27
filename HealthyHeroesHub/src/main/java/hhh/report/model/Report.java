@@ -17,12 +17,10 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @ManyToOne
-    private User concernedUser;
-
-    @ManyToOne
-    private User troublemaker;
-
+    @Column(nullable = false)
+    private String concernedUser;
+    @Column(nullable = false)
+    private String troublemaker;
     @Enumerated(EnumType.STRING)
     private ReportType reportType;
     @Enumerated(EnumType.STRING)

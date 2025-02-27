@@ -27,6 +27,7 @@ public class User {
     private String phone;
     private String firstName;
     private String lastName;
+    private String profilePicture;
     @Column(nullable = false)
     private LocalDate registrationDate;
     @Enumerated(EnumType.STRING)

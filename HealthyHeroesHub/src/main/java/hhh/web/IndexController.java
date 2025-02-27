@@ -1,6 +1,7 @@
 package hhh.web;
 
 
+import hhh.security.AuthenticationDetails;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.LoginRequest;
@@ -8,6 +9,7 @@ import hhh.web.dto.RegisterRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,10 +61,11 @@ public class IndexController {
     }
 
     @GetMapping("/home")
-    public ModelAndView getHome(HttpSession session){
+    public ModelAndView getHome(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
-        User user = (User) session.getAttribute("user");
+        User user = userService.getById(authenticationDetails.getId());
+        modelAndView.addObject("user", user);
 
         return modelAndView;
     }

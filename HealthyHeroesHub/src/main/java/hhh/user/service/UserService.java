@@ -3,6 +3,7 @@ import hhh.security.AuthenticationDetails;
 import hhh.user.model.User;
 import hhh.user.model.UserRole;
 import hhh.user.repository.UserRepository;
+import hhh.web.dto.EditProfileRequest;
 import hhh.web.dto.LoginRequest;
 import hhh.web.dto.RegisterRequest;
 import jakarta.transaction.Transactional;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -49,4 +51,18 @@ public class UserService implements UserDetailsService {
 
         return new AuthenticationDetails(user.getId(), user.getUsername(), user.getPassword(), user.getRole());
     }
+    public User getById(UUID id) {
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found!"));
+    }
+
+    public void editUser(UUID userId, EditProfileRequest editProfileRequest) {
+        User user = getById(userId);
+        user.setFirstName(editProfileRequest.getFirstName());
+        user.setLastName(editProfileRequest.getLastName());
+        user.setEmail(editProfileRequest.getEmail());
+        user.setProfilePicture(editProfileRequest.getProfilePicture());
+        user.setPhone(editProfileRequest.getPhoneNumber());
+        userRepository.save(user);
+    }
+
 }

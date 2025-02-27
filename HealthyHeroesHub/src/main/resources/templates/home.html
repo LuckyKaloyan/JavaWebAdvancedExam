@@ -7,9 +7,32 @@
     <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
+
+<header>
+    <nav>
+        <div class="logo">HealthyHeroesHub</div>
+        <ul>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+            <li><a th:href="@{/register}">Register</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
     <div class="sidebar">
-        <p>meal of the day..........</p>
+        <div class="box">
+            <p>Meal of the Day!</p>
+        </div>
+        <div class="box">
+            <p>CREATE A NEW CATALOG</p>
+        </div>
+        <div class="box">
+            <p>REPORT THE BAD GUYS</p>
+        </div>
     </div>
+
     <div class="main-content">
         <div class="box">
             <h3>My Catalogs</h3>
@@ -32,11 +55,25 @@
         </div>
     </div>
     <div class="profile-section">
-        <div class="profile-picture">Profile Picture</div>
-        <p>USERNAME<br>EMAIL<br>PHONE<br>FIRSTNAME<br>LASTNAME<br>REG.DATE<br>ROLE</p>
-        <button>edit</button>
+        <div class="profile-picture"><img th:src="${user.profilePicture}" alt="Profile Picture"></div>
+        <p><br th:text="'USERNAME '+${user.username}">
+            <br th:text="'EMAIL '+${user.email}">
+            <br th:if="${user.firstName!=null}" th:text="'FIRTNAME '+${user.firstName}">
+            <br th:if="${user.lastName!=null}" th:text="'LASTNAME '+${user.lastName}">
+            <br th:if="${user.phone!=null}" th:text="'PHONENUMBER '+${user.phone}">
+            <br th:text="'REGISTERDATE '+${user.registrationDate}">
+            <br th:text="'ROLE '+${user.role}">
+        <form th:action="@{'/users/' + ${user.id} + '/profile'}" method="get">
+            <button type="submit">Edit</button>
+        </form>
         <a th:href="@{/logout}">LogOut</a>
-        <div class="admin-panel">ADMIN PANEL</div>
+        <form th:action="@{/admin_panel}" method="get">
+            <button type="submit">ADMIN PANEL</button></form>
     </div>
+</div>
+<footer>
+    <p>&copy; 2025 Healthy Heroes Hub. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
