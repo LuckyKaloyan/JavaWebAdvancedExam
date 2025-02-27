@@ -10,7 +10,9 @@
 
 <header>
     <nav>
-        <div class="logo">HealthyHeroesHub</div>
+        <div class="logo">
+            <a th:href="@{/}">HealthyHeroesHub</a>
+        </div>
         <ul>
             <li><a th:href="@{/home}">Home</a></li>
             <li><a th:href="@{/login}">Login</a></li>
@@ -29,7 +31,9 @@
             <p>CREATE A NEW CATALOG</p>
         </div>
         <div class="box">
-            <p>REPORT THE BAD GUYS</p>
+            <a th:href="@{/reports/create_new_report}">
+                <p>REPORT THE BAD GUYS</p>
+            </a>
         </div>
     </div>
 
@@ -63,6 +67,7 @@
             <br th:if="${user.phone!=null}" th:text="'PHONENUMBER '+${user.phone}">
             <br th:text="'REGISTERDATE '+${user.registrationDate}">
             <br th:text="'ROLE '+${user.role}">
+
         <form th:action="@{'/users/' + ${user.id} + '/profile'}" method="get">
             <button type="submit">Edit</button>
         </form>
@@ -71,9 +76,8 @@
             <button type="submit">ADMIN PANEL</button></form>
     </div>
 </div>
-<footer>
-    <p>&copy; 2025 Healthy Heroes Hub. All rights reserved.</p>
-</footer>
+
+<footer th:insert="fragments/footer :: footer"></footer>
 
 </body>
 </html>

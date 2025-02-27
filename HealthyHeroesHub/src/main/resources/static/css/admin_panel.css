@@ -1,92 +1,206 @@
-/* General styling for the body */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+html, body {
+    height: 100%;
+    margin: 0;
     font-family: Arial, sans-serif;
-    padding: 10px;
+    background: url('https://www.naturemade.com/cdn/shop/articles/healthy-foods-to-eat.jpg?v=1611988563') no-repeat center center/cover;
+    background-size: cover;
+    background-position: center;
+    padding: 0;
+    color: coral;
+    font-size: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
-/* Grid container for the admin panel layout */
-.container {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: 20px;
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+a {
+    text-decoration: none;
+    text-underline: none;
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 13.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28.8px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    padding-left: 18px;
+    letter-spacing: 4.5px;
+    color: #fff;
+    text-transform: uppercase;
+    display: block;
     flex-grow: 1;
-    padding: 10px;
+    text-decoration: none;
 }
 
-/* Sidebar styling */
-.sidebar {
-    border: 2px solid black;
-    padding: 20px;
-    background-color: #f4f4f4;
+.logo a {
+    color: white;
+    text-decoration: none;
 }
 
-.sidebar h3 {
-    margin-bottom: 10px;
+.logo a:hover {
+    color: #007BFF;
 }
 
-.sidebar ul {
+nav ul li a:hover {
+    background-color: #ff5722;
+    border-radius: 5px;
+    transform: scale(1.05);
+    padding: 4.5px;
+}
+
+nav ul {
     list-style: none;
+    display: flex;
+    margin-right: 18px;
     padding: 0;
 }
 
-.sidebar ul li {
-    margin: 10px 0;
+nav ul li {
+    margin: 0 9px;
 }
 
-.sidebar ul li a {
+nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: white;
+    font-weight: bold;
 }
 
-/* Main content area styling */
-.main-content {
+nav ul li a:hover {
+    color: #007BFF;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 9px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 18px;
+    flex-grow: 1;
+    padding: 9px;
+    width: 100%;
+    margin-top: 72px;
+    margin-bottom: 36px;
+    box-sizing: border-box;
+    height: calc(100vh - 108px);
+    overflow: auto; /* Allow scrolling when necessary */
+}
+
+.sidebar {
+    border: 2px solid black;
+    padding: 18px;
+    background-color: rgba(100, 100, 100, 0.53);
+    overflow-y: auto;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    border: 2px solid #555;
-    padding: 20px;
+    align-items: center;
+    max-height: 100%; /* Prevent sidebar from being too tall */
 }
 
-h2 {
+.sidebar h3 {
+    margin-top:-30px;
+    margin-bottom: 18px;
     text-align: center;
-    margin-bottom: 30px;
+    background-color: rgba(100, 100, 100, 0.53);
+    width: 100%;
 }
 
 .box {
     border: 2px solid black;
-    padding: 20px;
+    padding: 18px;
+    margin: 6.3px;
     width: 100%;
     box-sizing: border-box;
-    background-color: #f9f9f9;
-}
-
-.box h3 {
-    margin-bottom: 10px;
+    background-color: rgba(100, 100, 100, 0.9);
+    text-align: center;
+    cursor: pointer;
 }
 
 .box a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
+    color: inherit;
 }
 
-/* Profile section styling */
+.box:hover {
+    background-color: rgba(100, 100, 100, 0.8);
+    transform: scale(1.05);
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px;
+    border: 2px solid #555;
+    background-color: rgba(100, 100, 100, 0.1);
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 100%; /* Prevent content from overflowing */
+}
+
+.main-content h2 {
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(100, 100, 100, 0.53);
+    overflow-y: auto;
+}
+
 .profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 13.5px;
     border: 2px solid black;
-    padding: 20px;
-    background-color: #f4f4f4;
+    padding: 18px;
+    background-color: rgba(244, 244, 244, 0.75);
 }
 
 .profile-picture {
-    width: 230px;
-    height: 230px;
+    width: 207px;
+    height: 207px;
     border: 2px solid black;
     display: flex;
     align-items: center;
@@ -98,59 +212,4 @@ h2 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-/* General styling for the footer */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: auto;
-}
-
-/* Header styling */
-header {
-    background-color: #333; /* Dark background color */
-    color: white; /* Text color white */
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-    padding-left: 20px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    margin-right: 20px;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0 10px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    background-color: #ff5722;
-    border-radius: 5px;
-    transform: scale(1.05);
-    padding: 5px;
 }

@@ -8,15 +8,16 @@
 </head>
 <body>
 
-
 <header>
     <nav>
-        <div class="logo">HealthyHeroesHub</div>
+        <div class="logo">
+            <a  th:href="@{/}">HealthyHeroesHub</a>
+        </div>
         <ul>
-            <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-            <li><a th:href="@{/register}">Register</a></li>
-            <li><a th:href="@{/contact}">Contact</a></li>
+            <li><a  th:href="@{/home}">Home</a></li>
+            <li><a  th:href="@{/login}">Login</a></li>
+            <li><a  th:href="@{/register}">Register</a></li>
+            <li><a  th:href="@{/contact}">Contact</a></li>
         </ul>
     </nav>
 </header>
@@ -25,20 +26,22 @@
     <div class="hero-content">
         <h1>Welcome to Healthy Heroes Hub</h1>
         <p>Join our community to share and discover amazing meals.</p>
-        <a th:href="@{/register}" class="btn">Get Started</a>
+        <a  th:href="@{/register}" class="btn">Get Started</a>
     </div>
 </section>
 
-<section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <p>Email: support@healthyheroeshub.com</p>
-    <p>Phone: +123 456 7890</p>
-    <p>Address: 123 Healthy Heroes Hub, Healthy City</p>
+<section id="welcome" class="welcome" style="font-family: 'Courier New', monospace; text-align: center;">
+    <h2 style="font-size: 2.5em; font-weight: bold; text-decoration: underline;">WELCOME TO HEALTHY HEROES HUB</h2>
+    <p style="font-size: 1.5em; font-weight: bold;">
+        Join our vibrant community where we celebrate delicious food, nutritious diets, and special homemade recipes!<br>
+        Whether you’re looking for healthy meal ideas, expert cooking tips, or just love sharing your culinary creations,
+        this is the perfect place for you. Discover new flavors, enhance your cooking skills, and embark on a journey to a
+        healthier lifestyle with us. Let's make eating healthy both fun and exciting together!
+    </p>
 </section>
 
-<footer>
-    <p>&copy; 2025 Healthy Heroes Hub. All rights reserved.</p>
-</footer>
+
+<footer th:insert="fragments/footer :: footer"></footer>
 
 </body>
 </html>

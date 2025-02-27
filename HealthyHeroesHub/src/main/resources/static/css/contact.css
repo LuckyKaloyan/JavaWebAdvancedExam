@@ -1,30 +1,98 @@
-/* General body and container styles */
+/* General body styles for the contact page */
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url('https://source.unsplash.com/1600x900/?healthy-food,cooking') no-repeat center center/cover;
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
 }
 
+/* Header styles */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.logo {
+    font-size: 32px;  /* Reduced by 20% more */
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;  /* Use the Poppins font */
+    padding-left: 20px;  /* Padding from the left */
+    letter-spacing: 5px;  /* Space out the letters for a more stylish look */
+    color: #fff;
+    text-transform: uppercase;  /* Make the text uppercase for a bold look */
+    display: block;  /* Ensure it's block level to span full width */
+    flex-grow: 1;  /* Allow the logo to take up space and push the menu to the right */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin-right: 20px;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    background-color: #ff5722;
+    border-radius: 5px;
+    transform: scale(1.05);
+    padding: 5px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+/* Container and Card styles for the contact page */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
 }
 
 h1 {
     text-align: center;
     color: #333;
+    margin-bottom: 30px;
 }
 
-/* Contact card container styles */
 .contact-card {
     display: flex;
     justify-content: space-around;
     margin-top: 30px;
 }
 
-/* Individual card styles */
 .contact-card .card {
     background-color: #fff;
     border-radius: 8px;
@@ -55,4 +123,17 @@ h1 {
 .contact-card .card .email,
 .contact-card .card .phone {
     font-size: 1.1em;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+a:hover {
+    color: #007BFF;
 }

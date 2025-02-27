@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class ReportRequest {
-    
+
     @NotNull
     private String concernedUser;
     @NotNull
@@ -25,6 +25,7 @@ public class ReportRequest {
     @NotNull
     private String description;
     @NotNull
-    private LocalDate createdOn;
+    private LocalDate dateOfIssue;
+
 }
 

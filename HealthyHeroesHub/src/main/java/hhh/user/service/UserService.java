@@ -35,6 +35,14 @@ public class UserService implements UserDetailsService {
         if(userRepository.findByUsername(registerRequest.getUsername()).isPresent()) {
             throw new RuntimeException("Username %s already exist".formatted(registerRequest.getUsername()));
         }
+        if(userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
+            throw new RuntimeException("Email %s already exists".formatted(registerRequest.getEmail()));
+        }
+
+        if(!registerRequest.getPassword().equals(registerRequest.getConfirmPassword())) {
+            throw new RuntimeException("Passwords do not match");
+        }
+
         User user = User.builder()
                 .username(registerRequest.getUsername())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))

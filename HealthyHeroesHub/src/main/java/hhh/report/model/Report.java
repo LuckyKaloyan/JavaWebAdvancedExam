@@ -28,6 +28,8 @@ public class Report {
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
+    private LocalDate dateOfIssue;
+    @Column(nullable = false)
     private LocalDate createdOn;
 
 

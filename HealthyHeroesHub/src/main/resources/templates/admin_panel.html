@@ -10,25 +10,42 @@
 
 <header>
     <nav>
-        <div class="logo">HealthyHeroesHub</div>
+        <div class="logo">
+            <a href="/">HealthyHeroesHub</a>
+        </div>
         <ul>
-            <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-            <li><a th:href="@{/register}">Register</a></li>
-            <li><a th:href="@{/contact}">Contact</a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/contact">Contact</a></li>
         </ul>
     </nav>
 </header>
 
 <div class="container">
+
     <div class="sidebar">
-        <h3>Admin Menu</h3>
-        <ul>
-            <li><a href="#">User Management</a></li>
-            <li><a href="#">Meal Catalogs</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-        </ul>
+        <h3>Analytics</h3>
+        <div class="box">
+            <p>Users Data</p>
+        </div>
+        <div class="box">
+            <p>Meals Data</p>
+        </div>
+        <div class="box">
+            <p>Meal Catalogs Data</p>
+        </div>
+        <div class="box">
+            <p>UpVotes Data</p>
+        </div>
+        <div class="box">
+            <p>Comments Data</p>
+        </div>
+        <div class="box">
+            <a href="/reports/create_new_report">
+                <p>Reports Data</p>
+            </a>
+        </div>
     </div>
 
     <div class="main-content">
@@ -36,31 +53,24 @@
 
         <div class="box">
             <h3>User Management</h3>
-            <p>Total Users: 150</p>
             <p><a href="#">View All Users</a></p>
         </div>
 
         <div class="box">
             <h3>Meal Catalog Management</h3>
-            <p>Total Meals: 80</p>
-            <p><a href="#">Manage Meals</a></p>
+              <p><a href="#">Manage Meals</a></p>
         </div>
 
         <div class="box">
             <h3>Reports</h3>
-            <p>Pending Reports: 5</p>
             <p><a href="#">View Reports</a></p>
         </div>
 
-        <div class="box">
-            <h3>Analytics</h3>
-            <p><a href="#">View Insights</a></p>
-        </div>
     </div>
 </div>
 
 <footer>
-    <p>&copy; 2025 Healthy Heroes Hub. All rights reserved.</p>
+    <p>&copy; 2025 HealthyHeroesHub | All Rights Reserved</p>
 </footer>
 
 </body>

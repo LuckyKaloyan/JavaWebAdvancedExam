@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Report</title>
+  <link rel="stylesheet" href="/css/create_new_report.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a href="/">HealthyHeroesHub</a>
+    </div>
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Register</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="report-container">
+  <div class="report-box">
+    <h2>Create New Report</h2>
+    <form action="/reports/create_new_report" method="post">
+      <div class="input-group">
+        <label for="concernedUser">Concerned user:</label>
+        <textarea id="concernedUser" name="concernedUser" required placeholder="Enter your name"></textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="troublemaker">Troublemaker:</label>
+        <textarea id="troublemaker" name="troublemaker" required placeholder="Enter troublemaker's name"></textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="reportType">Report type:</label>
+        <select id="reportType" name="reportType" required>
+          <!-- Populate with report types -->
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="whereItHappened">Where it happened:</label>
+        <select id="whereItHappened" name="whereItHappened" required>
+          <!-- Populate with locations -->
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required placeholder="Enter description"></textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="createdOn">When it happened?</label>
+        <input type="date" id="createdOn" name="dateOfIssue" required />
+      </div>
+
+      <button type="submit" class="submit-button">Submit Report</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 HealthyHeroesHub. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

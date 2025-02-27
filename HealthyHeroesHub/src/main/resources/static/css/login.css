@@ -1,18 +1,97 @@
-/* styles.css */
+/* General body styles for the login page */
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
     background: url('https://source.unsplash.com/1600x900/?healthy-food,cooking') no-repeat center center/cover;
     font-family: Arial, sans-serif;
+    margin: 0;
 }
 
+/* Header styles */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    padding-left: 20px;
+    letter-spacing: 5px;
+    color: #fff;
+    text-transform: uppercase;
+    display: block;
+    flex-grow: 1;
+    text-decoration: none;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.logo a:hover {
+    color: #007BFF;
+}
+
+nav ul li a:hover {
+    background-color: #ff5722;
+    border-radius: 5px;
+    transform: scale(1.05);
+    padding: 5px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin-right: 20px;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #007BFF;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+/* Styles for the login box */
 .login-container {
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
 }
 
 .login-box h2 {
@@ -48,4 +127,14 @@ body {
 
 .login-button:hover {
     background-color: darkgreen;
+}
+
+/* Text warning for errors */
+.text-warning {
+    color: darkred !important;
+}
+
+.text-warning:focus,
+a.text-warning:hover {
+    color: darkred !important;
 }

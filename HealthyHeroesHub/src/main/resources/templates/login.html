@@ -7,23 +7,41 @@
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h2>Login</h2>
-            <form th:action="@{/login}" method="POST" th:object="${loginRequest}">
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" placeholder="Username" id="username" name="username" th:field="*{username}">
-                    <p class="text-warning" th:errors="*{username}"></p>
-                </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" placeholder="Password" id="password" name="password" th:field="*{password}">
-                    <p class="text-warning" th:errors="*{password}"></p>
-                </div>
-                <button type="submit" class="login-button">Login</button>
-            </form>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a href="/">HealthyHeroesHub</a>
         </div>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="login-container">
+    <div class="login-box">
+        <h2>Login</h2>
+        <form th:action="@{/login}" method="POST" th:object="${loginRequest}">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" placeholder="Username" id="username" name="username" th:field="*{username}">
+                <p class="text-warning" th:errors="*{username}"></p>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" id="password" name="password" th:field="*{password}">
+                <p class="text-warning" th:errors="*{password}"></p>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
     </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
 </body>
 </html>

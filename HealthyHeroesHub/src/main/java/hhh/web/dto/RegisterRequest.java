@@ -21,6 +21,10 @@ public class RegisterRequest {
     @Size(min = 2, max = 15, message = "Enter a password between 2 and 15 symbols! Please!")
     private String password;
 
+    @NotNull
+    @Size(min = 2, max = 15, message = "Enter a password between 2 and 15 symbols! Please!")
+    private String confirmPassword;
+
     @Email(message = "Enter a valid email please!")
     private String email;
 

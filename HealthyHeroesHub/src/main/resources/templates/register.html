@@ -8,31 +8,48 @@
 </head>
 <body>
 
-    <div class="container">
-        <div class="form-container">
-            <h2>Register</h2>
-            <form th:action="@{/register}" th:method="POST" th:object="${registerRequest}" >
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" placeholder="Email" id="email" name="email" value="" th:field="*{email}">
-                    <p class="text-warning"  th:errors="*{password}"></p>
-                </div>
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" placeholder="Username" id="username" name="username" value="" th:field="*{username}">
-                    <p class="text-warning" th:errors="*{username}"></p>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" placeholder="Password" id="password" name="password" value="" th:field="*{password}">
-                    <p class="text-warning"  th:errors="*{password}"></p>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Register">
-                </div>
-            </form>
+<header>
+    <nav>
+        <div class="logo">
+            <a th:href="@{/}">HealthyHeroesHub</a>
         </div>
-    </div>
+        <ul>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+            <li><a th:href="@{/register}">Register</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
+<div class="register-container">
+    <div class="register-box">
+        <h2>Register</h2>
+        <form th:action="@{/register}" th:method="POST" th:object="${registerRequest}">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" placeholder="Email" id="email" name="email" value="" th:field="*{email}">
+                <p class="text-warning" th:errors="*{email}"></p>
+            </div>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" placeholder="Username" id="username" name="username" value="" th:field="*{username}">
+                <p class="text-warning" th:errors="*{username}"></p>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" id="password" name="password" value="" th:field="*{password}">
+                <p class="text-warning" th:errors="*{password}"></p>
+            </div>
+            <div class="input-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" placeholder="Confirm Password" id="confirmPassword" name="confirmPassword" value="" th:field="*{confirmPassword}">
+                <p class="text-warning" th:errors="*{confirmPassword}"></p>
+            </div>
+            <button type="submit" class="register-button">Register</button>
+        </form>
+    </div>
+</div>
+<footer th:insert="fragments/footer :: footer"></footer>
 </body>
 </html>
