@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Profile</title>
   <link rel="stylesheet" href="/css/edit-profile.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+
 <header>
   <nav>
-    <div class="logo">HealthyHeroesHub</div>
+    <div class="logo">
+      <a th:href="@{/}">HealthyHeroesHub</a>
+    </div>
     <ul>
       <li><a th:href="@{/home}">Home</a></li>
       <li><a th:href="@{/login}">Login</a></li>
@@ -20,58 +22,48 @@
     </ul>
   </nav>
 </header>
-<main>
-  <section class="section full-height">
 
-    <form class="welcome login" th:action="@{'/users/'+${user.id}+'/profile'}" th:method="PUT" th:object="${editProfileRequest}">
+<div class="profile-container">
+  <div class="profile-box">
+    <h2>Edit Profile</h2>
+    <form class="edit-profile-form" th:action="@{'/users/'+${user.id}+'/profile'}" th:method="PUT" th:object="${editProfileRequest}">
 
-      <h3>Edit Profile</h3>
-
-      <div class="form-group">
-        <div class="label-holder text-white d-flex justify-content-center">
-          <label for="firstName" class="h3 mb-2">First Name</label>
-        </div>
-        <input type="text" id="firstName" placeholder="Enter your first name" name="firstName" th:field="*{firstName}">
+      <div class="input-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" th:field="*{firstName}" required />
         <p class="text-warning" th:errors="*{firstName}"></p>
       </div>
 
-      <div class="form-group">
-        <div class="label-holder text-white d-flex justify-content-center">
-          <label for="lastName" class="h3 mb-2">Last Name</label>
-        </div>
-        <input type="text" id="lastName" placeholder="Enter your last name" name="lastName" th:field="*{lastName}">
+      <div class="input-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" th:field="*{lastName}" required />
         <p class="text-warning" th:errors="*{lastName}"></p>
       </div>
 
-      <div class="form-group">
-        <div class="label-holder text-white d-flex justify-content-center">
-          <label for="email" class="h3 mb-2">Email</label>
-        </div>
-        <input type="text" id="email" placeholder="Enter your email" name="email" th:field="*{email}">
-        <p class="text-warning" th:errors="*{email}">Error Text Here</p>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" th:field="*{email}" required />
+        <p class="text-warning" th:errors="*{email}"></p>
       </div>
 
-      <div class="form-group">
-        <div class="label-holder text-white d-flex justify-content-center">
-          <label for="profilePicture" class="h3 mb-2">Profile Picture URL</label>
-        </div>
-        <input type="text" id="profilePicture" placeholder="Enter valid url for an image" name="profilePicture" th:field="*{profilePicture}">
-        <p class="text-warning" th:errors="*{profilePicture}">Error Text Here</p>
+      <div class="input-group">
+        <label for="profilePicture">Profile Picture URL</label>
+        <input type="text" id="profilePicture" name="profilePicture" placeholder="Enter a valid URL for an image" th:field="*{profilePicture}" required />
+        <p class="text-warning" th:errors="*{profilePicture}"></p>
       </div>
 
-      <div class="form-group">
-        <div class="label-holder text-white d-flex justify-content-center">
-          <label for="phoneNumber" class="h3 mb-2">Phone Number</label>
-        </div>
-        <input type="text" id="phoneNumber" placeholder="Enter your phone number" name="phoneNumber" th:field="*{phoneNumber}">
+      <div class="input-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" th:field="*{phoneNumber}" required />
         <p class="text-warning" th:errors="*{phoneNumber}"></p>
       </div>
 
-      <button class="profile-actions-button">Save</button>
+      <button type="submit" class="submit-button">Save Changes</button>
     </form>
+  </div>
+</div>
 
-  </section>
-</main>
 <footer th:insert="fragments/footer :: footer"></footer>
+
 </body>
 </html>

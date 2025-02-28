@@ -1,4 +1,5 @@
 package hhh.user.model;
+import hhh.meal.model.FavouriteMeal;
 import hhh.mealcatalog.model.MealCatalog;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,5 +36,7 @@ public class User {
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<MealCatalog> mealCatalogs;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FavouriteMeal> favouriteMeals;
 
 }

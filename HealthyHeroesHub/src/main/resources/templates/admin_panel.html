@@ -11,13 +11,13 @@
 <header>
     <nav>
         <div class="logo">
-            <a href="/">HealthyHeroesHub</a>
+            <a th:href="@{/}">HealthyHeroesHub</a>
         </div>
         <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+            <li><a th:href="@{/register}">Register</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
         </ul>
     </nav>
 </header>
@@ -69,9 +69,7 @@
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2025 HealthyHeroesHub | All Rights Reserved</p>
-</footer>
+<footer th:insert="fragments/footer :: footer"></footer>
 
 </body>
 </html>

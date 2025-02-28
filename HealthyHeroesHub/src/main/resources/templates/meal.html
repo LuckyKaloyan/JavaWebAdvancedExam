@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Details</title>
+  <link rel="stylesheet" href="/css/meal.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a th:href="@{/}">HealthyHeroesHub</a>
+    </div>
+    <ul>
+      <li><a th:href="@{/home}">Home</a></li>
+      <li><a th:href="@{/login}">Login</a></li>
+      <li><a th:href="@{/register}">Register</a></li>
+      <li><a th:href="@{/contact}">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="meal-container">
+  <div class="meal-box">
+    <h2 th:text="${meal.name}"></h2>
+    <p class="description" th:text="${meal.description}"></p>
+    <p><strong>Added On:</strong> <span th:text="${meal.addedOn}"></span></p>
+    <p><strong>Owner:</strong> <span th:text="${meal.owner.username}"></span></p>
+    <p><strong>Proteins:</strong> <span th:text="${meal.proteins}"></span> g</p>
+    <p><strong>Carbs:</strong> <span th:text="${meal.carbs}"></span> g</p>
+    <p><strong>Fats:</strong> <span th:text="${meal.fats}"></span> g</p>
+    <p><strong>Total Calories:</strong> <span th:text="${meal.totalCalories}"></span> kcal</p>
+  </div>
+
+  <div class="comments-section">
+    <h3>Comments</h3>
+    <ul>
+      <li th:each="comment : ${meal.comments}">
+        <strong th:text="${comment.user.username}"></strong>: <span th:text="${comment.content}"></span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="upvote-favorite-section">
+    <p><strong>Upvotes:</strong> <span th:text="${meal.upVotes.size()}"></span></p>
+    <p><strong>Favorites:</strong> <span th:text="${meal.favouriteMeals.size()}"></span></p>
+  </div>
+  <div class="upvote-favorite-section">
+    <form th:if="${meal.owner}!=${user}" th:action="@{'/meal_catalogs/meals/up_vote/'+${meal.id}}" th:method="POST">
+      <button>UpVote</button> </form>
+
+    <form th:if="${meal.owner}!=${user}" th:action="@{'/meal_catalogs/meals/add_to_favourite/' + ${meal.id}}" th:method="POST">
+      <button>AddToFavourite</button>
+    </form>
+  </div>
+
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>

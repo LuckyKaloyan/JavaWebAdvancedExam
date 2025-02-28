@@ -12,13 +12,13 @@
 <header>
   <nav>
     <div class="logo">
-      <a href="/">HealthyHeroesHub</a>
+      <a th:href="@{/}">HealthyHeroesHub</a>
     </div>
     <ul>
-      <li><a href="/home">Home</a></li>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/register">Register</a></li>
-      <li><a href="/contact">Contact</a></li>
+      <li><a th:href="@{/home}">Home</a></li>
+      <li><a th:href="@{/login}">Login</a></li>
+      <li><a th:href="@{/register}">Register</a></li>
+      <li><a th:href="@{/contact}">Contact</a></li>
     </ul>
   </nav>
 </header>
@@ -26,28 +26,34 @@
 <div class="report-container">
   <div class="report-box">
     <h2>Create New Report</h2>
-    <form action="/reports/create_new_report" method="post">
+      <form th:action="@{/reports/create_new_report}" th:method="POST" th:object="${reportRequest}">
       <div class="input-group">
         <label for="concernedUser">Concerned user:</label>
-        <textarea id="concernedUser" name="concernedUser" required placeholder="Enter your name"></textarea>
+        <textarea id="concernedUser" name="concernedUser" required placeholder="Enter your name" th:field="*{concernedUser}"></textarea>
+        <p class="text-warning" th:errors="*{concernedUser}"></p>
+
+
       </div>
 
       <div class="input-group">
         <label for="troublemaker">Troublemaker:</label>
-        <textarea id="troublemaker" name="troublemaker" required placeholder="Enter troublemaker's name"></textarea>
+        <textarea id="troublemaker" name="troublemaker" required placeholder="Enter troublemaker's name" th:field="*{troublemaker}"></textarea>
+        <p class="text-warning" th:errors="*{troublemaker}"></p>
       </div>
 
       <div class="input-group">
         <label for="reportType">Report type:</label>
-        <select id="reportType" name="reportType" required>
-          <!-- Populate with report types -->
+        <select id="reportType" name="reportType" required th:field="*{reportType}">
+          <option  th:each="type : ${T(hhh.report.model.ReportType).values()}" th:text="${type}" th:value="${type}"></option>
+          <p class="text-warning" th:errors="*{reportType}"></p>
         </select>
       </div>
 
       <div class="input-group">
         <label for="whereItHappened">Where it happened:</label>
         <select id="whereItHappened" name="whereItHappened" required>
-          <!-- Populate with locations -->
+          <option  th:each="location : ${T(hhh.report.model.ReportLocation).values()}" th:text="${location}" th:value="${location}"></option>
+          <p class="text-warning" th:errors="*{whereItHappened}"></p>
         </select>
       </div>
 
@@ -66,9 +72,7 @@
   </div>
 </div>
 
-<footer>
-  <p>&copy; 2025 HealthyHeroesHub. All Rights Reserved.</p>
-</footer>
+<footer th:insert="fragments/footer :: footer"></footer>
 
 </body>
 </html>

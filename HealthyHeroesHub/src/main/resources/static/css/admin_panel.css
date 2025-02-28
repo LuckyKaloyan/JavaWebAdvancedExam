@@ -124,7 +124,7 @@ footer {
     margin-bottom: 36px;
     box-sizing: border-box;
     height: calc(100vh - 108px);
-    overflow: auto; /* Allow scrolling when necessary */
+    overflow: auto;
 }
 
 .sidebar {
@@ -138,7 +138,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-height: 100%; /* Prevent sidebar from being too tall */
+    max-height: 100%;
 }
 
 .sidebar h3 {
@@ -178,7 +178,7 @@ footer {
     background-color: rgba(100, 100, 100, 0.1);
     flex-grow: 1;
     overflow-y: auto;
-    max-height: 100%; /* Prevent content from overflowing */
+    max-height: 100%;
 }
 
 .main-content h2 {

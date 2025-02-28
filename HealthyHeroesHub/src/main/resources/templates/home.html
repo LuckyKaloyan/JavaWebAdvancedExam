@@ -28,7 +28,9 @@
             <p>Meal of the Day!</p>
         </div>
         <div class="box">
-            <p>CREATE A NEW CATALOG</p>
+            <a th:href="@{/meal_catalogs/create_new_catalog}">
+                <p>CREATE A NEW CATALOG</p>
+            </a>
         </div>
         <div class="box">
             <a th:href="@{/reports/create_new_report}">
@@ -38,25 +40,44 @@
     </div>
 
     <div class="main-content">
-        <div class="box">
+        <div class="box" th:if="${user.getMealCatalogs().size()>0}">
             <h3>My Catalogs</h3>
-            <p>My Catalog 1 <a href="#">edit/delete</a></p>
-            <p>My Catalog 2 <a href="#">edit/delete</a></p>
-            <p>My Catalog 3 <a href="#">edit/delete</a></p>
+            <div th:each="catalog : ${user.getMealCatalogs()}" class="meal-item">
+                <a th:text="${catalog.name}"
+                   th:href="@{'/meal_catalogs/' + ${catalog.id}}">
+                </a>
+                <form th:action="@{'/meal_catalogs/delete/' + ${catalog.id}}" th:method="DELETE" class="delete-form">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger">Remove</button>
+                </form>
+                <form th:action="@{'/meal_catalogs/' + ${catalog.id}+'/edit'}" th:method="GET" class="delete-form">
+                    <button class="btn btn-danger">Edit</button>
+                </form>
+            </div>
+
         </div>
-        <div class="box">
-            <h3>Favourite Catalogs</h3>
-            <p>Fav. Catalog 1 <a href="#">remove</a></p>
-            <p>Fav. Catalog 2 <a href="#">remove</a></p>
-            <p>Fav. Catalog 3 <a href="#">remove</a></p>
+        <div class="box" th:if="${user.getFavouriteMeals().size() > 0}">
+            <h3>Favourite Meals</h3>
+            <div th:each="favouriteMeal : ${user.getFavouriteMeals()}" class="meal-item">
+                <a th:text="${favouriteMeal.meal.name}"
+                   th:href="@{'/meal_catalogs/meal/' + ${favouriteMeal.meal.id}}">
+                </a>
+
+                <form th:action="@{'/meal_catalogs/meals/remove_from_favourite/' + ${favouriteMeal.id}}" th:method="POST" class="delete-form"><input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger">Remove</button>
+                </form>
+            </div>
+
         </div>
-        <div class="box">
+
+        <div class="box" th:if="${allCatalogs.size() > 0}">
             <h3>Public Catalogs</h3>
-            <p>Public Catalog 1 <a href="#">fav/report</a></p>
-            <p>Public Catalog 2 <a href="#">fav/report</a></p>
-            <p>Public Catalog 3 <a href="#">fav/report</a></p>
-            <p>Public Catalog 4 <a href="#">fav/report</a></p>
+            <p th:each="publicCatalog : ${allCatalogs}" th:if="${user.id}!=${publicCatalog.owner.id}">
+                <a th:text="${publicCatalog.name}" th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"></a>
+            </p>
         </div>
+
+
     </div>
     <div class="profile-section">
         <div class="profile-picture"><img th:src="${user.profilePicture}" alt="Profile Picture"></div>

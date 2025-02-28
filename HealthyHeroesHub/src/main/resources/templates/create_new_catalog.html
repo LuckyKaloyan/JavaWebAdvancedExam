@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Catalog</title>
+  <link rel="stylesheet" href="/css/create_new_catalog.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a th:href="@{/}">HealthyHeroesHub</a>
+    </div>
+    <ul>
+      <li><a th:href="@{/home}">Home</a></li>
+      <li><a th:href="@{/login}">Login</a></li>
+      <li><a th:href="@{/register}">Register</a></li>
+      <li><a th:href="@{/contact}">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="catalog-container">
+  <div class="catalog-box">
+    <h2>Create New Meal Catalog</h2>
+    <form th:action="@{/meal_catalogs/create_new_catalog}" method="POST" th:object="${mealCatalogRequest}">
+      <div class="input-group">
+        <label for="name">Catalog Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter catalog name" th:field="*{name}">
+        <p class="text-warning" th:errors="*{name}"></p>
+      </div>
+      <div class="input-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Enter catalog description" th:field="*{description}"></textarea>
+        <p class="text-warning" th:errors="*{description}"></p>
+      </div>
+      <button type="submit" class="submit-button">Create Catalog</button>
+    </form>
+  </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>

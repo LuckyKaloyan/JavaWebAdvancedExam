@@ -1,6 +1,8 @@
-package hhh.upvote.repository;
+package hhh.meal.repository;
+
+
+import hhh.meal.model.FavouriteMeal;
 import hhh.meal.model.Meal;
-import hhh.upvote.model.UpVote;
 import hhh.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -9,6 +11,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UpVoteRepository extends JpaRepository<UpVote, UUID> {
-    Optional<UpVote> findByMealAndUser(Meal meal, User user);
+public interface FavouriteMealRepository extends JpaRepository<FavouriteMeal, UUID> {
+    Optional<FavouriteMeal> findByUserAndMeal(User user, Meal meal);
+
+
 }

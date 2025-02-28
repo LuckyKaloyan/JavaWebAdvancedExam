@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Meal</title>
+  <link rel="stylesheet" href="/css/add_meal.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a th:href="@{/}">HealthyHeroesHub</a>
+    </div>
+    <ul>
+      <li><a th:href="@{/home}">Home</a></li>
+      <li><a th:href="@{/login}">Login</a></li>
+      <li><a th:href="@{/register}">Register</a></li>
+      <li><a th:href="@{/contact}">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="catalog-container">
+  <div class="catalog-box">
+    <h2>Add New Meal</h2>
+    <form th:action="@{'/meal_catalogs/'+${mealCatalog.id}+'/add_meal'}" th:method="POST" th:object="${mealRequest}">
+      <div class="input-group">
+        <label for="name">Meal Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter meal name" th:field="*{name}">
+        <p class="text-warning" th:errors="*{name}"></p>
+      </div>
+      <div class="input-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Enter meal description" th:field="*{description}"></textarea>
+        <p class="text-warning" th:errors="*{description}"></p>
+      </div>
+      <div class="input-group">
+        <label for="proteins">Proteins (g)</label>
+        <input type="number" id="proteins" name="proteins" placeholder="Enter proteins in grams" th:field="*{proteins}">
+        <p class="text-warning" th:errors="*{proteins}"></p>
+      </div>
+      <div class="input-group">
+        <label for="carbs">Carbohydrates (g)</label>
+        <input type="number" id="carbs" name="carbs" placeholder="Enter carbohydrates in grams" th:field="*{carbs}">
+        <p class="text-warning" th:errors="*{carbs}"></p>
+      </div>
+      <div class="input-group">
+        <label for="fats">Fats (g)</label>
+        <input type="number" id="fats" name="fats" placeholder="Enter fats in grams" th:field="*{fats}">
+        <p class="text-warning" th:errors="*{fats}"></p>
+      </div>
+      <button type="submit" class="submit-button">Add Meal</button>
+    </form>
+  </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>

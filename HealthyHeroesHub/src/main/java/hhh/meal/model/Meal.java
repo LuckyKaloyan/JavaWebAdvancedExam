@@ -42,6 +42,9 @@ public class Meal {
     private List<UpVote> upVotes;
 
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FavouriteMeal> favouriteMeals;
+
+    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
     @ManyToOne

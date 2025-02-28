@@ -1,6 +1,8 @@
 package hhh.web;
 
 
+import hhh.meal.service.MealService;
+import hhh.mealcatalog.service.MealCatalogService;
 import hhh.security.AuthenticationDetails;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
@@ -21,10 +23,14 @@ public class IndexController {
 
 
     private final UserService userService;
+    private final MealCatalogService mealCatalogService;
+    private final MealService mealService;
 
     @Autowired
-    public IndexController(UserService userService) {
+    public IndexController(UserService userService, MealCatalogService mealCatalogService, MealService mealService) {
         this.userService = userService;
+        this.mealCatalogService = mealCatalogService;
+        this.mealService = mealService;
     }
 
 
@@ -66,7 +72,7 @@ public class IndexController {
         modelAndView.setViewName("home");
         User user = userService.getById(authenticationDetails.getId());
         modelAndView.addObject("user", user);
-
+        modelAndView.addObject("allCatalogs", mealCatalogService.getAllMealCatalogs());
         return modelAndView;
     }
 

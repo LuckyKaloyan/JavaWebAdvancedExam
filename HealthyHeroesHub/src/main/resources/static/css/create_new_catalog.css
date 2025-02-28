@@ -1,13 +1,11 @@
-
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url('https://source.unsplash.com/1600x900/?healthy-food,cooking') no-repeat center center/cover;
+    background: url('https://source.unsplash.com/1600x900/?healthy-food,kitchen') no-repeat center center/cover;
     font-family: Arial, sans-serif;
     margin: 0;
 }
-
 
 header {
     background-color: #333;
@@ -25,33 +23,13 @@ nav {
     align-items: center;
 }
 
-.logo {
-    font-size: 32px;
-    font-weight: bold;
-    font-family: 'Poppins', sans-serif;
-    padding-left: 20px;
-    letter-spacing: 5px;
-    color: #fff;
-    text-transform: uppercase;
-    display: block;
-    flex-grow: 1;
-    text-decoration: none;
-}
-
 .logo a {
     color: white;
     text-decoration: none;
-}
-
-.logo a:hover {
-    color: #007BFF;
-}
-
-nav ul li a:hover {
-    background-color: #ff5722;
-    border-radius: 5px;
-    transform: scale(1.05);
-    padding: 5px;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
 nav ul {
@@ -69,21 +47,17 @@ nav ul li a {
     text-decoration: none;
     color: white;
     font-weight: bold;
+    padding: 5px;
 }
 
 nav ul li a:hover {
-    color: #007BFF;
+    background-color: #ff5722;
+    border-radius: 5px;
+    transform: scale(1.05);
+    padding: 5px;
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: auto;
-}
-
-.login-container {
+.catalog-container {
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
@@ -92,7 +66,7 @@ footer {
     margin: 50px auto;
 }
 
-.login-box h2 {
+.catalog-box h2 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -106,14 +80,14 @@ footer {
     margin-bottom: 5px;
 }
 
-.input-group input {
+.input-group input, .input-group textarea {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.login-button {
+.submit-button {
     width: 100%;
     background-color: green;
     color: white;
@@ -123,7 +97,7 @@ footer {
     cursor: pointer;
 }
 
-.login-button:hover {
+.submit-button:hover {
     background-color: darkgreen;
 }
 
@@ -132,7 +106,11 @@ footer {
     color: darkred !important;
 }
 
-.text-warning:focus,
-a.text-warning:hover {
-    color: darkred !important;
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
 }

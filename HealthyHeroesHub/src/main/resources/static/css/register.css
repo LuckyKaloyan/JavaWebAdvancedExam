@@ -1,11 +1,11 @@
-/* General Styles */
+
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background: url('https://source.unsplash.com/1600x900/?healthy-food,cooking') no-repeat center center/cover;
     font-family: Arial, sans-serif;
-    margin: 0; /* Remove default margin */
+    margin: 0;
 }
 
 a {
@@ -17,14 +17,13 @@ a:visited {
     color: inherit;
 }
 
-/* Register Container */
 .register-container {
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    margin: 50px auto; /* Center the form horizontally */
+    margin: 50px auto;
 }
 
 .register-box h2 {
@@ -32,7 +31,6 @@ a:visited {
     margin-bottom: 20px;
 }
 
-/* Form Styling */
 .input-group {
     margin-bottom: 15px;
 }
@@ -63,7 +61,6 @@ a:visited {
     background-color: darkgreen;
 }
 
-/* Header and Footer Styles */
 header {
     background-color: #333;
     color: white;

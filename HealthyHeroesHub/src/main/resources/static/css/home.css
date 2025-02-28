@@ -195,3 +195,12 @@ a:hover {
     color: #007BFF;
 }
 
+.meal-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-form {
+    margin: 0;
+}

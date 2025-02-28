@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Catalog</title>
+    <link rel="stylesheet" href="/css/meal_catalog.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a th:href="@{/}">HealthyHeroesHub</a>
+        </div>
+        <ul>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+            <li><a th:href="@{/register}">Register</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="catalog-container">
+    <div class="catalog-box">
+        <h2 th:text="${mealCatalog.name}"></h2>
+        <p class="description" th:text="${mealCatalog.description}"></p>
+        <p><strong>Added On:</strong> <span th:text="${mealCatalog.addedOn}"></span></p>
+        <p><strong>Last Updated:</strong> <span th:text="${mealCatalog.lastUpdate}"></span></p>
+        <p><strong>Owner:</strong> <span th:text="${mealCatalog.owner.username}"></span></p>
+        <form th:if="${mealCatalog.owner}==${user}" th:action="@{'/meal_catalogs/'+${mealCatalog.id}+'/add_meal'}" th:method="GET"> <button>Add Meal</button> </form>
+    </div>
+
+    <div class="meals-section">
+        <h3>Meals</h3>
+        <ul>
+            <li th:each="meal : ${mealCatalog.meals}">
+                <p th:text="${meal.name}">
+                <form th:action="@{'/meal_catalogs/meal/'+${meal.id}}" th:method="GET"> <button>Open</button> </form>
+                <form th:if="${mealCatalog.owner}==user" th:action="@{'/meal_catalogs/' + ${mealCatalog.id} + '/meal/delete/' + ${meal.id}}" th:method="DELETE">
+                    <button>Delete</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>
