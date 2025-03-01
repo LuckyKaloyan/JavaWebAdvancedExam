@@ -23,22 +23,44 @@
 </header>
 
 <div class="meal-container">
-  <div class="meal-box">
-    <h2 th:text="${meal.name}"></h2>
-    <p class="description" th:text="${meal.description}"></p>
-    <p><strong>Added On:</strong> <span th:text="${meal.addedOn}"></span></p>
-    <p><strong>Owner:</strong> <span th:text="${meal.owner.username}"></span></p>
-    <p><strong>Proteins:</strong> <span th:text="${meal.proteins}"></span> g</p>
-    <p><strong>Carbs:</strong> <span th:text="${meal.carbs}"></span> g</p>
-    <p><strong>Fats:</strong> <span th:text="${meal.fats}"></span> g</p>
-    <p><strong>Total Calories:</strong> <span th:text="${meal.totalCalories}"></span> kcal</p>
+  <div class="meal-content">
+    <div class="meal-box">
+      <h2 th:text="${meal.name}"></h2>
+      <p class="description" th:text="${meal.description}"></p>
+      <p><strong>Added On:</strong> <span th:text="${meal.addedOn}"></span></p>
+      <p><strong>Owner:</strong> <span th:text="${meal.owner.username}"></span></p>
+      <p><strong>Proteins:</strong> <span th:text="${meal.proteins}"></span> g</p>
+      <p><strong>Carbs:</strong> <span th:text="${meal.carbs}"></span> g</p>
+      <p><strong>Fats:</strong> <span th:text="${meal.fats}"></span> g</p>
+      <p><strong>Total Calories:</strong> <span th:text="${meal.totalCalories}"></span> kcal</p>
+    </div>
+
+    <div class="meal-image">
+      <img th:src="${meal.picture}" alt="Meal Image">
+    </div>
+  </div>
+  <div th:if="${meal.owner} == ${user}">
+    <form th:action="@{'/meal_catalogs/'+${meal.getMealCatalog().id}+'/meal/delete/'+${meal.id}}" th:method="DELETE">
+      <button type="submit" class="submit-button" style="background-color: #dc3545;">Delete Meal</button>
+    </form>
   </div>
 
+
+
   <div class="comments-section">
+    <form th:action="@{'/meal_catalogs/meal/'+${meal.id}+'/add_comment'}" th:method="POST" th:object="${commentRequest}">
+      <div class="input-group">
+        <input type="text" id="text" name="text" placeholder="Write a comment here">
+        <p class="text-warning" th:errors="*{text}"></p>
+      </div>
+      <button type="submit" class="submit-button">Add Comment</button>
+
+    </form>
+
     <h3>Comments</h3>
     <ul>
       <li th:each="comment : ${meal.comments}">
-        <strong th:text="${comment.user.username}"></strong>: <span th:text="${comment.content}"></span>
+        <strong th:text="${comment.user.username}"></strong>: <span th:text="${comment.text}"></span>
       </li>
     </ul>
   </div>
@@ -47,9 +69,11 @@
     <p><strong>Upvotes:</strong> <span th:text="${meal.upVotes.size()}"></span></p>
     <p><strong>Favorites:</strong> <span th:text="${meal.favouriteMeals.size()}"></span></p>
   </div>
+
   <div class="upvote-favorite-section">
     <form th:if="${meal.owner}!=${user}" th:action="@{'/meal_catalogs/meals/up_vote/'+${meal.id}}" th:method="POST">
-      <button>UpVote</button> </form>
+      <button>UpVote</button>
+    </form>
 
     <form th:if="${meal.owner}!=${user}" th:action="@{'/meal_catalogs/meals/add_to_favourite/' + ${meal.id}}" th:method="POST">
       <button>AddToFavourite</button>

@@ -42,7 +42,7 @@ public class MealCatalogService {
     }
 
     public MealCatalog getMealCatalogById(UUID id) {
-        return this.mealCatalogRepository.findById(id).orElseThrow(() -> new RuntimeException("INVALID ID BABE"));
+        return this.mealCatalogRepository.findById(id).orElseThrow(() -> new RuntimeException("Invalid Catalog ID."));
     }
     public List<MealCatalog> getAllMealCatalogs() {
         return this.mealCatalogRepository.findAll();

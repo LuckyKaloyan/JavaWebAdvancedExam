@@ -29,18 +29,23 @@
         <p><strong>Added On:</strong> <span th:text="${mealCatalog.addedOn}"></span></p>
         <p><strong>Last Updated:</strong> <span th:text="${mealCatalog.lastUpdate}"></span></p>
         <p><strong>Owner:</strong> <span th:text="${mealCatalog.owner.username}"></span></p>
-        <form th:if="${mealCatalog.owner}==${user}" th:action="@{'/meal_catalogs/'+${mealCatalog.id}+'/add_meal'}" th:method="GET"> <button>Add Meal</button> </form>
+        <form  th:if="${mealCatalog.owner}==${user}" th:action="@{'/meal_catalogs/'+${mealCatalog.id}+'/add_meal'}" th:method="GET"> <button id="add_meal">Add Meal</button> </form>
+        <form  th:if="${mealCatalog.owner}==${user}" th:action="@{'/meal_catalogs/delete/' + ${mealCatalog.id}}" th:method="DELETE" class="delete-form">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn btn-danger">DELETE CATALOG</button>
+        </form>
     </div>
 
     <div class="meals-section">
         <h3>Meals</h3>
         <ul>
             <li th:each="meal : ${mealCatalog.meals}">
-                <p th:text="${meal.name}">
-                <form th:action="@{'/meal_catalogs/meal/'+${meal.id}}" th:method="GET"> <button>Open</button> </form>
-                <form th:if="${mealCatalog.owner}==user" th:action="@{'/meal_catalogs/' + ${mealCatalog.id} + '/meal/delete/' + ${meal.id}}" th:method="DELETE">
-                    <button>Delete</button>
+                <img th:src="@{${meal.picture}}" alt="Meal Image" class="meal-image" />
+                <p th:text="${meal.name}"></p>
+                <form th:action="@{'/meal_catalogs/meal/'+${meal.id}}" th:method="GET">
+                    <button>Open</button>
                 </form>
+
             </li>
         </ul>
     </div>

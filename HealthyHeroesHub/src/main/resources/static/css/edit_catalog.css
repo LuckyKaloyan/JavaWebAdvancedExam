@@ -2,19 +2,22 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url('https://source.unsplash.com/1600x900/?healthy-food,kitchen') no-repeat center center/cover;
+    background: url('https://media1.popsugar-assets.com/files/thumbor/_zU14TDqGoE-foNY2xIV8nkxa3k=/3803x2852/top/filters:format_auto():quality(85):extract_cover()/2019/03/16/667/n/1922729/47efa6bf5c8d0fa3779cf3.99272875_.jpg')
+    no-repeat center center/cover;
     font-family: Arial, sans-serif;
     margin: 0;
+    color: #333;
 }
 
 
 header {
-    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    padding: 15px;
+    padding: 20px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 nav {
@@ -24,13 +27,43 @@ nav {
     align-items: center;
 }
 
+.logo {
+    font-size: 36px;
+    font-weight: 700;
+    padding-left: 20px;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    display: block;
+    flex-grow: 1;
+    text-decoration: none;
+}
+
 .logo a {
     color: white;
     text-decoration: none;
-    font-size: 32px;
+}
+
+.logo a:hover {
+    color: #ff5722;
+    text-decoration: underline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff5722;
+    background-color: rgba(255, 87, 34, 0.1);
+    border-radius: 8px;
+    padding: 5px 10px;
+    transform: scale(1.05);
 }
 
 nav ul {
@@ -41,21 +74,44 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
-nav ul li a {
-    text-decoration: none;
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    font-weight: bold;
-    padding: 5px;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
 
-nav ul li a:hover {
+
+button {
     background-color: #ff5722;
-    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background-color: #e64a19;
     transform: scale(1.05);
-    padding: 5px;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
 }
 
 .catalog-container {

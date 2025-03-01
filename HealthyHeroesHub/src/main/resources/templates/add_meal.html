@@ -51,6 +51,11 @@
         <input type="number" id="fats" name="fats" placeholder="Enter fats in grams" th:field="*{fats}">
         <p class="text-warning" th:errors="*{fats}"></p>
       </div>
+      <div class="input-group">
+        <label for="picture">Meal Picture</label>
+        <input type="text" id="picture" name="picture" placeholder="Enter meal picture" th:field="*{picture}">
+        <p class="text-warning" th:errors="*{picture}"></p>
+      </div>
       <button type="submit" class="submit-button">Add Meal</button>
     </form>
   </div>

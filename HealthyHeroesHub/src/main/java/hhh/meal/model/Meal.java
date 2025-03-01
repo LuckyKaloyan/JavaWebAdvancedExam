@@ -35,6 +35,8 @@ public class Meal {
     private BigDecimal totalCalories;
     @Column(nullable = false)
     private LocalDate addedOn;
+    @Column(nullable = false)
+    private String picture;
     @ManyToOne
     private User owner;
 

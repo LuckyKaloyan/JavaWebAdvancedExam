@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -42,6 +41,7 @@ public class MealService {
                 .carbs(mealRequest.getCarbs())
                 .proteins(mealRequest.getProteins())
                 .totalCalories(totalCalories)
+                .picture(mealRequest.getPicture())
                 .addedOn(LocalDate.now())
                 .mealCatalog(mealCatalog)
                 .owner(mealCatalog.getOwner())
@@ -51,7 +51,7 @@ public class MealService {
     }
 
     public Meal getMealById(UUID id) {
-     return mealRepository.findById(id).orElseThrow(() -> new RuntimeException("Invalid meal"));
+     return mealRepository.findById(id).orElseThrow(() -> new RuntimeException("Invalid MEAL ID"));
     }
     public void deleteMealById(UUID id) {
         mealRepository.deleteById(id);

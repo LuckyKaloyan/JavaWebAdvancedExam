@@ -1,4 +1,5 @@
 package hhh.web;
+import hhh.comment.service.CommentService;
 import hhh.meal.model.Meal;
 import hhh.meal.service.MealService;
 import hhh.mealcatalog.model.MealCatalog;
@@ -7,6 +8,7 @@ import hhh.security.AuthenticationDetails;
 import hhh.upvote.service.UpVoteService;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
+import hhh.web.dto.CommentRequest;
 import hhh.web.dto.EditCatalogRequest;
 import hhh.web.dto.MealCatalogRequest;
 import hhh.web.dto.MealRequest;
@@ -29,13 +31,15 @@ public class MealCatalogController {
     private final UserService userService;
     private final MealService mealService;
     private final UpVoteService upVoteService;
+    private final CommentService commentService;
 
     @Autowired
-    public MealCatalogController(MealCatalogService mealCatalogService, UserService userService, MealService mealService, UpVoteService upVoteService) {
+    public MealCatalogController(MealCatalogService mealCatalogService, UserService userService, MealService mealService, UpVoteService upVoteService, CommentService commentService) {
         this.mealCatalogService = mealCatalogService;
         this.userService = userService;
         this.mealService = mealService;
         this.upVoteService = upVoteService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/create_new_catalog")
@@ -130,13 +134,14 @@ public class MealCatalogController {
     }
 
     @GetMapping("/meal/{id}")
-    public ModelAndView getMeal(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+    public ModelAndView getMeal(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, CommentRequest commentRequest) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("meal");
         Meal meal = mealService.getMealById(id);
         User user = userService.getById(authenticationDetails.getId());
         modelAndView.addObject("user", user);
         modelAndView.addObject("meal", meal);
+        modelAndView.addObject("commentRequest", commentRequest);
         return modelAndView;
     }
     @DeleteMapping("{id1}/meal/delete/{id2}")
@@ -144,7 +149,6 @@ public class MealCatalogController {
         mealService.deleteMealById(id2);
         return "redirect:/meal_catalogs/" + id1;
     }
-
 
     @PostMapping("/meals/add_to_favourite/{id}")
     public ModelAndView addFavourite(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
@@ -166,6 +170,25 @@ public class MealCatalogController {
         ModelAndView modelAndView = new ModelAndView();
         mealService.deleteFavouriteMeal(id);
         return new ModelAndView("redirect:/home");
+    }
+
+    @PostMapping("/meal/{id}/add_comment")
+    public ModelAndView postComment(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails,
+                                    @Valid CommentRequest commentRequest, BindingResult result){
+        if(result.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("meal");
+            Meal meal = mealService.getMealById(id);
+            User user = userService.getById(authenticationDetails.getId());
+            modelAndView.addObject("user", user);
+            modelAndView.addObject("meal", meal);
+            modelAndView.addObject("commentRequest", commentRequest);
+            return modelAndView;
+        }else {
+            commentService.createComment(commentRequest.getText(),authenticationDetails.getId(),id);
+            return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
+        }
+
     }
 
 }

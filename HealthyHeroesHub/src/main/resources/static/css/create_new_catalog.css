@@ -2,11 +2,12 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url('https://source.unsplash.com/1600x900/?healthy-food,kitchen') no-repeat center center/cover;
+    background: url('https://media1.popsugar-assets.com/files/thumbor/_zU14TDqGoE-foNY2xIV8nkxa3k=/3803x2852/top/filters:format_auto():quality(85):extract_cover()/2019/03/16/667/n/1922729/47efa6bf5c8d0fa3779cf3.99272875_.jpg')
+    no-repeat center center/cover;
     font-family: Arial, sans-serif;
     margin: 0;
+    color: #333;
 }
-
 header {
     background-color: #333;
     color: white;
