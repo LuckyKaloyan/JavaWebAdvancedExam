@@ -4,34 +4,68 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comment Management</title>
-  <link rel="stylesheet" href="/css/comment_management.css">
+  <link rel="stylesheet" href="/css/admin_panel.css">
 </head>
 <body>
-<div class="container">
-  <h2>Comment Management</h2>
-  <table>
-    <thead>
-    <tr>
-      <th>Text</th>
-      <th>Written by user:</th>
-      <th>Written at meal:</th>
-      <th>Created on: </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="comment : ${comments}">
-      <td th:text="${comment.text}"></td>
-      <td th:text="${comment.user.username}"></td>
-      <td th:text="${comment.meal.name}"></td>
-      <td th:text="${comment.createdOn}"></td>
-      <td>
-        <form th:action="@{'/admin_panel/comment_management/delete/'+${comment.id}}" th:method="DELETE">
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a th:href="@{/}">HealthyHeroesHub</a>
+    </div>
+    <ul>
+      <li><a th:href="@{/logout}">Log Out</a></li>
+      <li><a th:href="@{/home}">Home</a></li>
+      <li><a th:href="@{/contact}">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <h3>Analytics</h3>
+    <div class="menu-item"><a th:href="@{/admin_panel/users_data}">Users Data</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/meals_data}">Meal Catalogs and Meals Data</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/comments_and_up_votes_data}">Comments and UpVotes Data</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/reports_data}">Reports Data</a></div>
+    <h3>Management</h3>
+    <div class="menu-item"><a th:href="@{/admin_panel/user_management}">Users Management</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/meal_catalog_management}">Meal Catalogs Management</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/meal_management}">Meals Management</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/comment_management}">Comments Management</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/report_management}">Reports Management</a></div>
+  </aside>
+
+  <main class="content">
+    <h2>Comment Management</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Text</th>
+        <th>Written by User</th>
+        <th>Written at Meal</th>
+        <th>Created On</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="comment : ${comments}">
+        <td th:text="${comment.text}"></td>
+        <td th:text="${comment.user.username}"></td>
+        <td th:text="${comment.meal.name}"></td>
+        <td th:text="${comment.createdOn}"></td>
+        <td>
+          <form th:action="@{'/admin_panel/comment_management/delete/' + ${comment.id}}" th:method="DELETE">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </main>
 </div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
 </body>
 </html>

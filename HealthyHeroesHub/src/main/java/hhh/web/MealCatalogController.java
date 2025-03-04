@@ -73,7 +73,7 @@ public class MealCatalogController {
     }
 
     @GetMapping("{id}/edit")
-    public ModelAndView getEditMealCatalog(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, EditCatalogRequest editCatalogRequest) {
+    public ModelAndView getEditMealCatalog(@PathVariable UUID id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("edit_catalog");
         MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
@@ -84,7 +84,7 @@ public class MealCatalogController {
 
     }
     @PatchMapping("{id}/edit")
-    public ModelAndView patchMealCatalog(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, @Valid EditCatalogRequest editCatalogRequest, BindingResult bindingResult) {
+    public ModelAndView patchMealCatalog(@PathVariable UUID id, @Valid EditCatalogRequest editCatalogRequest, BindingResult bindingResult) {
        if(bindingResult.hasErrors()) {
            ModelAndView modelAndView = new ModelAndView();
            modelAndView.setViewName("edit_catalog");
@@ -93,7 +93,6 @@ public class MealCatalogController {
            modelAndView.addObject("editCatalogRequest", editCatalogRequest);
             return modelAndView;
        }
-        MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
         mealCatalogService.editMealCatalog(id,editCatalogRequest);
         return new ModelAndView("redirect:/home");
 
@@ -106,7 +105,7 @@ public class MealCatalogController {
     }
 
     @GetMapping("/{id}/add_meal")
-    public ModelAndView addNewMeal(@PathVariable UUID id,@AuthenticationPrincipal AuthenticationDetails authenticationDetails,  MealRequest mealRequest) {
+    public ModelAndView addNewMeal(@PathVariable UUID id, MealRequest mealRequest) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("add_meal");
         MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
@@ -151,22 +150,19 @@ public class MealCatalogController {
 
     @PostMapping("/meals/add_to_favourite/{id}")
     public ModelAndView addFavourite(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
-        ModelAndView modelAndView = new ModelAndView();
         mealService.addFavouriteMeal(id,authenticationDetails.getId());
         return new ModelAndView("redirect:/home");
     }
 
     @PostMapping("meals/up_vote/{id}")
     public ModelAndView upVote(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
-        ModelAndView modelAndView = new ModelAndView();
         upVoteService.upVote(id,authenticationDetails.getId());
         return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
     }
 
 
     @DeleteMapping("/meals/remove_from_favourite/{id}")
-    public ModelAndView removeFavourite(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView removeFavourite(@PathVariable UUID id) {
         mealService.deleteFavouriteMeal(id);
         return new ModelAndView("redirect:/home");
     }
@@ -187,7 +183,5 @@ public class MealCatalogController {
             commentService.createComment(commentRequest.getText(),authenticationDetails.getId(),id);
             return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
         }
-
     }
-
 }

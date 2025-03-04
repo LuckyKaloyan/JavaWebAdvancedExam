@@ -11,73 +11,63 @@
 <header>
     <nav>
         <div class="logo">
-            <a href="/">HealthyHeroesHub</a>
+            <a th:href="@{/}">HealthyHeroesHub</a>
         </div>
         <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a th:href="@{/logout}">Log Out</a></li>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
         </ul>
     </nav>
 </header>
 
-<div class="container">
-    <div class="sidebar">
+<div class="dashboard-container">
+    <aside class="sidebar">
         <h3>Analytics</h3>
-        <div class="box" >
-            <a th:href="@{/admin_panel/users_data}">
-                <p>Users Data</p>
-            </a>
-        </div>
-        <div class="box">
-            <p>Meal Catalogs and Meals Data</p>
-        </div>
-        <div class="box">
-            <p>Comments and UpVotes Data</p>
-        </div>
-        <div class="box">
-            <p>Reports Data</p>
-        </div>
-    </div>
+        <div class="menu-item"><a th:href="@{/admin_panel/users_data}">Users Data</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/meals_data}">Meal Catalogs and Meals Data</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/comments_and_up_votes_data}">Comments and UpVotes Data</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/reports_data}">Reports Data</a></div>
+        <h3>Management</h3>
+        <div class="menu-item"><a th:href="@{/admin_panel/user_management}">Users Management</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/meal_catalog_management}">Meal Catalogs Management</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/meal_management}">Meals Management</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/comment_management}">Comments Management</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/report_management}">Reports Management</a></div>
+    </aside>
 
-    <div class="main-content">
+    <main class="content">
         <h2>Users Data</h2>
-
-
-        <div class="stats">
-            <div class="stat-box">
-                <h3>Users</h3>
+        <div class="cards">
+            <div class="card">
+                <h3>Total Users</h3>
                 <p id="total-users" th:text="${users.size()}"></p>
             </div>
-            <div class="stat-box">
+            <div class="card">
                 <h3>Admins</h3>
                 <p id="admin-users" th:text="${admins.size()}"></p>
             </div>
-            <div class="stat-box">
+            <div class="card">
                 <h3>Registered in Last Day</h3>
                 <p id="day-users" th:text="${usersDayAgo.size()}"></p>
             </div>
-            <div class="stat-box">
+            <div class="card">
                 <h3>Registered in Last Week</h3>
                 <p id="week-users" th:text="${usersWeekAgo.size()}"></p>
             </div>
-            <div class="stat-box">
+            <div class="card">
                 <h3>Registered in Last Month</h3>
                 <p id="month-users" th:text="${usersMonthAgo.size()}"></p>
             </div>
-            <div class="stat-box">
+            <div class="card">
                 <h3>Registered in Last Year</h3>
                 <p id="year-users" th:text="${usersYearAgo.size()}"></p>
             </div>
-
         </div>
-    </div>
+    </main>
 </div>
 
-<footer>
-    <p>&copy; 2025 HealthyHeroesHub. All rights reserved.</p>
-</footer>
+<footer th:insert="fragments/footer :: footer"></footer>
 
 </body>
 </html>

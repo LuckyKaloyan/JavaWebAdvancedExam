@@ -4,69 +4,101 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Report Management</title>
-  <link rel="stylesheet" href="/css/report_management.css">
+  <link rel="stylesheet" href="/css/admin_panel.css">
 </head>
 <body>
-<div class="container">
-  <h2>Report Management</h2>
 
+<header>
+  <nav>
+    <div class="logo">
+      <a th:href="@{/}">HealthyHeroesHub</a>
+    </div>
+    <ul>
+      <li><a th:href="@{/logout}">Log Out</a></li>
+      <li><a th:href="@{/home}">Home</a></li>
+      <li><a th:href="@{/contact}">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <h3>Not Reviewed yet Reports</h3>
-  <table>
-    <thead>
-    <tr>
-      <th>Concerned User</th>
-      <th>Troublemaker</th>
-      <th>Report Type</th>
-      <th>Location</th>
-      <th>Description</th>
-      <th>Date of Issue</th>
-      <th>Created On</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="report : ${notReviewedReports}">
-      <td th:text="${report.concernedUser}"></td>
-      <td th:text="${report.troublemaker}"></td>
-      <td th:text="${report.reportType}"></td>
-      <td th:text="${report.whereItHappened}"></td>
-      <td th:text="${report.description}"></td>
-      <td th:text="${report.dateOfIssue}"></td>
-      <td th:text="${report.createdOn}"></td>
-      <td>
-        <form th:action="@{'/admin_panel/report_management/reviewed/'+${report.id}}" th:method="PATCH">
-          <button type="submit" class="btn btn-success">Mark as Reviewed</button>
-        </form>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <h3>Analytics</h3>
+    <div class="menu-item"><a th:href="@{/admin_panel/users_data}">Users Data</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/meals_data}">Meal Catalogs and Meals Data</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/comments_and_up_votes_data}">Comments and UpVotes Data</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/reports_data}">Reports Data</a></div>
+    <h3>Management</h3>
+    <div class="menu-item"><a th:href="@{/admin_panel/user_management}">Users Management</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/meal_catalog_management}">Meal Catalogs Management</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/meal_management}">Meals Management</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/comment_management}">Comments Management</a></div>
+    <div class="menu-item"><a th:href="@{/admin_panel/report_management}">Reports Management</a></div>
+  </aside>
+  <main class="content">
+    <h2>Report Management</h2>
 
-  <h3>Already Reviewed Reports</h3>
-  <table>
-    <thead>
-    <tr>
-      <th>Concerned User</th>
-      <th>Troublemaker</th>
-      <th>Report Type</th>
-      <th>Location</th>
-      <th>Description</th>
-      <th>Date of Issue</th>
-      <th>Created On</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="report : ${reviewedReports}">
-      <td th:text="${report.concernedUser}"></td>
-      <td th:text="${report.troublemaker}"></td>
-      <td th:text="${report.reportType}"></td>
-      <td th:text="${report.whereItHappened}"></td>
-      <td th:text="${report.description}"></td>
-      <td th:text="${report.dateOfIssue}"></td>
-      <td th:text="${report.createdOn}"></td>
-    </tr>
-    </tbody>
-  </table>
+    <h3>Not Reviewed Reports</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>Concerned User</th>
+        <th>Troublemaker</th>
+        <th>Report Type</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Date of Issue</th>
+        <th>Created On</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="report : ${notReviewedReports}">
+        <td th:text="${report.concernedUser}"></td>
+        <td th:text="${report.troublemaker}"></td>
+        <td th:text="${report.reportType}"></td>
+        <td th:text="${report.whereItHappened}"></td>
+        <td th:text="${report.description}"></td>
+        <td th:text="${report.dateOfIssue}"></td>
+        <td th:text="${report.createdOn}"></td>
+        <td>
+          <form th:action="@{'/admin_panel/report_management/reviewed/' + ${report.id}}" th:method="PATCH">
+            <button type="submit" class="btn-success">Mark as Reviewed</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h3>Already Reviewed Reports</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>Concerned User</th>
+        <th>Troublemaker</th>
+        <th>Report Type</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Date of Issue</th>
+        <th>Created On</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="report : ${reviewedReports}">
+        <td th:text="${report.concernedUser}"></td>
+        <td th:text="${report.troublemaker}"></td>
+        <td th:text="${report.reportType}"></td>
+        <td th:text="${report.whereItHappened}"></td>
+        <td th:text="${report.description}"></td>
+        <td th:text="${report.dateOfIssue}"></td>
+        <td th:text="${report.createdOn}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </main>
 </div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
 </body>
 </html>

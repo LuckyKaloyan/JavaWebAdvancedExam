@@ -1,4 +1,5 @@
 package hhh.upvote.service;
+import hhh.comment.model.Comment;
 import hhh.meal.model.Meal;
 import hhh.meal.service.MealService;
 import hhh.upvote.model.UpVote;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -46,5 +48,24 @@ public class UpVoteService {
         upVoteRepository.save(upVote);
         return upVote;
     }
+    public List<UpVote> getAllDateLastYear() {
+        LocalDate oneYearAgo = LocalDate.now().minusYears(1);
+        return upVoteRepository.findByDateAfter(oneYearAgo);
+    }
+    public List<UpVote> getAllDateLastMonth() {
+        LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
+        return upVoteRepository.findByDateAfter(oneMonthAgo);
+    }
+    public List<UpVote> getAllDateLastWeek() {
+        LocalDate oneWeekAgo = LocalDate.now().minusDays(7);
+        return upVoteRepository.findByDateAfter(oneWeekAgo);
+    }
+    public List<UpVote> getAllDateLast24hours() {
+        LocalDate oneDayAgo = LocalDate.now().minusDays(1);
+        return upVoteRepository.findByDateAfter(oneDayAgo);
+    }
 
+    public List<UpVote> getAll(){
+        return upVoteRepository.findAll();
+    }
 }

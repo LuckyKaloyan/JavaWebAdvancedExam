@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class MealCatalogRequest {
 
     @NotNull
-    @Size(min = 2, max = 15, message = "Enter a catalog name between 2 and 15 symbols! Please!")
+    @Size(min = 2, max = 30, message = "Enter a catalog name between 2 and 30 symbols! Please!")
     private String name;
 
     @NotNull

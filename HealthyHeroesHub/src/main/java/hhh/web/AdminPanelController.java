@@ -11,6 +11,8 @@ import hhh.mealcatalog.service.MealCatalogService;
 import hhh.report.model.Report;
 import hhh.report.service.ReportService;
 import hhh.security.AuthenticationDetails;
+import hhh.upvote.model.UpVote;
+import hhh.upvote.service.UpVoteService;
 import hhh.user.model.User;
 import hhh.user.model.UserRole;
 import hhh.user.service.UserService;
@@ -33,14 +35,16 @@ public class AdminPanelController {
     private final MealService mealService;
     private final ReportService reportService;
     private final CommentService commentService;
+    private final UpVoteService upVoteService;
 
     @Autowired
-    public AdminPanelController(UserService userService, MealCatalogService mealCatalogService, MealService mealService, ReportService reportService, CommentService commentService) {
+    public AdminPanelController(UserService userService, MealCatalogService mealCatalogService, MealService mealService, ReportService reportService, CommentService commentService, UpVoteService upVoteService) {
         this.userService = userService;
         this.mealCatalogService = mealCatalogService;
         this.mealService = mealService;
         this.reportService = reportService;
         this.commentService = commentService;
+        this.upVoteService = upVoteService;
     }
 
     @GetMapping
@@ -171,5 +175,53 @@ public class AdminPanelController {
         modelAndView.setViewName("meals_data");
         return modelAndView;
     }
+    @GetMapping("/comments_and_up_votes_data")
+    public ModelAndView getCommentsAndUpVotesDataPanel() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<UpVote> upVotes = upVoteService.getAll();
+        List<Comment> comments = commentService.getAllComments();
+        List<UpVote> upVotesLastDay = upVoteService.getAllDateLast24hours();
+        List<UpVote> upVotesLastWeek = upVoteService.getAllDateLastWeek();
+        List<UpVote> upVotesLastMonth = upVoteService.getAllDateLastMonth();
+        List<UpVote> upVotesLastYear = upVoteService.getAllDateLastYear();
+        List<Comment> commentsLastDay = commentService.getAllCreatedOnLast24hours();
+        List<Comment> commentsLastWeek = commentService.getAllCreatedOnLastWeek();
+        List<Comment> commentsLastMonth = commentService.getAllCreatedOnLastMonth();
+        List<Comment> commentsLastYear = commentService.getAllCreatedOnLastYear();
+        modelAndView.addObject("upVotes", upVotes);
+        modelAndView.addObject("comments", comments);
+        modelAndView.addObject("upVotesLastDay", upVotesLastDay);
+        modelAndView.addObject("upVotesLastWeek", upVotesLastWeek);
+        modelAndView.addObject("upVotesLastMonth", upVotesLastMonth);
+        modelAndView.addObject("upVotesLastYear", upVotesLastYear);
+        modelAndView.addObject("commentsLastDay", commentsLastDay);
+        modelAndView.addObject("commentsLastWeek", commentsLastWeek);
+        modelAndView.addObject("commentsLastMonth", commentsLastMonth);
+        modelAndView.addObject("commentsLastYear", commentsLastYear);
+        modelAndView.setViewName("comments_and_up_votes_data");
+        return modelAndView;
+    }
+
+    @GetMapping("/reports_data")
+    public ModelAndView getReportsDataPanel() {
+       ModelAndView modelAndView = new ModelAndView();
+       List<Report> reports = reportService.getAll();
+       List<Report> reportsReviewed = reportService.getAllReviewedReports();
+       List<Report> reportsNotReviewed = reportService.getAllNotReviewedReports();
+       List<Report> reportsLastYear = reportService.getAllCreatedLastYear();
+       List<Report> reportsLastMonth = reportService.getAllCreatedLastMonth();
+       List<Report> reportsLastWeek = reportService.getAllCreatedLastWeek();
+       List<Report> reportsLastDay = reportService.getAllCreatedLastDay();
+       modelAndView.addObject("reports", reports);
+       modelAndView.addObject("reportsReviewed", reportsReviewed);
+       modelAndView.addObject("reportsNotReviewed", reportsNotReviewed);
+       modelAndView.addObject("reportsLastYear", reportsLastYear);
+       modelAndView.addObject("reportsLastMonth", reportsLastMonth);
+       modelAndView.addObject("reportsLastWeek", reportsLastWeek);
+       modelAndView.addObject("reportsLastDay", reportsLastDay);
+       modelAndView.setViewName("reports_data");
+        return modelAndView;
+    }
+
 
 }

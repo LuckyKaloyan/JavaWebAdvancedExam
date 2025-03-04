@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,70 +13,64 @@
             <a th:href="@{/}">HealthyHeroesHub</a>
         </div>
         <ul>
+            <li><a th:href="@{/logout}">Log Out</a></li>
             <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-            <li><a th:href="@{/register}">Register</a></li>
             <li><a th:href="@{/contact}">Contact</a></li>
         </ul>
     </nav>
 </header>
 
-<div class="container">
-
-    <div class="sidebar">
+<div class="dashboard-container">
+    <aside class="sidebar">
         <h3>Analytics</h3>
-        <div class="box" >
-            <a th:href="@{/admin_panel/users_data}">
-            <p>Users Data</p>
-            </a>
-        </div>
-        <div class="box">
-            <a th:href="@{/admin_panel/meals_data}">
-            <p>Meal Catalogs and Meals Data</p>
-            </a>
-        </div>
-        <div class="box">
-            <p>Comments and UpVotes Data</p>
-        </div>
-        <div class="box">
-            <p>Reports Data</p>
-        </div>
-    </div>
+        <div class="menu-item"><a th:href="@{/admin_panel/users_data}">Users Data</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/meals_data}">Meal Catalogs and Meals Data</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/comments_and_up_votes_data}">Comments and UpVotes Data</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/reports_data}">Reports Data</a></div>
+        <h3>Management</h3>
+        <div class="menu-item"><a th:href="@{/admin_panel/user_management}">Users Management</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/meal_catalog_management}">Meal Catalogs Management</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/meal_management}">Meals Management</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/comment_management}">Comments Management</a></div>
+        <div class="menu-item"><a th:href="@{/admin_panel/report_management}">Reports Management</a></div>
+    </aside>
 
-    <div class="main-content">
+    <main class="content">
         <h2>Admin Dashboard</h2>
+        <div class="cards">
+            <div class="card"><a th:href="@{/admin_panel/user_management}">
+                <h3>User Management</h3>
+            </a></div>
+            <div class="card"><a th:href="@{/admin_panel/meal_catalog_management}">
+                <h3>Catalog Management</h3>
+            </a></div>
+            <div class="card"><a th:href="@{/admin_panel/meal_management}">
+                <h3>Meal Management</h3>
+            </a></div>
+            <div class="card"><a th:href="@{/admin_panel/comment_management}">
+                <h3>Comment Management</h3>
+            </a></div>
+            <div class="card"><a th:href="@{/admin_panel/report_management}">
+                <h3>Reports Management</h3>
+            </a></div>
+            <div></div>
+            <div class="card"><a th:href="@{/admin_panel/users_data}">
+                <h3>Users Data</h3>
+            </a></div>
+            <div class="card"><a th:href="@{/admin_panel/meals_data}">
+                <h3>Meal Catalogs and Meals Data</h3>
+            </a></div>
+            <div class="card"><a th:href="@{/admin_panel/comments_and_up_votes_data}">
+                <h3>Comments and UpVotes Data</h3>
+            </a></div>
+            <div class="card"><a th:href="@{/admin_panel/reports_data}">
+                <h3>Reports Data</h3>
+            </a></div>
 
-        <div class="box"><a th:href="@{/admin_panel/user_management}">
-            <h3>User Management</h3>
-            <p>View All Users</p>
-        </a>
         </div>
-
-        <div class="box"><a th:href="@{/admin_panel/meal_catalog_management}">
-            <h3>Meal Catalog Management</h3>
-            <p>View Meal Catalogs</p>
-        </a>
-        </div>
-        <div class="box"><a th:href="@{/admin_panel/meal_management}">
-            <h3>Meal Management</h3>
-            <p><a href="#">Manage Meals</a></p>
-        </a>
-        </div>
-        <div class="box"><a th:href="@{/admin_panel/comment_management}">
-            <h3>Comment Management</h3>
-            <p><a href="#">Manage Comments</a></p>
-        </a>
-        </div>
-            <div class="box"><a th:href="@{/admin_panel/report_management}">
-            <h3>Reports</h3>
-            <p><a href="#">View Reports</a></p>
-            </a>
-        </div>
-
-    </div>
+    </main>
 </div>
 
 <footer th:insert="fragments/footer :: footer"></footer>
-
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meal Management</title>
+  <title>Comments and UpVotes Data</title>
   <link rel="stylesheet" href="/css/admin_panel.css">
 </head>
 <body>
@@ -37,33 +37,52 @@
   </aside>
 
   <main class="content">
-    <h2>Meal Management</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Owner</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Total Calories</th>
-        <th>Added On</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="meal : ${meals}">
-        <td th:text="${meal.owner.username}"></td>
-        <td th:text="${meal.name}"></td>
-        <td th:text="${meal.description}"></td>
-        <td th:text="${meal.totalCalories}"></td>
-        <td th:text="${meal.addedOn}"></td>
-        <td>
-          <form th:action="@{'/admin_panel/meal_management/delete/' + ${meal.id}}" th:method="DELETE">
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <h2>Comments and UpVotes Data</h2>
+    <div class="cards">
+      <!-- UpVotes Section -->
+      <div class="card">
+        <h3>Total UpVotes</h3>
+        <p id="total-upVotes" th:text="${upVotes.size()}"></p>
+      </div>
+      <div class="card">
+        <h3>UpVotes Last Day</h3>
+        <p id="day-upVotes" th:text="${upVotesLastDay.size()}"></p>
+      </div>
+      <div class="card">
+        <h3>UpVotes Last Week</h3>
+        <p id="week-upVotes" th:text="${upVotesLastWeek.size()}"></p>
+      </div>
+      <div class="card">
+        <h3>UpVotes Last Month</h3>
+        <p id="month-upVotes" th:text="${upVotesLastMonth.size()}"></p>
+      </div>
+      <div class="card">
+        <h3>UpVotes Last Year</h3>
+        <p id="year-upVotes" th:text="${upVotesLastYear.size()}"></p>
+      </div>
+
+      <!-- Comments Section -->
+      <div class="card">
+        <h3>Total Comments</h3>
+        <p id="total-comments" th:text="${comments.size()}"></p>
+      </div>
+      <div class="card">
+        <h3>Comments Last Day</h3>
+        <p id="day-comments" th:text="${commentsLastDay.size()}"></p>
+      </div>
+      <div class="card">
+        <h3>Comments Last Week</h3>
+        <p id="week-comments" th:text="${commentsLastWeek.size()}"></p>
+      </div>
+      <div class="card">
+        <h3>Comments Last Month</h3>
+        <p id="month-comments" th:text="${commentsLastMonth.size()}"></p>
+      </div>
+      <div class="card">
+        <h3>Comments Last Year</h3>
+        <p id="year-comments" th:text="${commentsLastYear.size()}"></p>
+      </div>
+    </div>
   </main>
 </div>
 

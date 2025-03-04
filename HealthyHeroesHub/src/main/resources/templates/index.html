@@ -14,33 +14,37 @@
             <a th:href="@{/}">HealthyHeroesHub</a>
         </div>
         <ul>
-            <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-            <li><a th:href="@{/register}">Register</a></li>
+            <li th:unless="${isAuthenticated}"><a th:href="@{/login}">Login</a></li>
+            <li  th:if="${isAuthenticated}"><a th:href="@{/logout}">Log Out</a></li>
+            <li th:unless="${isAuthenticated}"><a th:href="@{/register}">Register</a></li>
+            <li  th:if="${isAuthenticated}"><a th:href="@{/home}">Home</a></li>
             <li><a th:href="@{/contact}">Contact</a></li>
         </ul>
     </nav>
 </header>
 
 <section class="hero">
-    <div class="hero-content">
-        <h1>Welcome to Healthy Heroes Hub</h1>
+    <div class="hero-content" th:if="${isAuthenticated}">
+        <h1>Welcome back to Healthy Heroes Hub!</h1>
+        <a th:href="@{/home}" class="btn">Get In</a>
+    </div>
+    <div class="hero-content" th:unless="${isAuthenticated}">
+        <h1>Welcome to Healthy Heroes Hub!</h1>
         <p>Join our community to share and discover amazing meals.</p>
-        <a  th:href="@{/register}" class="btn">Get Started</a>
+        <a th:href="@{/register}" class="btn">Get Started!</a>
     </div>
 </section>
 
-<section id="welcome" class="welcome" style="font-family: 'Courier New', monospace; text-align: center;">
-    <h2 style="font-size: 2.5em; font-weight: bold; text-decoration: underline;">WELCOME TO HEALTHY HEROES HUB</h2>
-    <p style="font-size: 1.5em; font-weight: bold;">
-        Join our vibrant community where we celebrate delicious food, nutritious diets, and special homemade recipes!<br>
-        Whether you’re looking for healthy meal ideas, expert cooking tips, or just love sharing your culinary creations,
-        this is the perfect place for you. Discover new flavors, enhance your cooking skills, and embark on a journey to a
-        healthier lifestyle with us. Let's make eating healthy both fun and exciting together!
+<section id="welcome" class="welcome">
+    <h2>WELCOME TO HEALTHY HEROES HUB</h2>
+    <p>
+        Welcome to our vibrant community, where delicious food, nutritious diets,
+        and homemade recipes come together! Explore healthy meal ideas,
+        share culinary creations, and discover new flavors.
+        Let’s enhance our cooking skills and embrace a healthier,
+        more exciting way of eating together!
     </p>
 </section>
-
-
 <footer th:insert="fragments/footer :: footer"></footer>
 
 </body>

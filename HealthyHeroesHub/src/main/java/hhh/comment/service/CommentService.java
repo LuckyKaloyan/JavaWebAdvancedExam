@@ -2,6 +2,7 @@ package hhh.comment.service;
 import hhh.comment.model.Comment;
 import hhh.comment.repository.CommentRepository;
 import hhh.meal.service.MealService;
+import hhh.user.model.User;
 import hhh.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,22 @@ public class CommentService {
     public void deleteCommentById(UUID id) {
         commentRepository.deleteById(id);
     }
-
+    public List<Comment> getAllCreatedOnLastYear() {
+        LocalDate oneYearAgo = LocalDate.now().minusYears(1);
+        return commentRepository.findByCreatedOnAfter(oneYearAgo);
+    }
+    public List<Comment> getAllCreatedOnLastMonth() {
+        LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
+        return commentRepository.findByCreatedOnAfter(oneMonthAgo);
+    }
+    public List<Comment> getAllCreatedOnLastWeek() {
+        LocalDate oneWeekAgo = LocalDate.now().minusDays(7);
+        return commentRepository.findByCreatedOnAfter(oneWeekAgo);
+    }
+    public List<Comment> getAllCreatedOnLast24hours() {
+        LocalDate oneDayAgo = LocalDate.now().minusDays(1);
+        return commentRepository.findByCreatedOnAfter(oneDayAgo);
+    }
 
 
 }

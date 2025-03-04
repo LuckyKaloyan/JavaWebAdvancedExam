@@ -91,12 +91,12 @@ public class MealService {
         return mealRepository.findByAddedOnAfter(oneYearAgo);
     }
     public List<Meal> getAllAddedLastWeek() {
-        LocalDate oneYearAgo = LocalDate.now().minusDays(7);
-        return mealRepository.findByAddedOnAfter(oneYearAgo);
+        LocalDate oneWeekAgo = LocalDate.now().minusDays(7);
+        return mealRepository.findByAddedOnAfter(oneWeekAgo);
     }
     public List<Meal> getAllAddedLast24hours() {
-        LocalDate oneMonthAgo = LocalDate.now().minusDays(1);
-        return mealRepository.findByAddedOnAfter(oneMonthAgo);
+        LocalDate oneDayAgo = LocalDate.now().minusDays(1);
+        return mealRepository.findByAddedOnAfter(oneDayAgo);
     }
 
 

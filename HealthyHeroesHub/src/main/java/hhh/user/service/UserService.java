@@ -88,12 +88,12 @@ public class UserService implements UserDetailsService {
         return userRepository.findByRegistrationDateAfter(oneYearAgo);
     }
     public List<User> getAllRegisteredLastWeek() {
-        LocalDate oneYearAgo = LocalDate.now().minusDays(7);
-        return userRepository.findByRegistrationDateAfter(oneYearAgo);
+        LocalDate oneWeekAgo = LocalDate.now().minusDays(7);
+        return userRepository.findByRegistrationDateAfter(oneWeekAgo);
     }
     public List<User> getAllRegisteredLast24hours() {
-        LocalDate oneMonthAgo = LocalDate.now().minusDays(1);
-        return userRepository.findByRegistrationDateAfter(oneMonthAgo);
+        LocalDate oneDayAgo = LocalDate.now().minusDays(1);
+        return userRepository.findByRegistrationDateAfter(oneDayAgo);
     }
 
 

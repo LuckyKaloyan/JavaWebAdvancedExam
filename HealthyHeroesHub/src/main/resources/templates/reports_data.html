@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meals Data</title>
+    <title>Reports Data</title>
     <link rel="stylesheet" href="/css/admin_panel.css">
 </head>
 <body>
@@ -37,31 +37,36 @@
     </aside>
 
     <main class="content">
-        <h2>Meals Data</h2>
+        <h2>Reports Data</h2>
         <div class="cards">
+            <!-- Reports Section -->
             <div class="card">
-                <h3>Meal Catalogs</h3>
-                <p id="total-meal-catalogs" th:text="${mealCatalogs.size()}"></p>
+                <h3>Total Reports</h3>
+                <p id="reports-total" th:text="${reports.size()}"></p>
             </div>
             <div class="card">
-                <h3>Meals</h3>
-                <p id="total-meals" th:text="${meals.size()}"></p>
+                <h3>Reviewed Reports</h3>
+                <p id="reviewed-total" th:text="${reportsReviewed.size()}"></p>
             </div>
             <div class="card">
-                <h3>Meals Last Day</h3>
-                <p id="day-meals" th:text="${mealsDayAgo.size()}"></p>
+                <h3>Not Reviewed Reports</h3>
+                <p id="not-reviewed-total" th:text="${reportsNotReviewed.size()}"></p>
             </div>
             <div class="card">
-                <h3>Meals Last Week</h3>
-                <p id="week-meals" th:text="${mealsWeekAgo.size()}"></p>
+                <h3>Reports in Last Day</h3>
+                <p id="day-reports" th:text="${reportsLastDay.size()}"></p>
             </div>
             <div class="card">
-                <h3>Meals Last Month</h3>
-                <p id="month-meals" th:text="${mealsMonthAgo.size()}"></p>
+                <h3>Reports in Last Week</h3>
+                <p id="week-reports" th:text="${reportsLastWeek.size()}"></p>
             </div>
             <div class="card">
-                <h3>Meals Last Year</h3>
-                <p id="year-meals" th:text="${mealsYearAgo.size()}"></p>
+                <h3>Reports in Last Month</h3>
+                <p id="month-reports" th:text="${reportsLastMonth.size()}"></p>
+            </div>
+            <div class="card">
+                <h3>Reports in Last Year</h3>
+                <p id="year-reports" th:text="${reportsLastYear.size()}"></p>
             </div>
         </div>
     </main>

@@ -2,7 +2,6 @@ package hhh.mealcatalog.service;
 import hhh.meal.model.Meal;
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.mealcatalog.repository.MealCatalogRepository;
-import hhh.report.model.Report;
 import hhh.user.model.User;
 import hhh.web.dto.EditCatalogRequest;
 import hhh.web.dto.MealCatalogRequest;

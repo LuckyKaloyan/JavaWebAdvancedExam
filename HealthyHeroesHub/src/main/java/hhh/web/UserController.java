@@ -39,9 +39,6 @@ public class UserController {
 
         return modelAndView;
     }
-
-
-
     @PutMapping("/{id}/profile")
     public ModelAndView editProfile(@PathVariable UUID id, @Valid EditProfileRequest editProfileRequest, BindingResult bindingResult) {
 
@@ -53,11 +50,7 @@ public class UserController {
             modelAndView.addObject("editProfileRequest", editProfileRequest);
             return modelAndView;
         }
-
         userService.editUser(id, editProfileRequest);
         return new ModelAndView("redirect:/home");
-
     }
-
-
 }

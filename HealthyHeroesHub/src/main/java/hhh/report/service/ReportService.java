@@ -28,6 +28,7 @@ public class ReportService {
                 .whereItHappened(reportRequest.getWhereItHappened())
                 .dateOfIssue(reportRequest.getDateOfIssue())
                 .createdOn(LocalDate.now())
+                .reviewed(false)
                 .build();
 
         this.reportRepository.save(report);
@@ -39,6 +40,27 @@ public class ReportService {
     public List<Report> getAllReviewedReports() {
         return reportRepository.findByReviewedNot(false);
     }
+    public List<Report> getAll(){
+        return reportRepository.findAll();
+    }
+    public List<Report> getAllCreatedLastYear(){
+        LocalDate oneYearAgo = LocalDate.now().minusYears(1);
+        return reportRepository.findAllByCreatedOnAfter(oneYearAgo);
+    }
+    public List<Report> getAllCreatedLastMonth(){
+        LocalDate oneYearAgo = LocalDate.now().minusMonths(1);
+        return reportRepository.findAllByCreatedOnAfter(oneYearAgo);
+    }
+    public List<Report> getAllCreatedLastWeek(){
+        LocalDate oneYearAgo = LocalDate.now().minusDays(7);
+        return reportRepository.findAllByCreatedOnAfter(oneYearAgo);
+    }
+    public List<Report> getAllCreatedLastDay(){
+        LocalDate oneYearAgo = LocalDate.now().minusDays(1);
+        return reportRepository.findAllByCreatedOnAfter(oneYearAgo);
+    }
+
+
     public void completeReport(UUID id) {
         Report report = this.reportRepository.findById(id).orElseThrow(() -> new RuntimeException("Report not found"));
         report.setReviewed(true);
