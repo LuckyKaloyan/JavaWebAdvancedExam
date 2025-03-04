@@ -2,9 +2,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url('https://source.unsplash.com/1600x900/?healthy-food,cooking') no-repeat center center/cover;
-    font-family: Arial, sans-serif;
+    background: url('https://www.naturemade.com/cdn/shop/articles/healthy-foods-to-eat.jpg?v=1611988563') no-repeat center center/cover;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
+    color: white;
 }
 
 
@@ -155,7 +156,10 @@ button:focus {
 .login-button:hover {
     background-color: darkgreen;
 }
-
+.login-container{
+    margin-top: 15vh;
+    color: orangered;
+}
 
 .text-warning {
     color: darkred !important;

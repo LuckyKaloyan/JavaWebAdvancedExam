@@ -17,7 +17,6 @@
             <li><a th:href="@{/logout}">Log Out</a></li>
             <li><a th:href="@{/home}">Home</a></li>
             <li><a th:href="@{/contact}">Contact</a></li>
-            <li th:if="${user.role==user.role.ADMIN}" ><a th:href="@{/admin_panel}">Admin Panel</a></li>
         </ul>
     </nav>
 </header>
@@ -25,7 +24,15 @@
 <div class="container">
     <div class="sidebar">
         <div class="box">
-            <p>Meal of the Day!</p>
+            <p>MEAL OF THE DAY</p>
+        </div>
+        <div class="box">
+            <p>CALCULATE YOUR CALORIES</p>
+        </div>
+        <div class="box">
+            <a th:href="@{/favourite_meals}">
+                <p>FAVOURITE MEALS</p>
+            </a>
         </div>
         <div class="box">
             <a th:href="@{/meal_catalogs/create_new_catalog}">
@@ -35,6 +42,11 @@
         <div class="box">
             <a th:href="@{/reports/create_new_report}">
                 <p>REPORT THE BAD GUYS</p>
+            </a>
+        </div>
+        <div class="box" th:if="${user.role==user.role.ADMIN}">
+            <a th:href="@{/admin_panel}">
+                <p>Admin Panel</p>
             </a>
         </div>
     </div>
@@ -51,24 +63,13 @@
                 </div>
             </div>
         </div>
-        <div class="box" th:if="${user.getFavouriteMeals().size() > 0}">
-            <div class="box-content">
-                <h3>Favourite Meals</h3>
-                <div th:each="favouriteMeal : ${user.getFavouriteMeals()}" class="meal-item">
-                    <a th:text="${favouriteMeal.meal.name}" th:href="@{'/meal_catalogs/meal/' + ${favouriteMeal.meal.id}}"></a>
-                    <form th:action="@{'/meal_catalogs/meals/remove_from_favourite/' + ${favouriteMeal.id}}" th:method="POST" class="delete-form">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button class="btn btn-danger">Remove</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+
         <div class="box" th:if="${allCatalogs.size() > 0}">
             <div class="box-content">
                 <h3>Public Catalogs</h3>
-                <p th:each="publicCatalog : ${allCatalogs}" th:if="${user.id}!=${publicCatalog.owner.id}">
+                <div th:each="publicCatalog : ${allCatalogs}" th:if="${user.id}!=${publicCatalog.owner.id}" class="meal-item">
                     <a th:text="${publicCatalog.name}" th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"></a>
-                </p>
+                </div>
             </div>
         </div>
     </div>
@@ -76,14 +77,13 @@
     <div class="profile-section">
         <div th:if="${user.profilePicture}==null" class="profile-picture"><img src='https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg' alt="Profile Picture"></div>
         <div th:if="${user.profilePicture}!=null" class="profile-picture"><img th:src="${user.profilePicture}" alt="Profile Picture"></div>
-        <p><br th:text="'USERNAME '+${user.username}">
-            <br th:text="'EMAIL '+${user.email}">
-            <br th:if="${user.firstName!=null}" th:text="'FIRSTNAME '+${user.firstName}">
-            <br th:if="${user.lastName!=null}" th:text="'LASTNAME '+${user.lastName}">
-            <br th:if="${user.phone!=null}" th:text="'PHONENUMBER '+${user.phone}">
-            <br th:text="'REGISTERDATE '+${user.registrationDate}">
-            <br th:text="'ROLE '+${user.role}">
-        </p>
+        <p><span>USERNAME:</span> <span th:text="${user.username}"></span></p>
+        <p><span>EMAIL:</span> <span th:text="${user.email}"></span></p>
+        <p th:if="${user.firstName!=null}"><span>FIRSTNAME:</span> <span th:text="${user.firstName}"></span></p>
+        <p th:if="${user.lastName!=null}"><span>LASTNAME:</span> <span th:text="${user.lastName}"></span></p>
+        <p th:if="${user.phone!=null}"><span>PHONENUMBER:</span> <span th:text="${user.phone}"></span></p>
+        <p><span>REGISTERDATE:</span> <span th:text="${user.registrationDate}"></span></p>
+        <p><span>ROLE:</span> <span th:text="${user.role}"></span></p>
         <form th:action="@{'/users/' + ${user.id} + '/profile'}" method="get">
             <button type="submit">Edit</button>
         </form>

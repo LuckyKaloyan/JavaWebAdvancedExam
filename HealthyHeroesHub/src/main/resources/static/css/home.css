@@ -57,30 +57,32 @@ a:visited {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.sidebar .box:nth-child(1) p {
+
+.sidebar .box p {
     background-color: #4CAF50;
 }
 
-.sidebar .box:nth-child(1) p:hover {
+.sidebar .box p:hover {
     background-color: #388E3C;
     transform: scale(1.05);
 }
 
-.sidebar .box:nth-child(2) p {
-    background-color: #2196F3;
-}
 
-.sidebar .box:nth-child(2) p:hover {
-    background-color: #1976D2;
-    transform: scale(1.05);
-}
-
-.sidebar .box:nth-child(3) p {
+.sidebar .box:nth-child(5) p {
     background-color: #F44336;
 }
 
-.sidebar .box:nth-child(3) p:hover {
+.sidebar .box:nth-child(5) p:hover {
     background-color: #D32F2F;
+    transform: scale(1.05);
+}
+
+.sidebar .box:nth-child(6) p {
+    background-color: #2196F3;
+}
+
+.sidebar .box:nth-child(6) p:hover {
+    background-color: #1976D2;
     transform: scale(1.05);
 }
 
@@ -112,13 +114,34 @@ a:visited {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
     padding: 25px;
     margin: 0;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 300px;
+}
+
+.profile-section p {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 2px;
+}
+
+.profile-section p span {
+    font-weight: normal;
+    text-align: right;
 }
 
 .profile-picture {
@@ -249,35 +272,6 @@ a:hover {
 .delete-form {
     margin: 0;
 }
-
-.profile-section p, .box p {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    margin: 5px 0;
-    font-weight: bold;
-    font-size: 16px;
-    letter-spacing: 1px;
-}
-
-.profile-section p br {
-    display: block;
-    margin-bottom: 8px;
-}
-
-.profile-section p a {
-    color: #ff5722;
-    text-decoration: underline;
-}
-
-.profile-section p a:hover {
-    color: #fff;
-    background-color: #ff5722;
-    padding: 5px;
-    border-radius: 5px;
-}
-
 
 .main-content .box {
     border: 2px solid #fff;

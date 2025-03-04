@@ -184,4 +184,6 @@ public class MealCatalogController {
             return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
         }
     }
+
+
 }

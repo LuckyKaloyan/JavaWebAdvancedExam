@@ -100,6 +100,14 @@ public class IndexController {
         modelAndView.addObject("isAuthenticated", auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal()));
         return modelAndView;
     }
+    @GetMapping("/favourite_meals")
+    public ModelAndView getFavouriteMeals(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("favourite_meals");
+        User user = userService.getById(authenticationDetails.getId());
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
 
 
 

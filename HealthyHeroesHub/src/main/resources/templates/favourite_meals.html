@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Catalog</title>
+    <link rel="stylesheet" href="/css/favourite_meals.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a th:href="@{/}">HealthyHeroesHub</a>
+        </div>
+        <ul>
+            <li><a th:href="@{/logout}">Log Out</a></li>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="catalog-container">
+    <div class="box" th:if="${user.getFavouriteMeals().size() > 0}">
+        <div class="box-content">
+            <h3>Favourite Meals</h3>
+            <table class="meal-table">
+                <thead>
+                <tr>
+                    <th>Meal Name</th>
+                    <th>Owner</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="favouriteMeal : ${user.getFavouriteMeals()}">
+                    <td th:text="${favouriteMeal.meal.name}"></td>
+                    <td th:text="${favouriteMeal.meal.owner.username}"></td>
+                    <td th:text="${favouriteMeal.meal.description}"></td>
+                    <td class="actions">
+                        <a th:href="@{'/meal_catalogs/meal/' + ${favouriteMeal.meal.id}}">
+                            <button class="btn btn-open">Open</button>
+                        </a>
+                        <form th:action="@{'/meal_catalogs/meals/remove_from_favourite/' + ${favouriteMeal.id}}" th:method="POST" class="delete-form">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>

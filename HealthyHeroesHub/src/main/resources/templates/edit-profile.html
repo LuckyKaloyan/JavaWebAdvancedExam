@@ -25,35 +25,37 @@
 <div class="profile-container">
   <div class="profile-box">
     <h2>Edit Profile</h2>
-    <form class="edit-profile-form" th:action="@{'/users/'+${user.id}+'/profile'}" th:method="PUT" th:object="${editProfileRequest}">
+    <form class="edit-profile-form" th:action="@{'/users/'+${user.id}+'/profile'}" th:method="post" th:object="${editProfileRequest}">
+      <input type="hidden" name="_method" value="PUT">
+
 
       <div class="input-group">
         <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" th:field="*{firstName}" required />
+        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" th:field="*{firstName}"  />
         <p class="text-warning" th:errors="*{firstName}"></p>
       </div>
 
       <div class="input-group">
         <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" th:field="*{lastName}" required />
+        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" th:field="*{lastName}"  />
         <p class="text-warning" th:errors="*{lastName}"></p>
       </div>
 
       <div class="input-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" th:field="*{email}" required />
+        <input type="email" id="email" name="email" placeholder="Enter your email" th:field="*{email}" required/>
         <p class="text-warning" th:errors="*{email}"></p>
       </div>
 
       <div class="input-group">
         <label for="profilePicture">Profile Picture URL</label>
-        <input type="text" id="profilePicture" name="profilePicture" placeholder="Enter a valid URL for an image" th:field="*{profilePicture}" required />
+        <input type="text" id="profilePicture" name="profilePicture" placeholder="Enter a valid URL for an image" th:field="*{profilePicture}"  />
         <p class="text-warning" th:errors="*{profilePicture}"></p>
       </div>
 
       <div class="input-group">
         <label for="phoneNumber">Phone Number</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" th:field="*{phoneNumber}" required />
+        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" th:field="*{phoneNumber}"  />
         <p class="text-warning" th:errors="*{phoneNumber}"></p>
       </div>
 

@@ -2,9 +2,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url('https://source.unsplash.com/1600x900/?healthy-food,cooking') no-repeat center center/cover;
-    font-family: Arial, sans-serif;
+    background: url('https://www.naturemade.com/cdn/shop/articles/healthy-foods-to-eat.jpg?v=1611988563') no-repeat center center/cover;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
+    color: white;
 }
 
 header {
@@ -122,6 +123,7 @@ button:focus {
     margin-top: 50px;
 }
 
+
 h1 {
     text-align: center;
     color: #333;
@@ -153,12 +155,12 @@ h1 {
 
 .contact-card .card h2 {
     margin: 10px 0;
-    color: #333;
+    color: orangered;
 }
 
 .contact-card .card p {
     margin: 5px 0;
-    color: #666;
+    color: orangered;
 }
 
 .contact-card .card .email,
