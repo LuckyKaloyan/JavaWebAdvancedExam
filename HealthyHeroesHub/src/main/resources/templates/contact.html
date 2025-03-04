@@ -15,9 +15,9 @@
         </div>
         <ul>
             <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-            <li><a th:href="@{/register}">Register</a></li>
-            <li><a th:href="@{/contact}">Contact</a></li>
+            <li th:if="${session.isEmpty()}"><a th:href="@{/login}">Login</a></li>
+            <li th:if="${session.isEmpty()}"><a th:href="@{/register}">Register</a></li>
+            <li th:if="${!session.isEmpty()}"><a th:href="@{/logout}">Log Out</a></li>
         </ul>
     </nav>
 </header>

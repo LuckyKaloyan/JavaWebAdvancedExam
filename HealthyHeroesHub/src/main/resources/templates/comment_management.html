@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comment Management</title>
+  <link rel="stylesheet" href="/css/comment_management.css">
+</head>
+<body>
+<div class="container">
+  <h2>Comment Management</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Text</th>
+      <th>Written by user:</th>
+      <th>Written at meal:</th>
+      <th>Created on: </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="comment : ${comments}">
+      <td th:text="${comment.text}"></td>
+      <td th:text="${comment.user.username}"></td>
+      <td th:text="${comment.meal.name}"></td>
+      <td th:text="${comment.createdOn}"></td>
+      <td>
+        <form th:action="@{'/admin_panel/comment_management/delete/'+${comment.id}}" th:method="DELETE">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

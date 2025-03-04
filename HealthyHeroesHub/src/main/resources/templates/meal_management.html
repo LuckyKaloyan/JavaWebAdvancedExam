@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Catalog Management</title>
+  <link rel="stylesheet" href="/css/meal_management.css">
+</head>
+<body>
+<div class="container">
+  <h2>Meal Management</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Owner</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Total calories</th>
+      <th>Added on</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="meal : ${meals}">
+      <td th:text="${meal.owner.username}"></td>
+      <td th:text="${meal.name}"></td>
+      <td th:text="${meal.description}"></td>
+      <td th:text="${meal.totalCalories}"></td>
+      <td th:text="${meal.addedOn}"></td>
+      <td><form th:action="@{'/admin_panel/meal_management/delete/'+${meal.id}}" th:method="DELETE">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -26,44 +26,52 @@
 
     <div class="sidebar">
         <h3>Analytics</h3>
-        <div class="box">
+        <div class="box" >
+            <a th:href="@{/admin_panel/users_data}">
             <p>Users Data</p>
-        </div>
-        <div class="box">
-            <p>Meals Data</p>
-        </div>
-        <div class="box">
-            <p>Meal Catalogs Data</p>
-        </div>
-        <div class="box">
-            <p>UpVotes Data</p>
-        </div>
-        <div class="box">
-            <p>Comments Data</p>
-        </div>
-        <div class="box">
-            <a href="/reports/create_new_report">
-                <p>Reports Data</p>
             </a>
+        </div>
+        <div class="box">
+            <a th:href="@{/admin_panel/meals_data}">
+            <p>Meal Catalogs and Meals Data</p>
+            </a>
+        </div>
+        <div class="box">
+            <p>Comments and UpVotes Data</p>
+        </div>
+        <div class="box">
+            <p>Reports Data</p>
         </div>
     </div>
 
     <div class="main-content">
         <h2>Admin Dashboard</h2>
 
-        <div class="box">
+        <div class="box"><a th:href="@{/admin_panel/user_management}">
             <h3>User Management</h3>
-            <p><a href="#">View All Users</a></p>
+            <p>View All Users</p>
+        </a>
         </div>
 
-        <div class="box">
+        <div class="box"><a th:href="@{/admin_panel/meal_catalog_management}">
             <h3>Meal Catalog Management</h3>
-              <p><a href="#">Manage Meals</a></p>
+            <p>View Meal Catalogs</p>
+        </a>
         </div>
-
-        <div class="box">
+        <div class="box"><a th:href="@{/admin_panel/meal_management}">
+            <h3>Meal Management</h3>
+            <p><a href="#">Manage Meals</a></p>
+        </a>
+        </div>
+        <div class="box"><a th:href="@{/admin_panel/comment_management}">
+            <h3>Comment Management</h3>
+            <p><a href="#">Manage Comments</a></p>
+        </a>
+        </div>
+            <div class="box"><a th:href="@{/admin_panel/report_management}">
             <h3>Reports</h3>
             <p><a href="#">View Reports</a></p>
+            </a>
         </div>
 
     </div>

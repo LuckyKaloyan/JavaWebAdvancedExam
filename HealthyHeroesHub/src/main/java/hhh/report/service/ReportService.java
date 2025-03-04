@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ReportService {
@@ -29,6 +31,18 @@ public class ReportService {
                 .build();
 
         this.reportRepository.save(report);
+    }
+
+    public List<Report> getAllNotReviewedReports() {
+       return reportRepository.findByReviewedNot(true);
+    }
+    public List<Report> getAllReviewedReports() {
+        return reportRepository.findByReviewedNot(false);
+    }
+    public void completeReport(UUID id) {
+        Report report = this.reportRepository.findById(id).orElseThrow(() -> new RuntimeException("Report not found"));
+        report.setReviewed(true);
+        reportRepository.save(report);
     }
 
 }

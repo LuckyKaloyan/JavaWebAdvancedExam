@@ -15,9 +15,9 @@
         </div>
         <ul>
             <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-            <li><a th:href="@{/register}">Register</a></li>
             <li><a th:href="@{/contact}">Contact</a></li>
+            <li><a th:href="@{/logout}">Log Out</a></li>
+            <li th:if="${user.role==user.role.ADMIN}" ><a th:href="@{/admin_panel}">Admin Panel</a></li>
         </ul>
     </nav>
 </header>
@@ -51,14 +51,6 @@
                 </div>
             </div>
         </div>
-        <div class="box" th:if="${allCatalogs.size() > 0}">
-            <div class="box-content">
-                <h3>Public Catalogs</h3>
-                <p th:each="publicCatalog : ${allCatalogs}" th:if="${user.id}!=${publicCatalog.owner.id}">
-                    <a th:text="${publicCatalog.name}" th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"></a>
-                </p>
-            </div>
-        </div>
         <div class="box" th:if="${user.getFavouriteMeals().size() > 0}">
             <div class="box-content">
                 <h3>Favourite Meals</h3>
@@ -69,6 +61,14 @@
                         <button class="btn btn-danger">Remove</button>
                     </form>
                 </div>
+            </div>
+        </div>
+        <div class="box" th:if="${allCatalogs.size() > 0}">
+            <div class="box-content">
+                <h3>Public Catalogs</h3>
+                <p th:each="publicCatalog : ${allCatalogs}" th:if="${user.id}!=${publicCatalog.owner.id}">
+                    <a th:text="${publicCatalog.name}" th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"></a>
+                </p>
             </div>
         </div>
     </div>
@@ -86,10 +86,6 @@
         </p>
         <form th:action="@{'/users/' + ${user.id} + '/profile'}" method="get">
             <button type="submit">Edit</button>
-        </form>
-        <a th:href="@{/logout}">LogOut</a>
-        <form th:action="@{/admin_panel}" method="get">
-            <button type="submit">ADMIN PANEL</button>
         </form>
     </div>
 </div>

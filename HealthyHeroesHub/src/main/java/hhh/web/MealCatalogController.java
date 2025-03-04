@@ -90,12 +90,11 @@ public class MealCatalogController {
            modelAndView.setViewName("edit_catalog");
            MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
            modelAndView.addObject("mealCatalog", mealCatalog);
-           modelAndView.addObject("editCatalogRequest", DtoMapper.toEditCatalogRequest(mealCatalog));
+           modelAndView.addObject("editCatalogRequest", editCatalogRequest);
             return modelAndView;
        }
         MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
         mealCatalogService.editMealCatalog(id,editCatalogRequest);
-
         return new ModelAndView("redirect:/home");
 
     }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Management</title>
+  <link rel="stylesheet" href="/css/report_management.css">
+</head>
+<body>
+<div class="container">
+  <h2>Report Management</h2>
+
+
+  <h3>Not Reviewed yet Reports</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Concerned User</th>
+      <th>Troublemaker</th>
+      <th>Report Type</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th>Date of Issue</th>
+      <th>Created On</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="report : ${notReviewedReports}">
+      <td th:text="${report.concernedUser}"></td>
+      <td th:text="${report.troublemaker}"></td>
+      <td th:text="${report.reportType}"></td>
+      <td th:text="${report.whereItHappened}"></td>
+      <td th:text="${report.description}"></td>
+      <td th:text="${report.dateOfIssue}"></td>
+      <td th:text="${report.createdOn}"></td>
+      <td>
+        <form th:action="@{'/admin_panel/report_management/reviewed/'+${report.id}}" th:method="PATCH">
+          <button type="submit" class="btn btn-success">Mark as Reviewed</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h3>Already Reviewed Reports</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Concerned User</th>
+      <th>Troublemaker</th>
+      <th>Report Type</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th>Date of Issue</th>
+      <th>Created On</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="report : ${reviewedReports}">
+      <td th:text="${report.concernedUser}"></td>
+      <td th:text="${report.troublemaker}"></td>
+      <td th:text="${report.reportType}"></td>
+      <td th:text="${report.whereItHappened}"></td>
+      <td th:text="${report.description}"></td>
+      <td th:text="${report.dateOfIssue}"></td>
+      <td th:text="${report.createdOn}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

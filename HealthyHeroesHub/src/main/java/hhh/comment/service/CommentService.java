@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -31,6 +32,14 @@ public class CommentService {
                 .createdOn(LocalDate.now())
                 .build();
         commentRepository.save(comment);
+    }
+
+    public List<Comment> getAllComments() {
+        return commentRepository.findAll();
+    }
+
+    public void deleteCommentById(UUID id) {
+        commentRepository.deleteById(id);
     }
 
 

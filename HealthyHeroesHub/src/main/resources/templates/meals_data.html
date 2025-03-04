@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Data</title>
+    <link rel="stylesheet" href="/css/meals_data.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a href="/">HealthyHeroesHub</a>
+        </div>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="sidebar">
+        <h3>Analytics</h3>
+        <div class="box" >
+            <a th:href="@{/admin_panel/users_data}">
+                <p>Users Data</p>
+            </a>
+        </div>
+        <div class="box">
+            <p>Meal Catalogs and Meals Data</p>
+        </div>
+        <div class="box">
+            <p>Comments and UpVotes Data</p>
+        </div>
+        <div class="box">
+            <p>Reports Data</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h2>Users Data</h2>
+
+
+        <div class="stats">
+            <div class="stat-box">
+                <h3>Meal Catalogs</h3>
+                <p id="total-users" th:text="${mealCatalogs.size()}"></p>
+            </div>
+            <div class="stat-box">
+                <h3>Meals</h3>
+                <p id="admin-users" th:text="${meals.size()}"></p>
+            </div>
+            <div class="stat-box">
+                <h3>Meals Last Day</h3>
+                <p id="day-users" th:text="${mealsDayAgo.size()}"></p>
+            </div>
+            <div class="stat-box">
+                <h3>Meals Last Week</h3>
+                <p id="week-users" th:text="${mealsWeekAgo.size()}"></p>
+            </div>
+            <div class="stat-box">
+                <h3>Meals Last Month</h3>
+                <p id="month-users" th:text="${mealsMonthAgo.size()}"></p>
+            </div>
+            <div class="stat-box">
+                <h3>Meals Last Year</h3>
+                <p id="year-users" th:text="${mealsYearAgo.size()}"></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 HealthyHeroesHub. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -31,4 +31,5 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 
         return http.build();
     }
+
 }

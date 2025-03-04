@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -70,6 +71,40 @@ public class UserService implements UserDetailsService {
         user.setEmail(editProfileRequest.getEmail());
         user.setProfilePicture(editProfileRequest.getProfilePicture());
         user.setPhone(editProfileRequest.getPhoneNumber());
+        userRepository.save(user);
+    }
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
+    public List<User> getAllByRole(UserRole role) {
+        return userRepository.findByRole(role);
+    }
+    public List<User> getAllRegisteredLastMonth() {
+        LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
+        return userRepository.findByRegistrationDateAfter(oneMonthAgo);
+    }
+    public List<User> getAllRegisteredLastYear() {
+        LocalDate oneYearAgo = LocalDate.now().minusYears(1);
+        return userRepository.findByRegistrationDateAfter(oneYearAgo);
+    }
+    public List<User> getAllRegisteredLastWeek() {
+        LocalDate oneYearAgo = LocalDate.now().minusDays(7);
+        return userRepository.findByRegistrationDateAfter(oneYearAgo);
+    }
+    public List<User> getAllRegisteredLast24hours() {
+        LocalDate oneMonthAgo = LocalDate.now().minusDays(1);
+        return userRepository.findByRegistrationDateAfter(oneMonthAgo);
+    }
+
+
+    @Transactional
+    public void changeRole(UUID id) {
+        User user = getById(id);
+        if (user.getRole() == UserRole.ADMIN) {
+            user.setRole(UserRole.USER);
+        } else {
+            user.setRole(UserRole.ADMIN);
+        }
         userRepository.save(user);
     }
 

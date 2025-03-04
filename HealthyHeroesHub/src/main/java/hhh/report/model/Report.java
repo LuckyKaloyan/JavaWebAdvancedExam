@@ -31,6 +31,7 @@ public class Report {
     private LocalDate dateOfIssue;
     @Column(nullable = false)
     private LocalDate createdOn;
+    private boolean reviewed;
 
 
 }

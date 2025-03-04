@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -77,6 +78,25 @@ public class MealService {
     }
     public void deleteFavouriteMeal(UUID favouriteMealId) {
         favouriteMealRepository.deleteById(favouriteMealId);
+    }
+    public List<Meal> getAllMeals(){
+        return mealRepository.findAll();
+    }
+    public List<Meal> getAllAddedLastMonth() {
+        LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
+        return mealRepository.findByAddedOnAfter(oneMonthAgo);
+    }
+    public List<Meal> getAllAddedLastYear() {
+        LocalDate oneYearAgo = LocalDate.now().minusYears(1);
+        return mealRepository.findByAddedOnAfter(oneYearAgo);
+    }
+    public List<Meal> getAllAddedLastWeek() {
+        LocalDate oneYearAgo = LocalDate.now().minusDays(7);
+        return mealRepository.findByAddedOnAfter(oneYearAgo);
+    }
+    public List<Meal> getAllAddedLast24hours() {
+        LocalDate oneMonthAgo = LocalDate.now().minusDays(1);
+        return mealRepository.findByAddedOnAfter(oneMonthAgo);
     }
 
 
