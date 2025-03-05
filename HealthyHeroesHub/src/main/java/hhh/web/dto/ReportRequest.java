@@ -1,9 +1,8 @@
 package hhh.web.dto;
-
-import hhh.user.model.User;
 import hhh.report.model.ReportType;
 import hhh.report.model.ReportLocation;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.*;
 import java.time.LocalDate;
 
@@ -14,17 +13,16 @@ import java.time.LocalDate;
 @Builder
 public class ReportRequest {
 
-    @NotNull
-    private String concernedUser;
-    @NotNull
+    @NotNull(message = "This field cannot be empty!")
     private String troublemaker;
-    @NotNull
+    @NotNull(message = "This field cannot be empty!")
     private ReportType reportType;
-    @NotNull
+    @NotNull(message = "This field cannot be empty!")
     private ReportLocation whereItHappened;
-    @NotNull
+    @NotNull(message = "This field cannot be empty!")
     private String description;
-    @NotNull
+    @NotNull(message = "You have to choose a date!")
+    @PastOrPresent(message = "Present or Past dates only!")
     private LocalDate dateOfIssue;
 
 }

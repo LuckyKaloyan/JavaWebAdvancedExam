@@ -1,6 +1,4 @@
 package hhh.web;
-
-
 import hhh.calculator.CalculatorService;
 import hhh.web.dto.CalculatorRequest;
 import jakarta.validation.Valid;
@@ -41,12 +39,15 @@ public class CalculatorController {
         }
         modelAndView.addObject("calculatorRequest",calculatorRequest);
         modelAndView.setViewName("calculator_results");
-        String message = calculatorService.calculateDailyCalories(calculatorRequest.getWeight(), calculatorRequest.getHeight(), calculatorRequest.getAge(), calculatorRequest.getGender(), calculatorRequest.getActivityLevel(), calculatorRequest.getEatenCalories());
+        String message = calculatorService.calculateDailyCalories(
+                calculatorRequest.getWeight(),
+                calculatorRequest.getHeight(),
+                calculatorRequest.getAge(),
+                calculatorRequest.getGender(),
+                calculatorRequest.getActivityLevel(),
+                calculatorRequest.getEatenCalories()
+        );
         modelAndView.addObject("message",message);
         return modelAndView;
     }
-
-
-
-
 }

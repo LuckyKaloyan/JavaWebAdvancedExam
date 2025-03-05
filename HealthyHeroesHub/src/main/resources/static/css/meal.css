@@ -86,33 +86,6 @@ footer {
     letter-spacing: 1px;
 }
 
-
-button {
-    background-color: #ff5722;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-button:hover {
-    background-color: #e64a19;
-    transform: scale(1.05);
-}
-
-button:focus {
-    outline: none;
-}
-
-button:focus {
-    outline: none;
-}
-
 .meal-container {
     display: flex;
     flex-direction: column;
@@ -208,6 +181,32 @@ button:focus {
     background-color: #0056b3;
     transform: scale(1.05);
 }
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.icon-button:hover {
+    transform: scale(1.1);
+}
+
+.upvote-button:hover {
+    color: #007BFF;
+}
+
+.favorite-button:hover {
+    color: #FFD700;
+}
+
+.delete-button:hover {
+    color: #dc3545;
+}
+
 .text-warning {
     color: darkred !important;
 }

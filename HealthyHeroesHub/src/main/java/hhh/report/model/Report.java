@@ -1,4 +1,5 @@
 package hhh.report.model;
+import hhh.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -17,8 +18,6 @@ public class Report {
     private UUID id;
 
     @Column(nullable = false)
-    private String concernedUser;
-    @Column(nullable = false)
     private String troublemaker;
     @Enumerated(EnumType.STRING)
     private ReportType reportType;
@@ -31,6 +30,8 @@ public class Report {
     @Column(nullable = false)
     private LocalDate createdOn;
     private boolean reviewed;
+    @ManyToOne
+    private User concernedUser;
 
 
 }

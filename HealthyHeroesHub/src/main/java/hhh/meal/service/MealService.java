@@ -48,12 +48,17 @@ public class MealService {
                 .owner(mealCatalog.getOwner())
                 .build();
 
+        if(meal.getPicture().isBlank() && meal.getPicture().isEmpty()){
+            meal.setPicture("https://www.shutterstock.com/image-vector/eating-icon-vector-spoon-plate-600nw-1509460529.jpg");
+        }
+
         mealRepository.save(meal);
     }
 
     public Meal getMealById(UUID id) {
-     return mealRepository.findById(id).orElseThrow(() -> new RuntimeException("Invalid MEAL ID"));
+        return mealRepository.findById(id).orElseThrow(() -> new RuntimeException("Invalid MEAL ID"));
     }
+
     public void deleteMealById(UUID id) {
         mealRepository.deleteById(id);
     }
@@ -71,31 +76,41 @@ public class MealService {
     public void addFavouriteMeal(UUID mealId, UUID userId) {
         User user = userService.getById(userId);
         Meal meal = getMealById(mealId);
-        if(favouriteMealRepository.findByUserAndMeal(user,meal).isPresent()){
+        if (favouriteMealRepository.findByUserAndMeal(user, meal).isPresent()) {
             throw new RuntimeException("You can Favourite a meal only once... Come on!");
         }
         user.getFavouriteMeals().add(createFavouriteMeal(user, meal));
     }
+
     public void deleteFavouriteMeal(UUID favouriteMealId) {
         favouriteMealRepository.deleteById(favouriteMealId);
     }
-    public List<Meal> getAllMeals(){
+
+    public List<Meal> getAllMeals() {
         return mealRepository.findAll();
     }
+
     public List<Meal> getAllAddedLastMonth() {
         LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
         return mealRepository.findByAddedOnAfter(oneMonthAgo);
     }
+
     public List<Meal> getAllAddedLastYear() {
         LocalDate oneYearAgo = LocalDate.now().minusYears(1);
         return mealRepository.findByAddedOnAfter(oneYearAgo);
     }
+
     public List<Meal> getAllAddedLastWeek() {
         LocalDate oneWeekAgo = LocalDate.now().minusDays(7);
         return mealRepository.findByAddedOnAfter(oneWeekAgo);
     }
+
     public List<Meal> getAllAddedLast24hours() {
         LocalDate oneDayAgo = LocalDate.now().minusDays(1);
         return mealRepository.findByAddedOnAfter(oneDayAgo);
+    }
+
+    public List<Meal> getTop20Meals() {
+        return mealRepository.findTop20ByOrderByUpVotesDesc();
     }
 }

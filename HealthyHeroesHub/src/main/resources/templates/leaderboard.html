@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboards</title>
+  <link rel="stylesheet" href="/css/leaderboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a th:href="@{/}">HealthyHeroesHub</a>
+    </div>
+    <div class="logo">
+      <a th:href="@{/leaderboard}">
+        <i class="fas fa-trophy"></i> Leaderboard <i class="fas fa-trophy"></i>
+      </a>
+    </div>
+    <ul>
+      <li><a th:href="@{/logout}">Log Out</a></li>
+      <li><a th:href="@{/home}">Home</a></li>
+      <li><a th:href="@{/info}">Info</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="catalog-container">
+  <div class="box" th:if="${top20meals.size() == 0}">
+    <h3>Nobody liked anything yet!</h3>
+  </div>
+  <div class="box" th:if="${top20meals.size() > 0}">
+    <div class="box-content">
+      <h3>Top Meals</h3>
+      <table class="meal-table">
+        <thead>
+        <tr>
+          <th>UpVotes</th>
+          <th>Meal Name</th>
+          <th>Owner</th>
+          <th>Description</th>
+          <th>Check it out!</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="topMeal : ${top20meals}"
+            th:classappend="${topMeal.owner == user} ? 'mine' : ''">
+          <td th:text="${topMeal.upVotes.size()}"></td>
+          <td th:text="${topMeal.name}"></td>
+          <td th:text="${topMeal.owner.username}"></td>
+          <td th:text="${topMeal.description}"></td>
+          <td class="actions">
+            <a th:href="@{'/meal_catalogs/meal/' + ${topMeal.id}}">
+              <button class="btn btn-open">Open</button>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meal Details</title>
   <link rel="stylesheet" href="/css/meal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -13,10 +14,15 @@
     <div class="logo">
       <a th:href="@{/}">HealthyHeroesHub</a>
     </div>
+    <div class="logo">
+      <a th:href="@{/leaderboard}">
+        <i class="fas fa-trophy"></i> Leaderboard <i class="fas fa-trophy"></i>
+      </a>
+    </div>
     <ul>
       <li><a th:href="@{/logout}">Log Out</a></li>
       <li><a th:href="@{/home}">Home</a></li>
-      <li><a th:href="@{/contact}">Contact</a></li>
+      <li><a th:href="@{/info}">Info</a></li>
     </ul>
   </nav>
 </header>
@@ -38,13 +44,14 @@
       <img th:src="${meal.picture}" alt="Meal Image">
     </div>
   </div>
+
   <div th:if="${meal.owner} == ${user}">
     <form th:action="@{'/meal_catalogs/'+${meal.getMealCatalog().id}+'/meal/delete/'+${meal.id}}" th:method="DELETE">
-      <button type="submit" class="submit-button" style="background-color: #dc3545;">Delete Meal</button>
+      <button type="submit" class="icon-button delete-button">
+        <i class="fas fa-trash"></i>
+      </button>
     </form>
   </div>
-
-
 
   <div class="comments-section">
     <form th:action="@{'/meal_catalogs/meal/'+${meal.id}+'/add_comment'}" th:method="POST" th:object="${commentRequest}">
@@ -53,7 +60,6 @@
         <p class="text-warning" th:errors="*{text}"></p>
       </div>
       <button type="submit" class="submit-button">Add Comment</button>
-
     </form>
 
     <h3>Comments</h3>
@@ -71,14 +77,17 @@
 
   <div class="upvote-favorite-section">
     <form th:if="${meal.owner}!=${user}" th:action="@{'/meal_catalogs/meals/up_vote/'+${meal.id}}" th:method="POST">
-      <button>UpVote</button>
+      <button type="submit" class="icon-button upvote-button">
+        <i class="fas fa-thumbs-up"></i>
+      </button>
     </form>
 
     <form th:if="${meal.owner}!=${user}" th:action="@{'/meal_catalogs/meals/add_to_favourite/' + ${meal.id}}" th:method="POST">
-      <button>AddToFavourite</button>
+      <button type="submit" class="icon-button favorite-button">
+        <i class="fas fa-star"></i>
+      </button>
     </form>
   </div>
-
 </div>
 
 <footer th:insert="fragments/footer :: footer"></footer>

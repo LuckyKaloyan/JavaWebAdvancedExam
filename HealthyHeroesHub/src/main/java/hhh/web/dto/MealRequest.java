@@ -20,19 +20,19 @@ import java.math.BigDecimal;
 public class MealRequest {
 
     @NotNull
-    @Size(min = 2, max = 50)
+    @Size(min = 2, max = 50, message = "Enter a name between 2 and 50 symbols.")
     private String name;
     @NotNull
-    @Size(min = 20, max = 100)
+    @Size(min = 2, max = 200, message = "Enter a description between 2 and 200 symbols.")
     private String description;
     @NotNull
-    @PositiveOrZero
+    @PositiveOrZero(message = "The field cannot be negative!")
     private BigDecimal proteins;
     @NotNull
-    @PositiveOrZero
+    @PositiveOrZero(message = "The field cannot be negative!")
     private BigDecimal carbs;
     @NotNull
-    @PositiveOrZero
+    @PositiveOrZero(message = "The field cannot be negative!")
     private BigDecimal fats;
     @NotNull
     @URL

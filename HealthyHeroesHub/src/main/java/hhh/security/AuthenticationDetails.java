@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -24,16 +25,19 @@ public class AuthenticationDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
+        return List.of(authority);
     }
 
     @Override
     public String getPassword() {
+
         return this.password;
     }
 
     @Override
     public String getUsername() {
+
         return this.username;
     }
 }

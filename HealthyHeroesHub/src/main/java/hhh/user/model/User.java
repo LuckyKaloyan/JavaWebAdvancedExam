@@ -2,6 +2,7 @@ package hhh.user.model;
 import hhh.comment.model.Comment;
 import hhh.meal.model.FavouriteMeal;
 import hhh.mealcatalog.model.MealCatalog;
+import hhh.report.model.Report;
 import hhh.upvote.model.UpVote;
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,5 +45,7 @@ public class User {
     private List<UpVote> upVotes;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
+    @OneToMany(mappedBy = "concernedUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Report> reports;
 
 }

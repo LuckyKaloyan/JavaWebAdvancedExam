@@ -85,7 +85,6 @@ footer {
     letter-spacing: 1px;
 }
 
-
 button {
     background-color: #ff5722;
     border: none;
@@ -108,11 +107,6 @@ button:focus {
     outline: none;
 }
 
-button:focus {
-    outline: none;
-}
-
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -121,8 +115,8 @@ button:focus {
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     margin-top: 50px;
+    color: #333;
 }
-
 
 h1 {
     text-align: center;
@@ -166,6 +160,36 @@ h1 {
 .contact-card .card .email,
 .contact-card .card .phone {
     font-size: 1.1em;
+}
+
+.faq-section, .rules-section {
+    margin-top: 20px;
+}
+
+.faq-section h2, .rules-section h2 {
+    color: #ff5722;
+    margin-bottom: 20px;
+}
+
+.faq h3 {
+    color: #ff5722;
+    margin-bottom: 10px;
+}
+
+.faq p {
+    color: #333;
+    line-height: 1.6;
+}
+
+.rules-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.rules-section li {
+    margin-bottom: 10px;
+    color: #333;
+    line-height: 1.6;
 }
 
 a {

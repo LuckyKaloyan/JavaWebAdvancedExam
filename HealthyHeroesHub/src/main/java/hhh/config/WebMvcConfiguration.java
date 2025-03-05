@@ -15,7 +15,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(matchers -> matchers
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/admin_panel/**").hasRole("ADMIN")
+                        .requestMatchers("/admin_panel/**").hasAuthority("ADMIN")
                         .requestMatchers("/", "/register", "/contact").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form

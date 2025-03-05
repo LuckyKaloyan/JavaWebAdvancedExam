@@ -1,4 +1,5 @@
 package hhh.web;
+import hhh.meal.service.MealService;
 import hhh.mealcatalog.service.MealCatalogService;
 import hhh.security.AuthenticationDetails;
 import hhh.user.model.User;
@@ -23,13 +24,14 @@ public class IndexController {
 
     private final UserService userService;
     private final MealCatalogService mealCatalogService;
+    private final MealService mealService;
 
 
     @Autowired
-    public IndexController(UserService userService, MealCatalogService mealCatalogService) {
+    public IndexController(UserService userService, MealCatalogService mealCatalogService, MealService mealService) {
         this.userService = userService;
         this.mealCatalogService = mealCatalogService;
-
+        this.mealService = mealService;
     }
 
 
@@ -92,10 +94,10 @@ public class IndexController {
         return modelAndView;
     }
 
-    @GetMapping("/contact")
+    @GetMapping("/info")
     public ModelAndView getContact(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("contact");
+        modelAndView.setViewName("info");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         modelAndView.addObject("isAuthenticated", auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal()));
         return modelAndView;
@@ -109,6 +111,13 @@ public class IndexController {
         return modelAndView;
     }
 
-
-
+    @GetMapping("/leaderboard")
+    public ModelAndView getLeaderboard(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("leaderboard");
+        User user = userService.getById(authenticationDetails.getId());
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("top20meals", mealService.getTop20Meals());
+        return modelAndView;
+    }
 }

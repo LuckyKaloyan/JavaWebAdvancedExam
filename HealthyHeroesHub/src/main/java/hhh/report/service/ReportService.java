@@ -1,6 +1,8 @@
 package hhh.report.service;
 import hhh.report.model.Report;
 import hhh.report.repository.ReportRepository;
+import hhh.user.model.User;
+import hhh.user.service.UserService;
 import hhh.web.dto.ReportRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,20 +15,24 @@ import java.util.UUID;
 public class ReportService {
 
     private final ReportRepository reportRepository;
+    private final UserService userService;
 
     @Autowired
-    public ReportService(ReportRepository reportRepository) {
+    public ReportService(ReportRepository reportRepository, UserService userService) {
+
         this.reportRepository = reportRepository;
+        this.userService = userService;
     }
 
-    public void createReport(ReportRequest reportRequest) {
+    public void createReport(ReportRequest reportRequest, UUID userId) {
+        User user = userService.getById(userId);
         Report report = Report.builder()
                 .troublemaker(reportRequest.getTroublemaker())
-                .concernedUser(reportRequest.getConcernedUser())
                 .reportType(reportRequest.getReportType())
                 .description(reportRequest.getDescription())
                 .whereItHappened(reportRequest.getWhereItHappened())
                 .dateOfIssue(reportRequest.getDateOfIssue())
+                .concernedUser(user)
                 .createdOn(LocalDate.now())
                 .reviewed(false)
                 .build();

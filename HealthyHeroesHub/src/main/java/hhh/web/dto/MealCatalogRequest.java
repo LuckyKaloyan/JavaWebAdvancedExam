@@ -19,7 +19,7 @@ public class MealCatalogRequest {
     private String name;
 
     @NotNull
-    @Size(min = 20, max = 300, message = "Enter a description between 20 and 300 symbols! Please!")
+    @Size(min = 2, max = 300, message = "Enter a description between 2 and 300 symbols! Please!")
     private String description;
 
 }

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="/css/info.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a th:href="@{/}">HealthyHeroesHub</a>
+        </div>
+        <ul>
+            <li th:unless="${isAuthenticated}"><a th:href="@{/login}">Login</a></li>
+            <li th:if="${isAuthenticated}"><a th:href="@{/logout}">Log Out</a></li>
+            <li th:unless="${isAuthenticated}"><a th:href="@{/register}">Register</a></li>
+            <li th:if="${isAuthenticated}"><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/info}">Info</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>FAQs</h1>
+    <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq">
+            <h3>1. What is HealthyHeroesHub?</h3>
+            <p>HealthyHeroesHub is a community-driven app where users can share and discover nutritious meals. It features a calorie calculator to help you track your daily intake and a leaderboard showcasing the most popular meals based on user votes.
+                Whether you're looking for meal inspiration or trending healthy recipes, this app helps you and your friends make better food choices.</p>
+        </div>
+        <div class="faq">
+            <h3>2. How do I create an account?</h3>
+            <p>To get started, click on Register,
+                fill in your details, and create an account.
+                Once registered, simply log in and explore the app—just make sure to follow the community guidelines.</p>
+        </div>
+        <div class="faq">
+            <h3>3. How does the calorie calculator work?</h3>
+            <p>The calorie calculator helps you assess whether you're eating the right amount of food daily. Just enter your height, weight, age, activity level, gender, and calories consumed throughout the day.
+                The app will then calculate and inform you if you've eaten too much or too little.</p>
+        </div>
+        <div class="faq">
+            <h3>4. How do I publish a meal?</h3>
+            <p>To publish a meal, you first need to create a meal catalog—a themed collection of dishes.
+                For example, you could create a "Vegan Dinner Specials" catalog and describe it, like:
+                "A collection of my favorite vegan meals, inspired by my travels in France last summer."
+                Once your catalog is set up, you can add detailed descriptions and share your meals with the community.</p>
+        </div>
+        <div class="faq">
+            <h3>5. How does the leaderboard work?</h3>
+            <p>The leaderboard ranks meals based on user upvotes,
+                displaying the most popular dishes in descending order.
+                This way, users can easily see the trending and highest-rated healthy meals.</p>
+        </div>
+        <div class="faq">
+            <h3>6. Is there a report system in the app?</h3>
+            <p>Yes! If you come across inappropriate content or behavior,
+                you can use the built-in report system to flag it.
+                This helps maintain a positive and supportive community focused on health and wellness.</p>
+        </div>
+        <div class="faq">
+            <h3>7. How is the app moderated?</h3>
+            <p>HealthyHeroesHub has an active moderation system where admins review content and user activity. If someone violates the app’s guidelines,
+                admins can restrict access.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Community Rules</h1>
+    <div class="rules-section">
+        <h2>Rules for Using HealthyHeroesHub</h2>
+        <ul>
+            <li><strong>No Profanity:</strong> Keep the language clean and respectful. Offensive or inappropriate language will not be tolerated.</li>
+            <li><strong>No Harassment:</strong> Treat all members with respect. Bullying, hate speech, or any form of harassment will result in immediate action.</li>
+            <li><strong>Appropriate Content Only:</strong> Do not post offensive, explicit, or inappropriate images or content. Keep it healthy and inspiring!</li>
+            <li><strong>Be Supportive:</strong> Encourage and motivate others. Negative comments or trolling will not be allowed.</li>
+            <li><strong>No Spam:</strong> Do not post irrelevant or promotional content. Keep the community focused on health and wellness.</li>
+            <li><strong>Respect Privacy:</strong> Do not share personal information about yourself or others.</li>
+            <li><strong>Follow the Guidelines:</strong> Violation of these rules may result in warnings, suspension, or permanent removal from the app.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Contact Us</h1>
+    <div class="contact-card">
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrmvSoqEMvs4E-TIgyfMdztZYEdKav-zok1A&s" alt="John Smith">
+            <h2>John Smith</h2>
+            <p class="email">Email: <a href="mailto:luckykaloyan@gmail.com">luckykaloyan@gmail.com</a></p>
+            <p class="phone">Phone: +1 234 567 890</p>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzPRQ6LprnPzvvP-_vVO_nhSokwda8CMsnwQ&s" alt="Jane Smith">
+            <h2>Jane Smith</h2>
+            <p class="email">Email: <a href="mailto:luckykaloyan@gmail.com">luckykaloyan@gmail.com</a></p>
+            <p class="phone">Phone: +1 234 567 890</p>
+        </div>
+
+        <div class="card">
+            <img src="https://scontent.fsof10-1.fna.fbcdn.net/v/t1.6435-1/107049930_2600763686804934_4629054620487481580_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=110&ccb=1-7&_nc_sid=e99d92&_nc_ohc=HsBCnyuDq5MQ7kNvgG8quCg&_nc_oc=AdgbqTX3RF1JSXnuPceDvxajXwi7kng-ui9vITL8DjQXkg7HCvA7xOx3a3TI2ogOogk&_nc_zt=24&_nc_ht=scontent.fsof10-1.fna&_nc_gid=Avi_gSIEf8K514Xi2x8k4zP&oh=00_AYC8co7aOBX0z180j50o_Fl2V654PBAnhfFTa_Bs29hLEQ&oe=67EEB91C" alt="Kaloyan Dimitrov">
+            <h2>Kaloyan Dimitrov</h2>
+            <p class="email">Email: <a href="mailto:mike.johnson@abv.bg">luckykaloyan@gmail.com</a></p>
+            <p class="phone">Phone: +359 898 989 898</p>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>

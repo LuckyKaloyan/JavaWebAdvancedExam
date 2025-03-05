@@ -106,20 +106,20 @@ public class MealCatalogController {
 
     @GetMapping("/{id}/add_meal")
     public ModelAndView addNewMeal(@PathVariable UUID id, MealRequest mealRequest) {
-        return getModelAndView(id, mealRequest);
+        return addMeal(id, mealRequest);
     }
 
     @PostMapping("/{id}/add_meal")
     public ModelAndView postNewMeal (@PathVariable UUID id, @Valid MealRequest mealRequest, BindingResult result, @AuthenticationPrincipal AuthenticationDetails authenticationDetails){
         if(result.hasErrors()) {
-            return getModelAndView(id, mealRequest);
+            return addMeal(id, mealRequest);
         }
         MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
         mealService.addMeal(mealRequest,mealCatalog);
         return new ModelAndView("redirect:/meal_catalogs/"+id);
     }
 
-    private ModelAndView getModelAndView(@PathVariable UUID id, @Valid MealRequest mealRequest) {
+    private ModelAndView addMeal(@PathVariable UUID id, @Valid MealRequest mealRequest) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("add_meal");
         MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
@@ -142,7 +142,7 @@ public class MealCatalogController {
     @PostMapping("/meals/add_to_favourite/{id}")
     public ModelAndView addFavourite(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
         mealService.addFavouriteMeal(id,authenticationDetails.getId());
-        return new ModelAndView("redirect:/home");
+        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
     }
 
     @PostMapping("meals/up_vote/{id}")

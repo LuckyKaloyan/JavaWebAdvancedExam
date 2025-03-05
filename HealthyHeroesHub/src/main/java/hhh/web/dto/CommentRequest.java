@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CommentRequest {
 
-    @Size(min = 10, max = 500, message = "Come clean! Use between 10 and 500 letters.")
+    @Size(min = 2, max = 500, message = "Come clean! Use between 2 and 500 letters.")
     private String text;
 }

@@ -7,19 +7,15 @@ import hhh.mealcatalog.model.MealCatalog;
 import hhh.mealcatalog.service.MealCatalogService;
 import hhh.report.model.Report;
 import hhh.report.service.ReportService;
-import hhh.security.AuthenticationDetails;
 import hhh.upvote.model.UpVote;
 import hhh.upvote.service.UpVoteService;
 import hhh.user.model.User;
 import hhh.user.model.UserRole;
 import hhh.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,12 +41,9 @@ public class AdminPanelController {
     }
 
     @GetMapping
-    public ModelAndView adminPanel(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+    public ModelAndView adminPanel() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin_panel");
-        User user = userService.getById(authenticationDetails.getId());
-        modelAndView.addObject("user", user);
-
         return modelAndView;
     }
 

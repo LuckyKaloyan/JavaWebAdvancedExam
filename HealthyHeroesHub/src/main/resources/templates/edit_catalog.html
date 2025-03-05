@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Catalog</title>
     <link rel="stylesheet" href="/css/create_new_catalog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -13,10 +14,15 @@
         <div class="logo">
             <a th:href="@{/}">HealthyHeroesHub</a>
         </div>
+        <div class="logo">
+            <a th:href="@{/leaderboard}">
+                <i class="fas fa-trophy"></i> Leaderboard <i class="fas fa-trophy"></i>
+            </a>
+        </div>
         <ul>
             <li><a th:href="@{/logout}">Log Out</a></li>
             <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/contact}">Contact</a></li>
+            <li><a th:href="@{/info}">Info</a></li>
         </ul>
     </nav>
 </header>

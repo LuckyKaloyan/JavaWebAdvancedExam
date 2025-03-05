@@ -31,6 +31,17 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
+    public void createDefaultAdmin(){
+        User user = User.builder()
+                .password(passwordEncoder.encode("123123"))
+                .username("luckykaloyan")
+                .role(UserRole.ADMIN)
+                .email("luckykaloyan@gmail.com")
+                .registrationDate(LocalDate.now())
+                .build();
+        userRepository.save(user);
+    }
+
     public void register(RegisterRequest registerRequest) {
 
         if(userRepository.findByUsername(registerRequest.getUsername()).isPresent()) {
