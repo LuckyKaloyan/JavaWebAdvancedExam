@@ -59,9 +59,14 @@
                     <span th:text="${user.role}"></span>
                 </td>
                 <td>
-                    <form th:action="@{'/admin_panel/user_management/change_role/' + ${user.id}}" th:method="PATCH">
-                        <button type="submit" class="btn btn-danger">Change Role</button>
-                    </form>
+                    <div class="button-container">
+                        <form th:action="@{'/admin_panel/user_management/change_role/' + ${user.id}}" th:method="PATCH">
+                            <button type="submit" class="btn btn-danger">Change Role</button>
+                        </form>
+                        <form th:action="@{'/admin_panel/user_management/delete/' + ${user.id}}" th:method="DELETE">
+                            <button type="submit" class="btn btn-danger">Delete User</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             </tbody>

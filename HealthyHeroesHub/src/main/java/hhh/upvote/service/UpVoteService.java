@@ -1,5 +1,4 @@
 package hhh.upvote.service;
-import hhh.comment.model.Comment;
 import hhh.meal.model.Meal;
 import hhh.meal.service.MealService;
 import hhh.upvote.model.UpVote;

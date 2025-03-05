@@ -1,18 +1,15 @@
 package hhh.web;
 
-
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.EditProfileRequest;
 import hhh.web.mapper.DtoMapper;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
@@ -36,7 +33,6 @@ public class UserController {
         modelAndView.setViewName("edit-profile");
         modelAndView.addObject("user", user);
         modelAndView.addObject("editProfileRequest", DtoMapper.toEditProfileRequest(user));
-
         return modelAndView;
     }
     @PutMapping("/{id}/profile")
@@ -52,5 +48,13 @@ public class UserController {
         }
         userService.editUser(id, editProfileRequest);
         return new ModelAndView("redirect:/home");
+    }
+    @DeleteMapping("/{id}/delete")
+    public ModelAndView selfDeleteUser(@PathVariable UUID id, HttpSession session) {
+        userService.deleteUser(id);
+        ModelAndView modelAndView = new ModelAndView();
+        session.invalidate();
+        modelAndView.setViewName("redirect:/");
+        return modelAndView;
     }
 }

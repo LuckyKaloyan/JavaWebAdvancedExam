@@ -33,8 +33,4 @@ public class MealCatalog {
 
     @OneToMany(mappedBy = "mealCatalog", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Meal> meals;
-
-
-
-
 }

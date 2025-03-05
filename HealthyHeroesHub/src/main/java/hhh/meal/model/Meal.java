@@ -51,6 +51,4 @@ public class Meal {
 
     @ManyToOne
     private MealCatalog mealCatalog;
-
-
 }

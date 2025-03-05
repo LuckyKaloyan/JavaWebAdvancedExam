@@ -73,6 +73,10 @@ public class UserService implements UserDetailsService {
         user.setPhone(editProfileRequest.getPhoneNumber());
         userRepository.save(user);
     }
+    public void deleteUser(UUID userId) {
+        User user = getById(userId);
+        userRepository.delete(user);
+    }
     public List<User> getAll() {
         return userRepository.findAll();
     }

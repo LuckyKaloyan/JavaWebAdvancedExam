@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator Results</title>
+  <link rel="stylesheet" href="/css/calculator_results.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a th:href="@{/}">HealthyHeroesHub</a>
+    </div>
+    <ul>
+      <li><a th:href="@{/logout}">Log Out</a></li>
+      <li><a th:href="@{/home}">Home</a></li>
+      <li><a th:href="@{/contact}">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="calculator-container">
+  <div class="button-container">
+    <a th:href="@{/home}" class="big-button">
+      <i class="fas fa-home"></i>
+    </a>
+    <div class="result-box">
+      <p th:text="${message}" class="result-text"></p>
+    </div>
+    <a th:href="@{/calculator}" class="big-button">
+      <i class="fas fa-calculator"></i>
+    </a>
+  </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>

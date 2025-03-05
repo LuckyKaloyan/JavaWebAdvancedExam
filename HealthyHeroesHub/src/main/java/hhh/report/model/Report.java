@@ -1,5 +1,4 @@
 package hhh.report.model;
-import hhh.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;

@@ -2,7 +2,6 @@ package hhh.user.repository;
 
 import hhh.user.model.User;
 import hhh.user.model.UserRole;
-import jakarta.validation.constraints.Email;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;

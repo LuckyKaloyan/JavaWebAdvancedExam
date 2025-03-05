@@ -61,6 +61,11 @@
 
       <button type="submit" class="submit-button">Save Changes</button>
     </form>
+    <div>
+      <form th:action="@{'/users/'+${user.id}+'/delete'}" th:method="DELETE">
+        <button type="submit" class="submit-button" style="background-color: #dc3545;">DELETE PROFILE</button>
+      </form>
+    </div>
   </div>
 </div>
 

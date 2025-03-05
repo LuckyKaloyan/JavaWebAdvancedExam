@@ -106,6 +106,20 @@ public class MealCatalogController {
 
     @GetMapping("/{id}/add_meal")
     public ModelAndView addNewMeal(@PathVariable UUID id, MealRequest mealRequest) {
+        return getModelAndView(id, mealRequest);
+    }
+
+    @PostMapping("/{id}/add_meal")
+    public ModelAndView postNewMeal (@PathVariable UUID id, @Valid MealRequest mealRequest, BindingResult result, @AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+        if(result.hasErrors()) {
+            return getModelAndView(id, mealRequest);
+        }
+        MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
+        mealService.addMeal(mealRequest,mealCatalog);
+        return new ModelAndView("redirect:/meal_catalogs/"+id);
+    }
+
+    private ModelAndView getModelAndView(@PathVariable UUID id, @Valid MealRequest mealRequest) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("add_meal");
         MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
@@ -115,32 +129,9 @@ public class MealCatalogController {
         return modelAndView;
     }
 
-    @PostMapping("/{id}/add_meal")
-    public ModelAndView postNewMeal (@PathVariable UUID id, @Valid MealRequest mealRequest, BindingResult result, @AuthenticationPrincipal AuthenticationDetails authenticationDetails){
-        if(result.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("add_meal");
-            MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
-            modelAndView.addObject("mealCatalog", mealCatalog);
-            modelAndView.addObject("mealRequest", mealRequest);
-            modelAndView.addObject("mealCatalog", mealCatalogService.getMealCatalogById(id));
-            return modelAndView;
-        }
-        MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
-        mealService.addMeal(mealRequest,mealCatalog);
-        return new ModelAndView("redirect:/meal_catalogs/"+id);
-    }
-
     @GetMapping("/meal/{id}")
     public ModelAndView getMeal(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, CommentRequest commentRequest) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("meal");
-        Meal meal = mealService.getMealById(id);
-        User user = userService.getById(authenticationDetails.getId());
-        modelAndView.addObject("user", user);
-        modelAndView.addObject("meal", meal);
-        modelAndView.addObject("commentRequest", commentRequest);
-        return modelAndView;
+        return getModelAndView(id, authenticationDetails, commentRequest);
     }
     @DeleteMapping("{id1}/meal/delete/{id2}")
     public String deleteMeal(@PathVariable UUID id1, @PathVariable UUID id2) {
@@ -168,21 +159,24 @@ public class MealCatalogController {
     }
 
     @PostMapping("/meal/{id}/add_comment")
-    public ModelAndView postComment(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails,
-                                    @Valid CommentRequest commentRequest, BindingResult result){
+    public ModelAndView postComment(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, @Valid CommentRequest commentRequest, BindingResult result){
         if(result.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("meal");
-            Meal meal = mealService.getMealById(id);
-            User user = userService.getById(authenticationDetails.getId());
-            modelAndView.addObject("user", user);
-            modelAndView.addObject("meal", meal);
-            modelAndView.addObject("commentRequest", commentRequest);
-            return modelAndView;
+            return getModelAndView(id, authenticationDetails, commentRequest);
         }else {
             commentService.createComment(commentRequest.getText(),authenticationDetails.getId(),id);
             return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
         }
+    }
+
+    private ModelAndView getModelAndView(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, @Valid CommentRequest commentRequest) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("meal");
+        Meal meal = mealService.getMealById(id);
+        User user = userService.getById(authenticationDetails.getId());
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("meal", meal);
+        modelAndView.addObject("commentRequest", commentRequest);
+        return modelAndView;
     }
 
 

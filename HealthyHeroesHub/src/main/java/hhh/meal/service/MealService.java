@@ -98,6 +98,4 @@ public class MealService {
         LocalDate oneDayAgo = LocalDate.now().minusDays(1);
         return mealRepository.findByAddedOnAfter(oneDayAgo);
     }
-
-
 }

@@ -12,7 +12,7 @@ import java.util.UUID;
 @Service
 public class ReportService {
 
-    private ReportRepository reportRepository;
+    private final ReportRepository reportRepository;
 
     @Autowired
     public ReportService(ReportRepository reportRepository) {
@@ -59,7 +59,6 @@ public class ReportService {
         LocalDate oneYearAgo = LocalDate.now().minusDays(1);
         return reportRepository.findAllByCreatedOnAfter(oneYearAgo);
     }
-
 
     public void completeReport(UUID id) {
         Report report = this.reportRepository.findById(id).orElseThrow(() -> new RuntimeException("Report not found"));

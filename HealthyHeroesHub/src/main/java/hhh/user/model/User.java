@@ -1,6 +1,8 @@
 package hhh.user.model;
+import hhh.comment.model.Comment;
 import hhh.meal.model.FavouriteMeal;
 import hhh.mealcatalog.model.MealCatalog;
+import hhh.upvote.model.UpVote;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -34,9 +36,13 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MealCatalog> mealCatalogs;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FavouriteMeal> favouriteMeals;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UpVote> upVotes;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
 
 }

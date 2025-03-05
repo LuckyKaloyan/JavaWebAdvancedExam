@@ -1,7 +1,4 @@
 package hhh.web;
-
-
-import ch.qos.logback.core.model.Model;
 import hhh.comment.model.Comment;
 import hhh.comment.service.CommentService;
 import hhh.meal.model.Meal;
@@ -71,6 +68,13 @@ public class AdminPanelController {
         List<User> users = userService.getAll();
         modelAndView.addObject("users", users);
         userService.changeRole(id);
+        modelAndView.setViewName("user_management");
+        return new ModelAndView("redirect:/admin_panel/user_management");
+    }
+    @DeleteMapping("/user_management/delete/{id}")
+    public ModelAndView deleteUser(@PathVariable UUID id) {
+        ModelAndView modelAndView = new ModelAndView();
+        userService.deleteUser(id);
         modelAndView.setViewName("user_management");
         return new ModelAndView("redirect:/admin_panel/user_management");
     }
@@ -222,6 +226,4 @@ public class AdminPanelController {
        modelAndView.setViewName("reports_data");
         return modelAndView;
     }
-
-
 }

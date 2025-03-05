@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/css/calculator.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a th:href="@{/}">HealthyHeroesHub</a>
+        </div>
+        <ul>
+            <li><a th:href="@{/logout}">Log Out</a></li>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="calculator-container">
+    <div class="calculator-box">
+        <h2>Calculator</h2>
+
+
+        <form class="calculator-form" th:action="@{'/calculator'}" th:method="POST" th:object="${calculatorRequest}">
+            <div class="input-group">
+                <label for="weight">Weight(KG)</label>
+                <input type="text" id="weight" name="weight" placeholder="Enter your weight" th:field="*{weight}"  />
+                <p class="text-warning" th:errors="*{weight}"></p>
+            </div>
+
+            <div class="input-group">
+                <label for="height">Height(cm)</label>
+                <input type="text" id="height" name="height" placeholder="Enter your height" th:field="*{height}"  />
+                <p class="text-warning" th:errors="*{height}"></p>
+            </div>
+
+            <div class="input-group">
+                <label for="age">Age(years)</label>
+                <input type="text" id="age" name="age" placeholder="Enter your age" th:field="*{age}" required/>
+                <p class="text-warning" th:errors="*{age}"></p>
+            </div>
+
+            <div class="input-group">
+                <label for="activityLevel">Where it happened:</label>
+                <select id="activityLevel" name="activityLevel" required>
+                    <option  th:each="activityLevel : ${T(hhh.calculator.Activity).values()}" th:text="${activityLevel}" th:value="${activityLevel}"></option>
+                    <p class="text-warning" th:errors="*{activityLevel}"></p>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option  th:each="gender : ${T(hhh.calculator.Gender).values()}" th:text="${gender}" th:value="${gender}"></option>
+                    <p class="text-warning" th:errors="*{gender}"></p>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="eatenCalories">Eaten Calories(kcal)</label>
+                <input type="text" id="eatenCalories" name="eatenCalories" placeholder="Enter your eaten calories" th:field="*{eatenCalories}"  />
+                <p class="text-warning" th:errors="*{eatenCalories}"></p>
+            </div>
+
+            <button type="submit" class="submit-button">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>

@@ -58,6 +58,4 @@ public class CommentService {
         LocalDate oneDayAgo = LocalDate.now().minusDays(1);
         return commentRepository.findByCreatedOnAfter(oneDayAgo);
     }
-
-
 }

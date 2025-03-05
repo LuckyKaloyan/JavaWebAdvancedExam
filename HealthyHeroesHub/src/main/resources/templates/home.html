@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Home</title>
     <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
@@ -27,7 +27,9 @@
             <p>MEAL OF THE DAY</p>
         </div>
         <div class="box">
+            <a th:href="@{/calculator}">
             <p>CALCULATE YOUR CALORIES</p>
+            </a>
         </div>
         <div class="box">
             <a th:href="@{/favourite_meals}">
@@ -46,7 +48,7 @@
         </div>
         <div class="box" th:if="${user.role==user.role.ADMIN}">
             <a th:href="@{/admin_panel}">
-                <p>Admin Panel</p>
+                <p>ADMIN PANEL</p>
             </a>
         </div>
     </div>
