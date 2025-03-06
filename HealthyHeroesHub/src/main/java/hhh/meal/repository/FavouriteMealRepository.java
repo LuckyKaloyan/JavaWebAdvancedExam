@@ -13,6 +13,4 @@ import java.util.UUID;
 @Repository
 public interface FavouriteMealRepository extends JpaRepository<FavouriteMeal, UUID> {
     Optional<FavouriteMeal> findByUserAndMeal(User user, Meal meal);
-
-
 }

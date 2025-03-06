@@ -12,7 +12,7 @@ import hhh.web.dto.CommentRequest;
 import hhh.web.dto.EditCatalogRequest;
 import hhh.web.dto.MealCatalogRequest;
 import hhh.web.dto.MealRequest;
-import hhh.web.mapper.DtoMapper;
+import hhh.web.mapper.Mapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -78,7 +78,7 @@ public class MealCatalogController {
         modelAndView.setViewName("edit_catalog");
         MealCatalog mealCatalog = mealCatalogService.getMealCatalogById(id);
         modelAndView.addObject("mealCatalog", mealCatalog);
-        modelAndView.addObject("editCatalogRequest", DtoMapper.toEditCatalogRequest(mealCatalog));
+        modelAndView.addObject("editCatalogRequest", Mapper.toEditCatalogRequest(mealCatalog));
 
         return modelAndView;
 

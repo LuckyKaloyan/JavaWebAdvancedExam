@@ -40,7 +40,7 @@ public class Meal {
     @ManyToOne
     private User owner;
 
-    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true, fetch=FetchType.EAGER)
     private List<UpVote> upVotes;
 
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)

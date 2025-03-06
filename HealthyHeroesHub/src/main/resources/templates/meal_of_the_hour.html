@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Catalog</title>
+  <link rel="stylesheet" href="/css/meal_of_the_hour.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a th:href="@{/}">HealthyHeroesHub</a>
+    </div>
+    <div class="logo">
+      <a th:href="@{/leaderboard}">
+        <i class="fas fa-trophy"></i> Leaderboard <i class="fas fa-trophy"></i>
+      </a>
+    </div>
+    <ul>
+      <li><a th:href="@{/logout}">Log Out</a></li>
+      <li><a th:href="@{/home}">Home</a></li>
+      <li><a th:href="@{/info}">Info</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <div class="box">
+    <div class="box-content">
+      <h3>Favourite Meals</h3>
+      <table class="meal-table">
+        <thead>
+        <tr>
+          <th>Meal Name</th>
+          <th>UpVotes</th>
+          <th>Description</th>
+          <th>Check it Out!</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td th:text="${mealOfTheDay.name}"></td>
+          <td th:text="${mealOfTheDay.upVotes}"></td>
+          <td th:text="${mealOfTheDay.description}"></td>
+          <td class="actions">
+            <a th:href="@{'/meal_catalogs/meal/' + ${mealOfTheDay.mealId}}">
+              <button class="btn btn-open">Open</button>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>

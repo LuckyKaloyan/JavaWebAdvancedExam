@@ -26,6 +26,7 @@ public class RegisterRequest {
     private String confirmPassword;
 
     @Email(message = "Enter a valid email please!")
+    @NotNull
     private String email;
 
 

@@ -14,4 +14,5 @@ import java.util.UUID;
 public interface UpVoteRepository extends JpaRepository<UpVote, UUID> {
     Optional<UpVote> findByMealAndUser(Meal meal, User user);
     List<UpVote> findByDateAfter(LocalDate oneYearAgo);
+    void deleteAllBy();
 }

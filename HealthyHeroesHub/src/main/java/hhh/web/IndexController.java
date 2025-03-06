@@ -1,7 +1,9 @@
 package hhh.web;
+import hhh.meal.model.MealOfTheHour;
 import hhh.meal.service.MealService;
 import hhh.mealcatalog.service.MealCatalogService;
 import hhh.security.AuthenticationDetails;
+import hhh.upvote.service.UpVoteService;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.LoginRequest;
@@ -27,11 +29,12 @@ public class IndexController {
     private final MealService mealService;
 
 
+
     @Autowired
     public IndexController(UserService userService, MealCatalogService mealCatalogService, MealService mealService) {
         this.userService = userService;
         this.mealCatalogService = mealCatalogService;
-        this.mealService = mealService;
+        this.mealService = mealService;;
     }
 
 
@@ -58,7 +61,10 @@ public class IndexController {
     public ModelAndView registerNewUser(@Valid RegisterRequest registerRequest, BindingResult result) {
 
         if(result.hasErrors()) {
-            return new ModelAndView("register");
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("register");
+            modelAndView.addObject("registerRequest", registerRequest);
+            return modelAndView;
         }
 
         userService.register(registerRequest);
@@ -118,6 +124,15 @@ public class IndexController {
         User user = userService.getById(authenticationDetails.getId());
         modelAndView.addObject("user", user);
         modelAndView.addObject("top20meals", mealService.getTop20Meals());
+        return modelAndView;
+    }
+
+    @GetMapping("/meal_of_the_hour")
+    public ModelAndView getMealOfTheDay() {
+        ModelAndView modelAndView = new ModelAndView();
+        MealOfTheHour mealOfTheHour = mealService.getMealOfTheHour();
+        modelAndView.addObject("mealOfTheHour", mealOfTheHour);
+        modelAndView.setViewName("meal_of_the_hour");
         return modelAndView;
     }
 }

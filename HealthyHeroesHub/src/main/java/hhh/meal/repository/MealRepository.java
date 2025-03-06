@@ -11,6 +11,6 @@ import java.util.UUID;
 @Repository
 public interface MealRepository extends JpaRepository<Meal, UUID> {
     List<Meal> findByAddedOnAfter(LocalDate oneMonthAgo);
-
     List<Meal> findTop20ByOrderByUpVotesDesc();
+    Meal findTop1ByOrderByUpVotesDesc();
 }

@@ -1,12 +1,15 @@
 package hhh.meal.service;
 import hhh.meal.model.FavouriteMeal;
 import hhh.meal.model.Meal;
+import hhh.meal.model.MealOfTheHour;
 import hhh.meal.repository.FavouriteMealRepository;
+import hhh.meal.repository.MealOfTheHourRepository;
 import hhh.meal.repository.MealRepository;
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.MealRequest;
+import hhh.web.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +23,16 @@ public class MealService {
 
     private final MealRepository mealRepository;
     private final FavouriteMealRepository favouriteMealRepository;
+    private final MealOfTheHourRepository mealOfTheHourRepository;
     private final UserService userService;
 
+
+
     @Autowired
-    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, UserService userService) {
+    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, MealOfTheHourRepository mealOfTheHourRepository, UserService userService) {
         this.mealRepository = mealRepository;
         this.favouriteMealRepository = favouriteMealRepository;
+        this.mealOfTheHourRepository = mealOfTheHourRepository;
         this.userService = userService;
     }
 
@@ -112,5 +119,18 @@ public class MealService {
 
     public List<Meal> getTop20Meals() {
         return mealRepository.findTop20ByOrderByUpVotesDesc();
+    }
+
+    public void mealOfTheHour() {
+        Meal topMeal = mealRepository.findTop1ByOrderByUpVotesDesc();
+        MealOfTheHour meal = Mapper.toMealOfTheDay(topMeal);
+        mealOfTheHourRepository.deleteAll();
+        mealOfTheHourRepository.save(meal);
+    }
+    public Meal getTopMeal(){
+       return mealRepository.findTop1ByOrderByUpVotesDesc();
+    }
+    public MealOfTheHour getMealOfTheHour() {
+        return mealOfTheHourRepository.findFirstBy();
     }
 }

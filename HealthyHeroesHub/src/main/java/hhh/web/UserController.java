@@ -3,7 +3,7 @@ package hhh.web;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.EditProfileRequest;
-import hhh.web.mapper.DtoMapper;
+import hhh.web.mapper.Mapper;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("edit-profile");
         modelAndView.addObject("user", user);
-        modelAndView.addObject("editProfileRequest", DtoMapper.toEditProfileRequest(user));
+        modelAndView.addObject("editProfileRequest", Mapper.toEditProfileRequest(user));
         return modelAndView;
     }
     @PutMapping("/{id}/profile")
