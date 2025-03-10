@@ -3,7 +3,6 @@ import hhh.meal.model.MealOfTheHour;
 import hhh.meal.service.MealService;
 import hhh.mealcatalog.service.MealCatalogService;
 import hhh.security.AuthenticationDetails;
-import hhh.upvote.service.UpVoteService;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.LoginRequest;

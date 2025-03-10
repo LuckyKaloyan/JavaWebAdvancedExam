@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Did You Eat Enough Today?</title>
+    <link rel="stylesheet" href="/css/did_you_eat_enough_today.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a th:href="@{/}">HealthyHeroesHub</a>
+        </div>
+        <div class="logo">
+            <a th:href="@{/leaderboard}">
+                <i class="fas fa-trophy"></i> Leaderboard <i class="fas fa-trophy"></i>
+            </a>
+        </div>
+        <ul>
+            <li><a th:href="@{/logout}">Log Out</a></li>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/info}">Info</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="content-container">
+    <div class="calories-info">
+        <div class="calories-box">
+            <h3>Calories Consumed</h3>
+            <p th:text="${totalCalories}"></p>
+        </div>
+        <div class="calories-box" th:if="${totalCalories<user.dailyCalories}">
+            <h3>Calories Remaining</h3>
+            <p th:text="${user.dailyCalories}-${totalCalories}"></p>
+        </div>
+        <div class="calories-box" th:if="${totalCalories>user.dailyCalories}">
+            <h3>Calories Above the needed</h3>
+            <p th:text="${totalCalories}-${user.dailyCalories}"></p>
+        </div>
+        <div class="calories-box" th:if="${totalCalories==user.dailyCalories}">
+            <h3>You got exact amount of calories needed!</h3>
+        </div>
+    </div>
+
+    <div class="meals-section">
+        <h2>Meals You Had Today</h2>
+        <div class="meals-list" th:each="meal, iterStat : ${mealsList}">
+            <div class="meal-item">
+                <span th:text="${meal.name}">Meal Name</span>
+                <span th:text="${meal.totalCalories} + ' kcal'">Calories</span>
+                <form th:action="'http://localhost:8081/api/v1/meal_tracker/' + ${user.id}" th:method="DELETE">
+                    <input type="hidden" name="mealIndex" th:value="${iterStat.index}"/>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="add-meal-section">
+        <h2>Add a Meal</h2>
+        <form th:action="'http://localhost:8081/api/v1/meal_tracker/'+${user.id}" th:method="POST">
+            <select name="mealId">
+                <option th:each="meal : ${allMeals}" th:value="${meal.id}" th:text="${meal.name} + ' (' + ${meal.totalCalories} + ' kcal)'"></option>
+            </select>
+            <button type="submit" class="big-button">Add Meal</button>
+        </form>
+    </div>
+</div>
+
+<footer th:insert="fragments/footer :: footer"></footer>
+
+</body>
+</html>

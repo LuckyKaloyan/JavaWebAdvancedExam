@@ -38,6 +38,7 @@ public class UserService implements UserDetailsService {
                 .role(UserRole.ADMIN)
                 .email("luckykaloyan@gmail.com")
                 .registrationDate(LocalDate.now())
+                .dailyCalories(0)
                 .build();
         userRepository.save(user);
     }
@@ -61,6 +62,7 @@ public class UserService implements UserDetailsService {
                 .email(registerRequest.getEmail())
                 .registrationDate(LocalDate.now())
                 .role(UserRole.USER)
+                .dailyCalories(0)
                 .build();
         userRepository.save(user);
     }
@@ -120,6 +122,12 @@ public class UserService implements UserDetailsService {
         } else {
             user.setRole(UserRole.ADMIN);
         }
+        userRepository.save(user);
+    }
+
+    public void setDailyCalories(UUID id, double dailyCalories) {
+        User user = getById(id);
+        user.setDailyCalories(dailyCalories);
         userRepository.save(user);
     }
 

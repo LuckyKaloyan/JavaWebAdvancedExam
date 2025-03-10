@@ -36,6 +36,8 @@ public class User {
     private LocalDate registrationDate;
     @Enumerated(EnumType.STRING)
     private UserRole role;
+    @Column(nullable = false)
+    private double dailyCalories;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MealCatalog> mealCatalogs;

@@ -30,7 +30,7 @@
 
 <div class="calculator-container">
     <div class="calculator-box">
-        <h2>Calculator</h2>
+        <h2>Create your Calorie Profile</h2>
 
 
         <form class="calculator-form" th:action="@{'/calculator'}" th:method="POST" th:object="${calculatorRequest}">
@@ -67,13 +67,6 @@
                     <p class="text-warning" th:errors="*{gender}"></p>
                 </select>
             </div>
-
-            <div class="input-group">
-                <label for="eatenCalories">Eaten Calories(kcal)</label>
-                <input type="text" id="eatenCalories" name="eatenCalories" placeholder="Enter your eaten calories" th:field="*{eatenCalories}"  />
-                <p class="text-warning" th:errors="*{eatenCalories}"></p>
-            </div>
-
             <button type="submit" class="submit-button">Save Changes</button>
         </form>
     </div>

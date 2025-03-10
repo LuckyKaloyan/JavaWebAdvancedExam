@@ -5,18 +5,22 @@ import hhh.meal.model.MealOfTheHour;
 import hhh.meal.repository.FavouriteMealRepository;
 import hhh.meal.repository.MealOfTheHourRepository;
 import hhh.meal.repository.MealRepository;
+import hhh.meal_tracking.client.MealTrackingClient;
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.MealRequest;
 import hhh.web.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class MealService {
@@ -25,15 +29,17 @@ public class MealService {
     private final FavouriteMealRepository favouriteMealRepository;
     private final MealOfTheHourRepository mealOfTheHourRepository;
     private final UserService userService;
+    private final MealTrackingClient mealTrackingClient;
 
 
 
     @Autowired
-    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, MealOfTheHourRepository mealOfTheHourRepository, UserService userService) {
+    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, MealOfTheHourRepository mealOfTheHourRepository, UserService userService, MealTrackingClient mealTrackingClient) {
         this.mealRepository = mealRepository;
         this.favouriteMealRepository = favouriteMealRepository;
         this.mealOfTheHourRepository = mealOfTheHourRepository;
         this.userService = userService;
+        this.mealTrackingClient = mealTrackingClient;
     }
 
     public void addMeal(MealRequest mealRequest, MealCatalog mealCatalog) {
@@ -67,7 +73,12 @@ public class MealService {
     }
 
     public void deleteMealById(UUID id) {
-        mealRepository.deleteById(id);
+        try {
+            mealRepository.deleteById(id);
+            ResponseEntity<Void> response = mealTrackingClient.removeMealFromAllUsers(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to delete meal from all users", e);
+        }
     }
 
 
@@ -94,6 +105,7 @@ public class MealService {
     }
 
     public List<Meal> getAllMeals() {
+
         return mealRepository.findAll();
     }
 
@@ -132,5 +144,25 @@ public class MealService {
     }
     public MealOfTheHour getMealOfTheHour() {
         return mealOfTheHourRepository.findFirstBy();
+    }
+
+    public List<Meal> mealsList(List<UUID> ids) {
+        List<Meal> meals = mealRepository.findAllById(ids);
+        Map<UUID, Meal> mealMap = meals.stream().collect(Collectors.toMap(Meal::getId, meal -> meal));
+
+        return ids.stream()
+                .map(mealMap::get)
+                .collect(Collectors.toList());
+    }
+
+    public double totalMealsCalories(List<Meal> someList){
+        double total;
+        total = 0;
+        for(Meal meal : someList){
+            if(meal!=null){
+                total = total + Double.parseDouble(meal.getTotalCalories().toString());
+            }
+        }
+        return total;
     }
 }

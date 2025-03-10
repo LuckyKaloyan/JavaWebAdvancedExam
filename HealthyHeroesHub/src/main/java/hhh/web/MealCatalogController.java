@@ -2,6 +2,8 @@ package hhh.web;
 import hhh.comment.service.CommentService;
 import hhh.meal.model.Meal;
 import hhh.meal.service.MealService;
+import hhh.meal_tracking.client.MealTrackingClient;
+import hhh.meal_tracking.service.MealTrackingService;
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.mealcatalog.service.MealCatalogService;
 import hhh.security.AuthenticationDetails;
@@ -33,6 +35,7 @@ public class MealCatalogController {
     private final UpVoteService upVoteService;
     private final CommentService commentService;
 
+
     @Autowired
     public MealCatalogController(MealCatalogService mealCatalogService, UserService userService, MealService mealService, UpVoteService upVoteService, CommentService commentService) {
         this.mealCatalogService = mealCatalogService;
@@ -40,6 +43,7 @@ public class MealCatalogController {
         this.mealService = mealService;
         this.upVoteService = upVoteService;
         this.commentService = commentService;
+
     }
 
     @GetMapping("/create_new_catalog")

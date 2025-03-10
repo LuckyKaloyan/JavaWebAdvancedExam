@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meal Catalog</title>
+  <title>Meal of the Hour</title>
   <link rel="stylesheet" href="/css/meal_of_the_hour.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -41,11 +41,11 @@
         </thead>
         <tbody>
         <tr>
-          <td th:text="${mealOfTheDay.name}"></td>
-          <td th:text="${mealOfTheDay.upVotes}"></td>
-          <td th:text="${mealOfTheDay.description}"></td>
+          <td th:text="${mealOfTheHour.name}"></td>
+          <td th:text="${mealOfTheHour.upVotes}"></td>
+          <td th:text="${mealOfTheHour.description}"></td>
           <td class="actions">
-            <a th:href="@{'/meal_catalogs/meal/' + ${mealOfTheDay.mealId}}">
+            <a th:href="@{'/meal_catalogs/meal/' + ${mealOfTheHour.mealId}}">
               <button class="btn btn-open">Open</button>
             </a>
           </td>
@@ -54,7 +54,6 @@
       </table>
     </div>
   </div>
-</div>
 
 <footer th:insert="fragments/footer :: footer"></footer>
 

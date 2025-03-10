@@ -32,41 +32,43 @@ a:visited {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar .box {
-    padding: 15px;
+    padding: 10px;
     width: 100%;
     text-align: center;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     transition: all 0.3s ease;
     cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar .box p {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #fff;
     margin: 0;
-    padding: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 
 .sidebar .box p {
     background-color: #4CAF50;
+    border-radius: 8px;
 }
 
 .sidebar .box p:hover {
     background-color: #388E3C;
     transform: scale(1.05);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
 }
-
 
 .sidebar .box:nth-child(5) p {
     background-color: #F44336;
@@ -75,6 +77,7 @@ a:visited {
 .sidebar .box:nth-child(5) p:hover {
     background-color: #D32F2F;
     transform: scale(1.05);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar .box:nth-child(6) p {
@@ -84,6 +87,7 @@ a:visited {
 .sidebar .box:nth-child(6) p:hover {
     background-color: #1976D2;
     transform: scale(1.05);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
 }
 
 .main-content {

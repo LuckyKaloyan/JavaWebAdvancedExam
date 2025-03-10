@@ -29,8 +29,4 @@ public class CalculatorRequest {
     @NotBlank(message = "Activity level is required!")
     private String activityLevel;
 
-    @NotNull(message = "Eaten calories is required!")
-    @Min(value = 0, message = "Eaten calories cannot be negative!")
-    @Max(value = 99999, message = "You probably already died there...")
-    private Double eatenCalories;
 }
