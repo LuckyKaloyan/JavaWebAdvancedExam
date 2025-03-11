@@ -1,6 +1,6 @@
 package hhh.scheduler;
 
-import hhh.event.MealOfTheDayEvent;
+import hhh.event.MealOfTheHourEvent;
 import hhh.meal.model.Meal;
 import hhh.meal.model.MealOfTheHour;
 import hhh.meal.service.MealService;
@@ -36,7 +36,7 @@ public class MealOfTheHourScheduler {
             upVoteService.cleanUp();
 
             Meal meal = mealService.getMealById(mealOfTheHour.getMealId());
-            MealOfTheDayEvent event = MealOfTheDayEvent.builder()
+            MealOfTheHourEvent event = MealOfTheHourEvent.builder()
                     .upVotes(meal.getUpVotes().size())
                     .name(meal.getName())
                     .ownersName(meal.getOwner().getUsername())

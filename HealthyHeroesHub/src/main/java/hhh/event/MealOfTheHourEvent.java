@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MealOfTheDayEvent {
+public class MealOfTheHourEvent {
 
     @NotNull
     private int upVotes;
