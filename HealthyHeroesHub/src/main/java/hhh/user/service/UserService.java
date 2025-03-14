@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
     public void register(RegisterRequest registerRequest) {
 
         if(userRepository.findByUsername(registerRequest.getUsername()).isPresent()) {
-            throw new RuntimeException("Username %s already exist".formatted(registerRequest.getUsername()));
+            throw new UsernameNotFoundException("Username %s already exist".formatted(registerRequest.getUsername()));
         }
         if(userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
             throw new RuntimeException("Email %s already exists".formatted(registerRequest.getEmail()));
