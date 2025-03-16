@@ -1,10 +1,12 @@
 package hhh.user.service;
+import hhh.exception.EmailAlreadyInUseException;
+import hhh.exception.PasswordsDoNotMatchException;
+import hhh.exception.UsernameAlreadyExistException;
 import hhh.security.AuthenticationDetails;
 import hhh.user.model.User;
 import hhh.user.model.UserRole;
 import hhh.user.repository.UserRepository;
 import hhh.web.dto.EditProfileRequest;
-import hhh.web.dto.LoginRequest;
 import hhh.web.dto.RegisterRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,14 +48,14 @@ public class UserService implements UserDetailsService {
     public void register(RegisterRequest registerRequest) {
 
         if(userRepository.findByUsername(registerRequest.getUsername()).isPresent()) {
-            throw new UsernameNotFoundException("Username %s already exist".formatted(registerRequest.getUsername()));
+            throw new UsernameAlreadyExistException("Username %s already exist!".formatted(registerRequest.getUsername()));
         }
         if(userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
-            throw new RuntimeException("Email %s already exists".formatted(registerRequest.getEmail()));
+            throw new EmailAlreadyInUseException("Email %s in use!".formatted(registerRequest.getEmail()));
         }
 
         if(!registerRequest.getPassword().equals(registerRequest.getConfirmPassword())) {
-            throw new RuntimeException("Passwords do not match");
+            throw new PasswordsDoNotMatchException("Passwords do not match");
         }
 
         User user = User.builder()
@@ -67,10 +69,9 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    @Override
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(() ->new RuntimeException("User not found"));
-
         return new AuthenticationDetails(user.getId(), user.getUsername(), user.getPassword(), user.getRole());
     }
     public User getById(UUID id) {

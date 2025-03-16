@@ -53,6 +53,7 @@ public class MealCatalogService {
           mealCatalogRepository.save(mealCatalog);
     }
     public void deleteCatalog(UUID mealCatalogId) {
+
         mealCatalogRepository.deleteById(mealCatalogId);
     }
 }

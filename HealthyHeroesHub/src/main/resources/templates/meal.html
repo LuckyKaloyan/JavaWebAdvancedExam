@@ -71,8 +71,14 @@
   </div>
 
   <div class="upvote-favorite-section">
-    <p><strong>Upvotes:</strong> <span th:text="${meal.upVotes.size()}"></span></p>
+    <p><strong>Upvotes:</strong> <span th:text="${meal.upVotes.size()}"></span>
     <p><strong>Favorites:</strong> <span th:text="${meal.favouriteMeals.size()}"></span></p>
+    <div th:if="${alreadyVoted}" class="alert alert-danger" role="alert">
+      <span th:text="${alreadyVoted}"></span>
+    </div>
+    <div th:if="${alreadyFavourite}" class="alert alert-danger" role="alert">
+      <span th:text="${alreadyFavourite}"></span>
+    </div>
   </div>
 
   <div class="upvote-favorite-section">

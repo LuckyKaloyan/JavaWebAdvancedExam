@@ -1,4 +1,5 @@
 package hhh.meal.service;
+import hhh.exception.AlreadyFavouriteException;
 import hhh.meal.model.FavouriteMeal;
 import hhh.meal.model.Meal;
 import hhh.meal.model.MealOfTheHour;
@@ -95,7 +96,7 @@ public class MealService {
         User user = userService.getById(userId);
         Meal meal = getMealById(mealId);
         if (favouriteMealRepository.findByUserAndMeal(user, meal).isPresent()) {
-            throw new RuntimeException("You can Favourite a meal only once... Come on!");
+            throw new AlreadyFavouriteException("Meal is already favourite");
         }
         user.getFavouriteMeals().add(createFavouriteMeal(user, meal));
     }

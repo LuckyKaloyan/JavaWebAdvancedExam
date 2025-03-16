@@ -1,4 +1,5 @@
 package hhh.upvote.service;
+import hhh.exception.AlreadyUpVotedException;
 import hhh.meal.model.Meal;
 import hhh.meal.service.MealService;
 import hhh.upvote.model.UpVote;
@@ -33,7 +34,7 @@ public class UpVoteService {
         Meal meal = mealService.getMealById(mealId);
         User user = userService.getById(userId);
         if(upVoteRepository.findByMealAndUser(meal,user).isPresent()){
-            throw new RuntimeException("You cannot keep voting bruhhhhhvvv! Only one upvote can be made!");
+            throw new AlreadyUpVotedException("Only one upvote can be made!");
         }else  meal.getUpVotes().add(createUpVote(mealId, userId));
 
     }

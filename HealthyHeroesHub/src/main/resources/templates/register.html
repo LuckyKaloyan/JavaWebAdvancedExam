@@ -32,21 +32,25 @@
                 <label for="email">Email</label>
                 <input type="email" placeholder="Email" id="email" name="email" value="" th:field="*{email}">
                 <p class="text-warning" th:errors="*{email}"></p>
+                <p class="text-warning" th:text="${messageEmailAlreadyInUse}"></p>
             </div>
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" placeholder="Username" id="username" name="username" value="" th:field="*{username}">
+                <p class="text-warning" th:text="${messageUsernameAlreadyExist}"></p>
                 <p class="text-warning" th:errors="*{username}"></p>
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
                 <input type="password" placeholder="Password" id="password" name="password" value="" th:field="*{password}">
                 <p class="text-warning" th:errors="*{password}"></p>
+                <p class="text-warning" th:text="${messagePasswordsDoNotMatch}"></p>
             </div>
             <div class="input-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" placeholder="Confirm Password" id="confirmPassword" name="confirmPassword" value="" th:field="*{confirmPassword}">
                 <p class="text-warning" th:errors="*{confirmPassword}"></p>
+                <p class="text-warning" th:text="${messagePasswordsDoNotMatch}"></p>
             </div>
             <button type="submit" class="register-button">Register</button>
         </form>
