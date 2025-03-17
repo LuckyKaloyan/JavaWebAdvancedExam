@@ -1,4 +1,5 @@
 package hhh.report.service;
+import hhh.exception.BadInputException;
 import hhh.report.model.Report;
 import hhh.report.repository.ReportRepository;
 import hhh.user.model.User;
@@ -19,13 +20,21 @@ public class ReportService {
 
     @Autowired
     public ReportService(ReportRepository reportRepository, UserService userService) {
-
         this.reportRepository = reportRepository;
         this.userService = userService;
     }
 
     public void createReport(ReportRequest reportRequest, UUID userId) {
+        if (reportRequest == null) {
+            throw new BadInputException("ReportRequest cannot be null");
+        }
+        if (userId == null) {
+            throw new BadInputException("UserId cannot be null");
+        }
         User user = userService.getById(userId);
+        if (user == null) {
+            throw new BadInputException("User not found with id: " + userId);
+        }
         Report report = Report.builder()
                 .troublemaker(reportRequest.getTroublemaker())
                 .reportType(reportRequest.getReportType())
@@ -41,7 +50,7 @@ public class ReportService {
     }
 
     public List<Report> getAllNotReviewedReports() {
-       return reportRepository.findByReviewedNot(true);
+        return reportRepository.findByReviewedNot(true);
     }
     public List<Report> getAllReviewedReports() {
         return reportRepository.findByReviewedNot(false);
@@ -67,7 +76,10 @@ public class ReportService {
     }
 
     public void completeReport(UUID id) {
-        Report report = this.reportRepository.findById(id).orElseThrow(() -> new RuntimeException("Report not found"));
+        if (id == null) {
+            throw new BadInputException("Report ID cannot be null");
+        }
+        Report report = this.reportRepository.findById(id).orElseThrow(() -> new BadInputException("Report not found with id: " + id));
         report.setReviewed(true);
         reportRepository.save(report);
     }

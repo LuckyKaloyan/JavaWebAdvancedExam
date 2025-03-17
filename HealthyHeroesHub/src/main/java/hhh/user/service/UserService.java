@@ -1,4 +1,5 @@
 package hhh.user.service;
+import hhh.exception.BadInputException;
 import hhh.exception.EmailAlreadyInUseException;
 import hhh.exception.PasswordsDoNotMatchException;
 import hhh.exception.UsernameAlreadyExistException;
@@ -71,14 +72,27 @@ public class UserService implements UserDetailsService {
 
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow(() ->new RuntimeException("User not found"));
+        if (username == null || username.trim().isEmpty()) {
+            throw new BadInputException("Username cannot be null or empty");
+        }
+
+        User user = userRepository.findByUsername(username).orElseThrow(() ->new BadInputException("User not found"));
         return new AuthenticationDetails(user.getId(), user.getUsername(), user.getPassword(), user.getRole());
     }
     public User getById(UUID id) {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found!"));
+        if (id == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
+        return userRepository.findById(id).orElseThrow(() -> new BadInputException("User not found!"));
     }
 
     public void editUser(UUID userId, EditProfileRequest editProfileRequest) {
+        if (userId == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
+        if (editProfileRequest == null) {
+            throw new BadInputException("EditProfileRequest cannot be null");
+        }
         User user = getById(userId);
         user.setFirstName(editProfileRequest.getFirstName());
         user.setLastName(editProfileRequest.getLastName());
@@ -88,6 +102,9 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
     public void deleteUser(UUID userId) {
+        if (userId == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
         User user = getById(userId);
         userRepository.delete(user);
     }
@@ -95,6 +112,9 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
     public List<User> getAllByRole(UserRole role) {
+        if (role == null) {
+            throw new BadInputException("Role cannot be null");
+        }
         return userRepository.findByRole(role);
     }
     public List<User> getAllRegisteredLastMonth() {
@@ -117,6 +137,9 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void changeRole(UUID id) {
+        if (id == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
         User user = getById(id);
         if (user.getRole() == UserRole.ADMIN) {
             user.setRole(UserRole.USER);
@@ -125,11 +148,15 @@ public class UserService implements UserDetailsService {
         }
         userRepository.save(user);
     }
-
     public void setDailyCalories(UUID id, double dailyCalories) {
+        if (id == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
+        if (dailyCalories < 0) {
+            throw new BadInputException("Daily calories cannot be negative");
+        }
         User user = getById(id);
         user.setDailyCalories(dailyCalories);
         userRepository.save(user);
     }
-
 }

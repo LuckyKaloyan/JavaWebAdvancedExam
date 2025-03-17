@@ -1,5 +1,6 @@
 package hhh.upvote.service;
 import hhh.exception.AlreadyUpVotedException;
+import hhh.exception.BadInputException;
 import hhh.meal.model.Meal;
 import hhh.meal.service.MealService;
 import hhh.upvote.model.UpVote;
@@ -30,9 +31,25 @@ public class UpVoteService {
     }
 
     public void upVote(UUID mealId, UUID userId) {
+        if (mealId == null) {
+            throw new BadInputException("Meal ID cannot be null");
+        }
+        if (userId == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
 
         Meal meal = mealService.getMealById(mealId);
         User user = userService.getById(userId);
+        if (meal == null) {
+            throw new BadInputException("Meal not found with ID: " + mealId);
+        }
+        if (user == null) {
+            throw new BadInputException("User not found with ID: " + userId);
+        }
+
+        if (upVoteRepository.findByMealAndUser(meal, user).isPresent()) {
+            throw new AlreadyUpVotedException("Only one upvote can be made!");
+        }
         if(upVoteRepository.findByMealAndUser(meal,user).isPresent()){
             throw new AlreadyUpVotedException("Only one upvote can be made!");
         }else  meal.getUpVotes().add(createUpVote(mealId, userId));
@@ -40,8 +57,20 @@ public class UpVoteService {
     }
 
     public UpVote createUpVote(UUID mealId, UUID userId) {
+        if (mealId == null) {
+            throw new BadInputException("Meal ID cannot be null");
+        }
+        if (userId == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
         User user = userService.getById(userId);
         Meal meal = mealService.getMealById(mealId);
+        if (user == null) {
+            throw new BadInputException("User not found with ID: " + userId);
+        }
+        if (meal == null) {
+            throw new BadInputException("Meal not found with ID: " + mealId);
+        }
         UpVote upVote = UpVote.builder()
                 .user(user)
                 .meal(meal)
@@ -66,10 +95,10 @@ public class UpVoteService {
         LocalDate oneDayAgo = LocalDate.now().minusDays(1);
         return upVoteRepository.findByDateAfter(oneDayAgo);
     }
-
     public List<UpVote> getAll(){
         return upVoteRepository.findAll();
     }
+
     @Transactional
     public void cleanUp() {
         upVoteRepository.deleteAllInBatch();

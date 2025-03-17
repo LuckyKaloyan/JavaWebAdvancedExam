@@ -1,5 +1,6 @@
 package hhh.meal.service;
 import hhh.exception.AlreadyFavouriteException;
+import hhh.exception.BadInputException;
 import hhh.meal.model.FavouriteMeal;
 import hhh.meal.model.Meal;
 import hhh.meal.model.MealOfTheHour;
@@ -44,6 +45,24 @@ public class MealService {
     }
 
     public void addMeal(MealRequest mealRequest, MealCatalog mealCatalog) {
+        if (mealRequest == null) {
+            throw new BadInputException("MealRequest cannot be null");
+        }
+        if (mealCatalog == null) {
+            throw new BadInputException("MealCatalog cannot be null");
+        }
+        if (mealRequest.getName() == null || mealRequest.getName().isBlank()) {
+            throw new BadInputException("Meal name cannot be empty");
+        }
+        if (mealRequest.getCarbs() == null || mealRequest.getCarbs().compareTo(BigDecimal.ZERO) < 0) {
+            throw new BadInputException("Carbs cannot be null or negative");
+        }
+        if (mealRequest.getProteins() == null || mealRequest.getProteins().compareTo(BigDecimal.ZERO) < 0) {
+            throw new BadInputException("Proteins cannot be null or negative");
+        }
+        if (mealRequest.getFats() == null || mealRequest.getFats().compareTo(BigDecimal.ZERO) < 0) {
+            throw new BadInputException("Fats cannot be null or negative");
+        }
         BigDecimal carbsCalories = mealRequest.getCarbs().multiply(BigDecimal.valueOf(4));
         BigDecimal proteinsCalories = mealRequest.getProteins().multiply(BigDecimal.valueOf(4));
         BigDecimal fatsCalories = mealRequest.getFats().multiply(BigDecimal.valueOf(8));
@@ -70,7 +89,7 @@ public class MealService {
     }
 
     public Meal getMealById(UUID id) {
-        return mealRepository.findById(id).orElseThrow(() -> new RuntimeException("Invalid MEAL ID"));
+        return mealRepository.findById(id).orElseThrow(() -> new BadInputException("Invalid MEAL ID"));
     }
 
     public void deleteMealById(UUID id) {
@@ -78,12 +97,18 @@ public class MealService {
             mealRepository.deleteById(id);
             ResponseEntity<Void> response = mealTrackingClient.removeMealFromAllUsers(id);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to delete meal from all users", e);
+            throw new BadInputException("Failed to delete meal from all users");
         }
     }
 
 
     public FavouriteMeal createFavouriteMeal(User user, Meal meal) {
+        if (user == null) {
+            throw new BadInputException("User cannot be null");
+        }
+        if (meal == null) {
+            throw new BadInputException("Meal cannot be null");
+        }
         FavouriteMeal favouriteMeal = FavouriteMeal.builder()
                 .user(user)
                 .meal(meal)
@@ -102,11 +127,13 @@ public class MealService {
     }
 
     public void deleteFavouriteMeal(UUID favouriteMealId) {
+        if(favouriteMealRepository.findById(favouriteMealId).isEmpty()){
+            throw new BadInputException("Invalid favourite meal id");
+        }
         favouriteMealRepository.deleteById(favouriteMealId);
     }
 
     public List<Meal> getAllMeals() {
-
         return mealRepository.findAll();
     }
 
@@ -141,16 +168,16 @@ public class MealService {
         mealOfTheHourRepository.save(meal);
     }
     public Meal getTopMeal(){
-       return mealRepository.findTop1ByOrderByUpVotesDesc();
+        return mealRepository.findTop1ByOrderByUpVotesDesc();
     }
     public MealOfTheHour getMealOfTheHour() {
+
         return mealOfTheHourRepository.findFirstBy();
     }
 
     public List<Meal> mealsList(List<UUID> ids) {
         List<Meal> meals = mealRepository.findAllById(ids);
         Map<UUID, Meal> mealMap = meals.stream().collect(Collectors.toMap(Meal::getId, meal -> meal));
-
         return ids.stream()
                 .map(mealMap::get)
                 .collect(Collectors.toList());

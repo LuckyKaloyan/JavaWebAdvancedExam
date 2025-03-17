@@ -1,8 +1,8 @@
 package hhh.comment.service;
 import hhh.comment.model.Comment;
 import hhh.comment.repository.CommentRepository;
+import hhh.exception.BadInputException;
 import hhh.meal.service.MealService;
-import hhh.user.model.User;
 import hhh.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +26,16 @@ public class CommentService {
     }
 
     public void createComment(String text, UUID userId, UUID mealId) {
+        if (text == null || text.trim().isEmpty()) {
+            throw new BadInputException("Comment text cannot be empty");
+        }
+        if (userId == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
+        if (mealId == null) {
+            throw new BadInputException("Meal ID cannot be null");
+        }
+
         Comment comment = Comment.builder()
                 .user(userService.getById(userId))
                 .meal(mealService.getMealById(mealId))
@@ -40,6 +50,9 @@ public class CommentService {
     }
 
     public void deleteCommentById(UUID id) {
+        if (id == null) {
+            throw new BadInputException("Comment ID cannot be null");
+        }
         commentRepository.deleteById(id);
     }
     public List<Comment> getAllCreatedOnLastYear() {

@@ -1,5 +1,6 @@
 package hhh.calculator;
 
+import hhh.exception.BadInputException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -7,10 +8,10 @@ public class CalculatorService {
 
     public double calculateDailyCalories(double weight, double height, int age, String gender, String activityLevel) {
         if (weight <= 0 || height <= 0 || age <= 0) {
-            throw new IllegalArgumentException("Invalid input parameters. Weight, height, and age must be positive, and eatenCalories must be non-negative.");
+            throw new BadInputException("Invalid input parameters. Weight, height, and age must be positive, and eatenCalories must be non-negative.");
         }
         if (!gender.equalsIgnoreCase("male") && !gender.equalsIgnoreCase("female")) {
-            throw new IllegalArgumentException("Invalid gender. Must be 'male' or 'female'.");
+            throw new BadInputException("Invalid gender. Must be 'male' or 'female'.");
         }
         double bmr;
         if (gender.equalsIgnoreCase("male")) {
@@ -25,7 +26,7 @@ public class CalculatorService {
             case "moderately" -> 1.55;
             case "very" -> 1.725;
             case "super" -> 1.9;
-            default -> throw new IllegalArgumentException("Invalid activity level: " + activityLevel);
+            default -> throw new BadInputException("Invalid activity level: " + activityLevel);
         };
 
         return (Math.round(bmr * activityMultiplier));
