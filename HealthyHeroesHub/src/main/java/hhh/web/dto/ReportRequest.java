@@ -4,15 +4,15 @@ import hhh.report.model.ReportLocation;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import lombok.*;
-import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ReportRequest {
-
     @NotNull(message = "This field cannot be empty!")
     private String troublemaker;
     @NotNull(message = "This field cannot be empty!")
@@ -21,8 +21,9 @@ public class ReportRequest {
     private ReportLocation whereItHappened;
     @NotNull(message = "This field cannot be empty!")
     private String description;
-    @NotNull(message = "You have to choose a date!")
-    @PastOrPresent(message = "Present or Past dates only!")
+    @NotNull(message = "Please select a date")
+    @PastOrPresent(message = "Date must be today or earlier")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfIssue;
 
 }

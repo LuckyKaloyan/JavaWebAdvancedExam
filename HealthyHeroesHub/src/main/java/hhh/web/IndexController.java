@@ -71,12 +71,14 @@ public class IndexController {
     }
 
     @GetMapping("/login")
-    public ModelAndView getLogin(LoginRequest loginRequest){
-
+    public ModelAndView getLogin(LoginRequest loginRequest) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        modelAndView.addObject("isAuthenticated", auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal()));
+        modelAndView.addObject("isAuthenticated",
+                auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal()));
+
         modelAndView.addObject("loginRequest", loginRequest);
         return modelAndView;
     }

@@ -42,7 +42,7 @@ public class MealCatalogService {
                .description(mealCatalogRequest.getDescription())
                .owner(user)
                .addedOn(LocalDate.now())
-               .lastUpdate(LocalDate.now())
+               .type(mealCatalogRequest.getType())
                .meals(listMeals)
                .build();
 

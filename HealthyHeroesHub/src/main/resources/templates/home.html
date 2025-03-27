@@ -12,7 +12,7 @@
 <header>
     <nav>
         <div class="logo">
-            <a th:href="@{/}">HealthyHeroesHub</a>
+            <a th:href="@{/home}">HealthyHeroesHubHome</a>
         </div>
         <div class="logo">
             <a th:href="@{/leaderboard}">
@@ -21,7 +21,6 @@
         </div>
         <ul>
             <li><a th:href="@{/logout}">Log Out</a></li>
-            <li><a th:href="@{/home}">Home</a></li>
             <li><a th:href="@{/info}">Info</a></li>
         </ul>
     </nav>
@@ -71,20 +70,54 @@
         <div class="box" th:if="${user.getMealCatalogs().size()>0}">
             <div class="box-content">
                 <h3>My Catalogs</h3>
-                <div th:each="catalog : ${user.getMealCatalogs()}" class="meal-item">
-                    <a th:text="${catalog.name}" th:href="@{'/meal_catalogs/' + ${catalog.id}}"></a>
+                <a th:each="catalog : ${user.getMealCatalogs()}" th:href="@{'/meal_catalogs/' + ${catalog.id}}"
+                   class="meal-item vegan" th:if="${catalog.type == T(hhh.mealcatalog.model.MealCatalogType).VEGAN}">
+                    <span th:text="${catalog.name}"></span>
                     <form th:action="@{'/meal_catalogs/' + ${catalog.id}+'/edit'}" th:method="GET" class="delete-form">
                         <button class="btn btn-danger">Edit</button>
                     </form>
-                </div>
+                </a>
+                <a th:each="catalog : ${user.getMealCatalogs()}" th:href="@{'/meal_catalogs/' + ${catalog.id}}"
+                   class="meal-item omnivore" th:if="${catalog.type == T(hhh.mealcatalog.model.MealCatalogType).OMNIVORE}">
+                    <span th:text="${catalog.name}"></span>
+                    <form th:action="@{'/meal_catalogs/' + ${catalog.id}+'/edit'}" th:method="GET" class="delete-form">
+                        <button class="btn btn-danger">Edit</button>
+                    </form>
+                </a>
+                <a th:each="catalog : ${user.getMealCatalogs()}" th:href="@{'/meal_catalogs/' + ${catalog.id}}"
+                   class="meal-item mixed" th:if="${catalog.type == T(hhh.mealcatalog.model.MealCatalogType).MIXED}">
+                    <span th:text="${catalog.name}"></span>
+                    <form th:action="@{'/meal_catalogs/' + ${catalog.id}+'/edit'}" th:method="GET" class="delete-form">
+                        <button class="btn btn-danger">Edit</button>
+                    </form>
+                </a>
             </div>
         </div>
 
         <div class="box" th:if="${allCatalogs.size() > 0}">
             <div class="box-content">
                 <h3>Public Catalogs</h3>
-                <div th:each="publicCatalog : ${allCatalogs}" th:if="${user.id}!=${publicCatalog.owner.id}" class="meal-item">
-                    <a th:text="${publicCatalog.name}" th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"></a>
+                <div class="public-catalog">
+                    <a th:each="publicCatalog : ${allCatalogs}"
+                       th:if="${user.id != publicCatalog.owner.id and publicCatalog.type == T(hhh.mealcatalog.model.MealCatalogType).VEGAN}"
+                       th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"
+                       class="meal-item vegan">
+                        <span th:text="${publicCatalog.name}"></span>
+                    </a>
+
+                    <a th:each="publicCatalog : ${allCatalogs}"
+                       th:if="${user.id != publicCatalog.owner.id and publicCatalog.type == T(hhh.mealcatalog.model.MealCatalogType).OMNIVORE}"
+                       th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"
+                       class="meal-item omnivore">
+                        <span th:text="${publicCatalog.name}"></span>
+                    </a>
+
+                    <a th:each="publicCatalog : ${allCatalogs}"
+                       th:if="${user.id != publicCatalog.owner.id and publicCatalog.type == T(hhh.mealcatalog.model.MealCatalogType).MIXED}"
+                       th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"
+                       class="meal-item mixed">
+                        <span th:text="${publicCatalog.name}"></span>
+                    </a>
                 </div>
             </div>
         </div>

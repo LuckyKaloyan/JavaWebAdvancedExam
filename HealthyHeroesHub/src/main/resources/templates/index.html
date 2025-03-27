@@ -11,7 +11,8 @@
 <header>
     <nav>
         <div class="logo">
-            <a th:href="@{/}">HealthyHeroesHub</a>
+            <a th:if="${isAuthenticated}" th:href="@{/home}">HealthyHeroesHubHome</a>
+            <a th:if="${!isAuthenticated}" th:href="@{/}">HealthyHeroesHub</a>
         </div>
         <ul>
             <li th:unless="${isAuthenticated}"><a th:href="@{/login}">Login</a></li>
@@ -31,7 +32,8 @@
     <div class="hero-content" th:unless="${isAuthenticated}">
         <h1>Welcome to Healthy Heroes Hub!</h1>
         <p>Join our community to share and discover amazing meals.</p>
-        <a th:href="@{/register}" class="btn">Get Started!</a>
+        <a th:href="@{/login}" class="btn">Sign in!</a>
+        <a th:href="@{/register}" class="btn">Sign up!</a>
     </div>
 </section>
 

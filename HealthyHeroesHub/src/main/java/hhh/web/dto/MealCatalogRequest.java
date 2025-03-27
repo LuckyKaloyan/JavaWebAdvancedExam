@@ -1,6 +1,7 @@
 package hhh.web.dto;
 
 
+import hhh.mealcatalog.model.MealCatalogType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -21,5 +22,8 @@ public class MealCatalogRequest {
     @NotNull
     @Size(min = 2, max = 300, message = "Enter a description between 2 and 300 symbols! Please!")
     private String description;
+
+    @NotNull
+    private MealCatalogType type;
 
 }

@@ -11,17 +11,18 @@
 <header>
     <nav>
         <div class="logo">
-            <a th:href="@{/}">HealthyHeroesHub</a>
+            <a th:if="${isAuthenticated}" th:href="@{/home}">HealthyHeroesHubHome</a>
+            <a th:if="${!isAuthenticated}" th:href="@{/}">HealthyHeroesHub</a>
         </div>
         <ul>
             <li th:unless="${isAuthenticated}"><a th:href="@{/login}">Login</a></li>
             <li th:if="${isAuthenticated}"><a th:href="@{/logout}">Log Out</a></li>
             <li th:unless="${isAuthenticated}"><a th:href="@{/register}">Register</a></li>
-            <li th:if="${isAuthenticated}"><a th:href="@{/home}">Home</a></li>
             <li><a th:href="@{/info}">Info</a></li>
         </ul>
     </nav>
 </header>
+
 
 <div class="container">
     <h1>FAQs</h1>

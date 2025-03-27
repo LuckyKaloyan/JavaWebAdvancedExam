@@ -26,7 +26,7 @@ public class MealCatalog {
     @Column(nullable = false)
     private LocalDate addedOn;
     @Column(nullable = false)
-    private LocalDate lastUpdate;
+    private MealCatalogType type;
 
     @ManyToOne
     private User owner;

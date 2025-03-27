@@ -13,7 +13,7 @@
 <header>
     <nav>
         <div class="logo">
-            <a th:href="@{/}">HealthyHeroesHub</a>
+            <a th:href="@{/home}">HealthyHeroesHubHome</a>
         </div>
         <div class="logo">
             <a th:href="@{/leaderboard}">
@@ -22,13 +22,12 @@
         </div>
         <ul>
             <li><a th:href="@{/logout}">Log Out</a></li>
-            <li><a th:href="@{/home}">Home</a></li>
             <li><a th:href="@{/info}">Info</a></li>
         </ul>
     </nav>
 </header>
 
-<div class="content-container">
+<div class="content-container" th:if="${user.dailyCalories!=0}">
     <div class="calories-info">
         <div class="calories-box">
             <h3>Calories Consumed</h3>
@@ -71,7 +70,16 @@
         </form>
     </div>
 </div>
-
+<div class="content-container" th:if="${user.dailyCalories==0}">
+    <div class="calories-info">
+        <div class="calories-box">
+            <form th:action="'http://localhost:8080/calculator'" th:method="GET">
+              <p>Calc your daily calorie intake first!</p>
+                <button type="submit" class="big-button">Click ME!</button>
+            </form>
+        </div>
+    </div>
+   </div>
 <footer th:insert="~{fragments/footer :: footer}"></footer>
 
 </body>

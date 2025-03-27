@@ -12,7 +12,7 @@
 <header>
   <nav>
     <div class="logo">
-      <a th:href="@{/}">HealthyHeroesHub</a>
+      <a th:href="@{/home}">HealthyHeroesHubHome</a>
     </div>
     <div class="logo">
       <a th:href="@{/leaderboard}">
@@ -21,7 +21,6 @@
     </div>
     <ul>
       <li><a th:href="@{/logout}">Log Out</a></li>
-      <li><a th:href="@{/home}">Home</a></li>
       <li><a th:href="@{/info}">Info</a></li>
     </ul>
   </nav>
@@ -40,6 +39,13 @@
         <label for="description">Description</label>
         <textarea id="description" name="description" placeholder="Enter catalog description" th:field="*{description}"></textarea>
         <p class="text-warning" th:errors="*{description}"></p>
+      </div>
+      <div class="input-group">
+        <label for="type">Where it happened:</label>
+        <select id="type" name="type" required th:field="*{type}">
+          <option th:each="catalogType : ${T(hhh.mealcatalog.model.MealCatalogType).values()}" th:text="${#strings.capitalize(catalogType.toString().toLowerCase())}" th:value="${catalogType}"></option>
+        </select>
+        <p class="text-warning" th:errors="*{type}"></p>
       </div>
       <button type="submit" class="submit-button">Create Catalog</button>
     </form>

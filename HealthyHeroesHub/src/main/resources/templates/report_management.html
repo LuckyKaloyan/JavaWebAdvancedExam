@@ -12,7 +12,7 @@
 <header>
   <nav>
     <div class="logo">
-      <a th:href="@{/}">HealthyHeroesHub</a>
+      <a th:href="@{/home}">HealthyHeroesHubHome</a>
     </div>
     <div class="logo">
       <a th:href="@{/leaderboard}">
@@ -21,7 +21,6 @@
     </div>
     <ul>
       <li><a th:href="@{/logout}">Log Out</a></li>
-      <li><a th:href="@{/home}">Home</a></li>
       <li><a th:href="@{/info}">Info</a></li>
     </ul>
   </nav>
@@ -60,7 +59,7 @@
       </thead>
       <tbody>
       <tr th:each="report : ${notReviewedReports}">
-        <td th:text="${report.concernedUser}"></td>
+        <td th:text="${report.concernedUser.username}"></td>
         <td th:text="${report.troublemaker}"></td>
         <td th:text="${report.reportType}"></td>
         <td th:text="${report.whereItHappened}"></td>

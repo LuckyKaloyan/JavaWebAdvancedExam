@@ -12,7 +12,7 @@
 <header>
     <nav>
         <div class="logo">
-            <a th:href="@{/}">HealthyHeroesHub</a>
+            <a th:href="@{/home}">HealthyHeroesHubHome</a>
         </div>
         <div class="logo">
             <a th:href="@{/leaderboard}">
@@ -21,7 +21,6 @@
         </div>
         <ul>
             <li><a th:href="@{/logout}">Log Out</a></li>
-            <li><a th:href="@{/home}">Home</a></li>
             <li><a th:href="@{/info}">Info</a></li>
         </ul>
     </nav>
@@ -32,8 +31,8 @@
         <h2 th:text="${mealCatalog.name}"></h2>
         <p class="description" th:text="${mealCatalog.description}"></p>
         <p><strong>Added On:</strong> <span th:text="${mealCatalog.addedOn}"></span></p>
-        <p><strong>Last Updated:</strong> <span th:text="${mealCatalog.lastUpdate}"></span></p>
         <p><strong>Owner:</strong> <span th:text="${mealCatalog.owner.username}"></span></p>
+        <p><strong>Type:</strong> <span th:text=" ${#strings.capitalize(mealCatalog.type.toString().toLowerCase())}"></span></p>
         <form  th:if="${mealCatalog.owner}==${user}" th:action="@{'/meal_catalogs/'+${mealCatalog.id}+'/add_meal'}" th:method="GET"> <button id="add_meal">Add Meal</button> </form>
         <form  th:if="${mealCatalog.owner}==${user}" th:action="@{'/meal_catalogs/delete/' + ${mealCatalog.id}}" th:method="DELETE" class="delete-form">
             <input type="hidden" name="_method" value="DELETE">
