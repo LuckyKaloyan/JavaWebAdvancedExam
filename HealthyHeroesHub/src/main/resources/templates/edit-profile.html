@@ -17,7 +17,7 @@
     </div>
     <div class="logo">
       <a th:href="@{/leaderboard}">
-        <i class="fas fa-trophy"></i> Leaderboard <i class="fas fa-trophy"></i>
+        <i class="fas fa-trophy"></i>LIVE Leaderboard <i class="fas fa-trophy"></i>
       </a>
     </div>
     <ul>
@@ -56,6 +56,7 @@
         <label for="profilePicture">Profile Picture URL</label>
         <input type="text" id="profilePicture" name="profilePicture" placeholder="Enter a valid URL for an image" th:field="*{profilePicture}"  />
         <p class="text-warning" th:errors="*{profilePicture}"></p>
+        <p class="text-warning" th:if="${imageError}" th:text="${imageError}"></p>
       </div>
 
       <div class="input-group">
@@ -67,7 +68,7 @@
       <button type="submit" class="submit-button">Save Changes</button>
     </form>
     <div>
-      <form th:action="@{'/users/'+${user.id}+'/delete'}" th:method="DELETE">
+      <form th:action="@{'/users/delete_profile'}" th:method="GET">
         <button type="submit" class="submit-button" style="background-color: #dc3545;">DELETE PROFILE</button>
       </form>
     </div>

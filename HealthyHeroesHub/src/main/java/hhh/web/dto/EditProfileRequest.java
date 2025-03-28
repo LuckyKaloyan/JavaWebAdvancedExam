@@ -22,7 +22,8 @@ public class EditProfileRequest {
     private String lastName;
 
 
-    @Email(message = "email address containing @.")
+    @Email(message = "Please enter a valid email address.")
+    @Size(min = 5, max = 100, message = "Email must be between 5 and 100 characters long.")
     private String email;
 
     @URL(message = "Must contain a valid URL.")

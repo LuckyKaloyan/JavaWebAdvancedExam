@@ -338,3 +338,6 @@ button:hover {
 .meal-table tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
 }
+.logo:nth-child(2) {
+    transform: translateX(-170px);
+}

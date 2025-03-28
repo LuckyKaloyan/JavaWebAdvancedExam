@@ -129,3 +129,6 @@ footer {
     text-align: center;
     padding: 10px;
 }
+.logo:nth-child(2) {
+    transform: translateX(-170px);
+}

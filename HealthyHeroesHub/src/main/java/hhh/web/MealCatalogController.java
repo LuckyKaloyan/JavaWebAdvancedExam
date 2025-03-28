@@ -110,6 +110,7 @@ public class MealCatalogController {
 
     @GetMapping("/{id}/add_meal")
     public ModelAndView addNewMeal(@PathVariable UUID id, MealRequest mealRequest) {
+
         return addMeal(id, mealRequest);
     }
 
@@ -154,8 +155,16 @@ public class MealCatalogController {
         upVoteService.upVote(id,authenticationDetails.getId());
         return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
     }
-
-
+    @DeleteMapping("meals/up_vote/{id}")
+    public ModelAndView downVote(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+        upVoteService.downVote(id,authenticationDetails.getId());
+        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
+    }
+    @DeleteMapping("/meals/unfavourite/{id}")
+    public ModelAndView unFavourite(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+        mealService.unFavouriteMeal(id,authenticationDetails.getId());
+        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
+    }
     @DeleteMapping("/meals/remove_from_favourite/{id}")
     public ModelAndView removeFavourite(@PathVariable UUID id) {
         mealService.deleteFavouriteMeal(id);
@@ -172,6 +181,12 @@ public class MealCatalogController {
         }
     }
 
+    @DeleteMapping("/meal/{id}/delete_comment/{id2}")
+    public ModelAndView deleteComment(@PathVariable UUID id, @PathVariable UUID id2) {
+        commentService.deleteCommentById(id2);
+        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
+    }
+
     private ModelAndView getModelAndView(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, @Valid CommentRequest commentRequest) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("meal");
@@ -180,6 +195,8 @@ public class MealCatalogController {
         modelAndView.addObject("user", user);
         modelAndView.addObject("meal", meal);
         modelAndView.addObject("commentRequest", commentRequest);
+        modelAndView.addObject("hasVoted", upVoteService.hasUserUpVoted(id,authenticationDetails.getId()));
+        modelAndView.addObject("isFavourite", mealService.isFavourite(id,authenticationDetails.getId()));
         return modelAndView;
     }
 

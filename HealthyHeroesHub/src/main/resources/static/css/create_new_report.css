@@ -195,3 +195,6 @@ button:focus {
 a.text-warning:hover {
     color: darkred !important;
 }
+.logo:nth-child(2) {
+    transform: translateX(-170px);
+}

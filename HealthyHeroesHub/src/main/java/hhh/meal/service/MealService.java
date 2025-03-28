@@ -132,6 +132,36 @@ public class MealService {
         }
         favouriteMealRepository.deleteById(favouriteMealId);
     }
+    public void unFavouriteMeal(UUID mealId, UUID userId) {
+        User user = userService.getById(userId);
+        Meal meal = getMealById(mealId);
+        if(user == null){
+            throw new BadInputException("User cannot be null");
+        }
+        if(meal == null){
+            throw new BadInputException("Meal cannot be null");
+        }
+        if(favouriteMealRepository.findByUserAndMeal(user, meal).isPresent()){
+            favouriteMealRepository.delete(favouriteMealRepository.findByUserAndMeal(user, meal).get());
+        }
+    }
+    public boolean isFavourite(UUID mealId, UUID userId) {
+        User user = userService.getById(userId);
+        Meal meal = getMealById(mealId);
+        if(user == null){
+            throw new BadInputException("User cannot be null");
+        }
+        if(meal == null){
+            throw new BadInputException("Meal cannot be null");
+        }
+        if(favouriteMealRepository.findByUserAndMeal(user, meal).isPresent()){
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
 
     public List<Meal> getAllMeals() {
         return mealRepository.findAll();

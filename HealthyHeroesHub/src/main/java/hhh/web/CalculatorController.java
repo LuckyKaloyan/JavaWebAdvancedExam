@@ -60,6 +60,16 @@ public class CalculatorController {
         userService.setDailyCalories(authenticationDetails.getId(), dailyCalories);
      return new ModelAndView("redirect:/calculator/results");
     }
+    @PostMapping("/increase")
+    public String increaseDailyIntake(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+        userService.increaseDailyCalories500(authenticationDetails.getId());
+        return "redirect:/calculator/results";
+    }
+    @PostMapping("/decrease")
+    public String decreaseDailyIntake(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+        userService.decreaseDailyCalories500(authenticationDetails.getId());
+        return "redirect:/calculator/results";
+    }
 
     @GetMapping("/results")
     public ModelAndView getCalculatorResults(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {

@@ -37,7 +37,6 @@ public class UpVoteService {
         if (userId == null) {
             throw new BadInputException("User ID cannot be null");
         }
-
         Meal meal = mealService.getMealById(mealId);
         User user = userService.getById(userId);
         if (meal == null) {
@@ -46,14 +45,31 @@ public class UpVoteService {
         if (user == null) {
             throw new BadInputException("User not found with ID: " + userId);
         }
-
         if (upVoteRepository.findByMealAndUser(meal, user).isPresent()) {
             throw new AlreadyUpVotedException("Only one upvote can be made!");
         }
         if(upVoteRepository.findByMealAndUser(meal,user).isPresent()){
             throw new AlreadyUpVotedException("Only one upvote can be made!");
         }else  meal.getUpVotes().add(createUpVote(mealId, userId));
+    }
 
+    @Transactional
+    public void downVote(UUID mealId, UUID userId) {
+        if (mealId == null) {
+            throw new BadInputException("Meal ID cannot be null");
+        }
+        if (userId == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
+        Meal meal = mealService.getMealById(mealId);
+        User user = userService.getById(userId);
+        if(upVoteRepository.findByMealAndUser(meal,user).isPresent()){
+            UpVote upvote =  upVoteRepository.findByMealAndUser(meal,user).get();
+            upVoteRepository.delete(upvote);
+            meal.getUpVotes().remove(upvote);
+        }else{
+            throw new BadInputException("The UpVote was not found!" );
+        }
     }
 
     public UpVote createUpVote(UUID mealId, UUID userId) {
@@ -78,6 +94,21 @@ public class UpVoteService {
                 .build();
         upVoteRepository.save(upVote);
         return upVote;
+    }
+    public boolean hasUserUpVoted(UUID mealId, UUID userId){
+        if (mealId == null) {
+            throw new BadInputException("Meal ID cannot be null");
+        }
+        if (userId == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
+        Meal meal = mealService.getMealById(mealId);
+        User user = userService.getById(userId);
+        if(upVoteRepository.findByMealAndUser(meal,user).isPresent()){
+            return true;
+        }else{
+            return false;
+        }
     }
     public List<UpVote> getAllDateLastYear() {
         LocalDate oneYearAgo = LocalDate.now().minusYears(1);

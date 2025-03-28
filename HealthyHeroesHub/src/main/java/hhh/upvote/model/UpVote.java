@@ -21,11 +21,11 @@ public class UpVote {
     @Column(nullable = false)
     private LocalDate date;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "meal_id", nullable = false)
     private Meal meal;
 }

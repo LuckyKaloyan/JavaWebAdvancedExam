@@ -227,3 +227,6 @@ button:focus {
 .catalog-box form {
     margin-bottom: 20px;
 }
+.logo:nth-child(2) {
+    transform: translateX(-170px);
+}

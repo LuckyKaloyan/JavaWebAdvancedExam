@@ -159,4 +159,24 @@ public class UserService implements UserDetailsService {
         user.setDailyCalories(dailyCalories);
         userRepository.save(user);
     }
+
+    public void increaseDailyCalories500(UUID id) {
+        if (id == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
+        User user = getById(id);
+        user.setDailyCalories(user.getDailyCalories() + 500);
+        userRepository.save(user);
+    }
+    public void decreaseDailyCalories500(UUID id) {
+        if (id == null) {
+            throw new BadInputException("User ID cannot be null");
+        }
+        User user = getById(id);
+        user.setDailyCalories(user.getDailyCalories() - 500);
+        if(user.getDailyCalories() < 0) {
+            user.setDailyCalories(0);
+        }
+        userRepository.save(user);
+    }
 }

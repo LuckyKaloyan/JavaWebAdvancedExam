@@ -342,3 +342,6 @@ a:hover {
 .mixed:hover {
     background-color: rgba(210, 180, 140, 0.9);
 }
+.logo:nth-child(2) {
+    transform: translateX(-170px);
+}

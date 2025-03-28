@@ -8,85 +8,33 @@ body {
     color: #333;
 }
 
-.catalog-container {
+.error-container {
     background: rgba(255, 255, 255, 0.95);
-    padding: 25px;
+    padding: 40px;
     border-radius: 15px;
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-    max-width: 900px;
+    max-width: 600px;
     margin: 50px auto;
     text-align: center;
     transition: all 0.3s ease;
 }
 
-.catalog-container:hover {
+.error-container:hover {
     transform: translateY(-10px);
     box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.15);
 }
 
-h3 {
-    border-bottom: 2px solid #ff5722;
-    padding-bottom: 10px;
-    color: #333;
-    font-size: 22px;
+.error-box h1 {
+    font-size: 36px;
     font-weight: bold;
+    color: #ff5722;
+    margin-bottom: 20px;
 }
 
-.meal-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-top: 20px;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0;
-}
-
-.meal-table th,
-.meal-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
-}
-
-.meal-table th {
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.meal-table th:last-child {
-    border-right: none;
-}
-
-.meal-table tr:hover {
-    background-color: #f9f9f9;
-}
-
-.meal-table td {
-    color: #333;
-    transition: background-color 0.3s ease;
-}
-
-.meal-table td:last-child {
-    border-right: none;
-}
-
-.meal-table tr:last-child td {
-    border-bottom: none;
-}
-
-.not-reviewed th {
-    background: linear-gradient(135deg, #ff5722, #e64a19);
-}
-
-.reviewed th {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
+.error-box p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
 }
 
 header {
@@ -164,6 +112,62 @@ footer {
     margin-top: auto;
     font-size: 14px;
     letter-spacing: 1px;
+}
+.delete-btn, .home-btn {
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn {
+    background: linear-gradient(45deg, #ff4d4d, #dc3545);
+}
+
+.home-btn {
+    background: linear-gradient(45deg, #4CAF50, #2E8B57);
+}
+
+.delete-btn:hover, .home-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.delete-btn:active, .home-btn:active {
+    transform: translateY(1px);
+}
+
+.delete-btn::before, .home-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.delete-btn:hover::before, .home-btn:hover::before {
+    left: 100%;
+}
+
+.delete-btn i, .home-btn i {
+    margin-right: 8px;
+    font-size: 14px;
 }
 .logo:nth-child(2) {
     transform: translateX(-170px);

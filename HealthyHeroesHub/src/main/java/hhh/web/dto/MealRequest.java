@@ -36,5 +36,6 @@ public class MealRequest {
     private BigDecimal fats;
     @NotNull
     @URL
+    @Size(max = 1000, message = "Please choose a smaller picture!")
     private String picture;
 }

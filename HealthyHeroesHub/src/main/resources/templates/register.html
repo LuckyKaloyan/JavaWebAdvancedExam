@@ -29,16 +29,16 @@
         <h2>Register</h2>
         <form th:action="@{/register}" th:method="POST" th:object="${registerRequest}">
             <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" placeholder="Email" id="email" name="email" value="" th:field="*{email}">
-                <p class="text-warning" th:errors="*{email}"></p>
-                <p class="text-warning" th:text="${messageEmailAlreadyInUse}"></p>
-            </div>
-            <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" placeholder="Username" id="username" name="username" value="" th:field="*{username}">
                 <p class="text-warning" th:text="${messageUsernameAlreadyExist}"></p>
                 <p class="text-warning" th:errors="*{username}"></p>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" placeholder="Email" id="email" name="email" value="" th:field="*{email}">
+                <p class="text-warning" th:errors="*{email}"></p>
+                <p class="text-warning" th:text="${messageEmailAlreadyInUse}"></p>
             </div>
             <div class="input-group">
                 <label for="password">Password</label>

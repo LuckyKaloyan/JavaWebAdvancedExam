@@ -187,3 +187,6 @@ button:focus {
 button:focus {
     outline: none;
 }
+.logo:nth-child(2) {
+    transform: translateX(-170px);
+}

@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Page</title>
-    <link rel="stylesheet" href="/css/error.css">
+    <link rel="stylesheet" href="/css/delete_profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -28,12 +29,19 @@
 
 <div class="error-container">
     <div class="error-box">
-        <h1>Oops! Something Went Wrong</h1>
-        <p>We're sorry, but an unexpected error has occurred. Try again or go back to the home page.</p>
-        <a th:href="@{/home}">
-            <button class="btn btn-home">Back to Home</button>
-        </a>
+        <h1>Are you sure?</h1>
+        <p>If you click this button, you will permanently delete your profile!</p>
+        <form th:action="@{'/users/'+${user.id}+'/deleted'}" th:method="DELETE">
+            <button type="submit" class="delete-btn">
+                <i class="fas fa-trash-alt"></i> DELETE PROFILE
+            </button>
+        </form>
     </div>
+    <form th:action="@{'/home'}" th:method="GET">
+        <button type="submit" class="home-btn">
+            <i class="fas fa-home"></i> BACK TO HOME
+        </button>
+    </form>
 </div>
 
 <footer th:insert="~{fragments/footer :: footer}"></footer>

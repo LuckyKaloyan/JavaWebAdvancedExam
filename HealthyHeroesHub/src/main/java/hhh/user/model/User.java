@@ -31,6 +31,7 @@ public class User {
     private String phone;
     private String firstName;
     private String lastName;
+    @Column(length = 1000)
     private String profilePicture;
     @Column(nullable = false)
     private LocalDate registrationDate;

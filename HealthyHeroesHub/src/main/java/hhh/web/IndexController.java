@@ -127,13 +127,4 @@ public class IndexController {
         modelAndView.addObject("top20meals", mealService.getTop20Meals());
         return modelAndView;
     }
-
-    @GetMapping("/meal_of_the_hour")
-    public ModelAndView getMealOfTheDay() {
-        ModelAndView modelAndView = new ModelAndView();
-        MealOfTheHour mealOfTheHour = mealService.getMealOfTheHour();
-        modelAndView.addObject("mealOfTheHour", mealOfTheHour);
-        modelAndView.setViewName("meal_of_the_hour");
-        return modelAndView;
-    }
 }
