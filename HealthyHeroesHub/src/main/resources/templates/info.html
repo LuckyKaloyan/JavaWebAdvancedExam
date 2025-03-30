@@ -11,14 +11,14 @@
 <header>
     <nav>
         <div class="logo">
-            <a th:if="${isAuthenticated}" th:href="@{/home}">HealthyHeroesHubHome</a>
-            <a th:if="${!isAuthenticated}" th:href="@{/}">HealthyHeroesHub</a>
+            <a th:if="${isAuthenticated}" th:href="@{/home}">HHH Home</a>
+            <a th:if="${!isAuthenticated}" th:href="@{/}">Healthy Heroes Hub</a>
         </div>
         <ul>
             <li th:unless="${isAuthenticated}"><a th:href="@{/login}">Login</a></li>
-            <li th:if="${isAuthenticated}"><a th:href="@{/logout}">Log Out</a></li>
             <li th:unless="${isAuthenticated}"><a th:href="@{/register}">Register</a></li>
-            <li><a th:href="@{/info}">Info</a></li>
+            <li><a th:if="${isAuthenticated}" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            <li><a th:href="@{/info}"><i class="fas fa-info-circle"></i> Info</a></li>
         </ul>
     </nav>
 </header>

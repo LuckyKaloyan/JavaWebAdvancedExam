@@ -342,6 +342,3 @@ button:hover {
     background-color: lightgreen;
     border: 2px solid red;
 }
-.logo:nth-child(2) {
-    transform: translateX(-170px);
-}

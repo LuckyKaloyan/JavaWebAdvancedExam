@@ -162,8 +162,5 @@ button:focus {
 .text-warning {
     color: darkred !important;
 }
-.logo:nth-child(2) {
-    transform: translateX(-170px);
-}
 
 

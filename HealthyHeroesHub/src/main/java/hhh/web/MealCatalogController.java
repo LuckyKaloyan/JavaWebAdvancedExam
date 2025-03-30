@@ -2,8 +2,6 @@ package hhh.web;
 import hhh.comment.service.CommentService;
 import hhh.meal.model.Meal;
 import hhh.meal.service.MealService;
-import hhh.meal_tracking.client.MealTrackingClient;
-import hhh.meal_tracking.service.MealTrackingService;
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.mealcatalog.service.MealCatalogService;
 import hhh.security.AuthenticationDetails;
@@ -113,7 +111,6 @@ public class MealCatalogController {
 
         return addMeal(id, mealRequest);
     }
-
     @PostMapping("/{id}/add_meal")
     public ModelAndView postNewMeal (@PathVariable UUID id, @Valid MealRequest mealRequest, BindingResult result, @AuthenticationPrincipal AuthenticationDetails authenticationDetails){
         if(result.hasErrors()) {

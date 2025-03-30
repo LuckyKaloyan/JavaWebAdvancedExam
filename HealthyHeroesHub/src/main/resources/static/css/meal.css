@@ -372,6 +372,3 @@ footer {
     color: #d32f2f;
     border-left: 4px solid #f44336;
 }
-.logo:nth-child(2) {
-    transform: translateX(-170px);
-}

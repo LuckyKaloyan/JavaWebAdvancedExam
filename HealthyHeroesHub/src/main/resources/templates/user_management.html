@@ -12,7 +12,7 @@
 <header>
     <nav>
         <div class="logo">
-            <a th:href="@{/home}">HealthyHeroesHubHome</a>
+            <a th:href="@{/home}">HHH Home</a>
         </div>
         <div class="logo">
             <a th:href="@{/leaderboard}">
@@ -20,8 +20,8 @@
             </a>
         </div>
         <ul>
-            <li><a th:href="@{/logout}">Log Out</a></li>
-            <li><a th:href="@{/info}">Info</a></li>
+            <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            <li><a th:href="@{/info}"><i class="fas fa-info-circle"></i> Info</a></li>
         </ul>
     </nav>
 </header>
@@ -66,7 +66,7 @@
                 <td>
                     <div class="button-container">
                         <form th:action="@{'/admin_panel/user_management/change_role/' + ${user.id}}" th:method="PATCH">
-                            <button type="submit" class="btn btn-danger">Change Role</button>
+                            <button type="submit" class="btn btn-success">Change Role</button>
                         </form>
                         <form th:action="@{'/admin_panel/user_management/delete/' + ${user.id}}" th:method="DELETE">
                             <button type="submit" class="btn btn-danger">Delete User</button>

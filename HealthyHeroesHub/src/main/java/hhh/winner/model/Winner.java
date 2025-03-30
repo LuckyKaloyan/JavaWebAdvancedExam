@@ -1,9 +1,10 @@
-package hhh.upvote.model;
+package hhh.winner.model;
+
 import hhh.meal.model.Meal;
 import hhh.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDate;
+
 import java.util.UUID;
 
 @Builder
@@ -12,20 +13,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class UpVote {
+public class Winner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
-    @Column(nullable = false)
-    private LocalDate date;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne
     private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "meal_id", nullable = false)
+    @OneToOne
     private Meal meal;
+
 }

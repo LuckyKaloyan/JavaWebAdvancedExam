@@ -9,10 +9,11 @@
 </head>
 <body>
 
+
 <header>
   <nav>
     <div class="logo">
-      <a th:href="@{/home}">HealthyHeroesHubHome</a>
+      <a th:href="@{/home}">HHH Home</a>
     </div>
     <div class="logo">
       <a th:href="@{/leaderboard}">
@@ -20,12 +21,11 @@
       </a>
     </div>
     <ul>
-      <li><a th:href="@{/logout}">Log Out</a></li>
-      <li><a th:href="@{/info}">Info</a></li>
+      <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+      <li><a th:href="@{/info}"><i class="fas fa-info-circle"></i> Info</a></li>
     </ul>
   </nav>
 </header>
-
 <div class="dashboard-container">
   <aside class="sidebar">
     <h3>Analytics</h3>
@@ -68,7 +68,7 @@
         <td th:text="${report.createdOn}"></td>
         <td>
           <form th:action="@{'/admin_panel/report_management/reviewed/' + ${report.id}}" th:method="PATCH">
-            <button type="submit" class="btn-success">Mark as Reviewed</button>
+            <button type="submit" class="btn btn-success">Mark as Reviewed</button>
           </form>
         </td>
       </tr>
@@ -90,7 +90,7 @@
       </thead>
       <tbody>
       <tr th:each="report : ${reviewedReports}">
-        <td th:text="${report.concernedUser}"></td>
+        <td th:text="${report.concernedUser.username}"></td>
         <td th:text="${report.troublemaker}"></td>
         <td th:text="${report.reportType}"></td>
         <td th:text="${report.whereItHappened}"></td>

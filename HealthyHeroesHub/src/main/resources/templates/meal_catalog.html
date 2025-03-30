@@ -6,13 +6,14 @@
     <title>Meal Catalog</title>
     <link rel="stylesheet" href="/css/meal_catalog.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header>
     <nav>
         <div class="logo">
-            <a th:href="@{/home}">HealthyHeroesHubHome</a>
+            <a th:href="@{/home}">HHH Home</a>
         </div>
         <div class="logo">
             <a th:href="@{/leaderboard}">
@@ -20,38 +21,49 @@
             </a>
         </div>
         <ul>
-            <li><a th:href="@{/logout}">Log Out</a></li>
-            <li><a th:href="@{/info}">Info</a></li>
+            <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            <li><a th:href="@{/info}"><i class="fas fa-info-circle"></i> Info</a></li>
         </ul>
     </nav>
 </header>
 
 <div class="catalog-container">
     <div class="catalog-box">
-        <h2 th:text="${mealCatalog.name}"></h2>
-        <p class="description" th:text="${mealCatalog.description}"></p>
-        <p><strong>Added On:</strong> <span th:text="${mealCatalog.addedOn}"></span></p>
-        <p><strong>Owner:</strong> <span th:text="${mealCatalog.owner.username}"></span></p>
-        <p><strong>Type:</strong> <span th:text=" ${#strings.capitalize(mealCatalog.type.toString().toLowerCase())}"></span></p>
-        <form  th:if="${mealCatalog.owner}==${user}" th:action="@{'/meal_catalogs/'+${mealCatalog.id}+'/add_meal'}" th:method="GET"> <button id="add_meal">Add Meal</button> </form>
-        <form  th:if="${mealCatalog.owner}==${user}" th:action="@{'/meal_catalogs/delete/' + ${mealCatalog.id}}" th:method="DELETE" class="delete-form">
+        <div class="catalog-header">
+            <h2 th:text="${mealCatalog.name}"></h2>
+            <div class="catalog-meta">
+                <span class="meta-item"><i class="fas fa-user"></i> <span th:text="${mealCatalog.owner.username}"></span></span>
+                <span class="meta-item"><i class="fas fa-calendar-day"></i> <span th:text="${mealCatalog.addedOn}"></span></span>
+                <span class="meta-item"><i class="fas fa-utensils"></i> <span th:text="${#strings.capitalize(mealCatalog.type.toString().toLowerCase())}"></span></span>
+            </div>
+        </div>
+        <div class="description-box">
+            <p class="description" th:text="${mealCatalog.description}"></p>
+        </div>
+        <form th:if="${mealCatalog.owner}==${user}" th:action="@{'/meal_catalogs/delete/' + ${mealCatalog.id}}" th:method="DELETE" class="delete-form">
             <input type="hidden" name="_method" value="DELETE">
-            <button class="btn btn-danger">DELETE CATALOG</button>
+            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i> DELETE CATALOG</button>
         </form>
     </div>
 
     <div class="meals-section">
-        <h3>Meals</h3>
-        <ul>
-            <li th:each="meal : ${mealCatalog.meals}">
-                <img th:src="@{${meal.picture}}" alt="Meal Image" class="meal-image" />
-                <p th:text="${meal.name}"></p>
-                <form th:action="@{'/meal_catalogs/meal/'+${meal.id}}" th:method="GET">
-                    <button>Open</button>
-                </form>
-
-            </li>
-        </ul>
+        <div class="section-header">
+            <h3><i class="fas fa-utensils"></i> Meals</h3>
+            <div class="divider"></div>
+        </div>
+        <div class="meals-grid">
+            <div class="meal-card" th:each="meal : ${mealCatalog.meals}">
+                <div class="meal-image-container">
+                    <img th:src="@{${meal.picture}}" alt="Meal Image" class="meal-image" />
+                </div>
+                <div class="meal-info">
+                    <h4 th:text="${meal.name}"></h4>
+                    <form th:action="@{'/meal_catalogs/meal/'+${meal.id}}" th:method="GET">
+                        <button class="view-btn"><i class="fas fa-eye"></i> View Details</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

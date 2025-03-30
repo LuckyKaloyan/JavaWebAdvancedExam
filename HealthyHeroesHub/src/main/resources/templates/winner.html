@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Winners | HealthyHeroesHub</title>
+    <link rel="stylesheet" href="/css/winner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a th:href="@{/home}">HHH Home</a>
+        </div>
+        <div class="logo">
+            <a th:href="@{/leaderboard}">
+                <i class="fas fa-trophy"></i>LIVE Leaderboard <i class="fas fa-trophy"></i>
+            </a>
+        </div>
+        <ul>
+            <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            <li><a th:href="@{/info}"><i class="fas fa-info-circle"></i> Info</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="winner-container">
+    <div class="winner-header">
+        <h1><i class="fas fa-crown"></i> Yesterday's Champion</h1>
+        <p class="subtitle">Celebrating culinary excellence in our community</p>
+        <div class="date-display" th:text="${#temporals.format(#temporals.createToday().minusDays(1), 'EEEE, MMMM d')}"></div>
+    </div>
+
+    <div class="winner-content" th:if="${winner == null}">
+        <div class="no-winner">
+            <i class="fas fa-clock fa-4x"></i>
+            <h3>No winners yet! The competition is still open.</h3>
+            <p>Check back tomorrow to see who takes the crown!</p>
+        </div>
+    </div>
+
+    <div class="winner-content" th:if="${winner != null}">
+        <div class="user-winner-section">
+            <div class="winner-card">
+                <div class="winner-badge">
+                    <i class="fas fa-crown fa-3x"></i>
+                    <span>Top Chef</span>
+                </div>
+                <div class="user-profile">
+                    <div class="profile-picture">
+                        <img th:if="${winner.user.profilePicture != null}" th:src="${winner.user.profilePicture}" alt="Profile Picture">
+                        <div th:if="${winner.user.profilePicture == null}" class="default-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                    </div>
+                    <div class="user-details">
+                        <h2 th:text="${winner.user.username}"></h2>
+                        <div class="user-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span th:text="${#temporals.format(winner.user.registrationDate, 'MMMM yyyy')}"></span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-fire"></i>
+                                <span th:text="${winner.user.dailyCalories} + ' kcal goal'"></span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-award"></i>
+                                <span th:text="${winner.user.role}"></span>
+                            </div>
+                        </div>
+                        <div class="user-bio" th:if="${winner.user.firstName != null || winner.user.lastName != null}">
+                            <p th:text="${winner.user.firstName + ' ' + winner.user.lastName}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="achievement-metrics">
+                    <div class="metric">
+                        <div class="metric-value" th:text="${winner.user.upVotes.size()}"></div>
+                        <div class="metric-label">Total Upvotes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" th:text="${winner.user.favouriteMeals.size()}"></div>
+                        <div class="metric-label">Favorites</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" th:text="${winner.user.mealCatalogs.size()}"></div>
+                        <div class="metric-label">Catalogs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="meal-winner-section">
+            <div class="meal-card">
+                <div class="meal-header">
+                    <h2><i class="fas fa-utensils"></i> Winning Meal</h2>
+                    <p class="meal-subtitle">The dish that stole the show</p>
+                </div>
+                <div class="meal-content">
+                    <div class="meal-image">
+                        <img th:src="${winner.meal.picture}" alt="Meal Image">
+                    </div>
+                    <div class="meal-details">
+                        <h3 th:text="${winner.meal.name}"></h3>
+                        <p class="meal-description" th:text="${winner.meal.description}"></p>
+
+                        <div class="nutrition-facts">
+                            <div class="nutrition-item">
+                                <div class="nutrition-value" th:text="${winner.meal.totalCalories}"></div>
+                                <div class="nutrition-label">Calories</div>
+                            </div>
+                            <div class="nutrition-item">
+                                <div class="nutrition-value" th:text="${winner.meal.proteins} + 'g'"></div>
+                                <div class="nutrition-label">Protein</div>
+                            </div>
+                            <div class="nutrition-item">
+                                <div class="nutrition-value" th:text="${winner.meal.carbs} + 'g'"></div>
+                                <div class="nutrition-label">Carbs</div>
+                            </div>
+                            <div class="nutrition-item">
+                                <div class="nutrition-value" th:text="${winner.meal.fats} + 'g'"></div>
+                                <div class="nutrition-label">Fats</div>
+                            </div>
+                        </div>
+
+                        <div class="meal-stats">
+                            <div class="stat">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span th:text="${winner.meal.upVotes.size()} + ' upvotes'"></span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-heart"></i>
+                                <span th:text="${winner.meal.favouriteMeals.size()} + ' favorites'"></span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-comment"></i>
+                                <span th:text="${winner.meal.comments.size()} + ' comments'"></span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-calendar-day"></i>
+                                <span th:text="${#temporals.format(winner.meal.addedOn, 'MMMM d, yyyy')}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

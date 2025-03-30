@@ -1,5 +1,4 @@
 package hhh.web;
-import hhh.meal.model.MealOfTheHour;
 import hhh.meal.service.MealService;
 import hhh.mealcatalog.service.MealCatalogService;
 import hhh.security.AuthenticationDetails;
@@ -7,6 +6,7 @@ import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.LoginRequest;
 import hhh.web.dto.RegisterRequest;
+import hhh.winner.service.WinnerService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,16 @@ public class IndexController {
     private final UserService userService;
     private final MealCatalogService mealCatalogService;
     private final MealService mealService;
+    private final WinnerService winnerService;
 
 
 
     @Autowired
-    public IndexController(UserService userService, MealCatalogService mealCatalogService, MealService mealService) {
+    public IndexController(UserService userService, MealCatalogService mealCatalogService, MealService mealService, WinnerService winnerService) {
         this.userService = userService;
         this.mealCatalogService = mealCatalogService;
-        this.mealService = mealService;;
+        this.mealService = mealService;
+        this.winnerService = winnerService;
     }
 
 
@@ -127,4 +129,13 @@ public class IndexController {
         modelAndView.addObject("top20meals", mealService.getTop20Meals());
         return modelAndView;
     }
+
+    @GetMapping("/winner")
+    public ModelAndView getWinners(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("winner", winnerService.getTheWinner());
+        modelAndView.setViewName("winner");
+        return modelAndView;
+    }
+
 }

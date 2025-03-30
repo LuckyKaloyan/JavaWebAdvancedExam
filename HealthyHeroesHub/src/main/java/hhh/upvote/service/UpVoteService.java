@@ -135,4 +135,11 @@ public class UpVoteService {
         upVoteRepository.deleteAllInBatch();
     }
 
+    public Meal topMealByUpVote (){
+        if(upVoteRepository.findMealWithMostUpvotes().isEmpty()){
+            throw new BadInputException("There are no meals yet... probably!");
+        }else {
+            return upVoteRepository.findMealWithMostUpvotes().get();
+        }
+    }
 }

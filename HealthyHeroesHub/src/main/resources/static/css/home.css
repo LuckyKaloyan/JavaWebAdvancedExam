@@ -3,11 +3,64 @@ body {
     flex-direction: column;
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url('https://www.naturemade.com/cdn/shop/articles/healthy-foods-to-eat.jpg?v=1611988563') no-repeat center center/cover;
-    background-size: cover;
-    background-position: center;
+    background: url('https://www.naturemade.com/cdn/shop/articles/healthy-foods-to-eat.jpg') no-repeat center center/cover;
     margin: 0;
 }
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+    flex-grow: 1;
+    padding: 20px;
+    margin-bottom: 20px;
+    align-items: start;
+    min-height: calc(100vh - 150px);
+}
+
+.sidebar {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 12px;
+    border: 2px solid #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.main-content {
+    border: 2px solid #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    gap: 15px;
+    border-radius: 12px;
+    border: 2px solid #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+.container > * {
+    height: 100%;
+}
+
+
 
 a {
     color: inherit;
@@ -18,157 +71,318 @@ a:visited {
     color: inherit;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 20px;
-    flex-grow: 1;
-    padding: 10px;
-}
 
-.sidebar {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-}
 
 .sidebar .box {
-    padding: 10px;
+    padding: 12px 15px;
     width: 100%;
-    text-align: center;
     border-radius: 10px;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+    color: white;
+}
+
+.sidebar .box {
+    border: none !important;
+}
+
+.sidebar .box a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sidebar .box i {
+    font-size: 1em;
+    transition: transform 0.3s ease;
+    color: white;
+    width: 20px;
+    text-align: center;
 }
 
 .sidebar .box p {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
-    color: #fff;
     margin: 0;
-    padding: 15px;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 0 8px;
+    transition: all 0.3s ease;
+    flex-grow: 1;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
 }
 
-.sidebar .box p {
-    background-color: #4CAF50;
-    border-radius: 8px;
+
+.champion-box {
+    background: linear-gradient(135deg, rgba(255,215,0,0.8) 0%, rgba(255,215,0,0.6) 100%);
 }
 
-.sidebar .box p:hover {
-    background-color: #388E3C;
-    transform: scale(1.05);
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+.champion-box:hover {
+    background: linear-gradient(135deg, rgba(255,215,0,0.9) 0%, rgba(255,215,0,0.7) 100%);
 }
 
-.sidebar .box:nth-child(5) p {
-    background-color: #F44336;
+.food-check-box {
+    background: linear-gradient(135deg, rgba(255,152,0,0.8) 0%, rgba(255,152,0,0.6) 100%);
 }
 
-.sidebar .box:nth-child(5) p:hover {
-    background-color: #D32F2F;
-    transform: scale(1.05);
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+.food-check-box:hover {
+    background: linear-gradient(135deg, rgba(255,152,0,0.9) 0%, rgba(255,152,0,0.7) 100%);
 }
 
-.sidebar .box:nth-child(6) p {
-    background-color: #2196F3;
+.favorite-box {
+    background: linear-gradient(135deg, rgba(233,30,99,0.8) 0%, rgba(233,30,99,0.6) 100%);
 }
 
-.sidebar .box:nth-child(6) p:hover {
-    background-color: #1976D2;
-    transform: scale(1.05);
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+.favorite-box:hover {
+    background: linear-gradient(135deg, rgba(233,30,99,0.9) 0%, rgba(233,30,99,0.7) 100%);
+}
+
+.catalog-box {
+    background: linear-gradient(135deg, rgba(156,39,176,0.8) 0%, rgba(156,39,176,0.6) 100%);
+}
+
+.catalog-box:hover {
+    background: linear-gradient(135deg, rgba(156,39,176,0.9) 0%, rgba(156,39,176,0.7) 100%);
+}
+
+.report-box {
+    background: linear-gradient(135deg, rgba(244,67,54,0.8) 0%, rgba(244,67,54,0.6) 100%);
+}
+
+.report-box:hover {
+    background: linear-gradient(135deg, rgba(244,67,54,0.9) 0%, rgba(244,67,54,0.7) 100%);
+}
+.calculator-box {
+    background: linear-gradient(135deg, rgba(63,181,181,0.8) 0%, rgba(63,181,181,0.6) 100%);
+}
+.calculator-box:hover{
+    background: linear-gradient(135deg, rgba(63,181,181,0.9) 0%, rgba(63,181,181,0.7) 100%);
+}
+
+.admin-box {
+    background: linear-gradient(135deg, rgba(63,81,181,0.8) 0%, rgba(63,81,181,0.6) 100%);
+}
+
+.admin-box:hover {
+    background: linear-gradient(135deg, rgba(63,81,181,0.9) 0%, rgba(63,81,181,0.7) 100%);
 }
 
 .main-content {
     border: 2px solid #fff;
-    padding: 30px;
+    padding: 20px;
     width: 100%;
     margin-left: 3%;
     margin-right: 3%;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
-    transition: transform 0.3s ease;
 }
+
 .main-content h3 {
     color: orange;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.main-content h3 i {
+    color: orange;
+    font-size: 18px;
 }
 
 .box {
     border: 2px solid #fff;
-    padding: 25px;
+    padding: 15px;
     width: 100%;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.11);
     border-radius: 10px;
-    transition: transform 0.3s ease;
+    margin-bottom: 15px;
 }
 
-.box:hover {
-    transform: scale(1.02);
+.my-catalogs-box {
+    border-left: 4px solid #4CAF50;
 }
+
+.public-catalogs-box {
+    border-left: 4px solid #2196F3;
+}
+
+.meal-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.meal-item i {
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.meal-item span {
+    flex-grow: 1;
+}
+
+.vegan {
+    background-color: rgba(144, 238, 144, 0.7);
+    border: 1px solid rgba(50, 205, 50, 0.8);
+}
+
+.omnivore {
+    background-color: rgba(139, 69, 19, 0.7);
+    border: 1px solid rgba(160, 82, 45, 0.8);
+}
+
+.mixed {
+    background-color: rgba(210, 180, 140, 0.7);
+    border: 1px solid rgba(188, 143, 143, 0.8);
+}
+
+.vegan-icon {
+    color: #2E8B57;
+}
+
+.omnivore-icon {
+    color: #8B4513;
+}
+
+.mixed-icon {
+    color: #D2B48C;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-add {
+    background-color: #4CAF50;
+}
+
+.btn-add:hover {
+    background-color: #3e8e41;
+}
+
+.btn-edit {
+    background-color: #FFA500;
+}
+
+.btn-edit:hover {
+    background-color: #e69100;
+}
+
+.meal-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.meal-item > span {
+    flex-grow: 1;
+}
+
+.vegan-icon { color: #2E8B57; }
+.omnivore-icon { color: #8B4513; }
+.mixed-icon { color: #D2B48C; }
 
 .profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25px;
-    padding-left: 35px;
-    padding-right: 35px;
-    margin: 0;
-    margin-left: 15%;
-    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin-left: 50px;
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid #fff;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
     width: 100%;
     max-width: 300px;
-}
-
-.profile-section p {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 16px;
-    letter-spacing: 1px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin: 2px;
-}
-
-.profile-section p span {
-    font-weight: normal;
-    text-align: right;
+    gap:15px;
 }
 
 .profile-picture {
-    width: 220px;
-    height: 220px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 15px;
 }
 
 .profile-picture img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.profile-section p {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 4px 0;
+}
+
+.profile-section p span:first-child {
+    font-weight: bold;
+}
+
+.profile-edit-btn {
+    background: linear-gradient(135deg, #FF5722, #E91E63);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 header {
@@ -246,102 +460,4 @@ footer {
     margin-top: auto;
     font-size: 14px;
     letter-spacing: 1px;
-}
-
-button {
-    background-color: #ff5722;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-button:hover {
-    background-color: #e64a19;
-    transform: scale(1.05);
-}
-
-button:focus {
-    outline: none;
-}
-
-a:hover {
-    color: #007BFF;
-}
-
-.meal-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    text-decoration: none;
-    color: #ff5722;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.meal-item:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: scale(1.02);
-}
-
-.meal-item span {
-    color: #ff5722;
-}
-
-.meal-item .delete-form {
-    margin-left: auto;
-}
-
-.meal-item .btn {
-    background-color: cornflowerblue;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.meal-item .btn:hover {
-    background-color: #e64a19;
-}
-
-.vegan {
-    background-color: rgba(144, 238, 144, 0.7);
-    border: 1px solid rgba(139, 69, 19, 0.5);
-}
-
-.omnivore {
-    background-color: saddlebrown;
-    border: 1px solid rgba(139, 69, 19, 0.5);
-}
-
-.mixed {
-    background-color: tan;
-    border: 1px solid rgba(139, 69, 19, 0.5);
-}
-
-.vegan:hover {
-    background-color: rgba(144, 238, 144, 0.9);
-}
-
-.omnivore:hover {
-    background-color: peru;
-}
-
-.mixed:hover {
-    background-color: rgba(210, 180, 140, 0.9);
-}
-.logo:nth-child(2) {
-    transform: translateX(-170px);
 }

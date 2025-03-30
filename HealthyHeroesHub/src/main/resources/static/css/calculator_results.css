@@ -255,10 +255,6 @@ footer {
     letter-spacing: 1px;
 }
 
-.logo:nth-child(2) {
-    transform: translateX(-170px);
-}
-
 .calorie-display-container {
     background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.95) 100%);
     border-radius: 20px;

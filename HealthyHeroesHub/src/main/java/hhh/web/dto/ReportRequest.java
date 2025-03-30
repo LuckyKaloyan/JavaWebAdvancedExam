@@ -13,6 +13,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class ReportRequest {
+
+
     @NotNull(message = "This field cannot be empty!")
     private String troublemaker;
     @NotNull(message = "This field cannot be empty!")
