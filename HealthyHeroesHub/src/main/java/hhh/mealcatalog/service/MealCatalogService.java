@@ -1,6 +1,7 @@
 package hhh.mealcatalog.service;
 import hhh.exception.BadInputException;
 import hhh.meal.model.Meal;
+import hhh.meal_tracking.client.MealTrackingClient;
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.mealcatalog.repository.MealCatalogRepository;
 import hhh.user.model.User;
@@ -8,6 +9,7 @@ import hhh.web.dto.EditCatalogRequest;
 import hhh.web.dto.MealCatalogRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,10 +21,12 @@ import java.util.UUID;
 public class MealCatalogService {
 
     private final MealCatalogRepository mealCatalogRepository;
+    private final MealTrackingClient mealTrackingClient;
 
     @Autowired
-    public MealCatalogService(MealCatalogRepository mealCatalogRepository) {
+    public MealCatalogService(MealCatalogRepository mealCatalogRepository, MealTrackingClient mealTrackingClient) {
         this.mealCatalogRepository = mealCatalogRepository;
+        this.mealTrackingClient = mealTrackingClient;
     }
 
     public void createMealCatalog(@Valid MealCatalogRequest mealCatalogRequest, User user) {
@@ -79,6 +83,11 @@ public class MealCatalogService {
         if (mealCatalogId == null) {
             throw new BadInputException("Meal catalog ID cannot be null");
         }
+
+        for (Meal meal : mealCatalogRepository.getMealCatalogById(mealCatalogId).get().getMeals()) {
+            ResponseEntity<Void> response = mealTrackingClient.removeMealFromAllUsers(meal.getId());
+        }
+
         mealCatalogRepository.deleteById(mealCatalogId);
     }
 }

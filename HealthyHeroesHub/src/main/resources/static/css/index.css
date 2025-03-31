@@ -2,86 +2,210 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url('https://www.naturemade.com/cdn/shop/articles/healthy-foods-to-eat.jpg?v=1611988563') no-repeat center center/cover;
-    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('https://www.naturemade.com/cdn/shop/articles/healthy-foods-to-eat.jpg') no-repeat center center/cover;
+    font-family: 'Montserrat', 'Poppins', sans-serif;
     margin: 0;
-    color: white;
+    color: #f8f8f8;
+    line-height: 1.8;
 }
-
 .hero {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45vh;
+    height: 50vh;
     text-align: center;
     position: relative;
     overflow: hidden;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1;
+    padding: 0 20px;
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
     padding: 30px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    animation: fadeIn 1s ease-in-out;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 100%;
+    animation: fadeInUp 1s ease-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-.btn {
-    background: linear-gradient(45deg, #ff9800, #ff5722);
-    padding: 15px 35px;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    background: linear-gradient(45deg, #ff5722, #ff9800);
-    transform: scale(1.1);
-    box-shadow: 0px 0px 10px rgba(255, 87, 34, 0.5);
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
 }
 
 .welcome {
-    padding: 40px;
+    padding: 60px 40px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(2px);
-    animation: fadeIn 1.5s ease-in-out;
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(5px);
 }
 
 #welcome h2 {
-    font-size: 3em;
-    font-weight: bold;
-    text-decoration: underline;
-    color: #ff9800;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
 }
 
 #welcome p {
-    font-size: 1.4em;
-    font-weight: 500;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+.features {
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.feature-card {
+    padding: 30px 20px;
+    width: 280px;
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 2px white;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn i {
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: translateX(5px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
+    box-shadow: 0 10px 20px rgba(195, 207, 226, 0.3);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(195, 207, 226, 0.4);
+}
+
+.welcome {
+    padding: 100px 40px;
+    text-align: center;
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(5px);
+    position: relative;
+}
+
+.welcome-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#welcome h2 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.divider {
+    height: 4px;
+    width: 100px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    margin: 25px auto;
+    border-radius: 2px;
+}
+
+#welcome p {
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px 30px;
+    width: 300px;
+    transition: all 0.4s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #667eea;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 header {
@@ -160,3 +284,4 @@ footer {
     font-size: 14px;
     letter-spacing: 1px;
 }
+

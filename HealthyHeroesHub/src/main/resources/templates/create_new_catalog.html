@@ -28,26 +28,26 @@
 
 <div class="catalog-container">
   <div class="catalog-box">
-    <h2>Create New Meal Catalog</h2>
+    <h2>Create a new Meal Catalog</h2>
     <form th:action="@{/meal_catalogs/create_new_catalog}" method="POST" th:object="${mealCatalogRequest}">
       <div class="input-group">
-        <label for="name">Catalog Name</label>
+        <label for="name"><i class="fas fa-book"></i> Catalog Name</label>
         <input type="text" id="name" name="name" placeholder="Enter catalog name" th:field="*{name}">
-        <p class="text-warning" th:errors="*{name}"></p>
+        <p class="text-warning" th:errors="*{name}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></p>
       </div>
       <div class="input-group">
-        <label for="description">Description</label>
+        <label for="description"><i class="fas fa-align-left"></i> Description</label>
         <textarea id="description" name="description" placeholder="Enter catalog description" th:field="*{description}"></textarea>
-        <p class="text-warning" th:errors="*{description}"></p>
+        <p class="text-warning" th:errors="*{description}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span></p>
       </div>
       <div class="input-group">
-        <label for="type">Where it happened:</label>
+        <label for="type"><i class="fas fa-map-marker-alt"></i> Meal Catalog type:</label>
         <select id="type" name="type" required th:field="*{type}">
           <option th:each="catalogType : ${T(hhh.mealcatalog.model.MealCatalogType).values()}" th:text="${#strings.capitalize(catalogType.toString().toLowerCase())}" th:value="${catalogType}"></option>
         </select>
-        <p class="text-warning" th:errors="*{type}"></p>
+        <p class="text-warning" th:errors="*{type}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span></p>
       </div>
-      <button type="submit" class="submit-button">Create Catalog</button>
+      <button type="submit" class="submit-button"><i class="fas fa-plus-circle"></i> Create Catalog</button>
     </form>
   </div>
 </div>

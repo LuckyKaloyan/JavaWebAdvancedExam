@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Did You Eat Enough Today?</title>
     <link rel="stylesheet" href="/css/did_you_eat_enough_today.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -29,57 +29,80 @@
 
 <div class="content-container" th:if="${user.dailyCalories!=0}">
     <div class="calories-info">
-        <div class="calories-box">
+        <div class="calories-box consumed">
+            <div class="icon-circle"><i class="fas fa-utensils"></i></div>
             <h3>Calories Consumed</h3>
-            <p th:text="${totalCalories}"></p>
+            <p th:text="${totalCalories} + ' kcal'"></p>
         </div>
-        <div class="calories-box" th:if="${totalCalories<user.dailyCalories}">
+
+        <div class="calories-box remaining" th:if="${totalCalories<user.dailyCalories}">
+            <div class="icon-circle"><i class="fas fa-battery-three-quarters"></i></div>
             <h3>Calories Remaining</h3>
-            <p th:text="${user.dailyCalories}-${totalCalories}"></p>
+            <p th:text="${user.dailyCalories}-${totalCalories} + ' kcal'"></p>
         </div>
-        <div class="calories-box" th:if="${totalCalories>user.dailyCalories}">
-            <h3>Calories Above the needed</h3>
-            <p th:text="${totalCalories}-${user.dailyCalories}"></p>
+
+        <div class="calories-box exceeded" th:if="${totalCalories>user.dailyCalories}">
+            <div class="icon-circle"><i class="fas fa-exclamation-triangle"></i></div>
+            <h3>Calories Exceeded</h3>
+            <p th:text="${totalCalories}-${user.dailyCalories} + ' kcal'"></p>
         </div>
-        <div class="calories-box" th:if="${totalCalories==user.dailyCalories}">
-            <h3>You got exact amount of calories needed!</h3>
+
+        <div class="calories-box perfect" th:if="${totalCalories==user.dailyCalories}">
+            <div class="icon-circle"><i class="fas fa-check-circle"></i></div>
+            <h3>Perfect Balance!</h3>
+            <p>You hit your goal exactly!</p>
         </div>
     </div>
 
     <div class="meals-section">
-        <h2>Meals You Had Today</h2>
+        <h2><i class="fas fa-clipboard-list"></i> Today's Meals</h2>
         <div class="meals-list" th:each="meal, iterStat : ${mealsList}">
             <div class="meal-item">
-                <span th:text="${meal.name}">Meal Name</span>
-                <span th:text="${meal.totalCalories} + ' kcal'">Calories</span>
+                <div class="meal-icon"><i class="fas fa-utensil-spoon"></i></div>
+                <div class="meal-name" th:text="${meal.name}"></div>
+                <div class="meal-calories" th:text="${meal.totalCalories} + ' kcal'"></div>
                 <form th:action="'http://localhost:8081/api/v1/meal_tracker/' + ${user.id}" th:method="DELETE">
                     <input type="hidden" name="mealIndex" th:value="${iterStat.index}"/>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="delete-btn">
+                        <i class="fas fa-trash-alt"></i> Remove
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 
     <div class="add-meal-section">
-        <h2>Add a Meal</h2>
+        <h2><i class="fas fa-plus-circle"></i> Add a Meal</h2>
         <form th:action="'http://localhost:8081/api/v1/meal_tracker/'+${user.id}" th:method="POST">
-            <select name="mealId">
-                <option th:each="meal : ${allMeals}" th:value="${meal.id}" th:text="${meal.name} + ' (' + ${meal.totalCalories} + ' kcal)'"></option>
-            </select>
-            <button type="submit" class="big-button">Add Meal</button>
+            <div class="select-wrapper">
+                <i class="fas fa-chevron-down select-arrow"></i>
+                <select name="mealId">
+                    <option value="" disabled selected>Select a meal...</option>
+                    <option th:each="meal : ${allMeals}" th:value="${meal.id}" th:text="${meal.name} + ' (' + ${meal.totalCalories} + ' kcal)'"></option>
+                </select>
+            </div>
+            <button type="submit" class="add-meal-btn">
+                <i class="fas fa-plus"></i> Add Meal
+            </button>
         </form>
     </div>
 </div>
+
 <div class="content-container" th:if="${user.dailyCalories==0}">
     <div class="calories-info">
-        <div class="calories-box">
+        <div class="calories-box setup">
+            <div class="icon-circle"><i class="fas fa-calculator"></i></div>
+            <h3>Setup Required</h3>
+            <p>Calculate your daily calorie intake first!</p>
             <form th:action="'http://localhost:8080/calculator'" th:method="GET">
-              <p>Calc your daily calorie intake first!</p>
-                <button type="submit" class="big-button">Click ME!</button>
+                <button type="submit" class="setup-btn">
+                    <i class="fas fa-arrow-right"></i> Go to Calculator
+                </button>
             </form>
         </div>
     </div>
-   </div>
+</div>
+
 <footer th:insert="~{fragments/footer :: footer}"></footer>
 
 </body>

@@ -57,10 +57,19 @@
       </div>
       <div class="input-group">
         <label for="picture">Meal Picture</label>
-        <input type="text" id="picture" name="picture" placeholder="Enter meal picture" th:field="*{picture}">
+        <div class="file-upload-wrapper">
+          <input type="text" id="picture" name="picture" placeholder="Enter image URL" th:field="*{picture}">
+        </div>
         <p class="text-warning" th:errors="*{picture}"></p>
       </div>
-      <button type="submit" class="submit-button">Add Meal</button>
+      <div class="button-group">
+        <button type="submit" class="submit-button">
+          <i class="fas fa-plus-circle"></i> Add Meal
+        </button>
+        <button type="button" class="cancel-button" onclick="window.history.back()">
+          <i class="fas fa-times-circle"></i> Cancel
+        </button>
+      </div>
     </form>
   </div>
 </div>

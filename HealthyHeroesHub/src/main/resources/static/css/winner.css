@@ -28,7 +28,6 @@ body {
     line-height: 1.6;
 }
 
-
 .pulse {
     animation: pulse 2s infinite;
 }
@@ -40,77 +39,77 @@ body {
 }
 
 .winner-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+    max-width: 900px; /* Reduced from 1200px */
+    margin: 20px auto; /* Reduced from 40px */
+    padding: 0 15px; /* Reduced from 20px */
     flex: 1;
 }
 
 .winner-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px; /* Reduced from 40px */
 }
 
 .winner-header h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.5rem;
+    font-size: 2rem; /* Reduced from 2.5rem */
     color: var(--gold-color);
-    margin-bottom: 10px;
+    margin-bottom: 8px; /* Reduced from 10px */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px; /* Reduced from 10px */
 }
 
 .winner-header .subtitle {
-    font-size: 1.1rem;
+    font-size: 0.9rem; /* Reduced from 1.1rem */
     color: rgba(255, 255, 255, 0.9);
-    max-width: 600px;
+    max-width: 500px; /* Reduced from 600px */
     margin: 0 auto;
 }
 
 .date-display {
-    font-size: 1.2rem;
+    font-size: 1rem; /* Reduced from 1.2rem */
     color: var(--gold-color);
     font-weight: 600;
-    margin-top: 10px;
+    margin-top: 8px; /* Reduced from 10px */
 }
 
 .no-winner {
     background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
-    border-radius: 15px;
+    padding: 25px; /* Reduced from 40px */
+    border-radius: 12px; /* Reduced from 15px */
     box-shadow: var(--shadow);
     text-align: center;
-    max-width: 600px;
+    max-width: 500px; /* Reduced from 600px */
     margin: 0 auto;
 }
 
 .no-winner i {
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Reduced from 20px */
 }
 
 .no-winner h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 1.3rem; /* Reduced from 1.5rem */
+    margin-bottom: 8px; /* Reduced from 10px */
     color: var(--dark-color);
 }
 
 .no-winner p {
     color: #666;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Reduced from 1.1rem */
 }
 
 .winner-content {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px; /* Reduced from 30px */
 }
 
 .user-winner-section {
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
+    border-radius: 12px; /* Reduced from 15px */
     box-shadow: var(--shadow);
     overflow: hidden;
 }
@@ -123,34 +122,35 @@ body {
 .winner-badge {
     background: linear-gradient(135deg, var(--gold-color), #FFC600);
     color: white;
-    padding: 15px;
+    padding: 12px; /* Reduced from 15px */
     text-align: center;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px; /* Reduced from 10px */
 }
 
 .winner-badge i {
+    font-size: 1.5rem; /* Added to reduce icon size */
     filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
 }
 
 .user-profile {
     display: flex;
-    padding: 30px;
-    gap: 30px;
+    padding: 20px; /* Reduced from 30px */
+    gap: 20px; /* Reduced from 30px */
     align-items: center;
     border-bottom: 1px solid #eee;
 }
 
 .profile-picture {
-    width: 150px;
-    height: 150px;
+    width: 100px; /* Reduced from 150px */
+    height: 100px; /* Reduced from 150px */
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid rgba(255, 215, 0, 0.3);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 4px solid rgba(255, 215, 0, 0.3); /* Reduced from 5px */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Reduced from 4px 10px */
     flex-shrink: 0;
 }
 
@@ -168,7 +168,7 @@ body {
     justify-content: center;
     background: #f0f0f0;
     color: #999;
-    font-size: 5rem;
+    font-size: 3rem; /* Reduced from 5rem */
 }
 
 .user-details {
@@ -177,45 +177,47 @@ body {
 
 .user-details h2 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 2rem;
+    font-size: 1.5rem; /* Reduced from 2rem */
     color: var(--dark-color);
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Reduced from 15px */
 }
 
 .user-stats {
     display: flex;
-    gap: 20px;
-    margin-bottom: 15px;
+    gap: 15px; /* Reduced from 20px */
+    margin-bottom: 10px; /* Reduced from 15px */
     flex-wrap: wrap;
 }
 
 .stat-item {
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-size: 0.9rem;
+    gap: 4px; /* Reduced from 5px */
+    font-size: 0.8rem; /* Reduced from 0.9rem */
     color: #666;
 }
 
 .stat-item i {
     color: var(--primary-color);
+    font-size: 0.9rem; /* Added to standardize icon size */
 }
 
 .user-bio p {
     color: #555;
     font-style: italic;
+    font-size: 0.9rem; /* Added to reduce text size */
 }
 
 .achievement-metrics {
     display: flex;
     background: #f9f9f9;
-    padding: 20px;
+    padding: 15px; /* Reduced from 20px */
 }
 
 .metric {
     flex: 1;
     text-align: center;
-    padding: 10px;
+    padding: 8px; /* Reduced from 10px */
     position: relative;
 }
 
@@ -231,22 +233,22 @@ body {
 }
 
 .metric-value {
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* Reduced from 1.8rem */
     font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 5px;
+    margin-bottom: 4px; /* Reduced from 5px */
 }
 
 .metric-label {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Reduced from 0.9rem */
     color: #666;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px; /* Reduced from 1px */
 }
 
 .meal-winner-section {
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
+    border-radius: 12px; /* Reduced from 15px */
     box-shadow: var(--shadow);
     overflow: hidden;
 }
@@ -259,37 +261,37 @@ body {
 .meal-header {
     background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
     color: white;
-    padding: 15px;
+    padding: 12px; /* Reduced from 15px */
     text-align: center;
 }
 
 .meal-header h2 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.8rem;
-    margin-bottom: 5px;
+    font-size: 1.5rem; /* Reduced from 1.8rem */
+    margin-bottom: 4px; /* Reduced from 5px */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px; /* Reduced from 10px */
 }
 
 .meal-header .meal-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Reduced from 0.9rem */
     opacity: 0.9;
 }
 
 .meal-content {
     display: flex;
-    padding: 30px;
-    gap: 30px;
+    padding: 20px; /* Reduced from 30px */
+    gap: 20px; /* Reduced from 30px */
 }
 
 .meal-image {
     flex: 1;
-    max-width: 400px;
-    border-radius: 10px;
+    max-width: 300px; /* Reduced from 400px */
+    border-radius: 8px; /* Reduced from 10px */
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Reduced from 4px 10px */
 }
 
 .meal-image img {
@@ -311,84 +313,87 @@ body {
 
 .meal-details h3 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* Reduced from 1.8rem */
     color: var(--dark-color);
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* Reduced from 15px */
 }
 
 .meal-description {
     color: #555;
-    margin-bottom: 20px;
-    line-height: 1.7;
+    margin-bottom: 15px; /* Reduced from 20px */
+    line-height: 1.6; /* Reduced from 1.7 */
+    font-size: 0.9rem; /* Added to reduce text size */
 }
 
 .nutrition-facts {
     display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 12px; /* Reduced from 15px */
+    margin-bottom: 20px; /* Reduced from 25px */
     flex-wrap: wrap;
 }
 
 .nutrition-item {
     background: #f5f5f5;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 12px; /* Reduced from 15px */
+    border-radius: 6px; /* Reduced from 8px */
     text-align: center;
-    min-width: 100px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    min-width: 80px; /* Reduced from 100px */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Reduced from 5px */
 }
 
 .nutrition-value {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Reduced from 1.5rem */
     font-weight: 700;
     color: var(--secondary-dark);
 }
 
 .nutrition-label {
-    font-size: 0.8rem;
+    font-size: 0.7rem; /* Reduced from 0.8rem */
     color: #666;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 5px;
+    letter-spacing: 0.5px; /* Reduced from 1px */
+    margin-top: 4px; /* Reduced from 5px */
 }
 
 .meal-stats {
     display: flex;
-    gap: 20px;
-    margin-bottom: 25px;
+    gap: 15px; /* Reduced from 20px */
+    margin-bottom: 20px; /* Reduced from 25px */
     flex-wrap: wrap;
 }
 
 .stat {
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-size: 0.9rem;
+    gap: 4px; /* Reduced from 5px */
+    font-size: 0.8rem; /* Reduced from 0.9rem */
     color: #666;
     background: #f5f5f5;
-    padding: 8px 12px;
-    border-radius: 20px;
+    padding: 6px 10px; /* Reduced from 8px 12px */
+    border-radius: 15px; /* Reduced from 20px */
 }
 
 .stat i {
     color: var(--primary-color);
+    font-size: 0.9rem; /* Added to standardize icon size */
 }
 
 .meal-actions {
     display: flex;
-    gap: 15px;
+    gap: 12px; /* Reduced from 15px */
     margin-top: auto;
 }
 
 .view-button, .profile-button {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
-    border-radius: 8px;
+    gap: 6px; /* Reduced from 8px */
+    padding: 10px 16px; /* Reduced from 12px 20px */
+    border-radius: 6px; /* Reduced from 8px */
     font-weight: 600;
     text-decoration: none;
     transition: var(--transition);
+    font-size: 0.9rem; /* Added to reduce text size */
 }
 
 .view-button {

@@ -1,6 +1,7 @@
 package hhh.upvote.service;
 import hhh.exception.AlreadyUpVotedException;
 import hhh.exception.BadInputException;
+import hhh.exception.NoUpVotesException;
 import hhh.meal.model.Meal;
 import hhh.meal.service.MealService;
 import hhh.upvote.model.UpVote;
@@ -137,7 +138,7 @@ public class UpVoteService {
 
     public Meal topMealByUpVote (){
         if(upVoteRepository.findMealWithMostUpvotes().isEmpty()){
-            throw new BadInputException("There are no meals yet... probably!");
+            throw new NoUpVotesException("There are no UpVotes yet... probably!");
         }else {
             return upVoteRepository.findMealWithMostUpvotes().get();
         }

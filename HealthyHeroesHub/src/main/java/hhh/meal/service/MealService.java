@@ -80,7 +80,6 @@ public class MealService {
                 .mealCatalog(mealCatalog)
                 .owner(mealCatalog.getOwner())
                 .build();
-
         if(meal.getPicture().isBlank() && meal.getPicture().isEmpty()){
             meal.setPicture("https://www.shutterstock.com/image-vector/eating-icon-vector-spoon-plate-600nw-1509460529.jpg");
         }

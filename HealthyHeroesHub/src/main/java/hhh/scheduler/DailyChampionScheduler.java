@@ -22,7 +22,7 @@ public class DailyChampionScheduler {
         this.upVoteService = upVoteService;
         this.winnerService = winnerService;
     }
-    @Scheduled(cron = "0 0 12 * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     public void cleanUp() {
         Meal meal = upVoteService.topMealByUpVote();
         User user = meal.getOwner();

@@ -10,6 +10,7 @@ import hhh.winner.service.WinnerService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -53,7 +54,7 @@ public class IndexController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("register");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        modelAndView.addObject("isAuthenticated", auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal()));
+        modelAndView.addObject("isAuthenticated", auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken));
         modelAndView.addObject("registerRequest", registerRequest);
         return modelAndView;
     }
@@ -64,6 +65,8 @@ public class IndexController {
         if(result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("register");
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            modelAndView.addObject("isAuthenticated", auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken));
             modelAndView.addObject("registerRequest", registerRequest);
             return modelAndView;
         }

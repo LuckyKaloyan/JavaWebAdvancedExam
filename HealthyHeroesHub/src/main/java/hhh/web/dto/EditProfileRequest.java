@@ -1,5 +1,6 @@
 package hhh.web.dto;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,14 +17,15 @@ public class EditProfileRequest {
 
 
     @Size(min = 2, max = 20, message = "First name length must be between 2 and 20 characters (including 2 and 20).")
+    @Pattern(regexp = "^[A-Z][a-z]+$", message = "First name must start with a capital letter and contain only latin letters.")
     private String firstName;
 
     @Size(min = 2, max = 20, message = "Last name length must be between 2 and 20 characters (including 2 and 20).")
+    @Pattern(regexp = "^[A-Z][a-z]+$", message = "Last name must start with a capital letter and contain only latin letters.")
     private String lastName;
 
 
-    @Email(message = "Please enter a valid email address.")
-    @Size(min = 5, max = 100, message = "Email must be between 5 and 100 characters long.")
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]{2,64}@[A-Za-z0-9.-]+\\.[a-z]{1,10}$", message = "Please enter a valid Email address!")
     private String email;
 
     @URL(message = "Must contain a valid URL.")

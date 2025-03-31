@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="/css/calculator.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -29,44 +29,68 @@
 
 <div class="calculator-container">
     <div class="calculator-box">
-        <h2>Create your Calorie Profile</h2>
-
+        <div class="calculator-header">
+            <h2><i class="fas fa-calculator"></i> Create your Calorie Profile</h2>
+            <p class="subtitle">Fill in your details to calculate your daily calorie needs</p>
+        </div>
 
         <form class="calculator-form" th:action="@{'/calculator'}" th:method="POST" th:object="${calculatorRequest}">
             <div class="input-group">
-                <label for="weight">Weight(KG)</label>
-                <input type="text" id="weight" name="weight" placeholder="Enter your weight" th:field="*{weight}"  />
+                <label for="weight"><i class="fas fa-weight"></i> Weight (KG)</label>
+                <div class="input-with-icon">
+                    <input type="number" id="weight" name="weight" placeholder="0.0" step="0.1" th:field="*{weight}" />
+                    <i class="fas fa-balance-scale"></i>
+                </div>
                 <p class="text-warning" th:errors="*{weight}"></p>
             </div>
 
             <div class="input-group">
-                <label for="height">Height(cm)</label>
-                <input type="text" id="height" name="height" placeholder="Enter your height" th:field="*{height}"  />
+                <label for="height"><i class="fas fa-ruler-vertical"></i> Height (cm)</label>
+                <div class="input-with-icon">
+                    <input type="number" id="height" name="height" placeholder="0" th:field="*{height}" />
+                    <i class="fas fa-arrows-alt-v"></i>
+                </div>
                 <p class="text-warning" th:errors="*{height}"></p>
             </div>
 
             <div class="input-group">
-                <label for="age">Age(years)</label>
-                <input type="text" id="age" name="age" placeholder="Enter your age" th:field="*{age}" required/>
+                <label for="age"><i class="fas fa-birthday-cake"></i> Age (years)</label>
+                <div class="input-with-icon">
+                    <input type="number" id="age" name="age" placeholder="0" th:field="*{age}" required/>
+                    <i class="fas fa-user-clock"></i>
+                </div>
                 <p class="text-warning" th:errors="*{age}"></p>
             </div>
 
             <div class="input-group">
-                <label for="activityLevel">Activity Level:</label>
-                <select id="activityLevel" name="activityLevel" required>
-                    <option  th:each="activityLevel : ${T(hhh.calculator.Activity).values()}" th:text="${#strings.capitalize(activityLevel.toString().toLowerCase())}" th:value="${activityLevel}"></option>
-                    <p class="text-warning" th:errors="*{activityLevel}"></p>
-                </select>
+                <label for="activityLevel"><i class="fas fa-running"></i> Activity Level:</label>
+                <div class="select-wrapper">
+                    <select id="activityLevel" name="activityLevel" required>
+                        <option th:each="activityLevel : ${T(hhh.calculator.Activity).values()}"
+                                th:text="${#strings.capitalize(activityLevel.toString().toLowerCase())}"
+                                th:value="${activityLevel}"></option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <p class="text-warning" th:errors="*{activityLevel}"></p>
             </div>
 
             <div class="input-group">
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option  th:each="gender : ${T(hhh.calculator.Gender).values()}" th:text="${#strings.capitalize(gender.toString().toLowerCase())}" th:value="${gender}"></option>
-                    <p class="text-warning" th:errors="*{gender}"></p>
-                </select>
+                <label for="gender"><i class="fas fa-venus-mars"></i> Gender:</label>
+                <div class="select-wrapper">
+                    <select id="gender" name="gender" required>
+                        <option th:each="gender : ${T(hhh.calculator.Gender).values()}"
+                                th:text="${#strings.capitalize(gender.toString().toLowerCase())}"
+                                th:value="${gender}"></option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <p class="text-warning" th:errors="*{gender}"></p>
             </div>
-            <button type="submit" class="submit-button">Save Changes</button>
+
+            <button type="submit" class="submit-button">
+                <i class="fas fa-save"></i> Save Changes
+            </button>
         </form>
     </div>
 </div>

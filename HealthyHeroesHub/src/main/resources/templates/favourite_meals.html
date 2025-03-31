@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meal Catalog</title>
+    <title>Favourite Meals</title>
     <link rel="stylesheet" href="/css/favourite_meals.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -28,32 +28,33 @@
 
 <div class="catalog-container">
     <div class="box" th:if="${user.getFavouriteMeals().size() == 0}">
-        <h3>You dont have Favourite Meals... yet!</h3>
-        </div>
+        <h3><i class="fas fa-heart-broken" style="color: #ff5722;"></i> You don't have Favourite Meals... yet! <i class="fas fa-heart-broken" style="color: #ff5722;"></i></h3>
+        <p><i class="fas fa-lightbulb"></i> Start exploring meals and add them to your favorites!</p>
+    </div>
     <div class="box" th:if="${user.getFavouriteMeals().size() > 0}">
         <div class="box-content">
-            <h3>Favourite Meals</h3>
+            <h3><i class="fas fa-heart" style="color: #ff5722;"></i> Favourite Meals <i class="fas fa-heart" style="color: #ff5722;"></i></h3>
             <table class="meal-table">
                 <thead>
                 <tr>
-                    <th>Meal Name</th>
-                    <th>Owner</th>
-                    <th>Description</th>
-                    <th>Actions</th>
+                    <th><i class="fas fa-utensils"></i> Meal Name</th>
+                    <th><i class="fas fa-user"></i> Owner</th>
+                    <th><i class="fas fa-align-left"></i> Description</th>
+                    <th><i class="fas fa-cogs"></i> Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="favouriteMeal : ${user.getFavouriteMeals()}">
-                    <td th:text="${favouriteMeal.meal.name}"></td>
-                    <td th:text="${favouriteMeal.meal.owner.username}"></td>
-                    <td th:text="${favouriteMeal.meal.description}"></td>
+                    <td><i class="fas fa-hamburger"></i> <span th:text="${favouriteMeal.meal.name}"></span></td>
+                    <td><i class="fas fa-user-tag"></i> <span th:text="${favouriteMeal.meal.owner.username}"></span></td>
+                    <td><i class="fas fa-comment-alt"></i> <span th:text="${favouriteMeal.meal.description}"></span></td>
                     <td class="actions">
                         <a th:href="@{'/meal_catalogs/meal/' + ${favouriteMeal.meal.id}}">
-                            <button class="btn btn-open">Open</button>
+                            <button class="btn btn-open"><i class="fas fa-external-link-alt"></i> Open</button>
                         </a>
                         <form th:action="@{'/meal_catalogs/meals/remove_from_favourite/' + ${favouriteMeal.id}}" th:method="POST" class="delete-form">
                             <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger">Remove</button>
+                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i> Remove</button>
                         </form>
                     </td>
                 </tr>
