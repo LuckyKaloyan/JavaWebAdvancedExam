@@ -1,5 +1,4 @@
 package hhh.web;
-
 import hhh.security.AuthenticationDetails;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
@@ -61,7 +60,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}/deleted")
-    public ModelAndView confirmedDeletionUser(@PathVariable UUID id, HttpSession session) {
+    public ModelAndView confirmDeleteUser(@PathVariable UUID id, HttpSession session) {
         userService.deleteUser(id);
         ModelAndView modelAndView = new ModelAndView();
         session.invalidate();

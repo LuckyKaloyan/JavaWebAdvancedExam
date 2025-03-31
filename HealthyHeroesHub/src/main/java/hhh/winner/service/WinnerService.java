@@ -1,5 +1,6 @@
 package hhh.winner.service;
 
+import hhh.exception.BadInputException;
 import hhh.meal.model.Meal;
 import hhh.user.model.User;
 import hhh.winner.model.Winner;
@@ -18,6 +19,12 @@ public class WinnerService {
     }
 
     public void newWinner(User user, Meal meal){
+        if(user == null){
+            throw new BadInputException("User ID cannot be null");
+        }
+        if(meal == null){
+            throw new BadInputException("Meal cannot be null");
+        }
         Winner winner = Winner.builder()
                 .meal(meal)
                 .user(user)

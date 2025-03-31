@@ -41,7 +41,7 @@ public class AdminPanelController {
     }
 
     @GetMapping
-    public ModelAndView adminPanel() {
+    public ModelAndView getAdminPanel() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin_panel");
         return modelAndView;
@@ -56,7 +56,7 @@ public class AdminPanelController {
         return modelAndView;
     }
     @PatchMapping("/user_management/change_role/{id}")
-    public ModelAndView changeRole(@PathVariable UUID id) {
+    public ModelAndView patchChangeRole(@PathVariable UUID id) {
         ModelAndView modelAndView = new ModelAndView();
         List<User> users = userService.getAll();
         modelAndView.addObject("users", users);

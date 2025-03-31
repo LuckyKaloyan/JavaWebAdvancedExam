@@ -1,6 +1,4 @@
 package hhh.web.dto;
-
-
 import hhh.mealcatalog.model.MealCatalogType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

@@ -186,20 +186,6 @@ public class MealService {
         return mealRepository.findTop20ByOrderByUpVotesDesc();
     }
 
-    public void mealOfTheHour() {
-        Meal topMeal = mealRepository.findTop1ByOrderByUpVotesDesc();
-        MealOfTheHour meal = Mapper.toMealOfTheDay(topMeal);
-        mealOfTheHourRepository.deleteAll();
-        mealOfTheHourRepository.save(meal);
-    }
-    public Meal getTopMeal(){
-        return mealRepository.findTop1ByOrderByUpVotesDesc();
-    }
-    public MealOfTheHour getMealOfTheHour() {
-
-        return mealOfTheHourRepository.findFirstBy();
-    }
-
     public List<Meal> mealsList(List<UUID> ids) {
         List<Meal> meals = mealRepository.findAllById(ids);
         Map<UUID, Meal> mealMap = meals.stream().collect(Collectors.toMap(Meal::getId, meal -> meal));

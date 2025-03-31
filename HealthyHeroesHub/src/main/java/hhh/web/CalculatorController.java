@@ -41,7 +41,6 @@ public class CalculatorController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("calculatorRequest",calculatorRequest);
         modelAndView.setViewName("calculator");
-
         return modelAndView;
     }
     @PostMapping()
@@ -60,13 +59,15 @@ public class CalculatorController {
         userService.setDailyCalories(authenticationDetails.getId(), dailyCalories);
      return new ModelAndView("redirect:/calculator/results");
     }
+
     @PostMapping("/increase")
-    public String increaseDailyIntake(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+    public String postIncreaseDailyIntake(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
         userService.increaseDailyCalories500(authenticationDetails.getId());
         return "redirect:/calculator/results";
     }
+
     @PostMapping("/decrease")
-    public String decreaseDailyIntake(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+    public String postDecreaseDailyIntake(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
         userService.decreaseDailyCalories500(authenticationDetails.getId());
         return "redirect:/calculator/results";
     }
@@ -96,7 +97,7 @@ public class CalculatorController {
 
 
     @PostMapping("/chooseMeal")
-    public String addMealToUser(@AuthenticationPrincipal AuthenticationDetails authenticationDetails, @RequestParam UUID mealId) {
+    public String postMealToUser(@AuthenticationPrincipal AuthenticationDetails authenticationDetails, @RequestParam UUID mealId) {
         mealTrackingService.addMealToUser(authenticationDetails.getId(), mealId);
         return "redirect:/did_you_eat_enough_today";
     }

@@ -60,7 +60,7 @@ public class IndexController {
     }
 
     @PostMapping("/register")
-    public ModelAndView registerNewUser(@Valid RegisterRequest registerRequest, BindingResult result) {
+    public ModelAndView postRegister(@Valid RegisterRequest registerRequest, BindingResult result) {
 
         if(result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView();
@@ -134,7 +134,7 @@ public class IndexController {
     }
 
     @GetMapping("/winner")
-    public ModelAndView getWinners(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+    public ModelAndView getWinner(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("winner", winnerService.getTheWinner());
         modelAndView.setViewName("winner");

@@ -27,7 +27,7 @@ public class ReportController {
         this.userService = userService;
     }
     @GetMapping("/my_reports")
-    public ModelAndView showReports(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+    public ModelAndView getReports(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.getById(authenticationDetails.getId());
         modelAndView.addObject("user", user);
@@ -37,7 +37,6 @@ public class ReportController {
 
     @GetMapping("/create_new_report")
     public ModelAndView getNewReport(ReportRequest reportRequest){
-
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("create_new_report");
         modelAndView.addObject("reportRequest", reportRequest);

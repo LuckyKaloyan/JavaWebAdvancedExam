@@ -41,7 +41,6 @@ public class MealCatalogController {
         this.mealService = mealService;
         this.upVoteService = upVoteService;
         this.commentService = commentService;
-
     }
 
     @GetMapping("/create_new_catalog")
@@ -133,58 +132,6 @@ public class MealCatalogController {
 
     @GetMapping("/meal/{id}")
     public ModelAndView getMeal(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, CommentRequest commentRequest) {
-        return getModelAndView(id, authenticationDetails, commentRequest);
-    }
-    @DeleteMapping("{id1}/meal/delete/{id2}")
-    public String deleteMeal(@PathVariable UUID id1, @PathVariable UUID id2) {
-        mealService.deleteMealById(id2);
-        return "redirect:/meal_catalogs/" + id1;
-    }
-
-    @PostMapping("/meals/add_to_favourite/{id}")
-    public ModelAndView addFavourite(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
-        mealService.addFavouriteMeal(id,authenticationDetails.getId());
-        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
-    }
-
-    @PostMapping("meals/up_vote/{id}")
-    public ModelAndView upVote(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
-        upVoteService.upVote(id,authenticationDetails.getId());
-        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
-    }
-    @DeleteMapping("meals/up_vote/{id}")
-    public ModelAndView downVote(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
-        upVoteService.downVote(id,authenticationDetails.getId());
-        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
-    }
-    @DeleteMapping("/meals/unfavourite/{id}")
-    public ModelAndView unFavourite(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
-        mealService.unFavouriteMeal(id,authenticationDetails.getId());
-        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
-    }
-    @DeleteMapping("/meals/remove_from_favourite/{id}")
-    public ModelAndView removeFavourite(@PathVariable UUID id) {
-        mealService.deleteFavouriteMeal(id);
-        return new ModelAndView("redirect:/home");
-    }
-
-    @PostMapping("/meal/{id}/add_comment")
-    public ModelAndView postComment(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, @Valid CommentRequest commentRequest, BindingResult result){
-        if(result.hasErrors()) {
-            return getModelAndView(id, authenticationDetails, commentRequest);
-        }else {
-            commentService.createComment(commentRequest.getText(),authenticationDetails.getId(),id);
-            return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
-        }
-    }
-
-    @DeleteMapping("/meal/{id}/delete_comment/{id2}")
-    public ModelAndView deleteComment(@PathVariable UUID id, @PathVariable UUID id2) {
-        commentService.deleteCommentById(id2);
-        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
-    }
-
-    private ModelAndView getModelAndView(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, @Valid CommentRequest commentRequest) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("meal");
         Meal meal = mealService.getMealById(id);
@@ -195,6 +142,63 @@ public class MealCatalogController {
         modelAndView.addObject("hasVoted", upVoteService.hasUserUpVoted(id,authenticationDetails.getId()));
         modelAndView.addObject("isFavourite", mealService.isFavourite(id,authenticationDetails.getId()));
         return modelAndView;
+    }
+    @DeleteMapping("{id1}/meal/delete/{id2}")
+    public String deleteMeal(@PathVariable UUID id1, @PathVariable UUID id2) {
+        mealService.deleteMealById(id2);
+        return "redirect:/meal_catalogs/" + id1;
+    }
+
+    @PostMapping("/meals/add_to_favourite/{id}")
+    public ModelAndView postFavourite(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+        mealService.addFavouriteMeal(id,authenticationDetails.getId());
+        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
+    }
+
+    @PostMapping("meals/up_vote/{id}")
+    public ModelAndView postUpVote(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+        upVoteService.upVote(id,authenticationDetails.getId());
+        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
+    }
+    @DeleteMapping("meals/up_vote/{id}")
+    public ModelAndView deleteUpVote(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+        upVoteService.downVote(id,authenticationDetails.getId());
+        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
+    }
+    @DeleteMapping("/meals/unfavourite/{id}")
+    public ModelAndView deleteFavouriteToMeal(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+        mealService.unFavouriteMeal(id,authenticationDetails.getId());
+        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
+    }
+    @DeleteMapping("/meals/remove_from_favourite/{id}")
+    public ModelAndView removeFavouriteToHome(@PathVariable UUID id) {
+        mealService.deleteFavouriteMeal(id);
+        return new ModelAndView("redirect:/home");
+    }
+
+    @PostMapping("/meal/{id}/add_comment")
+    public ModelAndView postComment(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, @Valid CommentRequest commentRequest, BindingResult result){
+        if(result.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("meal");
+            Meal meal = mealService.getMealById(id);
+            User user = userService.getById(authenticationDetails.getId());
+            modelAndView.addObject("user", user);
+            modelAndView.addObject("meal", meal);
+            modelAndView.addObject("commentRequest", commentRequest);
+            modelAndView.addObject("hasVoted", upVoteService.hasUserUpVoted(id,authenticationDetails.getId()));
+            modelAndView.addObject("isFavourite", mealService.isFavourite(id,authenticationDetails.getId()));
+            return modelAndView;
+        }else {
+            commentService.createComment(commentRequest.getText(),authenticationDetails.getId(),id);
+            return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
+        }
+    }
+
+    @DeleteMapping("/meal/{id}/delete_comment/{id2}")
+    public ModelAndView deleteComment(@PathVariable UUID id, @PathVariable UUID id2) {
+        commentService.deleteCommentById(id2);
+        return new ModelAndView("redirect:/meal_catalogs/meal/"+id);
     }
 
 

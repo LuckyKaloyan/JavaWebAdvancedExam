@@ -68,7 +68,7 @@
           <strong th:text="${comment.user.username}"></strong>: <span th:text="${comment.text}"></span>
         </div>
         <div th:if="${comment.user == user}" class="comment-actions">
-          <form th:action="@{'/meal/'+${meal.id}+'/delete_comment/'+${comment.id}}" th:method="DELETE">
+          <form th:action="@{'meal_catalogs/meal/'+${meal.id}+'/delete_comment/'+${comment.id}}" th:method="DELETE">
             <button type="submit" class="icon-button delete-comment-button">
               <i class="fas fa-trash"></i>
             </button>
