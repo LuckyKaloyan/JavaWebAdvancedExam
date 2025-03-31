@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
@@ -11,18 +12,11 @@
 <header>
     <nav>
         <div class="logo">
-            <a th:if="${isAuthenticated}" th:href="@{/home}">HHH Home</a>
-            <a th:if="${!isAuthenticated}" th:href="@{/}">Healthy Heroes Hub</a>
-        </div>
-        <div class="logo" th:if="${isAuthenticated}">
-            <a th:href="@{/leaderboard}">
-                <i class="fas fa-trophy"></i>LIVE Leaderboard <i class="fas fa-trophy"></i>
-            </a>
+            <a th:href="@{/}">Healthy Heroes Hub</a>
         </div>
         <ul>
-            <li th:unless="${isAuthenticated}"><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
-            <li th:unless="${isAuthenticated}"><a th:href="@{/register}"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
-            <li><a th:if="${isAuthenticated}" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            <li><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+            <li><a th:href="@{/register}"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
             <li><a th:href="@{/info}"><i class="fas fa-info-circle"></i> Info</a></li>
         </ul>
     </nav>
@@ -30,25 +24,34 @@
 
 <div class="login-container">
     <div class="login-box">
-        <h2>Login</h2>
-        <p th:if="${isAuthenticated}" >If you log in successfully you will be logged out from the current account and logged in to the new one!</p>
+        <div class="login-header">
+            <h2><i class="fas fa-user-circle"></i> Login</h2>
+            <div class="underline"></div>
+        </div>
+        <p th:if="${isAuthenticated}" class="warning-message"><i class="fas fa-exclamation-triangle"></i> If you log in successfully you will be logged out from the current account!</p>
         <div th:if="${param.error}" class="error-message">
-            <p>WRONG USERNAME OR PASSWORD</p>
+            <p><i class="fas fa-exclamation-circle"></i> WRONG USERNAME OR PASSWORD</p>
         </div>
 
         <form th:action="@{/login}" method="POST" th:object="${loginRequest}">
             <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" placeholder="Username" id="username" name="username" th:field="*{username}">
+                <label for="username"><i class="fas fa-user"></i> Username</label>
+                <input type="text" placeholder="Enter your username" id="username" name="username" th:field="*{username}">
                 <p class="text-warning" th:errors="*{username}"></p>
             </div>
             <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" placeholder="Password" id="password" name="password" th:field="*{password}">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" placeholder="Enter your password" id="password" name="password" th:field="*{password}">
                 <p class="text-warning" th:errors="*{password}"></p>
             </div>
-            <button type="submit" class="login-button">Login</button>
+            <button type="submit" class="login-button">
+                <span>Login</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
         </form>
+        <div class="login-footer">
+            <p>New here? <a th:href="@{/register}" class="register-link">Create an account</a></p>
+        </div>
     </div>
 </div>
 

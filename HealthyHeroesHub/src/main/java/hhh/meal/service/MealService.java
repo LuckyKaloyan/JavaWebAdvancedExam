@@ -92,12 +92,8 @@ public class MealService {
     }
 
     public void deleteMealById(UUID id) {
-        try {
-            mealRepository.deleteById(id);
-            ResponseEntity<Void> response = mealTrackingClient.removeMealFromAllUsers(id);
-        } catch (Exception e) {
-            throw new BadInputException("Failed to delete meal from all users");
-        }
+        mealRepository.deleteById(id);
+        ResponseEntity<Void> response = mealTrackingClient.removeMealFromAllUsers(id);
     }
 
 

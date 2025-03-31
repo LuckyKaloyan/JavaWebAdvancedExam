@@ -85,122 +85,175 @@ footer {
     letter-spacing: 1px;
 }
 
-button {
-    background-color: #ff5722;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
 }
 
-button:hover {
-    background-color: #e64a19;
-    transform: scale(1.05);
-}
-
-button:focus {
-    outline: none;
-}
-
-.container {
+.section-container {
+    width: 85%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
-    color: #333;
+    margin-bottom: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 2.5rem;
+    transition: transform 0.3s ease;
+}
+
+.section-container:hover {
+    transform: translateY(-5px);
 }
 
 h1 {
+    color: #ff5722;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
     text-align: center;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: #ff5722;
+    margin: 0.5rem auto;
+    border-radius: 2px;
+}
+
+h2 {
+    color: #ff5722;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.faq {
+    background: #f9f9f9;
+    border-left: 4px solid #ff5722;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.faq h3 {
     color: #333;
-    margin-bottom: 30px;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.faq p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.rules-section {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.rules-table th, .rules-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.rules-table th {
+    background-color: #ff5722;
+    color: white;
+    font-weight: bold;
+}
+
+.rules-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.rules-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.rules-table td:first-child {
+    font-weight: bold;
+    color: #333;
+    width: 25%;
+}
+
+.rules-table td:last-child {
+    color: #555;
 }
 
 .contact-card {
     display: flex;
     justify-content: space-around;
-    margin-top: 30px;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
-.contact-card .card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    padding: 20px;
+.card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
     text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-card .card img {
-    border-radius: 50%;
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
     width: 150px;
     height: 150px;
+    border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
+    border: 5px solid #ff5722;
+    margin-bottom: 1.5rem;
 }
 
-.contact-card .card h2 {
-    margin: 10px 0;
-    color: orangered;
-}
-
-.contact-card .card p {
-    margin: 5px 0;
-    color: orangered;
-}
-
-.contact-card .card .email,
-.contact-card .card .phone {
-    font-size: 1.1em;
-}
-
-.faq-section, .rules-section {
-    margin-top: 20px;
-}
-
-.faq-section h2, .rules-section h2 {
-    color: #ff5722;
-    margin-bottom: 20px;
-}
-
-.faq h3 {
-    color: #ff5722;
-    margin-bottom: 10px;
-}
-
-.faq p {
+.card h2 {
     color: #333;
-    line-height: 1.6;
+    margin-bottom: 1rem;
+    justify-content: center;
 }
 
-.rules-section ul {
-    list-style-type: disc;
-    padding-left: 20px;
+.card p {
+    color: #666;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-.rules-section li {
-    margin-bottom: 10px;
-    color: #333;
-    line-height: 1.6;
-}
-
-a {
-    color: inherit;
+.card a {
+    color: #ff5722;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-a:visited {
-    color: inherit;
-}
-
-a:hover {
-    color: #007BFF;
+.card a:hover {
+    color: #e64a19;
+    text-decoration: underline;
 }
