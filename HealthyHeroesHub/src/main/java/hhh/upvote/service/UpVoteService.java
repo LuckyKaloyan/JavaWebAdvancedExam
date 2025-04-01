@@ -137,10 +137,10 @@ public class UpVoteService {
     }
 
     public Meal topMealByUpVote (){
-        if(upVoteRepository.findMealWithMostUpvotes().isEmpty()){
+        if(upVoteRepository.findMealWithMostUpVotes().isEmpty()){
             throw new NoUpVotesException("There are no UpVotes yet... probably!");
         }else {
-            return upVoteRepository.findMealWithMostUpvotes().get();
+            return upVoteRepository.findMealWithMostUpVotes().get();
         }
     }
 }

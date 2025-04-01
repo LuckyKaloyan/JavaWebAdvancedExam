@@ -4,14 +4,13 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url('https://blog-assets.lightspeedhq.com/img/2020/05/44962488-food-safety-how-to-prevent-hygiene-violations.png') no-repeat center center fixed;
+    url('https://static.vecteezy.com/system/resources/previews/023/915/233/non_2x/technology-background-data-shows-the-transmission-of-large-amounts-of-data-through-an-efficient-network-system-to-send-data-to-the-receiver-anytime-and-quickly-technology-that-people-widely-use-vector.jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
     min-height: 100vh;
     backdrop-filter: blur(2px);
 }
 
-/* Glassmorphism container */
 .dashboard-container {
     display: flex;
     padding: 20px;
@@ -19,7 +18,6 @@ body {
     min-height: 75vh;
 }
 
-/* Fancy sidebar with glass effect */
 .sidebar {
     width: 280px;
     background: rgba(255, 255, 255, 0.08);
@@ -53,7 +51,6 @@ body {
     border-radius: 3px;
 }
 
-/* Modern menu items */
 .menu-item {
     background: rgba(255, 255, 255, 0.1);
     padding: 15px 20px;
@@ -97,7 +94,6 @@ body {
     left: 100%;
 }
 
-/* Content area with glass effect */
 .content {
     flex-grow: 1;
     padding: 25px;
@@ -110,23 +106,20 @@ body {
     min-height: 65vh;
 }
 
-/* Card grid with hover effects */
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); /* Double width (was ~250px) */
-    gap: 30px; /* Increase gap to separate wider cards */
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 30px;
 }
 
-/* Card styling - preserve effects but adjust sizing */
 .card {
-    min-width: 500px; /* Double width */
+    min-width: 500px;
     background: rgba(0, 0, 0, 0.3);
-    padding: 30px; /* Increased padding */
+    padding: 30px;
     border-radius: 16px;
     transition: all 0.4s ease;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Keep your hover effects and other styles */
 }
 
 .card::after {

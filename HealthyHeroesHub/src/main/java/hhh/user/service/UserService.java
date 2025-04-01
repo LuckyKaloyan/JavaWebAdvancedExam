@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
     @Autowired
     public UserService(UserRepository userRepository , PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.passwordEncoder = new BCryptPasswordEncoder();
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void createDefaultAdmin(){

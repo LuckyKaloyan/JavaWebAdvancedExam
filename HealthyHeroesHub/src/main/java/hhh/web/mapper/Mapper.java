@@ -26,12 +26,4 @@ public class Mapper {
                 .description(mealCatalog.getDescription())
                 .build();
     }
-    public static MealOfTheHour toMealOfTheDay(Meal meal) {
-        return MealOfTheHour.builder()
-                .name(meal.getName())
-                .description(meal.getDescription())
-                .mealId(meal.getId())
-                .upVotes(meal.getUpVotes().size())
-                .build();
-    }
 }

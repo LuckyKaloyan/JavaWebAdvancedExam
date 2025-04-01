@@ -16,6 +16,6 @@ public interface UpVoteRepository extends JpaRepository<UpVote, UUID> {
     Optional<UpVote> findByMealAndUser(Meal meal, User user);
     List<UpVote> findByDateAfter(LocalDate oneYearAgo);
     @Query("SELECT u.meal FROM UpVote u GROUP BY u.meal ORDER BY COUNT(u) DESC LIMIT 1")
-    Optional<Meal> findMealWithMostUpvotes();
+    Optional<Meal> findMealWithMostUpVotes();
 
 }

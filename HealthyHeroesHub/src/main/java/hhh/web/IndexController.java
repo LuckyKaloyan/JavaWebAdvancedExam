@@ -26,17 +26,13 @@ public class IndexController {
 
     private final UserService userService;
     private final MealCatalogService mealCatalogService;
-    private final MealService mealService;
-    private final WinnerService winnerService;
 
 
 
     @Autowired
-    public IndexController(UserService userService, MealCatalogService mealCatalogService, MealService mealService, WinnerService winnerService) {
+    public IndexController(UserService userService, MealCatalogService mealCatalogService) {
         this.userService = userService;
         this.mealCatalogService = mealCatalogService;
-        this.mealService = mealService;
-        this.winnerService = winnerService;
     }
 
 
@@ -114,31 +110,4 @@ public class IndexController {
         modelAndView.addObject("isAuthenticated", auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal()));
         return modelAndView;
     }
-    @GetMapping("/favourite_meals")
-    public ModelAndView getFavouriteMeals(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("favourite_meals");
-        User user = userService.getById(authenticationDetails.getId());
-        modelAndView.addObject("user", user);
-        return modelAndView;
-    }
-
-    @GetMapping("/leaderboard")
-    public ModelAndView getLeaderboard(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("leaderboard");
-        User user = userService.getById(authenticationDetails.getId());
-        modelAndView.addObject("user", user);
-        modelAndView.addObject("top20meals", mealService.getTop20Meals());
-        return modelAndView;
-    }
-
-    @GetMapping("/winner")
-    public ModelAndView getWinner(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("winner", winnerService.getTheWinner());
-        modelAndView.setViewName("winner");
-        return modelAndView;
-    }
-
 }

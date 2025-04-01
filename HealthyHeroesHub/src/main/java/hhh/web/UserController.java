@@ -4,6 +4,7 @@ import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.EditProfileRequest;
 import hhh.web.mapper.Mapper;
+import hhh.winner.service.WinnerService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,12 @@ import java.util.UUID;
 public class UserController {
 
     private final UserService userService;
+    private final WinnerService winnerService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, WinnerService winnerService) {
         this.userService = userService;
+        this.winnerService = winnerService;
     }
 
     @GetMapping("/{id}/profile")
@@ -65,6 +68,14 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         session.invalidate();
         modelAndView.setViewName("redirect:/");
+        return modelAndView;
+    }
+
+    @GetMapping("/winner")
+    public ModelAndView getWinner(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("winner", winnerService.getTheWinner());
+        modelAndView.setViewName("winner");
         return modelAndView;
     }
 }

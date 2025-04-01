@@ -15,7 +15,7 @@
             <a th:href="@{/home}">HHH Home</a>
         </div>
         <div class="logo">
-            <a th:href="@{/leaderboard}">
+            <a th:href="@{/meal_catalogs/leaderboard}">
                 <i class="fas fa-trophy"></i>LIVE Leaderboard <i class="fas fa-trophy"></i>
             </a>
         </div>
@@ -44,7 +44,6 @@
     <main class="content">
         <h2>Reports Data</h2>
         <div class="cards">
-            <!-- Reports Section -->
             <div class="card">
                 <h3>Total Reports</h3>
                 <p id="reports-total" th:text="${reports.size()}"></p>

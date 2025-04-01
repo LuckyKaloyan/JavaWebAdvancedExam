@@ -73,6 +73,25 @@ public class MealCatalogController {
         return modelAndView;
     }
 
+    @GetMapping("/leaderboard")
+    public ModelAndView getLeaderboard(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("leaderboard");
+        User user = userService.getById(authenticationDetails.getId());
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("top20meals", mealService.getTop20Meals());
+        return modelAndView;
+    }
+
+    @GetMapping("/favourite_meals")
+    public ModelAndView getFavouriteMeals(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("favourite_meals");
+        User user = userService.getById(authenticationDetails.getId());
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+
     @GetMapping("{id}/edit")
     public ModelAndView getEditMealCatalog(@PathVariable UUID id) {
         ModelAndView modelAndView = new ModelAndView();

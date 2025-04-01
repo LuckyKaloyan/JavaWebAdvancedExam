@@ -29,17 +29,15 @@ public class MealService {
 
     private final MealRepository mealRepository;
     private final FavouriteMealRepository favouriteMealRepository;
-    private final MealOfTheHourRepository mealOfTheHourRepository;
     private final UserService userService;
     private final MealTrackingClient mealTrackingClient;
 
 
 
     @Autowired
-    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, MealOfTheHourRepository mealOfTheHourRepository, UserService userService, MealTrackingClient mealTrackingClient) {
+    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, UserService userService, MealTrackingClient mealTrackingClient) {
         this.mealRepository = mealRepository;
         this.favouriteMealRepository = favouriteMealRepository;
-        this.mealOfTheHourRepository = mealOfTheHourRepository;
         this.userService = userService;
         this.mealTrackingClient = mealTrackingClient;
     }
