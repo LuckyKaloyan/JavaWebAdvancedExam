@@ -4,7 +4,4 @@ public class MealTrackingException extends RuntimeException {
     public MealTrackingException(String message) {
         super(message);
     }
-    public MealTrackingException() {
-
-    }
 }

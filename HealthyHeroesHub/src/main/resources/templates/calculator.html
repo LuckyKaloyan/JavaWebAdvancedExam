@@ -66,9 +66,10 @@
                 <label for="activityLevel"><i class="fas fa-running"></i> Activity Level:</label>
                 <div class="select-wrapper">
                     <select id="activityLevel" name="activityLevel" required>
-                        <option th:each="activityLevel : ${T(hhh.calculator.Activity).values()}"
-                                th:text="${#strings.capitalize(activityLevel.toString().toLowerCase())}"
-                                th:value="${activityLevel}"></option>
+                        <option value="" disabled selected>Select your activity level</option>
+                        <option th:each="activity : ${T(hhh.calculator.Activity).values()}"
+                                th:text="${#strings.capitalize(activity.toString().toLowerCase())}"
+                                th:value="${activity}"></option>
                     </select>
                     <i class="fas fa-chevron-down"></i>
                 </div>

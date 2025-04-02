@@ -13,76 +13,50 @@ class CalculatorServiceUnitTest {
     private final CalculatorService calculatorService = new CalculatorService();
 
     @Test
-    void calculateDailyCalories_shouldThrowExceptionForNegativeWeight() {
+    void calculateDailyCaloriesThrowExceptionForNegativeWeight() {
         assertThrows(BadInputException.class, () ->
-                calculatorService.calculateDailyCalories(-1, 170, 30, "male", "moderately"));
+                calculatorService.calculateDailyCalories(-1, 170, 30, Gender.MALE, Activity.MODERATELY));
     }
 
     @Test
-    void calculateDailyCalories_shouldThrowExceptionForNegativeHeight() {
+    void calculateDailyCaloriesThrowExceptionForNegativeHeight() {
         assertThrows(BadInputException.class, () ->
-                calculatorService.calculateDailyCalories(70, -1, 30, "male", "moderately"));
+                calculatorService.calculateDailyCalories(70, -1, 30, Gender.MALE, Activity.MODERATELY));
     }
 
     @Test
-    void calculateDailyCalories_shouldThrowExceptionForNegativeAge() {
+    void calculateDailyCaloriesThrowExceptionForNegativeAge() {
         assertThrows(BadInputException.class, () ->
-                calculatorService.calculateDailyCalories(70, 170, -1, "male", "moderately"));
+                calculatorService.calculateDailyCalories(70, 170, -1, Gender.MALE, Activity.MODERATELY));
     }
 
     @Test
-    void calculateDailyCalories_shouldThrowExceptionForInvalidGender() {
-        assertThrows(BadInputException.class, () ->
-                calculatorService.calculateDailyCalories(70, 170, 30, "invalid", "moderately"));
-    }
-
-    @Test
-    void calculateDailyCalories_shouldThrowExceptionForInvalidActivityLevel() {
-        assertThrows(BadInputException.class, () ->
-                calculatorService.calculateDailyCalories(70, 170, 30, "male", "invalid"));
-    }
-
-    @Test
-    void calculateDailyCalories_shouldCalculateForMaleSedentary() {
-        double result = calculatorService.calculateDailyCalories(70, 170, 30, "male", "sedentary");
+    void calculateDailyCaloriesCalculateForMaleSedentary() {
+        double result = calculatorService.calculateDailyCalories(70, 170, 30, Gender.MALE, Activity.SEDENTARY);
         assertEquals(2006, result);
     }
 
     @Test
-    void calculateDailyCalories_shouldCalculateForMaleLightlyActive() {
-        double result = calculatorService.calculateDailyCalories(70, 170, 30, "male", "lightly");
+    void calculateDailyCaloriesCalculateForMaleLightlyActive() {
+        double result = calculatorService.calculateDailyCalories(70, 170, 30, Gender.MALE, Activity.LIGHTLY);
         assertEquals(2299, result);
     }
 
     @Test
-    void calculateDailyCalories_shouldCalculateForFemaleModeratelyActive() {
-        double result = calculatorService.calculateDailyCalories(60, 165, 25, "female", "moderately");
+    void calculateDailyCaloriesCalculateForFemaleModeratelyActive() {
+        double result = calculatorService.calculateDailyCalories(60, 165, 25, Gender.FEMALE, Activity.MODERATELY);
         assertEquals(2178, result);
     }
 
     @Test
-    void calculateDailyCalories_shouldCalculateForFemaleVeryActive() {
-        double result = calculatorService.calculateDailyCalories(55, 160, 35, "female", "very");
+    void calculateDailyCaloriesCalculateForFemaleVeryActive() {
+        double result = calculatorService.calculateDailyCalories(55, 160, 35, Gender.FEMALE, Activity.VERY);
         assertEquals(2243, result);
     }
 
     @Test
-    void calculateDailyCalories_shouldCalculateForMaleSuperActive() {
-        double result = calculatorService.calculateDailyCalories(80, 180, 40, "male", "super");
+    void calculateDailyCaloriesCalculateForMaleSuperActive() {
+        double result = calculatorService.calculateDailyCalories(80, 180, 40, Gender.MALE, Activity.SUPER);
         assertEquals(3414, result);
-    }
-
-    @Test
-    void calculateDailyCalories_shouldBeCaseInsensitiveForGender() {
-        double result1 = calculatorService.calculateDailyCalories(70, 170, 30, "MALE", "moderately");
-        double result2 = calculatorService.calculateDailyCalories(70, 170, 30, "male", "moderately");
-        assertEquals(result1, result2);
-    }
-
-    @Test
-    void calculateDailyCalories_shouldBeCaseInsensitiveForActivityLevel() {
-        double result1 = calculatorService.calculateDailyCalories(70, 170, 30, "male", "MODERATELY");
-        double result2 = calculatorService.calculateDailyCalories(70, 170, 30, "male", "moderately");
-        assertEquals(result1, result2);
     }
 }

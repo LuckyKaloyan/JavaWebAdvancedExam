@@ -1,5 +1,6 @@
 package hhh.meal.repository;
 import hhh.meal.model.Meal;
+import hhh.mealcatalog.model.MealCatalog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,5 @@ public interface MealRepository extends JpaRepository<Meal, UUID> {
     List<Meal> findByAddedOnAfter(LocalDate oneMonthAgo);
     List<Meal> findTop20ByOrderByUpVotesDesc();
     Meal findTop1ByOrderByUpVotesDesc();
+    List<Meal> findByMealCatalog(MealCatalog mealCatalog);
 }

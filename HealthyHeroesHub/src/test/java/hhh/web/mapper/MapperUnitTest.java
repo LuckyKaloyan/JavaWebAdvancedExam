@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MapperUnitTest {
 
     @Test
-    void toEditProfileRequest_shouldMapUserCorrectly() {
+    void toEditProfileRequestMapUserCorrectly() {
         User user = new User();
         user.setFirstName("Lucky");
         user.setLastName("Kaloyan");
@@ -26,7 +26,7 @@ class MapperUnitTest {
     }
 
     @Test
-    void toEditCatalogRequest_shouldMapMealCatalogCorrectly() {
+    void toEditCatalogRequestMapMealCatalogCorrectly() {
         MealCatalog catalog = new MealCatalog();
         catalog.setName("Catalog");
         catalog.setDescription("Description");

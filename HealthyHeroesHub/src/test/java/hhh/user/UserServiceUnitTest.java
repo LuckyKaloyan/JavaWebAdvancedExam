@@ -139,7 +139,7 @@ public class UserServiceUnitTest {
     }
 
     @Test
-    void getById_ShouldReturnUser() {
+    void getByIdReturnUser() {
         when(userRepository.findById(testUserId)).thenReturn(Optional.of(testUser));
         User result = userService.getById(testUserId);
         assertEquals(testUser, result);
@@ -147,7 +147,7 @@ public class UserServiceUnitTest {
     }
 
     @Test
-    void getById_WithNullIdThrowException() {
+    void getByIdWithNullIdThrowException() {
         assertThrows(BadInputException.class, () -> userService.getById(null));
     }
 

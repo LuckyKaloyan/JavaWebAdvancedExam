@@ -39,21 +39,21 @@ public class WinnerServiceUnitTest {
     }
 
     @Test
-    void newWinner_shouldThrowWhenUserIsNull() {
+    void newWinnerThrowWhenUserIsNull() {
         BadInputException exception = assertThrows(BadInputException.class, () -> winnerService.newWinner(null, meal));
         assertEquals("User ID cannot be null", exception.getMessage());
         verifyNoInteractions(winnerRepository);
     }
 
     @Test
-    void newWinner_shouldThrowWhenMealIsNull() {
+    void newWinnerThrowWhenMealIsNull() {
         BadInputException exception = assertThrows(BadInputException.class, () -> winnerService.newWinner(user, null));
         assertEquals("Meal cannot be null", exception.getMessage());
         verifyNoInteractions(winnerRepository);
     }
 
     @Test
-    void getTheWinner_shouldReturnNullWhenNoWinnerExists() {
+    void getTheWinnerReturnNullWhenNoWinnerExists() {
         when(winnerRepository.findAll()).thenReturn(Collections.emptyList());
         Winner result = winnerService.getTheWinner();
         assertNull(result);
@@ -62,7 +62,7 @@ public class WinnerServiceUnitTest {
     }
 
     @Test
-    void getTheWinner_shouldReturnWinnerWhenExists() {
+    void getTheWinnerReturnWinnerWhenExists() {
         when(winnerRepository.findAll()).thenReturn(Collections.singletonList(winner));
         when(winnerRepository.findFirstBy()).thenReturn(Optional.of(winner));
         Winner result = winnerService.getTheWinner();

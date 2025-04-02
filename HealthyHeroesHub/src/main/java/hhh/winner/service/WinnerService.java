@@ -25,17 +25,14 @@ public class WinnerService {
         if(meal == null){
             throw new BadInputException("Meal cannot be null");
         }
-        Winner winner = Winner.builder()
-                .meal(meal)
-                .user(user)
-                .build();
-        winnerRepository.deleteAll();
-        winnerRepository.save(winner);
+        Winner winner = Winner.builder().meal(meal).user(user).build();
+        winnerRepository.deleteAll();winnerRepository.save(winner);
     }
 
     public Winner getTheWinner(){
         if(winnerRepository.findAll().isEmpty()){
             return null;
-        }else return  winnerRepository.findFirstBy().get();
+        }else
+            return  winnerRepository.findFirstBy().get();
     }
 }

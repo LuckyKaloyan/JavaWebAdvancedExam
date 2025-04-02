@@ -14,6 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "meal_catalogs")
 public class MealCatalog {
 
     @Id
@@ -23,7 +24,7 @@ public class MealCatalog {
     private String name;
     @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
+    @Column(name = "added_on", nullable = false)
     private LocalDate addedOn;
     @Column(nullable = false)
     private MealCatalogType type;

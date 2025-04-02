@@ -70,7 +70,7 @@
                 <i class="fas fa-exclamation-triangle"></i>
             </a>
         </div>
-        <div class="box admin-box" th:if="${user.role==user.role.ADMIN}">
+        <div class="box admin-box" th:if="${user.role == T(hhh.user.model.UserRole).ADMIN}">
             <a th:href="@{/admin_panel}">
                 <i class="fas fa-user-shield"></i>
                 <p>ADMIN PANEL</p>

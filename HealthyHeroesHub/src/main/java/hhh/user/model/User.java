@@ -16,6 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -50,5 +51,6 @@ public class User {
     private List<Comment> comments;
     @OneToMany(mappedBy = "concernedUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Report> reports;
+
 
 }

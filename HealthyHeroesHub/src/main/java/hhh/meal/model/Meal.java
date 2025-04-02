@@ -16,6 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "meals")
 public class Meal {
 
     @Id
@@ -31,9 +32,9 @@ public class Meal {
     private BigDecimal carbs;
     @Column(nullable = false)
     private BigDecimal fats;
-    @Column(nullable = false)
+    @Column(name = "total_calories", nullable = false)
     private BigDecimal totalCalories;
-    @Column(nullable = false)
+    @Column(name = "added_on", nullable = false)
     private LocalDate addedOn;
     @Column(length = 1000, nullable = false)
     private String picture;

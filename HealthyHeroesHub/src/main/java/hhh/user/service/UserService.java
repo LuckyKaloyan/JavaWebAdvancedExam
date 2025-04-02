@@ -159,6 +159,9 @@ public class UserService implements UserDetailsService {
         user.setDailyCalories(dailyCalories);
         userRepository.save(user);
     }
+    public User getByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() ->new BadInputException("User not found"));
+    }
 
     public void increaseDailyCalories500(UUID id) {
         if (id == null) {

@@ -34,25 +34,25 @@ public class ReportServiceUnitTest {
     private ReportService reportService;
 
     @Test
-    public void createReport_ThrowsWhenReportRequestIsNull() {
+    public void createReportWhenReportRequestIsNull() {
         assertThrows(BadInputException.class, () -> reportService.createReport(null, UUID.randomUUID()));
     }
 
     @Test
-    public void createReport_ThrowsWhenUserIdIsNull() {
+    public void createReportWhenUserIdIsNull() {
         ReportRequest request = new ReportRequest();
         assertThrows(BadInputException.class, () -> reportService.createReport(request, null));
     }
 
     @Test
-    public void createReport_ThrowsWhenUserNotFound() {
+    public void createReportWhenUserNotFound() {
         UUID userId = UUID.randomUUID();
         when(userService.getById(userId)).thenReturn(null);
         assertThrows(BadInputException.class, () -> reportService.createReport(new ReportRequest(), userId));
     }
 
     @Test
-    public void createReport_SavesReportWhenInputValid() {
+    public void createReportReportWhenInputValid() {
         UUID userId = UUID.randomUUID();
         User user = new User();
         ReportRequest request = new ReportRequest();
@@ -68,37 +68,37 @@ public class ReportServiceUnitTest {
     }
 
     @Test
-    public void getAllNotReviewedReports_ReturnsNotReviewedReports() {
+    public void getAllNotReviewedReportsNotReviewedReports() {
         when(reportRepository.findByReviewedNot(true)).thenReturn(List.of(new Report()));
         assertEquals(1, reportService.getAllNotReviewedReports().size());
     }
 
     @Test
-    public void getAllReviewedReports_ReturnsReviewedReports() {
+    public void getAllReviewedReportsReviewedReports() {
         when(reportRepository.findByReviewedNot(false)).thenReturn(List.of(new Report()));
         assertEquals(1, reportService.getAllReviewedReports().size());
     }
 
     @Test
-    public void getAll_ReturnsAllReports() {
+    public void getAllReturnsAllReports() {
         when(reportRepository.findAll()).thenReturn(List.of(new Report(), new Report()));
         assertEquals(2, reportService.getAll().size());
     }
 
     @Test
-    public void completeReport_ThrowsWhenIdIsNull() {
+    public void completeReportWhenIdIsNull() {
         assertThrows(BadInputException.class, () -> reportService.completeReport(null));
     }
 
     @Test
-    public void completeReport_ThrowsWhenReportNotFound() {
+    public void completeReportWhenReportNotFound() {
         UUID id = UUID.randomUUID();
         when(reportRepository.findById(id)).thenReturn(Optional.empty());
         assertThrows(BadInputException.class, () -> reportService.completeReport(id));
     }
 
     @Test
-    public void completeReport_SetsReviewedToTrue() {
+    public void completeReportReviewedToTrue() {
         UUID id = UUID.randomUUID();
         Report report = new Report();
         report.setReviewed(false);
@@ -109,25 +109,25 @@ public class ReportServiceUnitTest {
     }
 
     @Test
-    public void getAllCreatedLastYear_ReturnsReportsFromLastYear() {
+    public void getAllCreatedLastYearReturnsReportsFromLastYear() {
         when(reportRepository.findAllByCreatedOnAfter(any(LocalDate.class))).thenReturn(List.of(new Report()));
         assertEquals(1, reportService.getAllCreatedLastYear().size());
     }
 
     @Test
-    public void getAllCreatedLastMonth_ReturnsReportsFromLastMonth() {
+    public void getAllCreatedLastMonthReturnsReportsFromLastMonth() {
         when(reportRepository.findAllByCreatedOnAfter(any(LocalDate.class))).thenReturn(List.of(new Report()));
         assertEquals(1, reportService.getAllCreatedLastMonth().size());
     }
 
     @Test
-    public void getAllCreatedLastWeek_ReturnsReportsFromLastWeek() {
+    public void getAllCreatedLastWeekReturnsReportsFromLastWeek() {
         when(reportRepository.findAllByCreatedOnAfter(any(LocalDate.class))).thenReturn(List.of(new Report()));
         assertEquals(1, reportService.getAllCreatedLastWeek().size());
     }
 
     @Test
-    public void getAllCreatedLastDay_ReturnsReportsFromLastDay() {
+    public void getAllCreatedLastDayReturnsReportsFromLastDay() {
         when(reportRepository.findAllByCreatedOnAfter(any(LocalDate.class))).thenReturn(List.of(new Report()));
         assertEquals(1, reportService.getAllCreatedLastDay().size());
     }

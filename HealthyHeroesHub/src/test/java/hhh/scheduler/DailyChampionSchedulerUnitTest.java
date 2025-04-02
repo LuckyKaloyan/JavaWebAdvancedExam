@@ -26,7 +26,7 @@ class DailyChampionSchedulerUnitTest {
     private DailyChampionScheduler scheduler;
 
     @Test
-    void whenTopMealExists_thenCreatesWinner() {
+    void whenTopMealExistsCreateWinner() {
         User user = new User();
         Meal meal = new Meal();
         meal.setOwner(user);
@@ -36,7 +36,7 @@ class DailyChampionSchedulerUnitTest {
     }
 
     @Test
-    void whenMealHasNoOwner_thenNoWinnerCreated() {
+    void whenMealHasNoOwnerNoWinnerCreated() {
         Meal meal = new Meal();
         when(upVoteService.topMealByUpVote()).thenReturn(meal);
         scheduler.cleanUp();

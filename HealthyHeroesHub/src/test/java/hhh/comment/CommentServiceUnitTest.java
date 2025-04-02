@@ -38,25 +38,25 @@ class CommentServiceUnitTest {
     private CommentService commentService;
 
     @Test
-    void createComment_shouldThrowExceptionWhenTextIsEmpty() {
+    void createCommentThrowExceptionWhenTextIsEmpty() {
         assertThrows(BadInputException.class, () ->
                 commentService.createComment("", UUID.randomUUID(), UUID.randomUUID()));
     }
 
     @Test
-    void createComment_shouldThrowExceptionWhenUserIdIsNull() {
+    void createCommentThrowExceptionWhenUserIdIsNull() {
         assertThrows(BadInputException.class, () ->
                 commentService.createComment("text", null, UUID.randomUUID()));
     }
 
     @Test
-    void createComment_shouldThrowExceptionWhenMealIdIsNull() {
+    void createCommentThrowExceptionWhenMealIdIsNull() {
         assertThrows(BadInputException.class, () ->
                 commentService.createComment("text", UUID.randomUUID(), null));
     }
 
     @Test
-    void createComment_shouldSaveComment() {
+    void createCommentSaveComment() {
         UUID userId = UUID.randomUUID();
         UUID mealId = UUID.randomUUID();
         User user = new User();
@@ -71,26 +71,26 @@ class CommentServiceUnitTest {
     }
 
     @Test
-    void getAllComments_shouldReturnAllComments() {
+    void getAllCommentsReturnAllComments() {
         List<Comment> comments = List.of(new Comment());
         when(commentRepository.findAll()).thenReturn(comments);
         assertEquals(comments, commentService.getAllComments());
     }
 
     @Test
-    void deleteCommentById_shouldThrowExceptionWhenIdIsNull() {
+    void deleteCommentByIdThrowExceptionWhenIdIsNull() {
         assertThrows(BadInputException.class, () -> commentService.deleteCommentById(null));
     }
 
     @Test
-    void deleteCommentById_shouldDeleteComment() {
+    void deleteCommentByIdDeleteComment() {
         UUID id = UUID.randomUUID();
         commentService.deleteCommentById(id);
         verify(commentRepository).deleteById(id);
     }
 
     @Test
-    void getAllCreatedOnLastYear_shouldReturnRecentComments() {
+    void getAllCreatedOnLastYearReturnRecentComments() {
         LocalDate date = LocalDate.now().minusYears(1);
         List<Comment> comments = List.of(new Comment());
         when(commentRepository.findByCreatedOnAfter(date)).thenReturn(comments);
@@ -98,7 +98,7 @@ class CommentServiceUnitTest {
     }
 
     @Test
-    void getAllCreatedOnLastMonth_shouldReturnRecentComments() {
+    void getAllCreatedOnLastMonthReturnRecentComments() {
         LocalDate date = LocalDate.now().minusMonths(1);
         List<Comment> comments = List.of(new Comment());
         when(commentRepository.findByCreatedOnAfter(date)).thenReturn(comments);
@@ -106,7 +106,7 @@ class CommentServiceUnitTest {
     }
 
     @Test
-    void getAllCreatedOnLastWeek_shouldReturnRecentComments() {
+    void getAllCreatedOnLastWeekReturnRecentComments() {
         LocalDate date = LocalDate.now().minusDays(7);
         List<Comment> comments = List.of(new Comment());
         when(commentRepository.findByCreatedOnAfter(date)).thenReturn(comments);
@@ -114,7 +114,7 @@ class CommentServiceUnitTest {
     }
 
     @Test
-    void getAllCreatedOnLast24hours_shouldReturnRecentComments() {
+    void getAllCreatedOnLast24hoursReturnRecentComments() {
         LocalDate date = LocalDate.now().minusDays(1);
         List<Comment> comments = List.of(new Comment());
         when(commentRepository.findByCreatedOnAfter(date)).thenReturn(comments);

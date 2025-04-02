@@ -1,12 +1,10 @@
 package hhh.web;
-import hhh.meal.service.MealService;
 import hhh.mealcatalog.service.MealCatalogService;
 import hhh.security.AuthenticationDetails;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.LoginRequest;
 import hhh.web.dto.RegisterRequest;
-import hhh.winner.service.WinnerService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

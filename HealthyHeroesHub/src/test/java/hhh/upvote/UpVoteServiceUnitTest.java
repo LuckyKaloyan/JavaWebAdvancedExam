@@ -58,7 +58,7 @@ public class UpVoteServiceUnitTest {
     }
 
     @Test
-    void upVote_shouldThrowWhenAlreadyUpVoted() {
+    void upVoteThrowWhenAlreadyUpVoted() {
         when(mealService.getMealById(mealId)).thenReturn(meal);
         when(userService.getById(userId)).thenReturn(user);
         when(upVoteRepository.findByMealAndUser(meal, user)).thenReturn(Optional.of(upVote));
@@ -66,7 +66,7 @@ public class UpVoteServiceUnitTest {
     }
 
     @Test
-    void hasUserUpVoted_shouldReturnTrueWhenUpVoteExists() {
+    void hasUserUpVotedReturnTrueWhenUpVoteExists() {
         when(mealService.getMealById(mealId)).thenReturn(meal);
         when(userService.getById(userId)).thenReturn(user);
         when(upVoteRepository.findByMealAndUser(meal, user)).thenReturn(Optional.of(upVote));
@@ -74,24 +74,24 @@ public class UpVoteServiceUnitTest {
     }
 
     @Test
-    void topMealByUpVote_shouldReturnMealWithMostUpVotes() {
+    void topMealByUpVoteReturnMealWithMostUpVotes() {
         when(upVoteRepository.findMealWithMostUpVotes()).thenReturn(Optional.of(meal));
         Meal result = upVoteService.topMealByUpVote();
         assertEquals(meal, result);
     }
 
     @Test
-    void upVote_shouldThrowWhenMealIdIsNull() {
+    void upVoteThrowWhenMealIdIsNull() {
         assertThrows(BadInputException.class, () -> upVoteService.upVote(null, userId));
     }
 
     @Test
-    void upVote_shouldThrowWhenUserIdIsNull() {
+    void upVoteThrowWhenUserIdIsNull() {
         assertThrows(BadInputException.class, () -> upVoteService.upVote(mealId, null));
     }
 
     @Test
-    void getAllDateLastYear_shouldReturnRecentUpVotes() {
+    void getAllDateLastYearReturnRecentUpVotes() {
         List<UpVote> expected = Collections.singletonList(upVote);
         when(upVoteRepository.findByDateAfter(any(LocalDate.class))).thenReturn(expected);
         List<UpVote> result = upVoteService.getAllDateLastYear();
@@ -99,13 +99,13 @@ public class UpVoteServiceUnitTest {
     }
 
     @Test
-    void topMealByUpVote_shouldThrowWhenNoUpVotesExist() {
+    void topMealByUpVoteThrowWhenNoUpVotesExist() {
         when(upVoteRepository.findMealWithMostUpVotes()).thenReturn(Optional.empty());
         assertThrows(NoUpVotesException.class, () -> upVoteService.topMealByUpVote());
     }
 
     @Test
-    void cleanUp_shouldDeleteAllUpVotes() {
+    void cleanUpDeleteAllUpVotes() {
         upVoteService.cleanUp();
         verify(upVoteRepository, times(1)).deleteAllInBatch();
     }

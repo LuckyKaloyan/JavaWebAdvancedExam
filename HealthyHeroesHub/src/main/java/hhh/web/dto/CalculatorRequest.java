@@ -1,4 +1,6 @@
 package hhh.web.dto;
+import hhh.calculator.Activity;
+import hhh.calculator.Gender;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,10 +24,10 @@ public class CalculatorRequest {
     @Min(value = 1, message = "Age must be at least 1 year!")
     private int age;
 
-    @NotBlank(message = "Gender is required!")
-    private String gender;
+    @NotNull(message = "Gender is required!")
+    private Gender gender;
 
-    @NotBlank(message = "Activity level is required!")
-    private String activityLevel;
+    @NotNull(message = "Activity level is required!")
+    private Activity activityLevel;
 
 }
