@@ -106,7 +106,7 @@
 
                 <a th:each="catalog : ${user.getMealCatalogs()}"
                    th:href="@{'/meal_catalogs/' + ${catalog.id}}"
-                   class="meal-item omnivore"
+                   class="meal-item carnivore"
                    th:if="${catalog.type?.name() == 'CARNIVORE'}">
                     <i class="fas fa-drumstick-bite carnivore-icon"></i>
                     <span th:text="${catalog.name}"></span>
@@ -123,7 +123,7 @@
 
                 <a th:each="catalog : ${user.getMealCatalogs()}"
                    th:href="@{'/meal_catalogs/' + ${catalog.id}}"
-                   class="meal-item mixed"
+                   class="meal-item omnivore"
                    th:if="${catalog.type?.name() == 'OMNIVORE'}">
                     <i class="fas fa-blender-phone omnivore-icon"></i>
                     <span th:text="${catalog.name}"></span>
