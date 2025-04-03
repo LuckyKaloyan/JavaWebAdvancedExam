@@ -32,44 +32,44 @@
     <h2>Create New Report</h2>
     <form th:action="@{/reports/create_new_report}" th:method="POST" th:object="${reportRequest}">
       <div class="input-group">
-        <label for="troublemaker">Troublemaker:</label>
+        <label for="troublemaker"><i class="fas fa-user-secret"></i> Troublemaker</label>
         <textarea id="troublemaker" name="troublemaker" required placeholder="Enter troublemaker's name" th:field="*{troublemaker}"></textarea>
-        <p class="text-warning" th:errors="*{troublemaker}"></p>
+        <p class="text-warning" th:errors="*{troublemaker}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('troublemaker')}" th:errors="*{troublemaker}"></span></p>
       </div>
 
       <div class="input-group">
-        <label for="reportType">Report type:</label>
+        <label for="reportType"><i class="fas fa-flag"></i> Report type</label>
         <select id="reportType" name="reportType" required th:field="*{reportType}">
           <option th:each="type : ${T(hhh.report.model.ReportType).values()}" th:text="${#strings.capitalize(type.toString().toLowerCase())}" th:value="${type}"></option>
         </select>
-        <p class="text-warning" th:errors="*{reportType}"></p>
+        <p class="text-warning" th:errors="*{reportType}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('reportType')}" th:errors="*{reportType}"></span></p>
       </div>
 
       <div class="input-group">
-        <label for="whereItHappened">Where it happened:</label>
+        <label for="whereItHappened"><i class="fas fa-map-marker-alt"></i> Where it happened</label>
         <select id="whereItHappened" name="whereItHappened" required th:field="*{whereItHappened}">
           <option th:each="location : ${T(hhh.report.model.ReportLocation).values()}" th:text="${#strings.capitalize(location.toString().toLowerCase())}" th:value="${location}"></option>
         </select>
-        <p class="text-warning" th:errors="*{whereItHappened}"></p>
+        <p class="text-warning" th:errors="*{whereItHappened}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('whereItHappened')}" th:errors="*{whereItHappened}"></span></p>
       </div>
 
       <div class="input-group">
-        <label for="description">Description:</label>
+        <label for="description"><i class="fas fa-align-left"></i> Description</label>
         <textarea id="description" name="description" required placeholder="Enter description" th:field="*{description}"></textarea>
-        <p class="text-warning" th:errors="*{description}"></p>
+        <p class="text-warning" th:errors="*{description}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span></p>
       </div>
 
       <div class="input-group">
-        <label for="dateOfIssue">When it happened?</label>
+        <label for="dateOfIssue"><i class="fas fa-calendar-day"></i> When it happened?</label>
         <input type="date" id="dateOfIssue" name="dateOfIssue" required th:field="*{dateOfIssue}" />
-        <p class="text-warning" th:if="${#fields.hasErrors('dateOfIssue')}">
-          A valid past or present date needed!!!</p>
+        <p class="text-warning"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('dateOfIssue')}">A valid past or present date needed!!!</span></p>
       </div>
-      <button type="submit" class="submit-button">Submit Report</button>
+
+      <button type="submit" class="submit-button"><i class="fas fa-paper-plane"></i> Submit Report</button>
     </form>
 
     <form th:action="@{/reports/my_reports}" th:method="GET">
-      <button type="submit" class="submit-button2">My Reports</button>
+      <button type="submit" class="submit-button2"><i class="fas fa-scroll"></i> My Reports</button>
     </form>
   </div>
 </div>

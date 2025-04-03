@@ -12,7 +12,6 @@ import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.time.LocalDate;
 import java.util.UUID;
 import static org.mockito.ArgumentMatchers.any;
@@ -160,9 +159,9 @@ public class UserControllerApiTest {
         when(userService.getById(userId)).thenReturn(mockUser);
 
         mockMvc.perform(put("/users/{id}/profile", userId)
-                        .param("firstName", "a") // Too short
-                        .param("lastName", "b") // Too short
-                        .param("email", "invalid-email") // Invalid format
+                        .param("firstName", "a")
+                        .param("lastName", "b")
+                        .param("email", "invalid-email")
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("edit-profile"))
