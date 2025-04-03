@@ -138,30 +138,6 @@ public class AdminPanelControllerApiTest {
         verify(userService).changeRole(userId);
     }
 
-    @Test
-    @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
-    void deleteUserDeleteUserAndRedirect() throws Exception {
-        UUID userId = UUID.randomUUID();
-        User testUser = User.builder()
-                .id(userId)
-                .username("testUser")
-                .email("test@example.com")
-                .phone("1234567890")
-                .registrationDate(LocalDate.now())
-                .role(UserRole.USER)
-                .build();
-        when(userService.getById(userId)).thenReturn(testUser);
-        mockMvc.perform(delete("/admin_panel/user_management/delete/{id}", userId)
-                        .with(csrf())
-                        .with(request -> {request.setAttribute("userId", userId.toString());return request;
-                        }))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/admin_panel/user_management"))
-                .andExpect(flash().attributeCount(0));
-        verify(userService, times(1)).deleteUser(userId);
-        verifyNoMoreInteractions(userService);
-    }
 
     @Test
     @WithMockUser(authorities = "ADMIN")

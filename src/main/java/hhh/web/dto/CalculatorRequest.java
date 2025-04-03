@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 public class CalculatorRequest {
 
     @Min(value = 10, message = "Weight must be at least 10 kg!")
-    @Max(value = 300, message = "Weight cannot exceed 500 kg!")
+    @Max(value = 300, message = "Weight cannot exceed 300 kg!")
     private double weight;
 
     @Min(value = 30, message = "Height must be at least 30 cm!")
-    @Max(value = 300, message = "Height cannot exceed 350 cm!")
+    @Max(value = 300, message = "Height cannot exceed 300 cm!")
     private double height;
 
     @Min(value = 1, message = "Age must be at least 1 year!")

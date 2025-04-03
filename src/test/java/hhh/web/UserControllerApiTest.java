@@ -112,18 +112,6 @@ public class UserControllerApiTest {
 
     @Test
     @WithMockUser
-    void getDeleteProfileAuthenticatedReturnDeleteProfileView() throws Exception {
-        User mockUser = mock(User.class);
-        UUID userId = UUID.randomUUID();
-        when(userService.getById(userId)).thenReturn(mockUser);
-        mockMvc.perform(get("/users/delete_profile")
-                        .with(user(new AuthenticationDetails(userId, "User123", "123123", UserRole.USER))))
-                .andExpect(status().isOk())
-                .andExpect(view().name("delete_profile"))
-                .andExpect(model().attributeExists("user"));
-    }
-    @Test
-    @WithMockUser
     void editProfileWithValidDataRedirectToHome() throws Exception {
         UUID userId = UUID.randomUUID();
         User mockUser = createTestUser();
@@ -140,17 +128,7 @@ public class UserControllerApiTest {
         verify(userService).editUser(eq(userId), any(EditProfileRequest.class));
     }
 
-    @Test
-    @WithMockUser
-    void confirmDeleteUserDeleteUserAndRedirectToRoot() throws Exception {
-        UUID userId = UUID.randomUUID();
 
-        mockMvc.perform(delete("/users/{id}/deleted", userId)
-                        .with(csrf()))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
-        verify(userService).deleteUser(userId);
-    }
     @Test
     @WithMockUser
     void editProfileWithInvalidDataReturnEditProfileViewWithErrors() throws Exception {

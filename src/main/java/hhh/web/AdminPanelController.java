@@ -64,13 +64,7 @@ public class AdminPanelController {
         modelAndView.setViewName("user_management");
         return new ModelAndView("redirect:/admin_panel/user_management");
     }
-    @DeleteMapping("/user_management/delete/{id}")
-    public ModelAndView deleteUser(@PathVariable UUID id) {
-        ModelAndView modelAndView = new ModelAndView();
-        userService.deleteUser(id);
-        modelAndView.setViewName("user_management");
-        return new ModelAndView("redirect:/admin_panel/user_management");
-    }
+
 
     @GetMapping("/meal_catalog_management")
     public ModelAndView getMealCatalogManagementPanel() {

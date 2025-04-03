@@ -182,17 +182,6 @@ public class UserServiceUnitTest {
     void editUserWithNullRequestThrowException() {
         assertThrows(BadInputException.class, () -> userService.editUser(testUserId, null));
     }
-    @Test
-    void deleteUserDeleteUser() {
-        when(userRepository.findById(testUserId)).thenReturn(Optional.of(testUser));
-        userService.deleteUser(testUserId);
-        verify(userRepository).delete(testUser);
-    }
-
-    @Test
-    void deleteUserWithNullIdThrowException() {
-        assertThrows(BadInputException.class, () -> userService.deleteUser(null));
-    }
 
     @Test
     void getAllReturnAllUsers() {

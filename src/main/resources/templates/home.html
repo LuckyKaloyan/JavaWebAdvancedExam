@@ -28,35 +28,35 @@
 
 <div class="container">
     <div class="sidebar">
-        <div class="box champion-box">
+        <div class="box field-box">
             <a th:href="@{/users/winner}">
                 <i class="fas fa-crown"></i>
                 <p>YESTERDAY'S CHAMPION</p>
                 <i class="fas fa-crown"></i>
             </a>
         </div>
-        <div class="box calculator-box">
+        <div class="box field-box">
             <a th:href="@{/calculator}">
                 <i class="fas fa-calculator"></i>
                 <p>CALCULATE YOUR DAILY CALORIES</p>
                 <i class="fas fa-calculator"></i>
             </a>
         </div>
-        <div class="box food-check-box">
+        <div class="box field-box">
             <a th:href="@{/calculator/did_you_eat_enough_today}">
                 <i class="fas fa-utensils"></i>
                 <p>DID YOU EAT ENOUGH TODAY ?</p>
                 <i class="fas fa-utensils"></i>
             </a>
         </div>
-        <div class="box favorite-box">
+        <div class="box field-box">
             <a th:href="@{/meal_catalogs/favourite_meals}">
                 <i class="fas fa-heart"></i>
                 <p>YOUR FAVOURITE MEALS</p>
                 <i class="fas fa-heart"></i>
             </a>
         </div>
-        <div class="box catalog-box">
+        <div class="box field-box">
             <a th:href="@{/meal_catalogs/create_new_catalog}">
                 <i class="fas fa-folder-plus"></i>
                 <p>CREATE A NEW CATALOG</p>
@@ -79,14 +79,10 @@
         </div>
     </div>
 
-
-
     <div class="main-content">
         <div class="box my-catalogs-box" th:if="${user.getMealCatalogs().size()>0}">
             <div class="box-content">
                 <h3><i class="fas fa-book-open"></i> My Catalogs</h3>
-
-
                 <a th:each="catalog : ${user.getMealCatalogs()}"
                    th:href="@{'/meal_catalogs/' + ${catalog.id}}"
                    class="meal-item vegan"
@@ -102,8 +98,6 @@
                         </form>
                     </div>
                 </a>
-
-
                 <a th:each="catalog : ${user.getMealCatalogs()}"
                    th:href="@{'/meal_catalogs/' + ${catalog.id}}"
                    class="meal-item carnivore"
@@ -119,8 +113,6 @@
                         </form>
                     </div>
                 </a>
-
-
                 <a th:each="catalog : ${user.getMealCatalogs()}"
                    th:href="@{'/meal_catalogs/' + ${catalog.id}}"
                    class="meal-item omnivore"
@@ -138,13 +130,9 @@
                 </a>
             </div>
         </div>
-
-
         <div class="box public-catalogs-box" th:if="${allCatalogs.size()} > ${user.getMealCatalogs().size()}">
             <div class="box-content">
                 <h3><i class="fas fa-globe"></i> Public Catalogs</h3>
-
-
                 <a th:each="publicCatalog : ${allCatalogs}"
                    th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"
                    class="meal-item vegan"
@@ -152,8 +140,6 @@
                     <i class="fas fa-leaf vegan-icon"></i>
                     <span th:text="${publicCatalog.name}"></span>
                 </a>
-
-
                 <a th:each="publicCatalog : ${allCatalogs}"
                    th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"
                    class="meal-item carnivore"
@@ -161,7 +147,6 @@
                     <i class="fas fa-drumstick-bite carnivore-icon"></i>
                     <span th:text="${publicCatalog.name}"></span>
                 </a>
-
                 <a th:each="publicCatalog : ${allCatalogs}"
                    th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"
                    class="meal-item omnivore"
@@ -171,7 +156,6 @@
                 </a>
             </div>
         </div>
-
     </div>
 
     <div class="profile-section">
