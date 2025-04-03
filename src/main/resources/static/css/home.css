@@ -251,12 +251,12 @@ a:visited {
     border: 1px solid rgba(50, 205, 50, 0.8);
 }
 
-.omnivore {
+.carnivore {
     background-color: rgba(139, 69, 19, 0.7);
     border: 1px solid rgba(160, 82, 45, 0.8);
 }
 
-.mixed {
+.omnivore {
     background-color: rgba(210, 180, 140, 0.7);
     border: 1px solid rgba(188, 143, 143, 0.8);
 }
@@ -265,11 +265,11 @@ a:visited {
     color: #2E8B57;
 }
 
-.omnivore-icon {
+.carnivore-icon {
     color: #8B4513;
 }
 
-.mixed-icon {
+.omnivore-icon {
     color: #D2B48C;
 }
 
@@ -324,8 +324,8 @@ a:visited {
 }
 
 .vegan-icon { color: #2E8B57; }
-.omnivore-icon { color: #8B4513; }
-.mixed-icon { color: #D2B48C; }
+.carnivore-icon { color: #8B4513; }
+.omnivore-icon { color: #D2B48C; }
 
 .profile-section {
     display: flex;

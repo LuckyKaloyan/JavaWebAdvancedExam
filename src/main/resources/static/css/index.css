@@ -262,7 +262,6 @@ body {
 .feature-card i {
     font-size: 3rem;
     margin-bottom: 20px;
-    color: #667eea;
     background: linear-gradient(135deg, #667eea, #764ba2);
     -webkit-background-clip: text;
     background-clip: text;

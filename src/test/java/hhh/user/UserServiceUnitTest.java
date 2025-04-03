@@ -241,7 +241,7 @@ public class UserServiceUnitTest {
     }
 
     @Test
-    void setDailyCalories_WithNegativeValueThrowException() {
+    void setDailyCaloriesWithNegativeValueThrowException() {
         assertThrows(BadInputException.class, () -> userService.setDailyCalories(testUserId, -100));
     }
 
@@ -316,5 +316,4 @@ public class UserServiceUnitTest {
         assertThrows(BadInputException.class, () -> {userService.increaseDailyCalories500(null);});
         assertThrows(BadInputException.class, () -> {userService.setDailyCalories(null, 100);});
     }
-
     }

@@ -14,20 +14,17 @@ class CalculatorServiceUnitTest {
 
     @Test
     void calculateDailyCaloriesThrowExceptionForNegativeWeight() {
-        assertThrows(BadInputException.class, () ->
-                calculatorService.calculateDailyCalories(-1, 170, 30, Gender.MALE, Activity.MODERATELY));
+        assertThrows(BadInputException.class, () -> calculatorService.calculateDailyCalories(-1, 170, 30, Gender.MALE, Activity.MODERATELY));
     }
 
     @Test
     void calculateDailyCaloriesThrowExceptionForNegativeHeight() {
-        assertThrows(BadInputException.class, () ->
-                calculatorService.calculateDailyCalories(70, -1, 30, Gender.MALE, Activity.MODERATELY));
+        assertThrows(BadInputException.class, () -> calculatorService.calculateDailyCalories(70, -1, 30, Gender.MALE, Activity.MODERATELY));
     }
 
     @Test
     void calculateDailyCaloriesThrowExceptionForNegativeAge() {
-        assertThrows(BadInputException.class, () ->
-                calculatorService.calculateDailyCalories(70, 170, -1, Gender.MALE, Activity.MODERATELY));
+        assertThrows(BadInputException.class, () -> calculatorService.calculateDailyCalories(70, 170, -1, Gender.MALE, Activity.MODERATELY));
     }
 
     @Test

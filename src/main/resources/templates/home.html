@@ -107,8 +107,8 @@
                 <a th:each="catalog : ${user.getMealCatalogs()}"
                    th:href="@{'/meal_catalogs/' + ${catalog.id}}"
                    class="meal-item omnivore"
-                   th:if="${catalog.type?.name() == 'OMNIVORE'}">
-                    <i class="fas fa-drumstick-bite omnivore-icon"></i>
+                   th:if="${catalog.type?.name() == 'CARNIVORE'}">
+                    <i class="fas fa-drumstick-bite carnivore-icon"></i>
                     <span th:text="${catalog.name}"></span>
                     <div class="action-buttons">
                         <form th:action="@{'/meal_catalogs/' + ${catalog.id}+'/add_meal'}" th:method="GET">
@@ -124,8 +124,8 @@
                 <a th:each="catalog : ${user.getMealCatalogs()}"
                    th:href="@{'/meal_catalogs/' + ${catalog.id}}"
                    class="meal-item mixed"
-                   th:if="${catalog.type?.name() == 'MIXED'}">
-                    <i class="fas fa-blender-phone mixed-icon"></i>
+                   th:if="${catalog.type?.name() == 'OMNIVORE'}">
+                    <i class="fas fa-blender-phone omnivore-icon"></i>
                     <span th:text="${catalog.name}"></span>
                     <div class="action-buttons">
                         <form th:action="@{'/meal_catalogs/' + ${catalog.id}+'/add_meal'}" th:method="GET">
@@ -156,17 +156,17 @@
 
                 <a th:each="publicCatalog : ${allCatalogs}"
                    th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"
-                   class="meal-item omnivore"
-                   th:if="${publicCatalog != null and user.id != publicCatalog.owner.id and publicCatalog.type?.name() == 'OMNIVORE'}">
-                    <i class="fas fa-drumstick-bite omnivore-icon"></i>
+                   class="meal-item carnivore"
+                   th:if="${publicCatalog != null and user.id != publicCatalog.owner.id and publicCatalog.type?.name() == 'CARNIVORE'}">
+                    <i class="fas fa-drumstick-bite carnivore-icon"></i>
                     <span th:text="${publicCatalog.name}"></span>
                 </a>
 
                 <a th:each="publicCatalog : ${allCatalogs}"
                    th:href="@{'/meal_catalogs/' + ${publicCatalog.id}}"
-                   class="meal-item mixed"
-                   th:if="${publicCatalog != null and user.id != publicCatalog.owner.id and publicCatalog.type?.name() == 'MIXED'}">
-                    <i class="fas fa-blender-phone mixed-icon"></i>
+                   class="meal-item omnivore"
+                   th:if="${publicCatalog != null and user.id != publicCatalog.owner.id and publicCatalog.type?.name() == 'OMNIVORE'}">
+                    <i class="fas fa-blender-phone omnivore-icon"></i>
                     <span th:text="${publicCatalog.name}"></span>
                 </a>
             </div>

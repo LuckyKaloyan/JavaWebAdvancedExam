@@ -1,5 +1,4 @@
 package hhh.meal;
-import hhh.exception.AlreadyFavouriteException;
 import hhh.exception.BadInputException;
 import hhh.meal.model.Meal;
 import hhh.meal.repository.MealRepository;
@@ -167,7 +166,6 @@ public class MealServiceIntegrationTest {
                 .owner(user)
                 .build();
         mealRepository.saveAndFlush(meal);
-
         Meal retrievedMeal = mealService.getMealById(meal.getId());
         assertEquals(meal.getId(), retrievedMeal.getId());
         assertEquals("Test Meal", retrievedMeal.getName());

@@ -1,6 +1,4 @@
 package hhh.web.mapper;
-import hhh.meal.model.Meal;
-import hhh.meal.model.MealOfTheHour;
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.user.model.User;
 import hhh.web.dto.EditCatalogRequest;

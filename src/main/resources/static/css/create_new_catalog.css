@@ -96,7 +96,6 @@ nav ul li a:hover {
 }
 
 .input-group label {
-    display: block;
     margin-bottom: 8px;
     font-weight: 600;
     color: #2c3e50;
@@ -130,7 +129,6 @@ nav ul li a:hover {
 }
 
 .input-group:before {
-    font-family: "Font Awesome 6 Free";
     font-weight: 900;
     position: absolute;
     left: 15px;

@@ -13,11 +13,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -39,20 +37,17 @@ class CommentServiceUnitTest {
 
     @Test
     void createCommentThrowExceptionWhenTextIsEmpty() {
-        assertThrows(BadInputException.class, () ->
-                commentService.createComment("", UUID.randomUUID(), UUID.randomUUID()));
+        assertThrows(BadInputException.class, () -> commentService.createComment("", UUID.randomUUID(), UUID.randomUUID()));
     }
 
     @Test
     void createCommentThrowExceptionWhenUserIdIsNull() {
-        assertThrows(BadInputException.class, () ->
-                commentService.createComment("text", null, UUID.randomUUID()));
+        assertThrows(BadInputException.class, () -> commentService.createComment("text", null, UUID.randomUUID()));
     }
 
     @Test
     void createCommentThrowExceptionWhenMealIdIsNull() {
-        assertThrows(BadInputException.class, () ->
-                commentService.createComment("text", UUID.randomUUID(), null));
+        assertThrows(BadInputException.class, () -> commentService.createComment("text", UUID.randomUUID(), null));
     }
 
     @Test

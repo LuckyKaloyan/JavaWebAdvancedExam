@@ -280,7 +280,7 @@ public class MealCatalogControllerTest {
 
     @Test
     @WithMockUser(username = "testUser")
-    void getMeal_ShouldReturnCompleteMealView() throws Exception {
+    void getMealReturnCompleteMealView() throws Exception {
         UUID mealId = UUID.randomUUID();
         User mealOwner = User.builder()
                 .id(UUID.randomUUID())

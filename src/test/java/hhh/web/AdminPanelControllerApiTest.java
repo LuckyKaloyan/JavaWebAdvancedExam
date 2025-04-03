@@ -100,7 +100,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void getAdminPanel_ShouldReturnAdminPanelView() throws Exception {
+    void getAdminPanelReturnAdminPanelView() throws Exception {
         mockMvc.perform(get("/admin_panel"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("admin_panel"));
@@ -108,14 +108,14 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser
-    void getAdminPanel_WithoutAdminRole_ShouldBeForbidden() throws Exception {
+    void getAdminPanelWithoutAdminRoleBeForbidden() throws Exception {
         mockMvc.perform(get("/admin_panel"))
                 .andExpect(status().isForbidden());
     }
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void getUserManagementPanel_ShouldReturnUserManagementView() throws Exception {
+    void getUserManagementPanelReturnUserManagementView() throws Exception {
         List<User> users = List.of(createTestUser(UserRole.USER));
         when(userService.getAll()).thenReturn(users);
 
@@ -127,7 +127,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void patchChangeRole_ShouldChangeRoleAndRedirect() throws Exception {
+    void patchChangeRoleChangeRoleAndRedirect() throws Exception {
         UUID userId = UUID.randomUUID();
 
         mockMvc.perform(patch("/admin_panel/user_management/change_role/{id}", userId)
@@ -140,7 +140,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(username = "adminUser", authorities = {"ADMIN"})
-    void deleteUser_ShouldDeleteUserAndRedirect() throws Exception {
+    void deleteUserDeleteUserAndRedirect() throws Exception {
         UUID userId = UUID.randomUUID();
         User testUser = User.builder()
                 .id(userId)
@@ -165,7 +165,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void getMealCatalogManagementPanel_ShouldReturnMealCatalogManagementView() throws Exception {
+    void getMealCatalogManagementPanelReturnMealCatalogManagementView() throws Exception {
         User testUser = createTestUser(UserRole.USER);
         MealCatalog testCatalog = MealCatalog.builder()
                 .id(UUID.randomUUID())
@@ -189,7 +189,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void deleteMealCatalog_ShouldDeleteCatalogAndRedirect() throws Exception {
+    void deleteMealCatalogDeleteCatalogAndRedirect() throws Exception {
         UUID catalogId = UUID.randomUUID();
 
         mockMvc.perform(delete("/admin_panel/meal_catalog_management/delete/{id}", catalogId)
@@ -202,7 +202,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void getMealManagementPanel_ShouldReturnMealManagementView() throws Exception {
+    void getMealManagementPanelReturnMealManagementView() throws Exception {
 
         User owner = User.builder()
                 .id(UUID.randomUUID())
@@ -230,7 +230,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void deleteMeal_ShouldDeleteMealAndRedirect() throws Exception {
+    void deleteMealDeleteMealAndRedirect() throws Exception {
         UUID mealId = UUID.randomUUID();
         mockMvc.perform(delete("/admin_panel/meal_management/delete/{id}", mealId)
                         .with(csrf()))
@@ -241,7 +241,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(username = "admin", authorities = {"ADMIN"})
-    void getReportManagementPanel_ShouldReturnReportManagementView() throws Exception {
+    void getReportManagementPanelReturnReportManagementView() throws Exception {
         User concernedUser = User.builder()
                 .id(UUID.randomUUID())
                 .username("concernedUser")
@@ -275,7 +275,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void patchReviewedReport_ShouldMarkReportAsReviewedAndRedirect() throws Exception {
+    void patchReviewedReportMarkReportAsReviewedAndRedirect() throws Exception {
         UUID reportId = UUID.randomUUID();
 
         mockMvc.perform(patch("/admin_panel/report_management/reviewed/{id}", reportId)
@@ -288,7 +288,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void getCommentManagementPanel_ShouldReturnCommentManagementView() throws Exception {
+    void getCommentManagementPanelReturnCommentManagementView() throws Exception {
         User commentUser = User.builder()
                 .id(UUID.randomUUID())
                 .username("commentUser123")
@@ -320,7 +320,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void deleteComment_ShouldDeleteCommentAndRedirect() throws Exception {
+    void deleteCommentDeleteCommentAndRedirect() throws Exception {
         UUID commentId = UUID.randomUUID();
 
         mockMvc.perform(delete("/admin_panel/comment_management/delete/{id}", commentId)
@@ -333,7 +333,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void getUsersDataPanel_ShouldReturnUsersDataView() throws Exception {
+    void getUsersDataPanelReturnUsersDataView() throws Exception {
         List<User> users = List.of(createTestUser(UserRole.USER));
         List<User> admins = List.of(createTestUser(UserRole.ADMIN));
         when(userService.getAll()).thenReturn(users);
@@ -351,7 +351,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void getMealsDataPanel_ShouldReturnMealsDataView() throws Exception {
+    void getMealsDataPanelReturnMealsDataView() throws Exception {
         List<Meal> meals = List.of(createTestMeal());
         List<MealCatalog> catalogs = List.of(createTestMealCatalog());
         when(mealService.getAllMeals()).thenReturn(meals);
@@ -369,7 +369,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void getCommentsAndUpVotesDataPanel_ShouldReturnCommentsAndUpVotesDataView() throws Exception {
+    void getCommentsAndUpVotesDataPanelReturnCommentsAndUpVotesDataView() throws Exception {
         List<Comment> comments = List.of(createTestComment());
         List<UpVote> upVotes = List.of(createTestUpVote());
         when(commentService.getAllComments()).thenReturn(comments);
@@ -392,7 +392,7 @@ public class AdminPanelControllerApiTest {
 
     @Test
     @WithMockUser(authorities = "ADMIN")
-    void getReportsDataPanel_ShouldReturnReportsDataView() throws Exception {
+    void getReportsDataPanelReturnReportsDataView() throws Exception {
         List<Report> reports = List.of(createTestReport());
         when(reportService.getAll()).thenReturn(reports);
         when(reportService.getAllReviewedReports()).thenReturn(reports);

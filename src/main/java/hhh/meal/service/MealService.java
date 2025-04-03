@@ -3,16 +3,13 @@ import hhh.exception.AlreadyFavouriteException;
 import hhh.exception.BadInputException;
 import hhh.meal.model.FavouriteMeal;
 import hhh.meal.model.Meal;
-import hhh.meal.model.MealOfTheHour;
 import hhh.meal.repository.FavouriteMealRepository;
-import hhh.meal.repository.MealOfTheHourRepository;
 import hhh.meal.repository.MealRepository;
 import hhh.meal_tracking.client.MealTrackingClient;
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.MealRequest;
-import hhh.web.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -147,12 +144,7 @@ public class MealService {
         if(meal == null){
             throw new BadInputException("Meal cannot be null");
         }
-        if(favouriteMealRepository.findByUserAndMeal(user, meal).isPresent()){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return favouriteMealRepository.findByUserAndMeal(user, meal).isPresent();
 
     }
 

@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
 <header>
   <nav>
     <div class="logo">
@@ -26,14 +25,11 @@
   </nav>
 </header>
 
-<div class="catalog-container">
-  <div class="box" th:if="${top20meals.size() == 0}">
-    <h3>Nobody liked anything yet!</h3>
-  </div>
-  <div class="box" th:if="${top20meals.size() > 0}">
-    <div class="box-content">
-      <h3>Top Meals</h3>
-      <table class="meal-table">
+<div class="leaderboard-container">
+  <div class="leaderboard-box">
+    <h3>Top Meals</h3>
+    <div class="table-wrapper">
+      <table>
         <thead>
         <tr>
           <th>UpVotes</th>
@@ -44,27 +40,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="topMeal : ${top20meals}"
-            th:classappend="${topMeal.owner == user} ? 'mine' : ''">
-          <td th:text="${topMeal.upVotes.size()}"></td>
+        <tr th:each="topMeal, stat : ${top20meals}" th:classappend="${topMeal.owner == user} ? 'mine' : ''" th:attr="data-rank=${stat.count}">
+          <td><span th:text="${topMeal.upVotes.size()}"></span></td>
           <td th:text="${topMeal.name}"></td>
           <td th:text="${topMeal.owner.username}"></td>
           <td th:text="${topMeal.description}"></td>
-          <td class="actions">
-            <a th:href="@{'/meal_catalogs/meal/' + ${topMeal.id}}">
-              <button class="btn btn-open">Open</button>
-            </a>
-          </td>
+          <td><a th:href="@{'/meal_catalogs/meal/' + ${topMeal.id}}" class="btn"><i class="fas fa-external-link-alt"></i> Open</a></td>
         </tr>
         </tbody>
-
-
       </table>
     </div>
   </div>
 </div>
 
 <footer th:insert="~{fragments/footer :: footer}"></footer>
-
 </body>
 </html>

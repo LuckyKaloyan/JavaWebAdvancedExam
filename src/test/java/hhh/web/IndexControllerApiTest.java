@@ -79,7 +79,7 @@ public class IndexControllerApiTest {
                 .andExpect(model().attributeExists("registerRequest","isAuthenticated"));
     }
     @Test
-    void postRegister_WithMismatchedPasswords_ShouldShowError() throws Exception {
+    void postRegisterWithMismatchedPasswordsShowError() throws Exception {
         mockMvc.perform(post("/register")
                         .param("username", "ValidUser")
                         .param("email", "valid@example.com")
@@ -93,7 +93,7 @@ public class IndexControllerApiTest {
     }
 
     @Test
-    void postRegister_WithValidData_ShouldCallServiceAndRedirect() throws Exception {
+    void postRegisterWithValidDataCallServiceAndRedirect() throws Exception {
         mockMvc.perform(post("/register")
                         .param("username", "ValidUser")
                         .param("email", "valid@example.com")

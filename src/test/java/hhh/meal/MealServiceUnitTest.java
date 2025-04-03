@@ -187,7 +187,7 @@ class MealServiceUnitTest {
     }
 
     @Test
-    void deleteFavouriteMeal_WithInvalidId_ThrowsBadInputException() {
+    void deleteFavouriteMealWithInvalidIdThrowsBadInputException() {
         UUID invalidId = UUID.randomUUID();
         when(favouriteMealRepository.findById(invalidId)).thenReturn(Optional.empty());
         assertThrows(BadInputException.class, () -> {mealService.deleteFavouriteMeal(invalidId);});
