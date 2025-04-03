@@ -40,7 +40,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="topMeal, stat : ${top20meals}" th:classappend="${topMeal.owner == user} ? 'mine' : ''" th:attr="data-rank=${stat.count}">
+        <tr th:each="topMeal, stat : ${top20meals}" th:classappend="${topMeal.owner == user} ? 'mine' : ''">
           <td><span th:text="${topMeal.upVotes.size()}"></span></td>
           <td th:text="${topMeal.name}"></td>
           <td th:text="${topMeal.owner.username}"></td>

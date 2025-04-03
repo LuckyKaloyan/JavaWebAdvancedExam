@@ -277,7 +277,9 @@ footer {
     color: var(--primary-dark);
     text-align: right;
 }
-
+.home{
+    margin-top: 25px;
+}
 .delete-btn {
     background-color: var(--danger);
     color: white;

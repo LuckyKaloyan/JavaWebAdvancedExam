@@ -72,7 +72,7 @@
     </div>
 
     <div class="add-meal-section">
-        <h2><i class="fas fa-plus-circle"></i> Add a Meal</h2>
+        <h2>Add a Meal <i class="fas fa-arrow-down"></i> </h2>
         <form th:action="'http://localhost:8081/api/v1/meal_tracker/'+${user.id}" th:method="POST">
             <div class="select-wrapper">
                 <i class="fas fa-chevron-down select-arrow"></i>
@@ -83,6 +83,12 @@
             </div>
             <button type="submit" class="add-meal-btn">
                 <i class="fas fa-plus"></i> Add Meal
+            </button>
+        </form>
+        <div></div>
+        <form th:action="@{/home}" th:method="GET">
+            <button type="submit" class="add-meal-btn home">
+                <i class="fas fa-home"></i> Back to Home
             </button>
         </form>
     </div>

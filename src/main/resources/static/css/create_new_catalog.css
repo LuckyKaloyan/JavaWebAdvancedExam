@@ -112,7 +112,7 @@ nav ul li a:hover {
 .input-group textarea,
 .input-group select {
     width: 100%;
-    padding: 12px 15px 12px 40px;
+    padding: 12px 15px 12px 10px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 16px;
@@ -128,26 +128,7 @@ nav ul li a:hover {
     outline: none;
 }
 
-.input-group:before {
-    font-weight: 900;
-    position: absolute;
-    left: 15px;
-    top: 38px;
-    color: #7f8c8d;
-}
 
-.input-group:nth-child(1):before {
-    content: "\f02b";
-}
-
-.input-group:nth-child(2):before {
-    content: "\f15c";
-    top: 38px;
-}
-
-.input-group:nth-child(3):before {
-    content: "\f3c5";
-}
 
 .input-group textarea {
     min-height: 100px;

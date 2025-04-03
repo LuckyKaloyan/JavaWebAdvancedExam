@@ -54,7 +54,7 @@
                         </a>
                         <form th:action="@{'/meal_catalogs/meals/remove_from_favourite/' + ${favouriteMeal.id}}" th:method="POST" class="delete-form">
                             <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i> Remove</button>
+                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i>UnFavourite</button>
                         </form>
                     </td>
                 </tr>
