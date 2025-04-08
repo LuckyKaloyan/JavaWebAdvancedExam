@@ -69,6 +69,12 @@
                             <button type="submit" class="btn btn-success">Change Role</button>
                         </form>
                     </div>
+                    <div>
+                        <form th:action="@{'/admin_panel/user_management/delete/' + ${user.id}}" th:method="DELETE">
+                            <button type="submit" class="btn btn-danger">Delete User</button>
+                        </form>
+                    </div>
+
                 </td>
             </tr>
             </tbody>

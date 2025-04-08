@@ -1,10 +1,12 @@
 package hhh.web;
+import hhh.exception.BadInputException;
 import hhh.security.AuthenticationDetails;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.EditProfileRequest;
 import hhh.web.mapper.Mapper;
 import hhh.winner.service.WinnerService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -52,6 +54,24 @@ public class UserController {
         userService.editUser(id, editProfileRequest);
         return new ModelAndView("redirect:/home");
     }
+    @GetMapping("/delete_profile")
+    public ModelAndView getSelfDeleteUser(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+        User user = userService.getById(authenticationDetails.getId());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("delete_profile");
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+
+    @DeleteMapping("/{id}/deleted")
+    public ModelAndView confirmDeleteUser(@PathVariable UUID id, HttpSession session) {
+        userService.deleteUser(id);
+        ModelAndView modelAndView = new ModelAndView();
+        session.invalidate();
+        modelAndView.setViewName("redirect:/");
+        return modelAndView;
+    }
+
 
     @GetMapping("/winner")
     public ModelAndView getWinner(@AuthenticationPrincipal AuthenticationDetails authenticationDetails){

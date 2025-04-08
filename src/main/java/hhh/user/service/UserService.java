@@ -11,13 +11,15 @@ import hhh.user.model.UserRole;
 import hhh.user.repository.UserRepository;
 import hhh.web.dto.EditProfileRequest;
 import hhh.web.dto.RegisterRequest;
-import hhh.winner.repository.WinnerRepository;
+import hhh.winner.model.Winner;
+import hhh.winner.service.WinnerService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +33,13 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final WinnerService winnerService;
 
     @Autowired
-    public UserService(UserRepository userRepository , PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository , PasswordEncoder passwordEncoder, @Lazy WinnerService winnerService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.winnerService = winnerService;
     }
 
     public void createDefaultAdmin(){
@@ -191,5 +195,27 @@ public class UserService implements UserDetailsService {
             user.setDailyCalories(0);
         }
         userRepository.save(user);
+    }
+    @Transactional
+    public void deleteUser(UUID userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        userRepository.saveAllAndFlush(userRepository.findAll());
+
+        user.getMealCatalogs().forEach(mealCatalog -> {mealCatalog.getMeals().forEach(meal -> {meal.setMealCatalog(null);meal.setOwner(null);});mealCatalog.setOwner(null);});
+        user.getMealCatalogs().clear();
+        user.getFavouriteMeals().clear();
+        user.getUpVotes().clear();
+        user.getComments().forEach(comment -> comment.setUser(null));
+        user.getComments().clear();
+        user.getReports().forEach(report -> report.setConcernedUser(null));
+        user.getReports().clear();
+        if (user.getWinner() != null) {
+            Winner winner = user.getWinner();
+            winner.setUser(null);
+            winner.setMeal(null);
+            winnerService.saveIt(winner);
+        }
+
+        userRepository.delete(user);
     }
 }

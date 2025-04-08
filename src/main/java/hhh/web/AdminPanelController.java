@@ -213,4 +213,11 @@ public class AdminPanelController {
        modelAndView.setViewName("reports_data");
         return modelAndView;
     }
+    @DeleteMapping("/user_management/delete/{id}")
+    public ModelAndView deleteUser(@PathVariable UUID id) {
+        ModelAndView modelAndView = new ModelAndView();
+        userService.deleteUser(id);
+        modelAndView.setViewName("user_management");
+        return new ModelAndView("redirect:/admin_panel/user_management");
+    }
 }

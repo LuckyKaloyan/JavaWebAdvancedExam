@@ -67,6 +67,11 @@
 
       <button type="submit" class="submit-button">Save Changes</button>
     </form>
+
+    <form class="edit-profile-form" th:action="@{'/users/delete_profile'}" th:method="GET">
+      <input type="hidden" name="_method" value="GET">
+      <button type="submit" class="button">DELETE PROFILE</button>
+    </form>
   </div>
 </div>
 

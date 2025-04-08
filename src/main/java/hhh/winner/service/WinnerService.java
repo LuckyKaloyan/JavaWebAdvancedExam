@@ -57,4 +57,7 @@ public class WinnerService {
     public void deleteMeal(){
         getTheWinner().setMeal(null);
     }
+    public void saveIt(Winner winner){
+        winnerRepository.save(winner);
+    }
 }

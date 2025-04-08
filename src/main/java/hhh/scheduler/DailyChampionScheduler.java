@@ -24,7 +24,7 @@ public class DailyChampionScheduler {
     }
 
     @Transactional
-    @Scheduled(cron = "1 3 3 * * *")
+    @Scheduled(cron = "1 1 4 * * *")
     public void pickingTheWinner() {
         Meal meal = upVoteService.topMealByUpVote();
         User user = meal.getOwner();
