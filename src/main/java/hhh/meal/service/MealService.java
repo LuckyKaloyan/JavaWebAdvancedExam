@@ -10,6 +10,7 @@ import hhh.mealcatalog.model.MealCatalog;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.MealRequest;
+import hhh.winner.service.WinnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -28,15 +29,17 @@ public class MealService {
     private final FavouriteMealRepository favouriteMealRepository;
     private final UserService userService;
     private final MealTrackingClient mealTrackingClient;
+    private final WinnerService winnerService;
 
 
 
     @Autowired
-    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, UserService userService, MealTrackingClient mealTrackingClient) {
+    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, UserService userService, MealTrackingClient mealTrackingClient, WinnerService winnerService) {
         this.mealRepository = mealRepository;
         this.favouriteMealRepository = favouriteMealRepository;
         this.userService = userService;
         this.mealTrackingClient = mealTrackingClient;
+        this.winnerService = winnerService;
     }
 
     public void addMeal(MealRequest mealRequest, MealCatalog mealCatalog) {
@@ -87,6 +90,9 @@ public class MealService {
     }
 
     public void deleteMealById(UUID id) {
+        if(mealRepository.findById(id).get()==winnerService.getTheWinner().getMeal()){
+            winnerService.deleteMeal();
+        }
         mealRepository.deleteById(id);
         ResponseEntity<Void> response = mealTrackingClient.removeMealFromAllUsers(id);
     }

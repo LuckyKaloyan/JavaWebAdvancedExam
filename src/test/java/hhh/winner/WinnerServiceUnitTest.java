@@ -2,6 +2,7 @@ package hhh.winner;
 import hhh.exception.BadInputException;
 import hhh.meal.model.Meal;
 import hhh.user.model.User;
+import hhh.user.service.UserService;
 import hhh.winner.model.Winner;
 import hhh.winner.repository.WinnerRepository;
 import hhh.winner.service.WinnerService;
@@ -21,6 +22,8 @@ public class WinnerServiceUnitTest {
 
     @Mock
     private WinnerRepository winnerRepository;
+    @Mock
+    private UserService userService;
     private WinnerService winnerService;
     private User user;
     private Meal meal;
@@ -28,7 +31,7 @@ public class WinnerServiceUnitTest {
 
     @BeforeEach
     void setUp() {
-        winnerService = new WinnerService(winnerRepository);
+        winnerService = new WinnerService(winnerRepository, userService);
 
         user = new User();
         meal = new Meal();

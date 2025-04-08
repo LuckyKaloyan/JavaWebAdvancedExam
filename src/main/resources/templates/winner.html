@@ -29,7 +29,7 @@
 
 <div class="winner-container">
     <div class="winner-header user-winner-section">
-        <h1><i class="fas fa-crown"></i> The Last Champion</h1>
+        <h1><i class="fas fa-crown"></i>The Last Champion</h1>
         <p class="date-display">Celebrating culinary excellence in our community</p>
     </div>
 
@@ -41,7 +41,15 @@
         </div>
     </div>
 
-    <div class="winner-content" th:if="${winner != null}">
+    <div class="winner-content" th:if="${winner != null and (winner.meal == null or winner.user == null)}">
+        <div class="no-winner">
+            <i class="fas fa-clock fa-4x"></i>
+            <h3>Something is missing!</h3>
+            <p>A new winner will be picked again at midnight!</p>
+        </div>
+    </div>
+
+    <div class="winner-content" th:if="${winner != null and winner.meal != null and winner.user != null}">
         <div class="user-winner-section">
             <div class="winner-card">
                 <div class="winner-badge">
@@ -71,23 +79,19 @@
                                 <span th:text="${winner.user.role}"></span>
                             </div>
                         </div>
-                        <div class="user-bio" th:if="${winner.user.firstName != null || winner.user.lastName != null}">
+                        <div class="user-bio" th:if="${winner.user.firstName != null and winner.user.lastName != null}">
                             <p th:text="${winner.user.firstName + ' ' + winner.user.lastName}"></p>
                         </div>
                     </div>
                 </div>
                 <div class="achievement-metrics">
                     <div class="metric">
-                        <div class="metric-value" th:text="${winner.user.upVotes.size()}"></div>
-                        <div class="metric-label">Total Upvotes</div>
+                        <div class="metric-value" th:text="${winner.totalCatalogs}"></div>
+                        <div class="metric-label">Total Catalogs</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-value" th:text="${winner.user.favouriteMeals.size()}"></div>
-                        <div class="metric-label">Favorites</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value" th:text="${winner.user.mealCatalogs.size()}"></div>
-                        <div class="metric-label">Catalogs</div>
+                        <div class="metric-value" th:text="${winner.totalMeals}"></div>
+                        <div class="metric-label">Total Meals</div>
                     </div>
                 </div>
             </div>
@@ -97,6 +101,7 @@
             <div class="meal-card">
                 <div class="meal-header">
                     <h2><i class="fas fa-utensils"></i> Winning Meal</h2>
+                    <span th:text="'The Best wish won with '+ ${winner.totalUpVotes} + ' upVotes!'"></span>
                     <p class="meal-subtitle">The dish that stole the show</p>
                 </div>
                 <div class="meal-content">
@@ -126,22 +131,21 @@
                             </div>
                         </div>
 
-                        <div class="meal-stats">
-                            <div class="stat">
-                                <i class="fas fa-thumbs-up"></i>
-                                <span th:text="${winner.meal.upVotes.size()} + ' upvotes'"></span>
-                            </div>
                             <div class="stat">
                                 <i class="fas fa-heart"></i>
-                                <span th:text="${winner.meal.favouriteMeals.size()} + ' favorites'"></span>
+                                <span th:text="${winner.meal.favouriteMeals.size()} + ' Current favorites'"></span>
                             </div>
                             <div class="stat">
                                 <i class="fas fa-comment"></i>
-                                <span th:text="${winner.meal.comments.size()} + ' comments'"></span>
+                                <span th:text="${winner.meal.comments.size()} + ' Current comments'"></span>
                             </div>
+                        <div class="stat">
+                            <i class="fas fa-comment"></i>
+                            <span th:text="${winner.meal.upVotes.size()} + ' Current upVotes'"></span>
+                        </div>
                             <div class="stat">
                                 <i class="fas fa-calendar-day"></i>
-                                <span th:text="${#temporals.format(winner.meal.addedOn, 'MMMM d, yyyy')}"></span>
+                                <span th:text="'Added at date: ' + ${#temporals.format(winner.meal.addedOn, 'MMMM d, yyyy')}"></span>
                             </div>
                         </div>
                     </div>

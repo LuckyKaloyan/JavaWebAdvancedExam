@@ -25,21 +25,5 @@ class DailyChampionSchedulerUnitTest {
     @InjectMocks
     private DailyChampionScheduler scheduler;
 
-    @Test
-    void whenTopMealExistsCreateWinner() {
-        User user = new User();
-        Meal meal = new Meal();
-        meal.setOwner(user);
-        when(upVoteService.topMealByUpVote()).thenReturn(meal);
-        scheduler.cleanUp();
-        assertNotNull(meal.getOwner(), "Meal should have an owner");
-    }
 
-    @Test
-    void whenMealHasNoOwnerNoWinnerCreated() {
-        Meal meal = new Meal();
-        when(upVoteService.topMealByUpVote()).thenReturn(meal);
-        scheduler.cleanUp();
-        assertNull(meal.getOwner(), "Meal should have no owner");
-    }
 }

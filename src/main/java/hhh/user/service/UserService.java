@@ -3,12 +3,15 @@ import hhh.exception.BadInputException;
 import hhh.exception.EmailAlreadyInUseException;
 import hhh.exception.PasswordsDoNotMatchException;
 import hhh.exception.UsernameAlreadyExistException;
+import hhh.meal.model.Meal;
 import hhh.security.AuthenticationDetails;
+import hhh.upvote.model.UpVote;
 import hhh.user.model.User;
 import hhh.user.model.UserRole;
 import hhh.user.repository.UserRepository;
 import hhh.web.dto.EditProfileRequest;
 import hhh.web.dto.RegisterRequest;
+import hhh.winner.repository.WinnerRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -128,6 +132,17 @@ public class UserService implements UserDetailsService {
         return userRepository.findByRegistrationDateAfter(oneDayAgo);
     }
 
+     public List<Meal> getAllMeals(User user) {
+        List<Meal> meals = new ArrayList<>();
+        user.getMealCatalogs().forEach(mealCatalog -> {meals.addAll(mealCatalog.getMeals());});
+        return meals;
+     }
+     public List<UpVote> getAllUpVotesToUsersMeals(User user) {
+        List<UpVote> upVotes = new ArrayList<>();
+        user.getMealCatalogs().forEach(mealCatalog ->
+        {mealCatalog.getMeals().forEach(meal -> meal.getUpVotes().forEach(upVote -> upVotes.add(upVote)));});
+                return upVotes;
+     }
 
     @Transactional
     public void changeRole(UUID id) {
@@ -142,6 +157,7 @@ public class UserService implements UserDetailsService {
         }
         userRepository.save(user);
     }
+
     public void setDailyCalories(UUID id, double dailyCalories) {
         if (id == null) {
             throw new BadInputException("User ID cannot be null");
