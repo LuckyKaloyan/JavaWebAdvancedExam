@@ -8,8 +8,7 @@
         <version>3.4.3</version>
         <relativePath/>
     </parent>
-    <groupId>bg.softuni</groupId>
-    <artifactId>HealthyHeroesHub</artifactId>
+    <artifactId>MyMealMeter</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

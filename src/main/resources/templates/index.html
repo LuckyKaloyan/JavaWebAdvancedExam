@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HHH - Welcome</title>
+    <title>MMM - Welcome</title>
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -12,8 +12,8 @@
 <header>
     <nav>
         <div class="logo">
-            <a th:if="${isAuthenticated}" th:href="@{/home}">HHH Home</a>
-            <a th:if="${!isAuthenticated}" th:href="@{/}">Healthy Heroes Hub</a>
+            <a th:if="${isAuthenticated}" th:href="@{/home}">MMM Home</a>
+            <a th:if="${!isAuthenticated}" th:href="@{/}">MY MEAL METER</a>
         </div>
         <div class="logo" th:if="${isAuthenticated}">
             <a th:href="@{/meal_catalogs/leaderboard}">
@@ -31,7 +31,7 @@
 
 <section class="hero">
     <div class="hero-content" th:if="${isAuthenticated}">
-        <h1>Welcome back to HHH!</h1>
+        <h1>Welcome back to MMM!</h1>
         <p class="subtitle">Your culinary journey continues...</p>
         <div class="btn-group">
         <a th:href="@{/home}" class="btn btn-primary">Enter Your Dashboard <i class="fas fa-arrow-right"></i></a>
@@ -49,7 +49,7 @@
 
 <section id="welcome" class="welcome">
     <div class="welcome-container">
-        <h2>WELCOME TO THE HHH</h2>
+        <h2>WELCOME TO THE MMM</h2>
         <div class="divider"></div>
         <p>
             Welcome to our vibrant community, where delicious food, nutritious diets,

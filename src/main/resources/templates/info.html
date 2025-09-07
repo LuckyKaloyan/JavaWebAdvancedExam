@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healthy Heroes Hub - Info</title>
+    <title>My Meal Meter - Info</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/info.css">
 </head>
@@ -11,8 +11,8 @@
 <header>
     <nav>
         <div class="logo">
-            <a th:if="${isAuthenticated}" th:href="@{/home}">HHH Home</a>
-            <a th:if="${!isAuthenticated}" th:href="@{/}">Healthy Heroes Hub</a>
+            <a th:if="${isAuthenticated}" th:href="@{/home}">MMM Home</a>
+            <a th:if="${!isAuthenticated}" th:href="@{/}">My Meal Meter</a>
         </div>
         <div class="logo" th:if="${isAuthenticated}">
             <a th:href="@{/meal_catalogs/leaderboard}">
@@ -34,7 +34,7 @@
         <div class="faq-section">
             <h2><i class="fas fa-star"></i> Frequently Asked Questions</h2>
             <div class="faq">
-                <h3><i class="fas fa-apple-alt"></i> What is HealthyHeroesHub?</h3>
+                <h3><i class="fas fa-apple-alt"></i> What is MyMealMeter?</h3>
                 <p>HealthyHeroesHub is a community-driven app where users can share and discover nutritious meals. It features a calorie calculator to help you track your daily intake and a leaderboard showcasing the most popular meals based on user votes. Whether you're looking for meal inspiration or trending healthy recipes, this app helps you and your friends make better food choices.</p>
             </div>
             <div class="faq">
