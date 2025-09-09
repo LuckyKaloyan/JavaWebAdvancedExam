@@ -10,10 +10,8 @@ hhh\report\ReportServiceUnitTest.class
 hhh\upvote\UpVoteServiceUnitTest.class
 hhh\user\UserServiceUnitTest.class
 hhh\comment\CommentServiceUnitTest.class
-hhh\upvote\UpVoteServiceIntegrationTest.class
 hhh\web\ReportControllerApiTest.class
 hhh\web\AdminPanelControllerApiTest.class
 hhh\winner\WinnerServiceUnitTest.class
 hhh\meal_tracking\MealTrackingServiceUnitTest.class
 hhh\calculator\CalculatorServiceUnitTest.class
-hhh\meal\MealServiceIntegrationTest.class
