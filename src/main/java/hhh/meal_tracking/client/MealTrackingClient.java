@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@FeignClient(name = "meal-tracker-service", url = "http://localhost:8081/api/v1/meal_tracker")
+@FeignClient(name = "meal-tracker-service", url = "https://mmm-rest-service0000108.azuremicroservices.net/api/v1/meal_tracker\"")
 public interface MealTrackingClient {
 
     @PostMapping("/{userId}")
