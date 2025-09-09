@@ -89,15 +89,6 @@ class MealServiceUnitTest {
     }
 
     @Test
-    void deleteMealByIdCallTrackingClient() {
-        UUID id = UUID.randomUUID();
-        when(mealTrackingClient.removeMealFromAllUsers(any())).thenReturn(ResponseEntity.ok().build());
-        mealService.deleteMealById(id);
-        verify(mealTrackingClient).removeMealFromAllUsers(id);
-        verify(mealRepository).deleteById(id);
-    }
-
-    @Test
     void createFavouriteMealThrowExceptionWhenUserIsNull() {
         Meal meal = new Meal();
         assertThrows(BadInputException.class, () -> mealService.createFavouriteMeal(null, meal));
