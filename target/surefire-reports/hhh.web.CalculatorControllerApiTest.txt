@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: hhh.web.CalculatorControllerApiTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.750 s -- in hhh.web.CalculatorControllerApiTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.822 s -- in hhh.web.CalculatorControllerApiTest
