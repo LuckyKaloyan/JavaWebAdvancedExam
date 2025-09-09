@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Report</title>
+  <link rel="stylesheet" href="/css/create_new_report.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a th:href="@{/home}">MMM Home</a>
+    </div>
+    <div class="logo">
+      <a th:href="@{/meal_catalogs/leaderboard}">
+        <i class="fas fa-trophy"></i>LIVE Leaderboard <i class="fas fa-trophy"></i>
+      </a>
+    </div>
+    <ul>
+      <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+      <li><a th:href="@{/info}"><i class="fas fa-info-circle"></i> Info</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="report-container">
+  <div class="report-box">
+    <h2>Create New Report</h2>
+    <form th:action="@{/reports/create_new_report}" th:method="POST" th:object="${reportRequest}">
+      <div class="input-group">
+        <label for="troublemaker"><i class="fas fa-user-secret"></i> Troublemaker</label>
+        <textarea id="troublemaker" name="troublemaker" required placeholder="Enter troublemaker's name" th:field="*{troublemaker}"></textarea>
+        <p class="text-warning" th:errors="*{troublemaker}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('troublemaker')}" th:errors="*{troublemaker}"></span></p>
+      </div>
+
+      <div class="input-group">
+        <label for="reportType"><i class="fas fa-flag"></i> Report type</label>
+        <select id="reportType" name="reportType" required th:field="*{reportType}">
+          <option th:each="type : ${T(hhh.report.model.ReportType).values()}" th:text="${#strings.capitalize(type.toString().toLowerCase())}" th:value="${type}"></option>
+        </select>
+        <p class="text-warning" th:errors="*{reportType}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('reportType')}" th:errors="*{reportType}"></span></p>
+      </div>
+
+      <div class="input-group">
+        <label for="whereItHappened"><i class="fas fa-map-marker-alt"></i> Where it happened</label>
+        <select id="whereItHappened" name="whereItHappened" required th:field="*{whereItHappened}">
+          <option th:each="location : ${T(hhh.report.model.ReportLocation).values()}" th:text="${#strings.capitalize(location.toString().toLowerCase())}" th:value="${location}"></option>
+        </select>
+        <p class="text-warning" th:errors="*{whereItHappened}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('whereItHappened')}" th:errors="*{whereItHappened}"></span></p>
+      </div>
+
+      <div class="input-group">
+        <label for="description"><i class="fas fa-align-left"></i> Description</label>
+        <textarea id="description" name="description" required placeholder="Enter description" th:field="*{description}"></textarea>
+        <p class="text-warning" th:errors="*{description}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span></p>
+      </div>
+
+      <div class="input-group">
+        <label for="dateOfIssue"><i class="fas fa-calendar-day"></i> When it happened?</label>
+        <input type="date" id="dateOfIssue" name="dateOfIssue" required th:field="*{dateOfIssue}" />
+        <p class="text-warning"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('dateOfIssue')}">A valid past or present date needed!!!</span></p>
+      </div>
+
+      <button type="submit" class="submit-button"><i class="fas fa-paper-plane"></i> Submit Report</button>
+    </form>
+
+    <form th:action="@{/reports/my_reports}" th:method="GET">
+      <button type="submit" class="submit-button2"><i class="fas fa-scroll"></i> My Reports</button>
+    </form>
+  </div>
+</div>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

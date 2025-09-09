@@ -1,0 +1,259 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url('https://www.naturemade.com/cdn/shop/articles/healthy-foods-to-eat.jpg?v=1611988563') no-repeat center center/cover;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    color: white;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.logo {
+    font-size: 36px;
+    font-weight: 700;
+    padding-left: 20px;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    display: block;
+    flex-grow: 1;
+    text-decoration: none;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.logo a:hover {
+    color: #ff5722;
+    text-decoration: underline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff5722;
+    background-color: rgba(255, 87, 34, 0.1);
+    border-radius: 8px;
+    padding: 5px 10px;
+    transform: scale(1.05);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin-right: 20px;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.section-container {
+    width: 85%;
+    max-width: 1200px;
+    margin-bottom: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 2.5rem;
+    transition: transform 0.3s ease;
+}
+
+.section-container:hover {
+    transform: translateY(-5px);
+}
+
+h1 {
+    color: #ff5722;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: #ff5722;
+    margin: 0.5rem auto;
+    border-radius: 2px;
+}
+
+h2 {
+    color: #ff5722;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.faq {
+    background: #f9f9f9;
+    border-left: 4px solid #ff5722;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.faq h3 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.faq p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.rules-section {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.rules-table th, .rules-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.rules-table th {
+    background-color: #ff5722;
+    color: white;
+    font-weight: bold;
+}
+
+.rules-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.rules-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.rules-table td:first-child {
+    font-weight: bold;
+    color: #333;
+    width: 25%;
+}
+
+.rules-table td:last-child {
+    color: #555;
+}
+
+.contact-card {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #ff5722;
+    margin-bottom: 1.5rem;
+}
+
+.card h2 {
+    color: #333;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+.card p {
+    color: #666;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.card a {
+    color: #ff5722;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.card a:hover {
+    color: #e64a19;
+    text-decoration: underline;
+}

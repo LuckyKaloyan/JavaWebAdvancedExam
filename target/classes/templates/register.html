@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a th:href="@{/}">My Meal Meter</a>
+        </div>
+        <ul>
+            <li><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+            <li><a th:href="@{/register}"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
+            <li><a th:href="@{/info}"><i class="fas fa-info-circle"></i> Info</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="register-container">
+    <div class="register-box">
+        <div class="register-header">
+            <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+            <div class="underline"></div>
+        </div>
+
+        <form th:action="@{/register}" th:method="POST" th:object="${registerRequest}">
+            <div class="input-group">
+                <label for="username"><i class="fas fa-user"></i> Username</label>
+                <input type="text" placeholder="Choose your username" id="username" name="username" th:field="*{username}">
+                <p class="text-warning" th:text="${messageUsernameAlreadyExist}"></p>
+                <p class="text-warning" th:errors="*{username}"></p>
+            </div>
+
+            <div class="input-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" placeholder="Enter your email" id="email" name="email" th:field="*{email}">
+                <p class="text-warning" th:errors="*{email}"></p>
+                <p class="text-warning" th:text="${messageEmailAlreadyInUse}"></p>
+            </div>
+
+            <div class="input-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" placeholder="Create password" id="password" name="password" th:field="*{password}">
+                <p class="text-warning" th:errors="*{password}"></p>
+                <p class="text-warning" th:text="${messagePasswordsDoNotMatch}"></p>
+            </div>
+
+            <div class="input-group">
+                <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm Password</label>
+                <input type="password" placeholder="Repeat password" id="confirmPassword" name="confirmPassword" th:field="*{confirmPassword}">
+                <p class="text-warning" th:errors="*{confirmPassword}"></p>
+                <p class="text-warning" th:text="${messagePasswordsDoNotMatch}"></p>
+            </div>
+
+            <button type="submit" class="register-button">
+                <span>Register Now</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+
+        <div class="register-footer">
+            <p>Already have an account? <a th:href="@{/login}" class="login-link">Sign in here</a></p>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>
