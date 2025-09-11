@@ -61,7 +61,7 @@
                 <div class="meal-icon"><i class="fas fa-utensil-spoon"></i></div>
                 <div class="meal-name" th:text="${meal.name}"></div>
                 <div class="meal-calories" th:text="${meal.totalCalories} + ' kcal'"></div>
-                <form th:action="'http://localhost:8080/calculator/meal_tracker/delete_meal'" th:method="DELETE">
+                <form th:action="@{meal_tracker/delete_meal}" th:method="DELETE">
                     <input type="hidden" name="mealIndex" th:value="${iterStat.index}"/>
                     <button type="submit" class="delete-btn">
                         <i class="fas fa-trash-alt"></i> Remove
@@ -74,7 +74,7 @@
     <div class="add-meal-section">
         <h2>Add a Meal <i class="fas fa-arrow-down"></i> </h2>
         <div class="select-wrapper">
-            <form th:action="@{'http://localhost:8080/calculator/meal_tracker/add_meal'}" method="post">
+            <form th:action="@{meal_tracker/add_meal}" method="post">
                 <div class="input-group">
                     <div class="select-wrapper">
                         <select name="mealId" required class="form-control">
