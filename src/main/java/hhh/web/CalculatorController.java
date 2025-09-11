@@ -101,7 +101,7 @@ public class CalculatorController {
         eatenMealsListService.addMealToUser(authenticationDetails.getId(), mealId);
         return "redirect:/calculator/did_you_eat_enough_today";
     }
-    @DeleteMapping("/meal_tracker/delete_meal")
+    @PostMapping("meal_tracker/delete_meal")
     public String deleteMealToUser(@AuthenticationPrincipal AuthenticationDetails authenticationDetails,
                                    @RequestParam int mealIndex) {
         eatenMealsListService.deleteMealFromUser(authenticationDetails.getId(), mealIndex);
