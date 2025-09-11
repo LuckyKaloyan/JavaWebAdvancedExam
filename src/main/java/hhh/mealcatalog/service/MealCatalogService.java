@@ -1,7 +1,7 @@
 package hhh.mealcatalog.service;
+import hhh.eatenmealslist.service.EatenMealsListService;
 import hhh.exception.BadInputException;
 import hhh.meal.model.Meal;
-import hhh.meal_tracking.client.MealTrackingClient;
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.mealcatalog.model.MealCatalogType;
 import hhh.mealcatalog.repository.MealCatalogRepository;
@@ -12,7 +12,6 @@ import hhh.web.dto.MealCatalogRequest;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -26,13 +25,14 @@ public class MealCatalogService {
 
     private final MealCatalogRepository mealCatalogRepository;
     private final UserService userService;
-    private final MealTrackingClient mealTrackingClient;
+    private final EatenMealsListService eatenMealsListService;
 
     @Autowired
-    public MealCatalogService(MealCatalogRepository mealCatalogRepository, UserService userService, MealTrackingClient mealTrackingClient) {
+    public MealCatalogService(MealCatalogRepository mealCatalogRepository, UserService userService, EatenMealsListService eatenMealsListService) {
         this.mealCatalogRepository = mealCatalogRepository;
         this.userService = userService;
-        this.mealTrackingClient = mealTrackingClient;
+
+        this.eatenMealsListService = eatenMealsListService;
     }
 
     public void createMealCatalog(@Valid MealCatalogRequest mealCatalogRequest, User user) {
@@ -91,7 +91,7 @@ public class MealCatalogService {
         }
 
         for (Meal meal : mealCatalogRepository.getMealCatalogById(mealCatalogId).get().getMeals()) {
-            ResponseEntity<Void> response = mealTrackingClient.removeMealFromAllUsers(meal.getId());
+            eatenMealsListService.deleteAllMealsWithId(meal.getId());
         }
 
         mealCatalogRepository.deleteById(mealCatalogId);

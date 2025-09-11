@@ -7,11 +7,15 @@ D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\comment\repository\CommentR
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\comment\service\CommentService.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\config\BeanConfiguration.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\config\WebMvcConfiguration.java
+D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\eatenmealslist\model\EatenMealsList.java
+D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\eatenmealslist\repository\EatenMealsListRepository.java
+D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\eatenmealslist\service\EatenMealsListService.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\exception\AlreadyFavouriteException.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\exception\AlreadyUpVotedException.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\exception\BadInputException.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\exception\EmailAlreadyInUseException.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\exception\MealTrackingException.java
+D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\exception\NotFound.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\exception\NoUpVotesException.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\exception\PasswordsDoNotMatchException.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\exception\UsernameAlreadyExistException.java
@@ -20,10 +24,6 @@ D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\meal\model\Meal.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\meal\repository\FavouriteMealRepository.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\meal\repository\MealRepository.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\meal\service\MealService.java
-D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\meal_tracking\client\dto\AddMealToUserRequest.java
-D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\meal_tracking\client\dto\UserMealListRequest.java
-D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\meal_tracking\client\MealTrackingClient.java
-D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\meal_tracking\service\MealTrackingService.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\mealcatalog\model\MealCatalog.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\mealcatalog\model\MealCatalogType.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\mealcatalog\repository\MealCatalogRepository.java
@@ -47,6 +47,7 @@ D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\web\AdminPanelController.ja
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\web\CalculatorController.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\web\dto\CalculatorRequest.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\web\dto\CommentRequest.java
+D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\web\dto\EatenMealsRequest.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\web\dto\EditCatalogRequest.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\web\dto\EditProfileRequest.java
 D:\Programming\JavaWebAdvancedExam\src\main\java\hhh\web\dto\LoginRequest.java

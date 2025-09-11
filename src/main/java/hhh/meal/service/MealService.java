@@ -1,11 +1,12 @@
 package hhh.meal.service;
+import hhh.eatenmealslist.service.EatenMealsListService;
 import hhh.exception.AlreadyFavouriteException;
 import hhh.exception.BadInputException;
 import hhh.meal.model.FavouriteMeal;
 import hhh.meal.model.Meal;
 import hhh.meal.repository.FavouriteMealRepository;
 import hhh.meal.repository.MealRepository;
-import hhh.meal_tracking.client.MealTrackingClient;
+
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
@@ -28,17 +29,17 @@ public class MealService {
     private final MealRepository mealRepository;
     private final FavouriteMealRepository favouriteMealRepository;
     private final UserService userService;
-    private final MealTrackingClient mealTrackingClient;
+    private final EatenMealsListService eatenMealsListService;
     private final WinnerService winnerService;
 
 
 
     @Autowired
-    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, UserService userService, MealTrackingClient mealTrackingClient, WinnerService winnerService) {
+    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, UserService userService, EatenMealsListService eatenMealsListService, WinnerService winnerService) {
         this.mealRepository = mealRepository;
         this.favouriteMealRepository = favouriteMealRepository;
         this.userService = userService;
-        this.mealTrackingClient = mealTrackingClient;
+        this.eatenMealsListService = eatenMealsListService;
         this.winnerService = winnerService;
     }
 
@@ -94,7 +95,7 @@ public class MealService {
             winnerService.deleteMeal();
         }
         mealRepository.deleteById(id);
-        ResponseEntity<Void> response = mealTrackingClient.removeMealFromAllUsers(id);
+        eatenMealsListService.deleteAllMealsWithId(id);
     }
 
 

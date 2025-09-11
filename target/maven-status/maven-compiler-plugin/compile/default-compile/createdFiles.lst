@@ -4,6 +4,7 @@ hhh\upvote\repository\UpVoteRepository.class
 hhh\comment\service\CommentService.class
 hhh\web\ReportController.class
 hhh\web\dto\CalculatorRequest.class
+hhh\eatenmealslist\model\EatenMealsList$EatenMealsListBuilder.class
 hhh\web\dto\MealRequest.class
 hhh\web\dto\ReportRequest$ReportRequestBuilder.class
 hhh\web\CalculatorController.class
@@ -12,15 +13,14 @@ hhh\web\dto\RegisterRequest$RegisterRequestBuilder.class
 hhh\web\dto\UserMealListRequest$UserMealListRequestBuilder.class
 hhh\report\model\Report$ReportBuilder.class
 hhh\winner\repository\WinnerRepository.class
-hhh\meal_tracking\client\dto\UserMealListRequest.class
 hhh\meal\repository\FavouriteMealRepository.class
-hhh\meal_tracking\service\MealTrackingService.class
 hhh\web\UserController.class
 hhh\winner\service\WinnerService.class
 hhh\exception\AlreadyUpVotedException.class
 hhh\web\dto\MealRequest$MealRequestBuilder.class
 hhh\mealcatalog\model\MealCatalog$MealCatalogBuilder.class
 hhh\mealcatalog\service\MealCatalogInit.class
+hhh\eatenmealslist\model\EatenMealsList.class
 hhh\web\AdminPanelController.class
 hhh\web\dto\MealCatalogRequest$MealCatalogRequestBuilder.class
 hhh\meal\model\Meal.class
@@ -33,9 +33,11 @@ hhh\exception\EmailAlreadyInUseException.class
 hhh\user\model\UserRole.class
 hhh\user\model\User.class
 hhh\exception\UsernameAlreadyExistException.class
+hhh\web\dto\EatenMealsRequest.class
 hhh\exception\NoUpVotesException.class
 hhh\calculator\CalculatorService$1.class
 hhh\web\dto\EditCatalogRequest$EditCatalogRequestBuilder.class
+hhh\eatenmealslist\service\EatenMealsListService.class
 hhh\web\dto\CalculatorRequest$CalculatorRequestBuilder.class
 hhh\web\IndexController.class
 hhh\web\dto\LoginRequest$LoginRequestBuilder.class
@@ -52,10 +54,11 @@ hhh\upvote\service\UpVoteService.class
 hhh\web\mapper\Mapper.class
 hhh\calculator\CalculatorService.class
 hhh\mealcatalog\repository\MealCatalogRepository.class
-hhh\meal_tracking\client\dto\AddMealToUserRequest.class
+hhh\eatenmealslist\repository\EatenMealsListRepository.class
 hhh\report\service\ReportService.class
 hhh\web\dto\ReportRequest.class
 hhh\web\dto\UserMealListRequest.class
+hhh\exception\NotFound.class
 hhh\web\dto\CommentRequest$CommentRequestBuilder.class
 hhh\exception\BadInputException.class
 hhh\meal\model\FavouriteMeal$FavouriteMealBuilder.class
@@ -64,7 +67,6 @@ hhh\security\AuthenticationDetails.class
 hhh\mealcatalog\service\MealCatalogService.class
 hhh\winner\model\Winner.class
 hhh\meal\repository\MealRepository.class
-hhh\meal_tracking\client\MealTrackingClient.class
 hhh\upvote\model\UpVote$UpVoteBuilder.class
 hhh\exception\MealTrackingException.class
 hhh\user\repository\UserRepository.class
@@ -83,3 +85,4 @@ hhh\mealcatalog\model\MealCatalogType.class
 hhh\web\MealCatalogController.class
 hhh\web\dto\EditProfileRequest.class
 hhh\web\dto\RegisterRequest.class
+hhh\web\dto\EatenMealsRequest$EatenMealsRequestBuilder.class

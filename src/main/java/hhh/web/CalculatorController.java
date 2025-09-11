@@ -1,12 +1,12 @@
 package hhh.web;
 import hhh.calculator.CalculatorService;
+import hhh.eatenmealslist.service.EatenMealsListService;
 import hhh.meal.model.Meal;
 import hhh.meal.service.MealService;
-import hhh.meal_tracking.client.dto.UserMealListRequest;
-import hhh.meal_tracking.service.MealTrackingService;
 import hhh.security.AuthenticationDetails;
 import hhh.user.service.UserService;
 import hhh.web.dto.CalculatorRequest;
+import hhh.web.dto.EatenMealsRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,15 +25,15 @@ public class CalculatorController {
     private final CalculatorService calculatorService;
     private final UserService userService;
     private final MealService mealService;
-    private final MealTrackingService mealTrackingService;
+    private final EatenMealsListService eatenMealsListService;
 
 
     @Autowired
-    public CalculatorController(CalculatorService calculatorService, UserService userService, MealService mealService, MealTrackingService mealTrackingService) {
+    public CalculatorController(CalculatorService calculatorService, UserService userService, MealService mealService, EatenMealsListService eatenMealsListService) {
         this.calculatorService = calculatorService;
         this.userService = userService;
         this.mealService = mealService;
-        this.mealTrackingService = mealTrackingService;
+        this.eatenMealsListService = eatenMealsListService;
     }
 
     @GetMapping()
@@ -86,7 +86,7 @@ public class CalculatorController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("did_you_eat_enough_today");
         List<Meal> allMeals = mealService.getAllMeals();
-        UserMealListRequest userMealListRequest = mealTrackingService.getUserMealList(authenticationDetails.getId());
+        EatenMealsRequest userMealListRequest = eatenMealsListService.getUserMealList(authenticationDetails.getId());
         double totalCalories = mealService.totalMealsCalories(mealService.mealsList(userMealListRequest.getMealsIds()));
         modelAndView.addObject("user",userService.getById(authenticationDetails.getId()));
         modelAndView.addObject("allMeals", allMeals);
@@ -96,9 +96,17 @@ public class CalculatorController {
     }
 
 
-    @PostMapping("/chooseMeal")
-    public String postMealToUser(@AuthenticationPrincipal AuthenticationDetails authenticationDetails, @RequestParam UUID mealId) {
-        mealTrackingService.addMealToUser(authenticationDetails.getId(), mealId);
-        return "redirect:/did_you_eat_enough_today";
+    @PostMapping("meal_tracker/add_meal")
+    public String addMealToUser(@AuthenticationPrincipal AuthenticationDetails authenticationDetails, @RequestParam UUID mealId) {
+        eatenMealsListService.addMealToUser(authenticationDetails.getId(), mealId);
+        return "redirect:/calculator/did_you_eat_enough_today";
     }
+
+    @DeleteMapping("meal_tracker/delete_meal")
+    public String deleteMealToUser(@AuthenticationPrincipal AuthenticationDetails authenticationDetails, @RequestParam int mealIndex) {
+        eatenMealsListService.deleteMealFromUser(authenticationDetails.getId(), mealIndex);
+        return "redirect:/calculator/did_you_eat_enough_today";
+    }
+
+
 }
