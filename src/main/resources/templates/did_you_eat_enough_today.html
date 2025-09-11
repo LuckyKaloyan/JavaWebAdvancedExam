@@ -61,7 +61,7 @@
                 <div class="meal-icon"><i class="fas fa-utensil-spoon"></i></div>
                 <div class="meal-name" th:text="${meal.name}"></div>
                 <div class="meal-calories" th:text="${meal.totalCalories} + ' kcal'"></div>
-                <form th:action="@{meal_tracker/delete_meal}" th:method="DELETE">
+                <form th:action="@{meal_tracker/delete_meal}" th:method="POST">
                     <input type="hidden" name="mealIndex" th:value="${iterStat.index}"/>
                     <button type="submit" class="delete-btn">
                         <i class="fas fa-trash-alt"></i> Remove
@@ -109,7 +109,7 @@
             <div class="icon-circle"><i class="fas fa-calculator"></i></div>
             <h3>Setup Required</h3>
             <p>Calculate your daily calorie intake first!</p>
-            <form th:action="'http://localhost:8080/calculator'" th:method="GET">
+            <form th:action="@{/calculator}" th:method="GET">
                 <button type="submit" class="setup-btn">
                     <i class="fas fa-arrow-right"></i> Go to Calculator
                 </button>
