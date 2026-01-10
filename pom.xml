@@ -19,7 +19,6 @@
     <description>My Meal Meter Application</description>
 
     <properties>
-        <!-- Java -->
         <java.version>21</java.version>
 
         <!-- Spring Cloud: Boot 4.0.x -> Cloud 2025.1.x (Oakwood) -->
