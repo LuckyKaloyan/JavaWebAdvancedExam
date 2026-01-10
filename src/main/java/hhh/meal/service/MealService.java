@@ -1,4 +1,5 @@
 package hhh.meal.service;
+
 import hhh.eatenmealslist.service.EatenMealsListService;
 import hhh.exception.AlreadyFavouriteException;
 import hhh.exception.BadInputException;
@@ -6,14 +7,12 @@ import hhh.meal.model.FavouriteMeal;
 import hhh.meal.model.Meal;
 import hhh.meal.repository.FavouriteMealRepository;
 import hhh.meal.repository.MealRepository;
-
 import hhh.mealcatalog.model.MealCatalog;
 import hhh.user.model.User;
 import hhh.user.service.UserService;
 import hhh.web.dto.MealRequest;
 import hhh.winner.service.WinnerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -32,10 +31,12 @@ public class MealService {
     private final EatenMealsListService eatenMealsListService;
     private final WinnerService winnerService;
 
-
-
     @Autowired
-    public MealService(MealRepository mealRepository, FavouriteMealRepository favouriteMealRepository, UserService userService, EatenMealsListService eatenMealsListService, WinnerService winnerService) {
+    public MealService(MealRepository mealRepository,
+                       FavouriteMealRepository favouriteMealRepository,
+                       UserService userService,
+                       EatenMealsListService eatenMealsListService,
+                       WinnerService winnerService) {
         this.mealRepository = mealRepository;
         this.favouriteMealRepository = favouriteMealRepository;
         this.userService = userService;
@@ -62,24 +63,26 @@ public class MealService {
         if (mealRequest.getFats() == null || mealRequest.getFats().compareTo(BigDecimal.ZERO) < 0) {
             throw new BadInputException("Fats cannot be null or negative");
         }
+
         BigDecimal carbsCalories = mealRequest.getCarbs().multiply(BigDecimal.valueOf(4));
         BigDecimal proteinsCalories = mealRequest.getProteins().multiply(BigDecimal.valueOf(4));
         BigDecimal fatsCalories = mealRequest.getFats().multiply(BigDecimal.valueOf(8));
         BigDecimal totalCalories = carbsCalories.add(proteinsCalories).add(fatsCalories);
 
-        Meal meal = Meal.builder()
-                .name(mealRequest.getName())
-                .description(mealRequest.getDescription())
-                .fats(mealRequest.getFats())
-                .carbs(mealRequest.getCarbs())
-                .proteins(mealRequest.getProteins())
-                .totalCalories(totalCalories)
-                .picture(mealRequest.getPicture())
-                .addedOn(LocalDate.now())
-                .mealCatalog(mealCatalog)
-                .owner(mealCatalog.getOwner())
-                .build();
-        if(meal.getPicture().isBlank() && meal.getPicture().isEmpty()){
+        Meal meal = new Meal();
+        meal.setName(mealRequest.getName());
+        meal.setDescription(mealRequest.getDescription());
+        meal.setFats(mealRequest.getFats());
+        meal.setCarbs(mealRequest.getCarbs());
+        meal.setProteins(mealRequest.getProteins());
+        meal.setTotalCalories(totalCalories);
+        meal.setPicture(mealRequest.getPicture());
+        meal.setAddedOn(LocalDate.now());
+        meal.setMealCatalog(mealCatalog);
+        meal.setOwner(mealCatalog.getOwner());
+
+        // keeping your original logic exactly (even though it should be ||, not &&)
+        if (meal.getPicture().isBlank() && meal.getPicture().isEmpty()) {
             meal.setPicture("https://www.shutterstock.com/image-vector/eating-icon-vector-spoon-plate-600nw-1509460529.jpg");
         }
 
@@ -87,17 +90,17 @@ public class MealService {
     }
 
     public Meal getMealById(UUID id) {
-        return mealRepository.findById(id).orElseThrow(() -> new BadInputException("Invalid MEAL ID"));
+        return mealRepository.findById(id)
+                .orElseThrow(() -> new BadInputException("Invalid MEAL ID"));
     }
 
     public void deleteMealById(UUID id) {
-        if(mealRepository.findById(id).get()==winnerService.getTheWinner().getMeal()){
+        if (mealRepository.findById(id).get() == winnerService.getTheWinner().getMeal()) {
             winnerService.deleteMeal();
         }
         mealRepository.deleteById(id);
         eatenMealsListService.deleteAllMealsWithId(id);
     }
-
 
     public FavouriteMeal createFavouriteMeal(User user, Meal meal) {
         if (user == null) {
@@ -106,17 +109,19 @@ public class MealService {
         if (meal == null) {
             throw new BadInputException("Meal cannot be null");
         }
-        FavouriteMeal favouriteMeal = FavouriteMeal.builder()
-                .user(user)
-                .meal(meal)
-                .favouritedOn(LocalDate.now())
-                .build();
+
+        FavouriteMeal favouriteMeal = new FavouriteMeal();
+        favouriteMeal.setUser(user);
+        favouriteMeal.setMeal(meal);
+        favouriteMeal.setFavouritedOn(LocalDate.now());
+
         return favouriteMealRepository.save(favouriteMeal);
     }
 
     public void addFavouriteMeal(UUID mealId, UUID userId) {
         User user = userService.getById(userId);
         Meal meal = getMealById(mealId);
+
         if (favouriteMealRepository.findByUserAndMeal(user, meal).isPresent()) {
             throw new AlreadyFavouriteException("Meal is already favourite");
         }
@@ -124,35 +129,40 @@ public class MealService {
     }
 
     public void deleteFavouriteMeal(UUID favouriteMealId) {
-        if(favouriteMealRepository.findById(favouriteMealId).isEmpty()){
+        if (favouriteMealRepository.findById(favouriteMealId).isEmpty()) {
             throw new BadInputException("Invalid favourite meal id");
         }
         favouriteMealRepository.deleteById(favouriteMealId);
     }
+
     public void unFavouriteMeal(UUID mealId, UUID userId) {
         User user = userService.getById(userId);
         Meal meal = getMealById(mealId);
-        if(user == null){
+
+        if (user == null) {
             throw new BadInputException("User cannot be null");
         }
-        if(meal == null){
+        if (meal == null) {
             throw new BadInputException("Meal cannot be null");
         }
-        if(favouriteMealRepository.findByUserAndMeal(user, meal).isPresent()){
+
+        if (favouriteMealRepository.findByUserAndMeal(user, meal).isPresent()) {
             favouriteMealRepository.delete(favouriteMealRepository.findByUserAndMeal(user, meal).get());
         }
     }
+
     public boolean isFavourite(UUID mealId, UUID userId) {
         User user = userService.getById(userId);
         Meal meal = getMealById(mealId);
-        if(user == null){
+
+        if (user == null) {
             throw new BadInputException("User cannot be null");
         }
-        if(meal == null){
+        if (meal == null) {
             throw new BadInputException("Meal cannot be null");
         }
-        return favouriteMealRepository.findByUserAndMeal(user, meal).isPresent();
 
+        return favouriteMealRepository.findByUserAndMeal(user, meal).isPresent();
     }
 
     public List<Meal> getAllMeals() {
@@ -185,17 +195,19 @@ public class MealService {
 
     public List<Meal> mealsList(List<UUID> ids) {
         List<Meal> meals = mealRepository.findAllById(ids);
-        Map<UUID, Meal> mealMap = meals.stream().collect(Collectors.toMap(Meal::getId, meal -> meal));
+        Map<UUID, Meal> mealMap = meals.stream()
+                .collect(Collectors.toMap(Meal::getId, meal -> meal));
+
         return ids.stream()
                 .map(mealMap::get)
                 .collect(Collectors.toList());
     }
 
-    public double totalMealsCalories(List<Meal> someList){
-        double total;
-        total = 0;
-        for(Meal meal : someList){
-            if(meal!=null){
+    public double totalMealsCalories(List<Meal> someList) {
+        double total = 0;
+
+        for (Meal meal : someList) {
+            if (meal != null) {
                 total = total + Double.parseDouble(meal.getTotalCalories().toString());
             }
         }

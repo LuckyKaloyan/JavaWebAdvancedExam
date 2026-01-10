@@ -1,4 +1,5 @@
 package hhh.upvote.service;
+
 import hhh.exception.AlreadyUpVotedException;
 import hhh.exception.BadInputException;
 import hhh.exception.NoUpVotesException;
@@ -23,7 +24,6 @@ public class UpVoteService {
     private final UserService userService;
     private final MealService mealService;
 
-
     @Autowired
     public UpVoteService(UpVoteRepository upVoteRepository, UserService userService, MealService mealService) {
         this.upVoteRepository = upVoteRepository;
@@ -38,20 +38,25 @@ public class UpVoteService {
         if (userId == null) {
             throw new BadInputException("User ID cannot be null");
         }
+
         Meal meal = mealService.getMealById(mealId);
         User user = userService.getById(userId);
+
         if (meal == null) {
             throw new BadInputException("Meal not found with ID: " + mealId);
         }
         if (user == null) {
             throw new BadInputException("User not found with ID: " + userId);
         }
+
         if (upVoteRepository.findByMealAndUser(meal, user).isPresent()) {
             throw new AlreadyUpVotedException("Only one upvote can be made!");
         }
-        if(upVoteRepository.findByMealAndUser(meal,user).isPresent()){
+        if (upVoteRepository.findByMealAndUser(meal, user).isPresent()) {
             throw new AlreadyUpVotedException("Only one upvote can be made!");
-        }else  meal.getUpVotes().add(createUpVote(mealId, userId));
+        } else {
+            meal.getUpVotes().add(createUpVote(mealId, userId));
+        }
     }
 
     @Transactional
@@ -62,14 +67,16 @@ public class UpVoteService {
         if (userId == null) {
             throw new BadInputException("User ID cannot be null");
         }
+
         Meal meal = mealService.getMealById(mealId);
         User user = userService.getById(userId);
-        if(upVoteRepository.findByMealAndUser(meal,user).isPresent()){
-            UpVote upvote =  upVoteRepository.findByMealAndUser(meal,user).get();
+
+        if (upVoteRepository.findByMealAndUser(meal, user).isPresent()) {
+            UpVote upvote = upVoteRepository.findByMealAndUser(meal, user).get();
             upVoteRepository.delete(upvote);
             meal.getUpVotes().remove(upvote);
-        }else{
-            throw new BadInputException("The UpVote was not found!" );
+        } else {
+            throw new BadInputException("The UpVote was not found!");
         }
     }
 
@@ -80,54 +87,61 @@ public class UpVoteService {
         if (userId == null) {
             throw new BadInputException("User ID cannot be null");
         }
+
         User user = userService.getById(userId);
         Meal meal = mealService.getMealById(mealId);
+
         if (user == null) {
             throw new BadInputException("User not found with ID: " + userId);
         }
         if (meal == null) {
             throw new BadInputException("Meal not found with ID: " + mealId);
         }
-        UpVote upVote = UpVote.builder()
-                .user(user)
-                .meal(meal)
-                .date(LocalDate.now())
-                .build();
+
+        UpVote upVote = new UpVote();
+        upVote.setUser(user);
+        upVote.setMeal(meal);
+        upVote.setDate(LocalDate.now());
+
         upVoteRepository.save(upVote);
         return upVote;
     }
-    public boolean hasUserUpVoted(UUID mealId, UUID userId){
+
+    public boolean hasUserUpVoted(UUID mealId, UUID userId) {
         if (mealId == null) {
             throw new BadInputException("Meal ID cannot be null");
         }
         if (userId == null) {
             throw new BadInputException("User ID cannot be null");
         }
+
         Meal meal = mealService.getMealById(mealId);
         User user = userService.getById(userId);
-        if(upVoteRepository.findByMealAndUser(meal,user).isPresent()){
-            return true;
-        }else{
-            return false;
-        }
+
+        return upVoteRepository.findByMealAndUser(meal, user).isPresent();
     }
+
     public List<UpVote> getAllDateLastYear() {
         LocalDate oneYearAgo = LocalDate.now().minusYears(1);
         return upVoteRepository.findByDateAfter(oneYearAgo);
     }
+
     public List<UpVote> getAllDateLastMonth() {
         LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
         return upVoteRepository.findByDateAfter(oneMonthAgo);
     }
+
     public List<UpVote> getAllDateLastWeek() {
         LocalDate oneWeekAgo = LocalDate.now().minusDays(7);
         return upVoteRepository.findByDateAfter(oneWeekAgo);
     }
+
     public List<UpVote> getAllDateLast24hours() {
         LocalDate oneDayAgo = LocalDate.now().minusDays(1);
         return upVoteRepository.findByDateAfter(oneDayAgo);
     }
-    public List<UpVote> getAll(){
+
+    public List<UpVote> getAll() {
         return upVoteRepository.findAll();
     }
 
@@ -136,10 +150,10 @@ public class UpVoteService {
         upVoteRepository.deleteAllInBatch();
     }
 
-    public Meal topMealByUpVote (){
-        if(upVoteRepository.findMealWithMostUpVotes().isEmpty()){
+    public Meal topMealByUpVote() {
+        if (upVoteRepository.findMealWithMostUpVotes().isEmpty()) {
             throw new NoUpVotesException("There are no UpVotes yet... probably!");
-        }else {
+        } else {
             return upVoteRepository.findMealWithMostUpVotes().get();
         }
     }

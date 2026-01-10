@@ -1,16 +1,38 @@
 package hhh.web.dto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 import java.util.List;
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class UserMealListRequest {
+
     private UUID userId;
     private List<UUID> mealsIds;
+
+    // No-args constructor
+    public UserMealListRequest() {
+    }
+
+    // All-args constructor
+    public UserMealListRequest(UUID userId, List<UUID> mealsIds) {
+        this.userId = userId;
+        this.mealsIds = mealsIds;
+    }
+
+    // Getters and setters
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public List<UUID> getMealsIds() {
+        return mealsIds;
+    }
+
+    public void setMealsIds(List<UUID> mealsIds) {
+        this.mealsIds = mealsIds;
+    }
 }

@@ -1,5 +1,4 @@
 package hhh.web;
-import hhh.exception.BadInputException;
 import hhh.security.AuthenticationDetails;
 import hhh.user.model.User;
 import hhh.user.service.UserService;

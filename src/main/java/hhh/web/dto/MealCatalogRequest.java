@@ -1,16 +1,9 @@
 package hhh.web.dto;
+
 import hhh.mealcatalog.model.MealCatalogType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Builder
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class MealCatalogRequest {
 
     @NotNull
@@ -24,4 +17,40 @@ public class MealCatalogRequest {
     @NotNull
     private MealCatalogType type;
 
+    // No-args constructor
+    public MealCatalogRequest() {
+    }
+
+    // All-args constructor
+    public MealCatalogRequest(String name, String description, MealCatalogType type) {
+        this.name = name;
+        this.description = description;
+        this.type = type;
+    }
+
+    // Getters and setters
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public MealCatalogType getType() {
+        return type;
+    }
+
+    public void setType(MealCatalogType type) {
+        this.type = type;
+    }
 }

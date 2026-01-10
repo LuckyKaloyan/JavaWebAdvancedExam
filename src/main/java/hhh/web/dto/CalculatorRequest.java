@@ -1,16 +1,9 @@
 package hhh.web.dto;
+
 import hhh.calculator.Activity;
 import hhh.calculator.Gender;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Builder
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class CalculatorRequest {
 
     @Min(value = 10, message = "Weight must be at least 10 kg!")
@@ -30,4 +23,64 @@ public class CalculatorRequest {
     @NotNull(message = "Activity level is required!")
     private Activity activityLevel;
 
+    // No-args constructor
+    public CalculatorRequest() {
+    }
+
+    // All-args constructor
+    public CalculatorRequest(
+            double weight,
+            double height,
+            int age,
+            Gender gender,
+            Activity activityLevel
+    ) {
+        this.weight = weight;
+        this.height = height;
+        this.age = age;
+        this.gender = gender;
+        this.activityLevel = activityLevel;
+    }
+
+    // Getters and setters
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Activity getActivityLevel() {
+        return activityLevel;
+    }
+
+    public void setActivityLevel(Activity activityLevel) {
+        this.activityLevel = activityLevel;
+    }
 }

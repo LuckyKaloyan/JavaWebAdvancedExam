@@ -3,13 +3,13 @@ server.port=8080
 # MySQL datasource (local)
 spring.datasource.url=jdbc:mysql://localhost:3306/mymealmeter?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
 spring.datasource.username=root
-spring.datasource.password=YOUR_PASSWORD
+spring.datasource.password=
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 # JPA / Hibernate
 spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
 spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
+spring.jpa.show-sql=false
 spring.jpa.properties.hibernate.format_sql=true
 
 # Needed for PUT/DELETE with Thymeleaf forms (if you use it)

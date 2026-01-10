@@ -1,4 +1,5 @@
 package hhh.comment.service;
+
 import hhh.comment.model.Comment;
 import hhh.comment.repository.CommentRepository;
 import hhh.exception.BadInputException;
@@ -36,12 +37,12 @@ public class CommentService {
             throw new BadInputException("Meal ID cannot be null");
         }
 
-        Comment comment = Comment.builder()
-                .user(userService.getById(userId))
-                .meal(mealService.getMealById(mealId))
-                .text(text)
-                .createdOn(LocalDate.now())
-                .build();
+        Comment comment = new Comment();
+        comment.setUser(userService.getById(userId));
+        comment.setMeal(mealService.getMealById(mealId));
+        comment.setText(text);
+        comment.setCreatedOn(LocalDate.now());
+
         commentRepository.save(comment);
     }
 
@@ -55,18 +56,22 @@ public class CommentService {
         }
         commentRepository.deleteById(id);
     }
+
     public List<Comment> getAllCreatedOnLastYear() {
         LocalDate oneYearAgo = LocalDate.now().minusYears(1);
         return commentRepository.findByCreatedOnAfter(oneYearAgo);
     }
+
     public List<Comment> getAllCreatedOnLastMonth() {
         LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
         return commentRepository.findByCreatedOnAfter(oneMonthAgo);
     }
+
     public List<Comment> getAllCreatedOnLastWeek() {
         LocalDate oneWeekAgo = LocalDate.now().minusDays(7);
         return commentRepository.findByCreatedOnAfter(oneWeekAgo);
     }
+
     public List<Comment> getAllCreatedOnLast24hours() {
         LocalDate oneDayAgo = LocalDate.now().minusDays(1);
         return commentRepository.findByCreatedOnAfter(oneDayAgo);

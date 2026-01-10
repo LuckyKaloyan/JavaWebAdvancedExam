@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.3</version>
+        <version>4.0.1</version>
         <relativePath/>
     </parent>
 
@@ -21,13 +21,12 @@
     <properties>
         <!-- Java -->
         <java.version>25</java.version>
-        <maven.compiler.release>25</maven.compiler.release>
 
-        <!-- Spring Cloud -->
-        <spring-cloud.version>2023.0.3</spring-cloud.version>
+        <!-- Spring Cloud: Boot 4.0.x -> Cloud 2025.1.x (Oakwood) -->
+        <spring-cloud.version>2025.1.0</spring-cloud.version>
 
-        <!-- Lombok -->
-        <lombok.version>1.18.36</lombok.version>
+        <!-- Lombok (Java 25 compatible) -->
+        <lombok.version>1.18.42</lombok.version>
     </properties>
 
     <dependencies>
@@ -64,21 +63,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
+        <!-- Feign -->
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-crypto</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <!-- Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <!-- Feign -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <!-- Lombok -->
@@ -104,14 +99,12 @@
         </dependency>
 
         <!-- JDBC DRIVERS (runtime only) -->
-        <!-- Local: MySQL -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Azure: SQL Server -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
@@ -145,22 +138,6 @@
 
     <build>
         <plugins>
-            <!-- Lombok annotation processing -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <release>${maven.compiler.release}</release>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
-
             <!-- Spring Boot packaging + run -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>

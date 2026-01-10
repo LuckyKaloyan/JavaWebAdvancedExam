@@ -1,16 +1,28 @@
 package hhh.web.dto;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Builder
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+import jakarta.validation.constraints.Size;
+
 public class CommentRequest {
 
     @Size(min = 2, max = 500, message = "Come clean! Use between 2 and 500 letters.")
     private String text;
+
+    // No-args constructor
+    public CommentRequest() {
+    }
+
+    // All-args constructor
+    public CommentRequest(String text) {
+        this.text = text;
+    }
+
+    // Getter and setter
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 }

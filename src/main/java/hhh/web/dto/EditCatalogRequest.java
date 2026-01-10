@@ -1,16 +1,8 @@
 package hhh.web.dto;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-
-@Builder
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class EditCatalogRequest {
 
     @NotNull
@@ -21,4 +13,31 @@ public class EditCatalogRequest {
     @Size(min = 2, max = 300, message = "Enter a description between 2 and 300 symbols! Please!")
     private String description;
 
+    // No-args constructor
+    public EditCatalogRequest() {
+    }
+
+    // All-args constructor
+    public EditCatalogRequest(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    // Getters and setters
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

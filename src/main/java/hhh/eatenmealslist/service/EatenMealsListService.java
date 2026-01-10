@@ -1,6 +1,5 @@
 package hhh.eatenmealslist.service;
 
-
 import hhh.eatenmealslist.model.EatenMealsList;
 import hhh.eatenmealslist.repository.EatenMealsListRepository;
 import hhh.exception.NotFound;
@@ -15,6 +14,7 @@ import java.util.UUID;
 
 @Service
 public class EatenMealsListService {
+
     private final EatenMealsListRepository eatenMealListRepository;
     private final Mapper mapper;
 
@@ -39,10 +39,12 @@ public class EatenMealsListService {
         }
 
         EatenMealsList userMealList = eatenMealListRepository.findByUserId(userId)
-                .orElseGet(() -> EatenMealsList.builder()
-                        .userId(userId)
-                        .mealsIds(new ArrayList<>())
-                        .build());
+                .orElseGet(() -> {
+                    EatenMealsList list = new EatenMealsList();
+                    list.setUserId(userId);
+                    list.setMealsIds(new ArrayList<>());
+                    return list;
+                });
 
         userMealList.getMealsIds().add(mealId);
         eatenMealListRepository.save(userMealList);
@@ -54,10 +56,12 @@ public class EatenMealsListService {
         }
 
         EatenMealsList userMealList = eatenMealListRepository.findByUserId(userId)
-                .orElseGet(() -> EatenMealsList.builder()
-                        .userId(userId)
-                        .mealsIds(new ArrayList<>())
-                        .build());
+                .orElseGet(() -> {
+                    EatenMealsList list = new EatenMealsList();
+                    list.setUserId(userId);
+                    list.setMealsIds(new ArrayList<>());
+                    return list;
+                });
 
         return mapper.toRequest(userMealList);
     }
@@ -95,7 +99,7 @@ public class EatenMealsListService {
         });
     }
 
-    public void deleteAll(){
+    public void deleteAll() {
         eatenMealListRepository.deleteAll();
     }
 }

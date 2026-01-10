@@ -1,4 +1,5 @@
 package hhh.report.service;
+
 import hhh.exception.BadInputException;
 import hhh.report.model.Report;
 import hhh.report.repository.ReportRepository;
@@ -31,20 +32,21 @@ public class ReportService {
         if (userId == null) {
             throw new BadInputException("UserId cannot be null");
         }
+
         User user = userService.getById(userId);
         if (user == null) {
             throw new BadInputException("User not found with id: " + userId);
         }
-        Report report = Report.builder()
-                .troublemaker(reportRequest.getTroublemaker())
-                .reportType(reportRequest.getReportType())
-                .description(reportRequest.getDescription())
-                .whereItHappened(reportRequest.getWhereItHappened())
-                .dateOfIssue(reportRequest.getDateOfIssue())
-                .concernedUser(user)
-                .createdOn(LocalDate.now())
-                .reviewed(false)
-                .build();
+
+        Report report = new Report();
+        report.setTroublemaker(reportRequest.getTroublemaker());
+        report.setReportType(reportRequest.getReportType());
+        report.setDescription(reportRequest.getDescription());
+        report.setWhereItHappened(reportRequest.getWhereItHappened());
+        report.setDateOfIssue(reportRequest.getDateOfIssue());
+        report.setConcernedUser(user);
+        report.setCreatedOn(LocalDate.now());
+        report.setReviewed(false);
 
         this.reportRepository.save(report);
     }
@@ -52,36 +54,44 @@ public class ReportService {
     public List<Report> getAllNotReviewedReports() {
         return reportRepository.findByReviewedNot(true);
     }
+
     public List<Report> getAllReviewedReports() {
         return reportRepository.findByReviewedNot(false);
     }
-    public List<Report> getAll(){
+
+    public List<Report> getAll() {
         return reportRepository.findAll();
     }
-    public List<Report> getAllCreatedLastYear(){
+
+    public List<Report> getAllCreatedLastYear() {
         LocalDate oneYearAgo = LocalDate.now().minusYears(1);
         return reportRepository.findAllByCreatedOnAfter(oneYearAgo);
     }
-    public List<Report> getAllCreatedLastMonth(){
-        LocalDate oneYearAgo = LocalDate.now().minusMonths(1);
-        return reportRepository.findAllByCreatedOnAfter(oneYearAgo);
+
+    public List<Report> getAllCreatedLastMonth() {
+        LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
+        return reportRepository.findAllByCreatedOnAfter(oneMonthAgo);
     }
-    public List<Report> getAllCreatedLastWeek(){
-        LocalDate oneYearAgo = LocalDate.now().minusDays(7);
-        return reportRepository.findAllByCreatedOnAfter(oneYearAgo);
+
+    public List<Report> getAllCreatedLastWeek() {
+        LocalDate oneWeekAgo = LocalDate.now().minusDays(7);
+        return reportRepository.findAllByCreatedOnAfter(oneWeekAgo);
     }
-    public List<Report> getAllCreatedLastDay(){
-        LocalDate oneYearAgo = LocalDate.now().minusDays(1);
-        return reportRepository.findAllByCreatedOnAfter(oneYearAgo);
+
+    public List<Report> getAllCreatedLastDay() {
+        LocalDate oneDayAgo = LocalDate.now().minusDays(1);
+        return reportRepository.findAllByCreatedOnAfter(oneDayAgo);
     }
 
     public void completeReport(UUID id) {
         if (id == null) {
             throw new BadInputException("Report ID cannot be null");
         }
-        Report report = this.reportRepository.findById(id).orElseThrow(() -> new BadInputException("Report not found with id: " + id));
+
+        Report report = this.reportRepository.findById(id)
+                .orElseThrow(() -> new BadInputException("Report not found with id: " + id));
+
         report.setReviewed(true);
         reportRepository.save(report);
     }
-
 }

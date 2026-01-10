@@ -25,39 +25,43 @@ public class WinnerService {
     }
 
     @Transactional
-    public void newWinner(User user, Meal meal){
-        if(user == null){
+    public void newWinner(User user, Meal meal) {
+        if (user == null) {
             throw new BadInputException("User ID cannot be null");
         }
-        if(meal == null) {
+        if (meal == null) {
             throw new BadInputException("Meal cannot be null");
-
         }
 
-        Winner winner = Winner.builder()
-                .totalCatalogs(user.getMealCatalogs().size())
-                .totalMeals(userService.getAllMeals(user).size())
-                .totalUpVotes(userService.getAllUpVotesToUsersMeals(user).size())
-                .totalComments(meal.getComments().size())
-                .totalFavourites(meal.getFavouriteMeals().size())
-                .crowningDate(LocalDate.now())
-                .meal(meal)
-                .user(user).build();
-        if(winner.getTotalUpVotes()>0){
-            winnerRepository.deleteAll();winnerRepository.save(winner);
+        Winner winner = new Winner();
+        winner.setTotalCatalogs(user.getMealCatalogs().size());
+        winner.setTotalMeals(userService.getAllMeals(user).size());
+        winner.setTotalUpVotes(userService.getAllUpVotesToUsersMeals(user).size());
+        winner.setTotalComments(meal.getComments().size());
+        winner.setTotalFavourites(meal.getFavouriteMeals().size());
+        winner.setCrowningDate(LocalDate.now());
+        winner.setMeal(meal);
+        winner.setUser(user);
+
+        if (winner.getTotalUpVotes() > 0) {
+            winnerRepository.deleteAll();
+            winnerRepository.save(winner);
         }
     }
 
-    public Winner getTheWinner(){
-        if(winnerRepository.findAll().isEmpty()){
+    public Winner getTheWinner() {
+        if (winnerRepository.findAll().isEmpty()) {
             return null;
-        }else
-            return  winnerRepository.findFirstBy().get();
+        } else {
+            return winnerRepository.findFirstBy().get();
+        }
     }
-    public void deleteMeal(){
+
+    public void deleteMeal() {
         getTheWinner().setMeal(null);
     }
-    public void saveIt(Winner winner){
+
+    public void saveIt(Winner winner) {
         winnerRepository.save(winner);
     }
 }
