@@ -40,7 +40,7 @@
       <div class="input-group">
         <label for="reportType"><i class="fas fa-flag"></i> Report type</label>
         <select id="reportType" name="reportType" required th:field="*{reportType}">
-          <option th:each="type : ${T(hhh.report.model.ReportType).values()}" th:text="${#strings.capitalize(type.toString().toLowerCase())}" th:value="${type}"></option>
+          <option th:each="type : ${T(mmm.report.model.ReportType).values()}" th:text="${#strings.capitalize(type.toString().toLowerCase())}" th:value="${type}"></option>
         </select>
         <p class="text-warning" th:errors="*{reportType}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('reportType')}" th:errors="*{reportType}"></span></p>
       </div>
@@ -48,7 +48,7 @@
       <div class="input-group">
         <label for="whereItHappened"><i class="fas fa-map-marker-alt"></i> Where it happened</label>
         <select id="whereItHappened" name="whereItHappened" required th:field="*{whereItHappened}">
-          <option th:each="location : ${T(hhh.report.model.ReportLocation).values()}" th:text="${#strings.capitalize(location.toString().toLowerCase())}" th:value="${location}"></option>
+          <option th:each="location : ${T(mmm.report.model.ReportLocation).values()}" th:text="${#strings.capitalize(location.toString().toLowerCase())}" th:value="${location}"></option>
         </select>
         <p class="text-warning" th:errors="*{whereItHappened}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('whereItHappened')}" th:errors="*{whereItHappened}"></span></p>
       </div>

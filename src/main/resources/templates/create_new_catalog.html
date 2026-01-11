@@ -43,7 +43,7 @@
       <div class="input-group">
         <label for="type"><i class="fas fa-map-marker-alt"></i> Meal Catalog type:</label>
         <select id="type" name="type" required th:field="*{type}">
-          <option th:each="catalogType : ${T(hhh.mealcatalog.model.MealCatalogType).values()}" th:text="${#strings.capitalize(catalogType.toString().toLowerCase())}" th:value="${catalogType}"></option>
+          <option th:each="catalogType : ${T(mmm.mealcatalog.model.MealCatalogType).values()}" th:text="${#strings.capitalize(catalogType.toString().toLowerCase())}" th:value="${catalogType}"></option>
         </select>
         <p class="text-warning" th:errors="*{type}"><i class="fas fa-exclamation-circle"></i> <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span></p>
       </div>

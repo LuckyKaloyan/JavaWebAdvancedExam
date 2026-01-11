@@ -67,7 +67,7 @@
                 <div class="select-wrapper">
                     <select id="activityLevel" name="activityLevel" required>
                         <option value="" disabled selected>Select your activity level</option>
-                        <option th:each="activity : ${T(hhh.calculator.Activity).values()}"
+                        <option th:each="activity : ${T(mmm.calculator.Activity).values()}"
                                 th:text="${#strings.capitalize(activity.toString().toLowerCase())}"
                                 th:value="${activity}"></option>
                     </select>
@@ -80,7 +80,7 @@
                 <label for="gender"><i class="fas fa-venus-mars"></i> Gender:</label>
                 <div class="select-wrapper">
                     <select id="gender" name="gender" required>
-                        <option th:each="gender : ${T(hhh.calculator.Gender).values()}"
+                        <option th:each="gender : ${T(mmm.calculator.Gender).values()}"
                                 th:text="${#strings.capitalize(gender.toString().toLowerCase())}"
                                 th:value="${gender}"></option>
                     </select>
