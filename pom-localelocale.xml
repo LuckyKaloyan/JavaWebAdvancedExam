@@ -25,8 +25,6 @@
         <!-- Spring Cloud: Boot 4.0.x -> Cloud 2025.1.x (Oakwood) -->
         <spring-cloud.version>2025.1.0</spring-cloud.version>
 
-        <!-- Lombok (Java 25 compatible) -->
-        <lombok.version>1.18.42</lombok.version>
     </properties>
 
     <dependencies>
@@ -75,15 +73,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
-        <!-- Lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <optional>true</optional>
-        </dependency>
-
+        
         <!-- Configuration processor -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
