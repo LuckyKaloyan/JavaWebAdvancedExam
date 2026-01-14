@@ -5,6 +5,21 @@ The project demonstrates real-world backend architecture, Spring Security, datab
 
 ---
 
+## Quick Navigation
+
+[Overview](#overview) •
+[Features](#features) •
+[User Roles](#user-roles) •
+[Architecture](#application-architecture) •
+[Technology Stack](#technology-stack) •
+[Endpoints](#application-endpoints-high-level) •
+[Configuration](#configuration--environments) •
+[Security](#security) •
+[Moderation](#moderation--reporting) •
+[Purpose](#purpose-of-the-project)
+
+---
+
 ## Overview
 
 The goal of MyMealMeter is to combine:
@@ -39,13 +54,7 @@ It is designed as a complete, production-style web application similar to what w
 - Meal moderation
 - Comment moderation
 - Report review system (reviewed / not reviewed)
-- Application statistics dashboards:
-  - users
-  - meals
-  - comments
-  - upvotes
-  - reports
-  - time-based activity tracking
+- Application statistics dashboards
 
 ---
 
@@ -77,13 +86,14 @@ The application follows a classic layered architecture:
   Thymeleaf templates for server-side rendering.
 
 - **Exception handling**  
-  Centralized using `@ControllerAdvice` for validation, domain, and business errors.
+  Centralized using `@ControllerAdvice`.
 
 ---
 
 ## Technology Stack
 
-- Java 21+
+- **Java 25** (local development)
+- Java 21+ (baseline compatibility)
 - Spring Boot 4.x
 - Spring MVC
 - Thymeleaf
@@ -100,147 +110,104 @@ The application follows a classic layered architecture:
 
 ## Application Endpoints (High-Level)
 
-> The application uses MVC controllers returning views and redirects.
-
 ### Public & Authentication
-- `/` – landing page
-- `/register` – user registration
-- `/login` – login page
-- `/logout` – logout
-- `/info` – application info, FAQ, rules, contacts
+- `/`
+- `/register`
+- `/login`
+- `/logout`
+- `/info`
 
 ### User Area
-- `/home` – main authenticated page
-- `/users/{id}/profile` – edit user profile
-- `/users/delete_profile` – delete own account
-- `/users/winner` – winner display
+- `/home`
+- `/users/{id}/profile`
+- `/users/delete_profile`
+- `/users/winner`
 
 ### Meal Catalogs & Meals
-- `/meal_catalogs/**` – catalogs, meals, leaderboard, favourites
-- Catalog creation and editing
-- Meal creation, voting, commenting, favouriting
+- `/meal_catalogs/**`
+- Catalog and meal management
+- Voting, commenting, favourites
+- Leaderboard
 
 ### Calculator & Tracking
-- `/calculator/**` – calorie calculator and results
-- `/calculator/did_you_eat_enough_today` – daily meal tracker
+- `/calculator/**`
+- `/calculator/did_you_eat_enough_today`
 
 ### Reports
-- `/reports/**` – create and view user reports
+- `/reports/**`
 
 ### Admin Panel (ADMIN only)
-- `/admin_panel/**` – moderation, management, statistics dashboards
+- `/admin_panel/**`
 
 ---
 
 ## Configuration & Environments
 
-The application is configured to support **multiple environments**:
+The application supports:
 - Local development
 - Cloud deployment (Azure)
 
-This is achieved through:
+Environment separation is achieved through:
 - Environment-specific `application.properties`
-- Database-specific drivers and Hibernate dialects
+- Database-specific JDBC drivers
+- Hibernate dialect switching
 - Maven dependency configuration
 
 ---
 
 ## Local Development Configuration
 
-Local development uses **MySQL** as the database.
-
-### Key characteristics
-- MySQL JDBC driver
-- MySQL Hibernate dialect
+- Runs with **Java 25**
+- Uses MySQL
 - Automatic schema updates
-- Optimized for fast local iteration
-
-The local configuration enables:
 - Hidden HTTP method support (`PUT`, `PATCH`, `DELETE`)
-- Form-based authentication
-- Session-based security
+- Session-based authentication
 
 ---
 
 ## Production / Deployment Configuration
 
-Production deployment targets **Azure SQL (SQL Server)**.
-
-### Key characteristics
-- SQL Server JDBC driver
-- SQL Server Hibernate dialect
-- Secure connection with encryption
-- Credentials supplied via environment variables
-
-This setup allows:
-- Cloud-native deployment (Azure App Service)
-- Secure database access
-- Environment-specific secrets
-- Zero code changes between environments
+- Targets **Azure SQL (SQL Server)**
+- Encrypted database connections
+- Credentials provided via environment variables
+- Cloud-ready without code changes
 
 ---
 
 ## Maven Configuration (pom.xml)
 
-The project uses Maven for dependency and build management.
-
-### Key dependencies
-- Spring Boot starters:
-  - Web
-  - Thymeleaf
-  - Security
-  - Data JPA
-  - Validation
-  - Cache
-  - Actuator
-- Database drivers (runtime only):
-  - MySQL Connector/J
-  - Microsoft SQL Server JDBC
-- Spring Cloud OpenFeign
-- Testing:
-  - Spring Boot Test
-  - Spring Security Test
-
-The project supports:
-- Java 21+
-- Spring Boot 4.x
-- Spring Cloud 2025.x BOM
+- Spring Boot parent (4.x)
+- Spring Cloud BOM (2025.x)
+- Runtime DB drivers (MySQL + SQL Server)
+- Devtools for local development
+- Test dependencies isolated from production
 
 ---
 
 ## Security
 
-- Authentication and authorization via Spring Security
+- Spring Security authentication & authorization
 - Session-based login
 - Role-based access control
 - Admin-only routes protected
-- Validation and error handling at controller and service levels
 
 ---
 
 ## Moderation & Reporting
 
-MyMealMeter includes a built-in moderation workflow:
-- Users submit reports for inappropriate content
-- Reports are categorized as reviewed / not reviewed
-- Admins review and resolve reports
-- Admins can delete content or users
-- All moderation actions are visible in the admin panel
+- User-generated reports
+- Admin review workflow
+- Content and user moderation
+- Full visibility via admin dashboards
 
 ---
 
 ## Error Handling
 
-Global error handling is implemented using `@ControllerAdvice`.
-
-Handled cases include:
-- Duplicate usernames or emails
-- Password mismatch during registration
-- Duplicate upvotes or favourites
-- Invalid form input (dates, fields)
-- Domain-specific business errors
-
-Critical errors redirect to a generic error page.
+- Centralized using `@ControllerAdvice`
+- Validation and domain errors handled gracefully
+- Redirects with feedback messages
+- Generic error page for critical failures
 
 ---
 
