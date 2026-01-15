@@ -66,7 +66,7 @@ It is designed as a complete, production-style web application similar to what w
 | ADMIN | Full moderation and admin panel access |
 
 Role-based access control is enforced using Spring Security.
-
+[↑ Back to Top](#-freelance-news-board)
 ---
 
 ## Application Architecture
