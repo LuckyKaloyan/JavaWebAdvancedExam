@@ -54,7 +54,8 @@ It is designed as a complete, production-style web application similar to what w
 - Meal moderation
 - Comment moderation
 - Report review system (reviewed / not reviewed)
-- Application statistics dashboards
+- Application statistics dashboards<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -65,8 +66,8 @@ It is designed as a complete, production-style web application similar to what w
 | USER  | Standard application usage |
 | ADMIN | Full moderation and admin panel access |
 
-Role-based access control is enforced using Spring Security.
-[↑ Back to Top](#-quick-navigation)
+Role-based access control is enforced using Spring Security.<br>
+[↑ Back to Top](#quick-navigation)
 ---
 
 ## Application Architecture
@@ -86,7 +87,8 @@ The application follows a classic layered architecture:
   Thymeleaf templates for server-side rendering.
 
 - **Exception handling**  
-  Centralized using `@ControllerAdvice`.
+  Centralized using `@ControllerAdvice`.<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -104,7 +106,8 @@ The application follows a classic layered architecture:
 
 ### Databases
 - MySQL (local development)
-- Azure SQL / SQL Server (production-ready)
+- Azure SQL / SQL Server (production-ready)<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -137,7 +140,8 @@ The application follows a classic layered architecture:
 - `/reports/**`
 
 ### Admin Panel (ADMIN only)
-- `/admin_panel/**`
+- `/admin_panel/**`<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -151,7 +155,8 @@ Environment separation is achieved through:
 - Environment-specific `application.properties`
 - Database-specific JDBC drivers
 - Hibernate dialect switching
-- Maven dependency configuration
+- Maven dependency configuration<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -161,7 +166,8 @@ Environment separation is achieved through:
 - Uses MySQL
 - Automatic schema updates
 - Hidden HTTP method support (`PUT`, `PATCH`, `DELETE`)
-- Session-based authentication
+- Session-based authentication<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -170,7 +176,8 @@ Environment separation is achieved through:
 - Targets **Azure SQL (SQL Server)**
 - Encrypted database connections
 - Credentials provided via environment variables
-- Cloud-ready without code changes
+- Cloud-ready without code changes<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -180,7 +187,8 @@ Environment separation is achieved through:
 - Spring Cloud BOM (2025.x)
 - Runtime DB drivers (MySQL + SQL Server)
 - Devtools for local development
-- Test dependencies isolated from production
+- Test dependencies isolated from production<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -189,7 +197,8 @@ Environment separation is achieved through:
 - Spring Security authentication & authorization
 - Session-based login
 - Role-based access control
-- Admin-only routes protected
+- Admin-only routes protected<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -198,7 +207,8 @@ Environment separation is achieved through:
 - User-generated reports
 - Admin review workflow
 - Content and user moderation
-- Full visibility via admin dashboards
+- Full visibility via admin dashboards<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -207,7 +217,8 @@ Environment separation is achieved through:
 - Centralized using `@ControllerAdvice`
 - Validation and domain errors handled gracefully
 - Redirects with feedback messages
-- Generic error page for critical failures
+- Generic error page for critical failures<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
@@ -222,11 +233,12 @@ This project was built to demonstrate:
 - Admin tooling and moderation systems
 - Cloud-ready configuration
 
-It is suitable as a **portfolio project** and reflects skills expected in a **junior to mid-level Java backend developer** role.
+It is suitable as a **portfolio project** and reflects skills expected in a **junior to mid-level Java backend developer** role.<br>
+[↑ Back to Top](#quick-navigation)
 
 ---
 
 ## Author
 
 **Kaloyan Dimitrov**  
-Email: luckykaloyan@gmail.com
+Email: kaloyandimitrov1995@gmail.com
