@@ -4,7 +4,9 @@ MyMealMeter is a community-driven Spring Boot MVC web application that allows us
 The project demonstrates real-world backend architecture, Spring Security, database persistence, and admin moderation features.
 
 ---
-
+##
+You can reach the project at: https://mymealmeterwebapp.azurewebsites.net/
+---
 ## Quick Navigation
 
 [Overview](#overview) •
