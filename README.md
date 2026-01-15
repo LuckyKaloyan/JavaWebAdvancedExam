@@ -66,7 +66,7 @@ It is designed as a complete, production-style web application similar to what w
 | USER  | Standard application usage |
 | ADMIN | Full moderation and admin panel access |
 
-Role-based access control is enforced using Spring Security.<br>
+<br>
 [↑ Back to Top](#quick-navigation)
 ---
 
